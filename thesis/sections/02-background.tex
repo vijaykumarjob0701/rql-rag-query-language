@@ -10,8 +10,11 @@ Applications need ANN jointly with structured predicates.
 Common strategies include \textbf{pre-filtering}, \textbf{post-filtering}, specialised low-cardinality equality indices, and \textbf{predicate-subgraph} traversal as in ACORN~\citep{patel2024acorn} \established{} (see Section~\ref{sec:related}).
 
 \subsection{Hybrid lexical--dense fusion}
-Reciprocal Rank Fusion (RRF) combines ranked lists without score calibration~\citep{cormack2009rrf} \established{}.
-Production engines also expose weighted linear fusion and learned rankers; choice is workload-dependent \provisional{}.
+Reciprocal Rank Fusion (RRF) combines ranked lists without score calibration~\citep{cormack2009rrf} \established{} (journal 0011).
+Bruch et al.~\citep{bruch2023fusion} analyse the sibling \emph{convex combination} of normalised lexical and semantic scores
+\(f_{\mathrm{Convex}}=\alpha\phi_{\mathrm{Sem}}(f_{\mathrm{Sem}})+(1-\alpha)\phi_{\mathrm{Lex}}(f_{\mathrm{Lex}})\)
+(especially TM2C2 with theoretical min--max \(\phi_{\mathrm{tmm}}\)) versus RRF, and argue RRF is parameter-sensitive while CC is sample-efficient to tune \established{} as literature mechanisms (journal 0016); author NDCG/Recall tables are unreproduced here \provisional{}.
+Planner choice among \(\mathrm{Fuse}_{rrf}\), \(\mathrm{Fuse}_{linear}\), and \(\mathrm{Fuse}_{ltr}\) remains workload-dependent \hypothesis{}.
 
 \subsection{Late interaction}
 ColBERT~\citep{khattab2020colbert} defines \emph{late interaction}: independent encoders produce bags of contextualized embeddings \(E_q,E_d\), scored by a sum of maximum similarities (MaxSim)

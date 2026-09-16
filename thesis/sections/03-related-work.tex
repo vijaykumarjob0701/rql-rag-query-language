@@ -19,13 +19,18 @@ Pass~1--5 notes (journal 0010; \texttt{knowledge/reads/filtered-diskann-www23/})
 Zhang et al.~\citep{zhang2023vbase} formalise \emph{relaxed monotonicity} and expose ANN traversal as Volcano $\mathrm{Open}/\mathrm{Next}/\mathrm{Close}$ inside PostgreSQL, enabling filter-during-traversal, multi-column TopK, range filters, and vector joins without a predicted over-fetch $K'$.
 Pass~1--5 notes (journal 0009; \texttt{knowledge/reads/vbase-osdi23/}) ground $\mathrm{FilterExec}=\mathrm{ITERATIVE}$ and a concrete path for $\mathrm{VSimJoin}$ \established{} for the iterator architecture; \provisional{} for unreproduced latency claims.
 
-\subsection{Rank fusion (RRF)}
+\subsection{Rank fusion (RRF and linear/CC)}
 \paragraph{Cormack et al.\ (multimodal re-read).}
 Cormack, Clarke, and B\"{u}ttcher~\citep{cormack2009rrf} define Reciprocal Rank Fusion as
 \(\mathrm{RRFscore}(d)=\sum_{r\in R} 1/(k+r(d))\) with \(k=60\) fixed after a pilot study.
 RRF is unsupervised and \emph{rank-only} (no requirement that channel scores be calibrated), unlike CombMNZ; Condorcet Fuse is the pairwise-majority comparator.
 Pass~1--5 notes (journal 0011; \texttt{knowledge/reads/rrf-cormack-sigir09/}) treat the \textbf{formula and default \(k\)} as \established{} IR prior art for logical \(\mathrm{Fuse}_{rrf}\); author TREC/LETOR MAP tables are \textbf{not reproduced here} \provisional{} as unreproduced empirics.
-Modern dense+BM25 product stacks already ship RRF; learned/linear fusion (e.g.\ Bruch-style CC) remains a separate sibling operator \hypothesis{}.
+
+\paragraph{Bruch et al.\ (multimodal re-read).}
+Bruch, Gai, and Ingber~\citep{bruch2023fusion} analyse hybrid lexical--semantic fusion via a \emph{convex combination} of normalised channel scores (TM2C2: theoretical min--max + \(\alpha\)) versus RRF (including parametric \(\eta_{\mathrm{Lex}},\eta_{\mathrm{Sem}}\) and RRF-CC).
+They argue CC learning is largely agnostic among monotone normalisers, RRF is parameter-sensitive, and CC is sample-efficient; on their suite they report TM2C2 beating default RRF on NDCG (disagreement with Chen et al.).
+Pass~1--5 notes (journal 0016; \texttt{knowledge/reads/bruch-arxiv-2210.11934/}) treat the \textbf{CC/TM2C2 formulas, normalisation role, and RRF-vs-CC delineation} as \established{} literature mechanisms for logical \(\mathrm{Fuse}_{linear}\) (with \(\mathrm{Fuse}_{ltr}\) as the learned multi-parameter end of the continuum); author Recall/NDCG tables remain \provisional{} / AUTHOR-only.
+RQL packaging and planner policy (when to emit RRF vs linear vs LTR) remain \hypothesis{}.
 
 \subsection{Late interaction / multi-vector retrieval}
 \paragraph{ColBERT (multimodal re-read).}

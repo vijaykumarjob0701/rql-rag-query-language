@@ -2,5 +2,6 @@
 \label{sec:conclusion}
 
 We framed RQL as a \textbf{portable retrieval-plan IR} for RAG---algebra plus physical planning under recall/latency/ACL---rather than as cosmetic SQL for vectors \hypothesis{}.
-ACORN's multimodal re-read \established{} the need to treat filter strategy as a first-class physical decision~\citep{patel2024acorn}.
-The immediate path is: finish Pass~1--5 on VBASE and Filtered-DiskANN, freeze a LogicalPlan schema, implement two adapters, and execute the evaluation plan with published artifacts---without shortcutting integrity.
+ACORN, VBASE, and Filtered-DiskANN multimodal re-reads \established{} filter strategy as a first-class physical decision~\citep{patel2024acorn,zhang2023vbase,gollapudi2023filtered}.
+Cormack RRF and Bruch CC/TM2C2 delineate \(\mathrm{Fuse}_{rrf}\) vs \(\mathrm{Fuse}_{linear}\)~\citep{cormack2009rrf,bruch2023fusion} \established{} as mechanisms; ColBERT$\rightarrow$PLAID$\rightarrow$MUVERA grounds the late-interaction ladder~\citep{khattab2020colbert,santhanam2022plaid,jayaram2024muvera}.
+The immediate path is: freeze a LogicalPlan schema, implement two adapters, resolve remaining cite-chases (Chen et al.; Condorcet; FANNS survey figures), and execute the evaluation plan with published artifacts---without shortcutting integrity.

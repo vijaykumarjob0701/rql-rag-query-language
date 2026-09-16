@@ -34,7 +34,7 @@ BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface optio
 \subsection{Fusion and rewrite rules}
 Examples \hypothesis{}:
 \begin{itemize}
-  \item Independent channel searches $\rightarrow$ parallel schedule; fuse with \(\mathrm{Fuse}_{rrf}\) when scores incomparable~\citep{cormack2009rrf}.
+  \item Independent channel searches $\rightarrow$ parallel schedule; fuse with \(\mathrm{Fuse}_{rrf}\) when scores incomparable~\citep{cormack2009rrf}, else \(\mathrm{Fuse}_{linear}\) / \(\mathrm{Fuse}_{ltr}\) when calibrated~\citep{bruch2023fusion} \hypothesis{} (policy).
   \item \(\mathrm{Search}_{late}\) compile ladder: native MaxSim multi-vector~\citep{khattab2020colbert} \established{} scoring;
     else PLAID-class centroid interaction + multi-stage prune~\citep{santhanam2022plaid} \established{} as mechanism (journal 0014) if \texttt{late\_plaid} advertised;
     else MUVERA FDE$\rightarrow$MIPS~$+$~$\mathrm{MAXSIM\_RERANK}$~\citep{jayaram2024muvera} if \texttt{fde\_mips} capability exists (journal 0013);

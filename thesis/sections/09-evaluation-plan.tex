@@ -28,6 +28,7 @@ Channels $\in\{$dense, bm25, both$\}$; fuse $\in\{$RRF, linear$\}$; filter mode 
 \begin{itemize}
   \item Planned-run printer: \texttt{experiments/harness/print\_planned\_runs.py} (emits \texttt{score=NOT\_RUN} only).
   \item Deterministic RRF unit test on fixed lists: \texttt{experiments/harness/test\_rrf\_fusion.py} $\rightarrow$ \texttt{experiments/results/rrf\_unit\_test.txt}.
+  \item Deterministic weighted linear/CC fusion on fixed toy scores: \texttt{experiments/harness/test\_linear\_fusion.py} $\rightarrow$ \texttt{experiments/results/linear\_fusion/unit\_test.txt} (not an IR benchmark).
 \end{itemize}
 \textbf{No end-to-end ANN, RAG, or human-judgment metrics are claimed.}
 
