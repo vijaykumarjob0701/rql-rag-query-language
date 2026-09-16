@@ -11,5 +11,6 @@
 | [`reads/colbert-sigir20/`](reads/colbert-sigir20/) | ColBERT SIGIR 2020 | [`../journal/0012-colbert-multimodal-reread.md`](../journal/0012-colbert-multimodal-reread.md) |
 | [`reads/muvera-2405.19504/`](reads/muvera-2405.19504/) | MUVERA arXiv:2405.19504 | [`../journal/0013-muvera-multimodal-reread.md`](../journal/0013-muvera-multimodal-reread.md) |
 | [`reads/plaid-cikm22/`](reads/plaid-cikm22/) | PLAID CIKM 2022 | [`../journal/0014-plaid-multimodal-reread.md`](../journal/0014-plaid-multimodal-reread.md) |
+| [`reads/bruch-arxiv-2210.11934/`](reads/bruch-arxiv-2210.11934/) | Bruch et al. fusion analysis arXiv:2210.11934 / TOIS | [`../journal/0016-bruch-fusion-multimodal-reread.md`](../journal/0016-bruch-fusion-multimodal-reread.md) |
 
 Spec references: https://github.com/GoogleCloudPlatform/open-knowledge-format
