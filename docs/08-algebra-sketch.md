@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-16 (Europe/Dublin)  
 **Status:** `[hypothesis]` mirror of `thesis/sections/05-rql-algebra.tex` + filter modes from `06-optimizer.tex`  
-**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction) / **0016** (Bruch CC/TM2C2). No fabricated metrics.
+**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction) / **0016** (Bruch CC/TM2C2) / **0031** (BlinkDB AQP budgets). No fabricated metrics.
 
 ---
 
@@ -58,6 +58,12 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, PARTITION, ROUTER,
 3. Label predicates + FilteredVamana-class index → SPECIALIZED; else do not pretend.
 4. **Hybrid fuse:** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable **[Established]**; optional `Fuse_condorcet` majoritarian sibling **[Established]** mechanism (journal 0018) / **[Hypothesis]** when-to-use; `Fuse_linear(α)` (Bruch CC/TM2C2) when calibrated scores exist **[Established]** mechanism / **[Hypothesis]** policy; `Fuse_ltr` when multi-feature LTR justified `[hypothesis]`.
 5. **Late-interact ladder:** `Search_late` → native MaxSim multi-vector (ColBERT, 0012) → PLAID centroid interaction + multi-stage prune → residual MaxSim (journal **0014**, mechanism **[Established]**; AUTHOR speedups only) → MUVERA `FDE_ANN + MAXSIM_RERANK` (journal 0013); else fail closed / EXPLAIN — **never** silent dense cosine substitution.
+
+## Approximate budgets (BlinkDB-inspired)
+
+- **Established (AQP mechanism, journal 0031):** dual `ERROR`/`TIME` contracts + ELP sample-size selection + stratified multi-resolution samples (EuroSys’13 / arXiv:1203.5485).
+- **Hypothesis (RQL packaging):** `OPTION RECALL TARGET` / `LATENCY` and PhysicalPlan `budgets.recallTarget` / `budgets.latencyMs` map those contracts onto ANN/filter/rewrite effort; EXPLAIN must label recall as a **proxy**.
+- **Anti-overclaim:** BlinkDB ε ≠ recall@k; AUTHOR multi-TB numbers unreproduced.
 
 ## Machine-checkable IR (draft)
 

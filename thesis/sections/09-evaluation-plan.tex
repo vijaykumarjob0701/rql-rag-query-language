@@ -29,8 +29,16 @@ Channels $\in\{$dense, bm25, both$\}$; fuse $\in\{$RRF, linear$\}$; filter mode 
   \item Planned-run printer: \texttt{experiments/harness/print\_planned\_runs.py} (emits \texttt{score=NOT\_RUN} only).
   \item Deterministic RRF unit test on fixed lists: \texttt{experiments/harness/test\_rrf\_fusion.py} $\rightarrow$ \texttt{experiments/results/rrf\_unit\_test.txt}.
   \item Deterministic weighted linear/CC fusion on fixed toy scores: \texttt{experiments/harness/test\_linear\_fusion.py} $\rightarrow$ \texttt{experiments/results/linear\_fusion/unit\_test.txt} (not an IR benchmark).
+  \item Colab FANNS \emph{synthetic} microbench (T4 GPU, \texttt{faiss-gpu}~1.15.1; $N{=}50{,}000$, $d{=}128$, seed~$42$; selectivities $\{0.01,0.05,0.1,0.5\}$; modes PRE/POST): artifacts under \texttt{experiments/results/fanns/colab\_synth\_20260916\_233628/} (journal~0029; notebook URL in \texttt{experiments/colab/LINKS.md}).
 \end{itemize}
-\textbf{No end-to-end ANN, RAG, or human-judgment metrics are claimed.}
+
+\paragraph{Honest label for the Colab synthetic run.}
+This run is \textbf{plumbing + qualitative PRE vs POST latency/QPS shape on synthetic data} only.
+It is \textbf{not} P0: SIFT1M (or another licensed large vector set) with ground-truth $k$NN was \textbf{not} run.
+Recall@$10{=}1.0$ on this easy synthetic predicate setup is \textbf{not} a citation-ready ANN quality claim --- do not treat the numbers as paper results or as ACORN/FANNS table reproductions.
+See Appendix~\ref{sec:repro} for the artifact checklist.
+
+\textbf{No end-to-end RAG, BEIR, or human-judgment metrics are claimed. No licensed large-set FANNS P0 is claimed.}
 
 \subsection{What requires a human (Vijay)}
 GPU/CPU FANNS microbench, production/docker vector DB smokes, paid APIs, large datasets, and relevance judgments are listed as \textbf{HUMAN\_TODO} items with exact protocols and expected in-repo artifact paths in \texttt{experiments/HUMAN\_TODOS.md}.

@@ -67,6 +67,7 @@ $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
 Channels remain separate until fuse.
 Mandatory predicates in $P_{\mathrm{acl}}\subseteq P$ must be enforced by physical plans that cannot strip them client-side \hypothesis{}.
 Rewrite operators carry explicit token/latency cost attributes for the optimiser.
+Optional plan-level budget attributes (\texttt{RECALL TARGET} / \texttt{LATENCY}) are \hypothesis{} packaging inspired by BlinkDB's dual ERROR/TIME contracts and ELP selection~\citep{agarwal2013blinkdb} \established{} as AQP mechanism (journal~0031)---mapped here to retrieval effort knobs, not to stratified SQL samples (\S\ref{sec:budgets}).
 
 \subsection{Delineation from survey material}
 RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018).

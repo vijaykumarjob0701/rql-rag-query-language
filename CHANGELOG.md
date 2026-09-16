@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-17 ~00:55 IST — Thesis fold Colab synth + BlinkDB AQP budgets Pass 1–5
+
+- **A. Thesis fold:** §09 + Appendix A cite `colab_synth_20260916_233628` as **plumbing + qualitative PRE vs POST latency/QPS on synthetic** only; explicit **not P0** / not citation-ready ANN; journal `0030`.
+- **B. Research seed:** BlinkDB (EuroSys’13 / arXiv:1203.5485) multimodal Pass 1–5 — journal `0031`; OKF `knowledge/reads/blinkdb-eurosys13/`.
+- **Established:** dual ERROR/TIME contracts + ELP sample selection + stratified multi-resolution AQP mechanism.
+- **Hypothesis:** RQL `RECALL TARGET` / `LATENCY` + PhysicalPlan `budgets.*` packaging; bind to retrieval effort under EXPLAIN.
+- **Anti-overclaim:** BlinkDB ε ≠ ANN recall@k; AUTHOR 17TB figures unreproduced; **no** SIFT1M claim; **no push.**
+- Thesis weave: §03 related-work, §05 algebra, §06 budgets subsection, abstract/conclusion; bib authors+DOI+pages; rebuild `main.pdf`.
+- Meta: docs/06–08, docs/references, schemas/README, NOTES, journal index.
+
+
 ## 2026-09-17 — Colab FANNS synthetic run + LINKS
 
 - Ran `fanns_microbench_colab.ipynb` on Colab T4 GPU; results under `experiments/results/fanns/colab_synth_20260916_233628/` (**not P0**).

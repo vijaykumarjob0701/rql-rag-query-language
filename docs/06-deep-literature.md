@@ -169,11 +169,13 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **Takeaway (Established):** Portable serialized plans (not SQL text); extension relations/functions; **no** hard logical/physical split in the spec (conventional).
 - **Implication for RQL:** Long-term interchange *may* emit/embed Substrait extensions — today RQL JSON is Substrait-*inspired* Hypothesis IR only (do not claim wire compatibility).
 
-### 24. BlinkDB — Agarwal et al. (2012)
-- **Venue/ID:** arXiv:1203.5485
-- **URL:** https://arxiv.org/abs/1203.5485
-- **Takeaway:** Declarative error/latency constraints on approximate aggregation; Error-Latency Profiles select samples.
-- **Implication for RQL:** `OPTION recall_target=0.95, latency_ms=50` as first-class constraints driving `ef`/`nprobe`/candidate depths.
+### 24. BlinkDB — Agarwal et al. (EuroSys 2013) — **multimodal Pass 1–5 done (journal 0031)**
+- **Venue/ID:** EuroSys ’13 pp. 29–42; DOI 10.1145/2465351.2465355; preprint arXiv:1203.5485v2 (16 pp read)
+- **Authors:** Sameer Agarwal, Barzan Mozafari, Aurojit Panda, Henry Milner, Samuel Madden, Ion Stoica
+- **URL:** https://doi.org/10.1145/2465351.2465355 · https://arxiv.org/abs/1203.5485
+- **OKF:** `knowledge/reads/blinkdb-eurosys13/`
+- **Takeaway (Established):** Dual declarative contracts (`ERROR WITHIN ε AT CONFIDENCE C` **or** `WITHIN T`); multi-resolution stratified samples; **ELP** selects sample size; Table 2 closed-form aggregate variances. AUTHOR 17TB/<2s/2–10% unreproduced.
+- **Implication for RQL (Hypothesis packaging):** `OPTION RECALL TARGET` / `LATENCY` + PhysicalPlan `budgets.*` steal contract+ELP doctrine for retrieval effort knobs. **Delineation:** do **not** equate BlinkDB aggregate ε with ANN recall@k.
 
 ### 25. SystemDS — Boehm et al. (2019)
 - **Venue/ID:** arXiv:1909.02976

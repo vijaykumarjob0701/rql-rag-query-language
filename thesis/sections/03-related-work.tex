@@ -75,7 +75,9 @@ Substrait~\citep{substrait} \established{} a cross-language \emph{serialized pla
 Apache Calcite~\citep{begoli2018calcite} \established{} an embeddable algebra+optimizer over heterogeneous adapters, modeling physical properties as traits/calling conventions and citing Volcano/Cascades lineage~\citep{graefe1995cascades} (multimodal pass: journal 0025; OKF \texttt{knowledge/reads/calcite-begoli-sigmod18/}).
 RQL steals portable-plan and adapter doctrine as \hypothesis{} adjacency---it does \textbf{not} claim to implement Substrait or embed Calcite (\S\ref{sec:substrait-calcite-adjacency}).
 BigDAWG-style polystores~\citep{duggan2015bigdawg} motivate islands + shims \provisional{}.
-BlinkDB~\citep{agarwal2013blinkdb} motivates explicit approximate budgets \provisional{}.
+BlinkDB~\citep{agarwal2013blinkdb} \established{} the AQP idea of \emph{dual declarative contracts}---either an error+confidence bound (\texttt{ERROR WITHIN $\epsilon$ AT CONFIDENCE $C$}) or a response-time bound (\texttt{WITHIN $T$})---plus runtime Error-Latency Profile (ELP) sample-size selection over multi-resolution stratified samples (Pass~1--5: journal~0031; OKF \texttt{knowledge/reads/blinkdb-eurosys13/}).
+Author multi-TB latency/error tables remain unreproduced \provisional{}.
+RQL's \texttt{RECALL TARGET} / \texttt{LATENCY} surface is \hypothesis{} packaging inspired by that contract+ELP doctrine; it does \textbf{not} claim BlinkDB aggregate confidence intervals transfer to ANN recall@$k$ (\S\ref{sec:budgets}).
 
 \subsection{Knowledge packaging (methodology, not runtime)}
 Google's Open Knowledge Format (OKF) packages knowledge as markdown concepts with YAML frontmatter and graph-shaped links~\citep{okf2025}.

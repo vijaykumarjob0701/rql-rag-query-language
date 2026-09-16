@@ -37,7 +37,15 @@ Unlike classical selectivity-only costing, plans expose a vector:
   \item ACL safety (boolean hard constraint),
   \item Token/dollar budget (embeddings, rerankers, rewrites).
 \end{enumerate}
-BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface options such as \texttt{RECALL TARGET} / \texttt{LATENCY} \hypothesis{}.
+\subsection{Approximate budgets (BlinkDB-inspired)}
+\label{sec:budgets}
+BlinkDB~\citep{agarwal2013blinkdb} \established{} that approximate engines should expose \emph{declarative} quality-or-latency contracts and select physical effort via an Error-Latency Profile (ELP): pilot small samples, project error ($\sim 1/\sqrt{n}$ for Table~2 aggregates) and latency ($\sim$linear in rows read), then pick a multi-resolution sample (journal~0031).
+We steal that \emph{contract + profile} doctrine for retrieval plans \hypothesis{}:
+\begin{itemize}
+  \item Surface options \texttt{OPTION RECALL TARGET} / \texttt{LATENCY} (and PhysicalPlan \texttt{budgets.recallTarget}/\texttt{latencyMs}) declare soft constraints.
+  \item The planner may raise/lower ANN effort (\texttt{ef}/\texttt{nprobe}/candidates), FilterExec mode, or rewrite/rerank depth to chase those constraints, surfacing choices in \texttt{EXPLAIN}.
+  \item \textbf{Delineation:} BlinkDB $\epsilon$ is sampling error on SQL aggregates with closed-form variance; RQL ``recall target'' is an ANN/IR \emph{recall proxy}---not a transferred confidence interval and not a measured claim in this draft.
+\end{itemize}
 
 \subsection{Fusion and rewrite rules}
 Examples \hypothesis{}:

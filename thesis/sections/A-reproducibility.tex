@@ -10,3 +10,14 @@
   \item Research notes: journal + OKF-shaped bundles for paper reads.
   \item Hand-off list for compute/credentials beyond the agent sandbox: \texttt{experiments/HUMAN\_TODOS.md}.
 \end{enumerate}
+
+\subsection{Colab synthetic FANNS smoke (in-repo, not P0)}
+\label{sec:repro-colab-synth}
+Run id \texttt{colab\_synth\_20260916\_233628} (Europe/Dublin wall clock aligned with journal~0029):
+\begin{itemize}
+  \item Path: \texttt{experiments/results/fanns/colab\_synth\_20260916\_233628/} (\texttt{metrics.json}, \texttt{ENV.txt}, \texttt{plans/}).
+  \item Colab notebook URL registry: \texttt{experiments/colab/LINKS.md}.
+  \item Backend: \texttt{faiss-gpu}~1.15.1 on T4; synthetic Gaussian vectors only.
+  \item \textbf{What it supports:} harness wiring and a qualitative PRE$\ll$POST latency/QPS shape on this synthetic setup.
+  \item \textbf{What it does not support:} P0 claims, SIFT1M completion, or citation-ready filtered-ANN recall tables.
+\end{itemize}

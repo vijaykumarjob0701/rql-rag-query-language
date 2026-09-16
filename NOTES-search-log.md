@@ -337,3 +337,12 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 
 **Next seed candidates:** end-to-end CLI glue `rql→plan→emit` (no live DB); **or** pause checklist for human P0 (protocol 03 live smoke / decide Substrait Extension*Rel in-scope?).
 
+## 2026-09-17 ~00:55 IST — BlinkDB AQP budgets (journal 0031)
+
+| Query / action | Result |
+|----------------|--------|
+| `BlinkDB Agarwal EuroSys 2013 DOI` | ACM 10.1145/2465351.2465355; pages 29–42; authors Agarwal/Mozafari/Panda/Milner/Madden/Stoica |
+| Fetch `https://arxiv.org/pdf/1203.5485.pdf` | 16 pp arXiv v2; extract `tooling/scripts/extract_out/blinkdb_1203/` + page_renders |
+| Pass 1–5 | Dual ERROR/TIME + ELP Established; RQL RECALL/LATENCY Hypothesis packaging; ε≠recall@k |
+| Thesis fold Colab synth | journals 0030; §09 + Appendix A honest labels |
+

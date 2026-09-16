@@ -124,7 +124,7 @@ Research date: **2026-09-16**. Prefer primary product docs and dated 2024–2026
 90b. https://substrait.io/relations/physical_relations/ — Substrait physical relations (conventional)  
 90c. https://15721.courses.cs.cmu.edu/spring2016/papers/graefe-ieee1995.pdf — Cascades (Graefe 1995)  
 90d. https://calcite.apache.org/docs/algebra.html — Calcite algebra / RelBuilder docs  
-91. https://arxiv.org/abs/1203.5485 — BlinkDB (2012)  
+91. https://arxiv.org/abs/1203.5485 — BlinkDB (EuroSys 2013; DOI 10.1145/2465351.2465355; multimodal journal **0031**)  
 92. https://arxiv.org/abs/1909.02976 — SystemDS (2019)  
 93. https://arxiv.org/abs/1709.06416 — Weld (2017)  
 94. https://arxiv.org/abs/1604.03607 — Lara key-value algebra (2016)  
