@@ -8,5 +8,7 @@
 | [`reads/vbase-osdi23/`](reads/vbase-osdi23/) | VBASE OSDI 2023 | [`../journal/0009-vbase-multimodal-reread.md`](../journal/0009-vbase-multimodal-reread.md) |
 | [`reads/filtered-diskann-www23/`](reads/filtered-diskann-www23/) | Filtered-DiskANN WWW 2023 | [`../journal/0010-filtered-diskann-multimodal-reread.md`](../journal/0010-filtered-diskann-multimodal-reread.md) |
 | [`reads/rrf-cormack-sigir09/`](reads/rrf-cormack-sigir09/) | Cormack et al. RRF SIGIR 2009 | [`../journal/0011-rrf-cormack-multimodal-reread.md`](../journal/0011-rrf-cormack-multimodal-reread.md) |
+| [`reads/colbert-sigir20/`](reads/colbert-sigir20/) | ColBERT SIGIR 2020 | [`../journal/0012-colbert-multimodal-reread.md`](../journal/0012-colbert-multimodal-reread.md) |
+| [`reads/muvera-2405.19504/`](reads/muvera-2405.19504/) | MUVERA arXiv:2405.19504 | [`../journal/0013-muvera-multimodal-reread.md`](../journal/0013-muvera-multimodal-reread.md) |
 
 Spec references: https://github.com/GoogleCloudPlatform/open-knowledge-format

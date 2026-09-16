@@ -59,7 +59,9 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0009 | [`0009-vbase-multimodal-reread.md`](0009-vbase-multimodal-reread.md) | VBASE OSDI’23 Pass 1–5 + OKF bundle |
 | 0010 | [`0010-filtered-diskann-multimodal-reread.md`](0010-filtered-diskann-multimodal-reread.md) | Filtered-DiskANN WWW’23 Pass 1–5 + OKF |
 | 0011 | [`0011-rrf-cormack-multimodal-reread.md`](0011-rrf-cormack-multimodal-reread.md) | Cormack RRF SIGIR’09 Pass 1–5 + OKF (Fuse_rrf established) |
+| 0012 | [`0012-colbert-multimodal-reread.md`](0012-colbert-multimodal-reread.md) | ColBERT SIGIR’20 Pass 1–5 — MaxSim **Established** |
+| 0013 | [`0013-muvera-multimodal-reread.md`](0013-muvera-multimodal-reread.md) | MUVERA arXiv:2405.19504 Pass 1–5 — FDE rewrite |
 
-Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`).
+Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`).
 
 *Add new rows here when you add entries.*
