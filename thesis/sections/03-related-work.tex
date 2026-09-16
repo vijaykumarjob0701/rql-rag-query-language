@@ -19,6 +19,14 @@ Pass~1--5 notes (journal 0010; \texttt{knowledge/reads/filtered-diskann-www23/})
 Zhang et al.~\citep{zhang2023vbase} formalise \emph{relaxed monotonicity} and expose ANN traversal as Volcano $\mathrm{Open}/\mathrm{Next}/\mathrm{Close}$ inside PostgreSQL, enabling filter-during-traversal, multi-column TopK, range filters, and vector joins without a predicted over-fetch $K'$.
 Pass~1--5 notes (journal 0009; \texttt{knowledge/reads/vbase-osdi23/}) ground $\mathrm{FilterExec}=\mathrm{ITERATIVE}$ and a concrete path for $\mathrm{VSimJoin}$ \established{} for the iterator architecture; \provisional{} for unreproduced latency claims.
 
+\subsection{Rank fusion (RRF)}
+\paragraph{Cormack et al.\ (multimodal re-read).}
+Cormack, Clarke, and B\"{u}ttcher~\citep{cormack2009rrf} define Reciprocal Rank Fusion as
+\(\mathrm{RRFscore}(d)=\sum_{r\in R} 1/(k+r(d))\) with \(k=60\) fixed after a pilot study.
+RRF is unsupervised and \emph{rank-only} (no requirement that channel scores be calibrated), unlike CombMNZ; Condorcet Fuse is the pairwise-majority comparator.
+Pass~1--5 notes (journal 0011; \texttt{knowledge/reads/rrf-cormack-sigir09/}) treat the \textbf{formula and default \(k\)} as \established{} IR prior art for logical \(\mathrm{Fuse}_{rrf}\); author TREC/LETOR MAP tables are \textbf{not reproduced here} \provisional{} as unreproduced empirics.
+Modern dense+BM25 product stacks already ship RRF; learned/linear fusion (e.g.\ Bruch-style CC) remains a separate sibling operator \hypothesis{}.
+
 \subsection{IR query languages}
 Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator algebra~\citep{metzler2004indri} \provisional{} (URL-verified references; deep re-read pending).
 RQL steals composability, not surface syntax fidelity \hypothesis{}.

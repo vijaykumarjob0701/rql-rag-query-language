@@ -31,12 +31,12 @@ Requires TeX Live with `article`, `booktabs`, `hyperref`, `natbib`/`biblatex` (t
 | `00-abstract.tex` | draft | Honest about provisional stage |
 | `01-introduction.tex` | draft | Motivation: accuracy/latency/reliability |
 | `02-background.tex` | draft | ANN, hybrid, RAG pipeline stages |
-| `03-related-work.tex` | draft | ACORN + VBASE + Filtered-DiskANN multimodally read |
+| `03-related-work.tex` | draft | ACORN + VBASE + Filtered-DiskANN + **Cormack RRF** multimodally read |
 | `04-problem-formulation.tex` | draft | Formal problem for portable retrieval IR |
-| `05-rql-algebra.tex` | **HYPOTHESIS** | Typed evidence + rewrite examples (ACORN/VBASE/FDANN seeds) |
+| `05-rql-algebra.tex` | **HYPOTHESIS** | Typed evidence + rewrites; Fuse_rrf formula **Established** (0011) |
 | `06-optimizer.tex` | **HYPOTHESIS** | FilterExec modes tied to ACORN/VBASE/FDANN |
 | `07-compilation.tex` | **HYPOTHESIS** | Adapters / polystore shims |
-| `08-applications.tex` | draft | RAG patterns → RQL |
+| `08-applications.tex` | draft | Hybrid RRF pattern grounded in Cormack |
 | `09-evaluation-plan.tex` | plan only | No fake results |
 | `10-threats.tex` | draft | |
 | `11-conclusion.tex` | draft | |

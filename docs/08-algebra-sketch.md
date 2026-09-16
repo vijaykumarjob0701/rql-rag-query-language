@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-16 (Europe/Dublin)  
 **Status:** `[hypothesis]` mirror of `thesis/sections/05-rql-algebra.tex` + filter modes from `06-optimizer.tex`  
-**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010. No fabricated metrics.
+**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF). No fabricated metrics.
 
 ---
 
@@ -24,7 +24,7 @@ E \subseteq Id \times Payload \times Score \times Channel \times Provenance \tim
 | `Search_late(q,k)` | → E | Late interaction |
 | `Filter(P)` | E → E | Predicates / ACL |
 | `Union` | E×E → E | Multi-query |
-| `Fuse_rrf` / `Fuse_linear` | E* → E | RRF is established IR prior art; RQL naming is hypothesis |
+| `Fuse_rrf(k)` / `Fuse_linear` | E* → E | RRF formula + k=60 **[Established]** (Cormack SIGIR’09; journal 0011); RQL naming/compile **[Hypothesis]** |
 | `Diversify_mmr` | E → E | |
 | `Rerank_m` | E → E | |
 | `Expand` | E → E | Parent/window |
@@ -52,6 +52,7 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, AUTO\}
 1. Adverse selectivity/correlation → prefer SUBGRAPH / ITERATIVE / SPECIALIZED / over-fetch POST (by capability).
 2. `VSimJoin` → iterator nested loops when `ann_iterator` available (VBASE-class).
 3. Label predicates + FilteredVamana-class index → SPECIALIZED; else do not pretend.
+4. **Hybrid fuse (RRF):** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable; linear/learned when calibrated `[hypothesis]`.
 
 ## What this does **not** claim
 
