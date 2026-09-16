@@ -1,0 +1,42 @@
+\section{RQL algebra (original sketch)}
+\label{sec:algebra}
+
+\noindent\textit{All operators in this section are \hypothesis{} unless marked otherwise.}
+
+\subsection{Domain}
+An \textbf{evidence relation} $E$ is a multiset of tuples
+\[
+(\mathit{id},\; \mathit{payload},\; \mathit{score},\; \mathit{channel},\; \mathit{provenance},\; \ldots).
+\]
+Scores are channel-local until a fuse operator.
+
+\subsection{Logical operators (kernel)}
+\begin{center}
+\begin{tabular}{@{}llp{0.42\textwidth}@{}}
+\toprule
+Operator & Informal type & Notes \\
+\midrule
+$\mathrm{Search}_{dense}$ & $\rightarrow E$ & ANN leaf \\
+$\mathrm{Search}_{bm25}$ & $\rightarrow E$ & Lexical leaf \\
+$\mathrm{Search}_{late}$ & $\rightarrow E$ & Late interaction leaf \\
+$\mathrm{Filter}(P)$ & $E\rightarrow E$ & Predicates / ACL \\
+$\mathrm{Union}$ & $E\times E\rightarrow E$ & Multi-query \\
+$\mathrm{Fuse}_{rrf}$ / $\mathrm{Fuse}_{linear}$ & $E^*\rightarrow E$ & RRF \established{} as prior art; naming in RQL \hypothesis{} \\
+$\mathrm{Diversify}_{mmr}$ & $E\rightarrow E$ & Diversity \\
+$\mathrm{Rerank}$ & $E\rightarrow E$ & Cross-encoder etc. \\
+$\mathrm{Expand}$ & $E\rightarrow E$ & Parent/window \\
+$\mathrm{Rewrite}$ & $q\rightarrow q^*$ & HyDE / multi-query \\
+$\mathrm{Traverse}$ & $E\rightarrow E$ & Bounded graph hop \\
+$\mathrm{VSimJoin}$ & $E\times E\rightarrow E$ & Similarity join \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Semantics sketch}
+Channels remain separate until fuse.
+Mandatory predicates in $P_{\mathrm{acl}}\subseteq P$ must be enforced by physical plans that cannot strip them client-side \hypothesis{}.
+Rewrite operators carry explicit token/latency cost attributes for the optimiser.
+
+\subsection{Delineation from survey material}
+RRF~\citep{cormack2009rrf}, HNSW~\citep{malkov2018hnsw}, and ACORN's predicate-subgraph idea~\citep{patel2024acorn} are prior art.
+\textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.

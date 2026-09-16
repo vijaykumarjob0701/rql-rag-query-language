@@ -1,0 +1,38 @@
+\section{Physical planning (original sketch)}
+\label{sec:optimizer}
+
+\noindent\textit{This section is \hypothesis{}.}
+
+\subsection{Physical filter modes}
+Inspired by FANNS literature and ACORN's taxonomy~\citep{patel2024acorn}:
+\[
+\mathrm{FilterExec}\in\{\mathrm{PRE},\,\mathrm{POST},\,\mathrm{ITERATIVE},\,\mathrm{SUBGRAPH},\,\mathrm{SPECIALIZED},\,\mathrm{AUTO}\}.
+\]
+\begin{itemize}
+  \item $\mathrm{PRE}$: restrict candidates then exact/ANN on survivors.
+  \item $\mathrm{POST}$: ANN then predicate; often needs over-fetch.
+  \item $\mathrm{SUBGRAPH}$: ACORN-like traversal when the backend capability exists.
+  \item $\mathrm{SPECIALIZED}$: equality-constrained indices (e.g.\ Filtered-DiskANN class) when applicable \provisional{}.
+  \item $\mathrm{ITERATIVE}$: iterator/scan integration (VBASE-class) \provisional{}.
+  \item $\mathrm{AUTO}$: choose using stats; \textbf{never} violate ACL hard constraints.
+\end{itemize}
+
+\subsection{Cost vector}
+Unlike classical selectivity-only costing, plans expose a vector:
+\begin{enumerate}
+  \item Recall proxy (candidate depth, filter empty-result risk),
+  \item Latency (p50/p95 targets),
+  \item ACL safety (boolean hard constraint),
+  \item Token/dollar budget (embeddings, rerankers, rewrites).
+\end{enumerate}
+BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface options such as \texttt{RECALL TARGET} / \texttt{LATENCY} \hypothesis{}.
+
+\subsection{Fusion and rewrite rules}
+Examples \hypothesis{}: independent channel searches $\rightarrow$ parallel schedule; $\mathrm{Search}_{late}$ without multi-vector support $\rightarrow$ optional FDE-style rewrite if available~\citep{jayaram2024muvera}; low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/over-fetch.
+
+\begin{figure}[t]
+\centering
+\input{figures/plan-layers.tikz}
+\caption{Hypothesized RQL compilation stack: text $\rightarrow$ logical plan $\rightarrow$ physical plan $\rightarrow$ adapters.}
+\label{fig:stack}
+\end{figure}

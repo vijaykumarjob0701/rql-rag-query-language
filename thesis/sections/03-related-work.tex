@@ -1,0 +1,33 @@
+\section{Related work}
+\label{sec:related}
+
+\subsection{Vector database interfaces}
+Commercial and OSS systems expose vendor-specific query surfaces (metadata filters, hybrid search APIs, SQL extensions such as pgvector).
+Survey details and URLs live in the companion research package; none is a cross-vendor ANSI-SQL analogue for multi-stage RAG plans \established{} (landscape notes).
+
+\subsection{Filtered ANN / FANNS}
+\paragraph{ACORN (multimodal re-read).}
+Patel et al.~\citep{patel2024acorn} argue that pre- and post-filtering are brittle under selectivity and query--predicate correlation, and that specialised equality indices constrain predicate cardinality.
+They propose denser, predicate-agnostic HNSW variants (ACORN-$\gamma$, ACORN-1) that \emph{search the predicate subgraph} to approximate an oracle HNSW over surviving vectors.
+Our Pass~1--5 notes (journal 0006; OKF bundle under \texttt{knowledge/reads/acorn-2403.04871/}) treat author QPS claims as \textbf{not reproduced here} \established{} for the problem taxonomy; \provisional{} for unreproduced numeric speedups.
+
+\paragraph{Filtered-DiskANN and others.}
+Filtered-DiskANN~\citep{gollapudi2023filtered} and related specialised structures target constrained equality predicates \provisional{} (queued for multimodal read).
+VBASE~\citep{zhang2023vbase} frames vector similarity as composable with relational execution via relaxed monotonicity \provisional{} (journal stub 0007 only).
+
+\subsection{IR query languages}
+Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator algebra~\citep{metzler2004indri} \provisional{} (URL-verified references; deep re-read pending).
+RQL steals composability, not surface syntax fidelity \hypothesis{}.
+
+\subsection{Optimisers, portable plans, polystores}
+Apache Calcite~\citep{begoli2018calcite} and Substrait~\citep{substrait} motivate logical/physical separation and portable plan IR.
+BigDAWG-style polystores~\citep{duggan2015bigdawg} motivate islands + shims \provisional{}.
+BlinkDB~\citep{agarwal2013blinkdb} motivates explicit approximate budgets \provisional{}.
+
+\subsection{Knowledge packaging (methodology, not runtime)}
+Google's Open Knowledge Format (OKF) packages knowledge as markdown concepts with YAML frontmatter and graph-shaped links~\citep{okf2025}.
+We use OKF-\emph{shaped} bundles for research notes.
+We do \textbf{not} claim OKF is part of the RQL execution runtime \established{}.
+
+\subsection{What RQL is not}
+RQL is not ``another vendor filter DSL'', not a guarantee of identical recall across HNSW libraries, and not a claim that SQL alone solves multi-stage RAG \hypothesis{}.

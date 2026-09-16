@@ -1,0 +1,12 @@
+\section{Reproducibility checklist}
+\label{sec:repro}
+
+\begin{enumerate}
+  \item Scripts and configs under \texttt{experiments/} with pinned dependency files when benchmarks are added.
+  \item Dataset license notes and download digests (\textbf{HUMAN\_TODO}: \texttt{experiments/protocols/02-datasets.md}).
+  \item Seeded RNGs where stochasticity exists; report ANN library versions in \texttt{ENV.txt}.
+  \item Store logical/physical plan JSON beside metrics (no orphaned scores).
+  \item Separate AUTHOR\_CLAIM citations from REPRODUCED runs in result tables.
+  \item Research notes: journal + OKF-shaped bundles for paper reads.
+  \item Hand-off list for compute/credentials beyond the agent sandbox: \texttt{experiments/HUMAN\_TODOS.md}.
+\end{enumerate}

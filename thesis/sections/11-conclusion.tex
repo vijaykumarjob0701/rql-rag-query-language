@@ -1,0 +1,6 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We framed RQL as a \textbf{portable retrieval-plan IR} for RAG---algebra plus physical planning under recall/latency/ACL---rather than as cosmetic SQL for vectors \hypothesis{}.
+ACORN's multimodal re-read \established{} the need to treat filter strategy as a first-class physical decision~\citep{patel2024acorn}.
+The immediate path is: finish Pass~1--5 on VBASE and Filtered-DiskANN, freeze a LogicalPlan schema, implement two adapters, and execute the evaluation plan with published artifacts---without shortcutting integrity.

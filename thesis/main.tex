@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- packages ---
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!40!black
+}
+
+% Honesty macros
+\newcommand{\established}{\textcolor{green!40!black}{\textsc{[Established]}}}
+\newcommand{\hypothesis}{\textcolor{orange!70!black}{\textsc{[Hypothesis]}}}
+\newcommand{\provisional}{\textcolor{purple!60!black}{\textsc{[Provisional]}}}
+
+\title{\textbf{RQL: A Portable Intermediate Representation\\
+for Retrieval Plans in RAG Systems}\\[0.4em]
+\large Incremental research draft --- not a camera-ready submission}
+\author{Vijay Kumar\\
+\textit{Research draft, Europe/Dublin}\\
+\texttt{vijaykumarjob0701/rql-rag-query-language}}
+\date{16 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\small
+\textbf{Draft status.} Structured for growth into a citable article/thesis.
+Claims are labelled \established{}, \hypothesis{}, or \provisional{}.
+No fabricated experimental results. Not claimed ready for NeurIPS, VLDB, or arXiv acceptance.
+\end{center}
+
+\input{sections/00-abstract}
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-related-work}
+\input{sections/04-problem-formulation}
+\input{sections/05-rql-algebra}
+\input{sections/06-optimizer}
+\input{sections/07-compilation}
+\input{sections/08-applications}
+\input{sections/09-evaluation-plan}
+\input{sections/10-threats}
+\input{sections/11-conclusion}
+\appendix
+\input{sections/A-reproducibility}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

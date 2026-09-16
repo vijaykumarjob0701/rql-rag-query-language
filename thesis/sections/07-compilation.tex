@@ -1,0 +1,19 @@
+\section{Compilation and adapters}
+\label{sec:compilation}
+
+\noindent\textit{\hypothesis{} doctrine; Substrait/polystore inspiration is \provisional{}/\established{} as prior systems.}
+
+\subsection{Layers}
+\begin{enumerate}
+  \item Parse textual RQL to \texttt{LogicalPlan}.
+  \item Optimise to \texttt{PhysicalPlan} with capability negotiation.
+  \item Emit backend calls through adapters (pgvector SQL, Qdrant query API, Pinecone, Neo4j, \ldots).
+\end{enumerate}
+
+\subsection{Capability negotiation}
+Profiles declare required features (hybrid+RRF, graph hop, late interaction).
+Missing capabilities yield either a safe rewrite, a shim CAST (e.g.\ client-side fuse---explicitly marked expensive/unsafe for ACL), or a hard error \hypothesis{}.
+
+\subsection{Substrait adjacency}
+Substrait~\citep{substrait} motivates a binary/portable plan encoding across engines.
+RQL may eventually emit a retrieval-oriented dialect or embed custom extensions; this draft does not claim a finished Substrait specification \hypothesis{}.

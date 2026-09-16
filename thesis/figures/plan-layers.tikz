@@ -1,0 +1,14 @@
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners, align=center, minimum width=3.6cm, minimum height=0.85cm, font=\small},
+  arr/.style={-{Latex}, thick}
+]
+\node[box, fill=blue!8] (t) {Textual RQL};
+\node[box, fill=blue!12, below=0.35cm of t] (l) {LogicalPlan\\{\footnotesize Search / Filter / Fuse / \ldots}};
+\node[box, fill=orange!15, below=0.35cm of l] (p) {PhysicalPlan\\{\footnotesize FilterExec, AnnExec, FusionExec}};
+\node[box, fill=green!10, below=0.35cm of p] (a) {Adapters / shims};
+\node[box, fill=gray!10, below=0.35cm of a] (b) {Backends (pgvector, Qdrant, \ldots)};
+\draw[arr] (t) -- (l);
+\draw[arr] (l) -- (p);
+\draw[arr] (p) -- (a);
+\draw[arr] (a) -- (b);
+\end{tikzpicture}

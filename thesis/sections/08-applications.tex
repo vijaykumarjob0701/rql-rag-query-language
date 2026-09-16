@@ -1,0 +1,14 @@
+\section{Applications to RAG patterns}
+\label{sec:apps}
+
+Patterns below map to example programs in the companion repo (\texttt{examples/*.rql}).
+
+\begin{itemize}
+  \item Dense + ACL metadata filter (reliability-first pushdown).
+  \item Hybrid BM25+dense with RRF and optional cross-encoder rerank~\citep{cormack2009rrf}.
+  \item Multi-query / HyDE-style rewrite as plan nodes (costed) \provisional{}.
+  \item Parent expansion and bounded multi-hop graph retrieval \provisional{}.
+  \item Late-interaction search with optional planner rewrite \provisional{}.
+\end{itemize}
+
+RQL's value is making these patterns \emph{comparable} under EXPLAIN and shared eval harnesses \hypothesis{}.

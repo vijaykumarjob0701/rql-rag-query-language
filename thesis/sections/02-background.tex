@@ -1,0 +1,21 @@
+\section{Background}
+\label{sec:background}
+
+\subsection{Approximate nearest neighbour search}
+Graph indices such as HNSW~\citep{malkov2018hnsw} and disk-oriented graphs (DiskANN line) underpin production vector search.
+Search quality/latency is controlled by parameters (e.g.\ candidate list size), yielding recall--throughput curves rather than exact SQL cardinalities \established{}.
+
+\subsection{Hybrid vector + predicate search}
+Applications need ANN jointly with structured predicates.
+Common strategies include \textbf{pre-filtering}, \textbf{post-filtering}, specialised low-cardinality equality indices, and \textbf{predicate-subgraph} traversal as in ACORN~\citep{patel2024acorn} \established{} (see Section~\ref{sec:related}).
+
+\subsection{Hybrid lexical--dense fusion}
+Reciprocal Rank Fusion (RRF) combines ranked lists without score calibration~\citep{cormack2009rrf} \established{}.
+Production engines also expose weighted linear fusion and learned rankers; choice is workload-dependent \provisional{}.
+
+\subsection{Late interaction}
+ColBERT-style late interaction~\citep{khattab2020colbert} and subsequent engines/rewrites (e.g.\ MUVERA~\citep{jayaram2024muvera}) show that multi-vector retrieval admits planner rewrites \provisional{} (pending dedicated multimodal reads).
+
+\subsection{RAG as a staged pipeline}
+A typical RAG retrieve path is: embed $\rightarrow$ search channels $\rightarrow$ filter $\rightarrow$ fuse $\rightarrow$ (rerank) $\rightarrow$ expand/traverse $\rightarrow$ generate.
+RQL aims to name these stages as plan operators rather than ad-hoc functions \hypothesis{}.

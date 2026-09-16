@@ -1,0 +1,28 @@
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Problem}
+Modern RAG stacks must retrieve \emph{evidence}---chunks, passages, entities, paths---under mixed modalities: dense vectors, sparse/BM25 channels, structured predicates (including ACLs), and increasingly late-interaction or graph expansion~\citep{lewis2020rag}.
+Vector databases expose powerful but \textbf{non-portable} interfaces (JSON filters, GraphQL operators, SQL extensions, Redis commands, Cypher search).
+As a result, accuracy, latency, and reliability become properties of brittle Python glue rather than of inspectable plans.
+
+\subsection{Motivation (accuracy, latency, reliability)}
+\begin{description}
+  \item[Accuracy.] Hybrid fusion (e.g.\ reciprocal rank fusion~\citep{cormack2009rrf}), over-fetch+rerank, and multi-query rewriting improve recall only when stages are explicit and tunable.
+  \item[Latency.] Filter placement (pre vs.\ post vs.\ subgraph traversal) and ANN parameters dominate end-to-end cost~\citep{patel2024acorn}.
+  \item[Reliability.] Silent empty results, client-side ACL filtering, and irreproducible \texttt{efSearch} folklore are operational failures; plans with \texttt{EXPLAIN} and mandatory predicate pushdown targets are the remedy \hypothesis{}.
+\end{description}
+
+\subsection{Thesis statement}
+\label{sec:thesis-stmt}
+\textbf{RQL is a portable IR for retrieval plans}---an algebra over scored multisets of evidence together with a Cascades/Calcite-style physical planner that chooses filtered-ANN and fusion strategies under explicit recall/latency/ACL contracts, then compiles via polystore-like shims to concrete engines.
+The textual DSL is a frontend, not the contribution's centre of mass \hypothesis{}.
+
+\subsection{Contributions (draft)}
+\begin{enumerate}
+  \item A clear problem formulation for portable retrieval plans (Section~\ref{sec:problem}).
+  \item A hypothesized retrieval algebra and physical operator set (Sections~\ref{sec:algebra}--\ref{sec:optimizer}) \hypothesis{}.
+  \item Compilation/adapter doctrine inspired by Substrait and polystores (Section~\ref{sec:compilation}) \hypothesis{}.
+  \item An evaluation and reproducibility \emph{plan} without fabricated metrics (Section~\ref{sec:eval}).
+  \item Careful related-work positioning, with ACORN multimodally re-read (Section~\ref{sec:related}).
+\end{enumerate}

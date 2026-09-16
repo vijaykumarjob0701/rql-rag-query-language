@@ -1,0 +1,18 @@
+\section{Problem formulation}
+\label{sec:problem}
+
+\subsection{Setting}
+Let collections store entities with payloads, optional graph links, and one or more retrieval channels (dense vectors, lexical fields, multi-vectors).
+A \textbf{retrieval plan} consumes a user/agent query (text and/or vectors), mandatory security predicates, and optional budgets, and returns a ranked evidence multiset.
+
+\subsection{Requirements}
+\begin{enumerate}
+  \item \textbf{Portability:} one logical plan maps to multiple backends via adapters.
+  \item \textbf{Filter correctness:} ACL/tenant predicates are hard constraints (fail closed).
+  \item \textbf{Explicit approximation:} recall/latency targets are first-class, not hidden knobs.
+  \item \textbf{Composability:} fusion, rewrite, expand, traverse, and similarity joins are plan nodes.
+  \item \textbf{Observability:} logical/physical \texttt{EXPLAIN} with provenance for evaluation harnesses.
+\end{enumerate}
+
+\subsection{Non-goals (this draft)}
+Identical numeric recall across ANN implementations; full DDL standardisation; replacing embedding model APIs; unreproduced SOTA claims.

@@ -1,0 +1,9 @@
+\begin{abstract}
+Retrieval-augmented generation (RAG) systems compose embedding search, lexical retrieval, metadata and ACL filters, hybrid fusion, reranking, and sometimes graph or multi-hop expansion.
+Today those stages are usually glued together in application code against vendor-specific vector-database APIs.
+This draft proposes \textbf{RQL (Retrieval Query Language)} not merely as ``SQL for vectors'', but as a \textbf{portable intermediate representation for retrieval plans}: a small algebra over scored evidence, plus cost-based physical planning under recall, latency, and ACL constraints, compiling through adapters to heterogeneous backends.
+
+We separate \established{} survey material from \hypothesis{} original design and from \provisional{} literature pending multimodal re-read.
+A careful multimodal pass over ACORN~\citep{patel2024acorn} grounds filtered-ANN physical strategies.
+We define an evaluation \emph{plan} and reproducibility layout; we do \textbf{not} report unreproduced benchmark scores.
+\end{abstract}
