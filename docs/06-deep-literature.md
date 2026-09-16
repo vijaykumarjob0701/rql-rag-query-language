@@ -34,11 +34,13 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **Takeaway:** Constrained ANN via **space partitions** (not graphs); competitive recall-latency with much smaller index than graph constrained search.
 - **Implication for RQL:** Physical trait `IndexKind ∈ {HNSW, IVF, Partition, DiskANN}`; planner picks by size/latency SLO.
 
-### 5. Survey of FANNS — Lin et al. (2025)
-- **Venue/ID:** arXiv:2505.06501
-- **URL:** https://arxiv.org/abs/2505.06501
-- **Takeaway:** Formalizes hybrid dataset/query + metrics; pruning-focused taxonomy of filtered ANN; highlights inconsistent problem definitions — the field needs shared vocabulary.
-- **Implication for RQL:** Adopt survey vocabulary in EXPLAIN (`pruning_strategy`, `selectivity`, `query_difficulty`).
+### 5. Survey of FANNS — Lin et al. (2025) — **multimodal Pass 1–5 done (journal 0019)**
+- **Venue/ID:** arXiv:2505.06501v1 (cs.DB), 10 May 2025; **25 pp**
+- **Authors:** Yanjun Lin, Kai Zhang, Zhenying He, Yinan Jing, X. Sean Wang (Fudan)
+- **URL:** https://arxiv.org/abs/2505.06501 · code https://github.com/lyj-fdu/FANNS
+- **OKF:** `knowledge/reads/fanns-lin2025-2505.06501/`
+- **Takeaway (Established taxonomy):** Formalises hybrid dataset/query + metrics; **pruning-focused** taxonomy **VSP / VJP / SJP / SSP** classifying **A1–A17** (Figs 1–2), finer than pre/post/in-filtering. Query difficulty = **selectivity × distribution** (ID/POD/OOD; Figs 3–6). §6.3: combining multiple FANNS algorithms with dynamic selection is an open system direction.
+- **Implication for RQL:** Map survey families → FilterExec (`PRE`←SSP/A12, `POST`←VSP/A1, `ITERATIVE`←A2 VBase, `SUBGRAPH`←VJP/ACORN, `SPECIALIZED`←Filtered-DiskANN class, `PARTITION`←SJP/Milvus-Partition/HQI, `ROUTER`/`AUTO`←§6.3). EXPLAIN should speak survey vocabulary (`pruning_strategy`, selectivity, distribution factor). **AUTHOR-only** for Fig 3 curves — unreproduced.
 
 ### 6. Compass — (2025)
 - **Venue/ID:** arXiv:2510.27141

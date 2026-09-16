@@ -82,7 +82,7 @@ Research date: **2026-09-16**. Prefer primary product docs and dated 2024–2026
 58. https://github.com/microsoft/DiskANN — DiskANN / Filtered-DiskANN implementation  
 59. https://arxiv.org/abs/2304.01926 — HQI / hybrid vector search in KGs (Mohoney et al., 2023)  
 60. https://arxiv.org/abs/2308.15014 — CAPS partition index for filtered similarity (2023)  
-61. https://arxiv.org/abs/2505.06501 — Survey of FANNS (Lin et al., 2025)  
+61. https://arxiv.org/abs/2505.06501 — Survey of FANNS (Lin et al., 2025) — multimodal Pass 1–5 done (journal 0019; OKF `knowledge/reads/fanns-lin2025-2505.06501/`; 25 pp)  
 62. https://arxiv.org/abs/2510.27141 — Compass general filtered search (2025)  
 63. https://arxiv.org/abs/2507.11907 — SIEVE filtered vector search (2025)  
 64. https://arxiv.org/abs/2602.17914 — Learning-based filtered-ANN query planning (2026)  
