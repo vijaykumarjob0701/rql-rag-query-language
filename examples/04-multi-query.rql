@@ -1,0 +1,28 @@
+-- Multi-query / query expansion: union rewritten questions then fuse
+-- Pattern: multi-query retrieval before generation
+
+WITH
+  primary AS (
+    RETRIEVE chunks
+      EMBED TEXT $q_primary
+      SEARCH DENSE CANDIDATES 20
+      WHERE tenant = $tenant
+      LIMIT 20
+  ),
+  alternate AS (
+    RETRIEVE chunks
+      EMBED TEXT $q_hyde_or_alt
+      SEARCH DENSE CANDIDATES 20
+      WHERE tenant = $tenant
+      LIMIT 20
+  ),
+  lexical AS (
+    RETRIEVE chunks
+      SEARCH BM25 ON content QUERY $q_primary CANDIDATES 20
+      WHERE tenant = $tenant
+      LIMIT 20
+  )
+RETRIEVE UNION(primary, alternate, lexical)
+  FUSE RRF K 60 WEIGHTS (1.0, 0.8, 1.0)
+  RERANK MODEL 'ce-mini' TOP 10
+  LIMIT 10;

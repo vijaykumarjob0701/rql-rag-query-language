@@ -1,0 +1,13 @@
+-- Hybrid BM25 + dense with Reciprocal Rank Fusion + cross-encoder rerank
+-- Pattern: hybrid lexical+vector for RAG recall
+
+RETRIEVE chunks
+  EMBED MODEL 'text-embedding-3-large' TEXT $question
+  SEARCH
+    DENSE ON embedding CANDIDATES 40
+    AND BM25 ON content, title QUERY $question CANDIDATES 40
+  WHERE lang = 'en' AND published_at >= DATE '2024-01-01'
+  FILTER_MODE PUSHDOWN
+  FUSE RRF K 60
+  RERANK MODEL 'bge-reranker-v2-m3' TOP 8
+  LIMIT 8;

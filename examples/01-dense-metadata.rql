@@ -1,0 +1,13 @@
+-- Classic RAG: dense ANN + metadata ACL / tenant filter
+-- Pattern: embedding + top-k + metadata filters
+
+RETRIEVE chunks
+  EMBED MODEL 'text-embedding-3-large' TEXT $question
+  SEARCH DENSE ON embedding METRIC cosine CANDIDATES 50
+  WHERE tenant = $tenant
+    AND status = 'published'
+    AND doc_type IN ('policy', 'faq')
+    AND acl_allows($user_id)
+  FILTER_MODE AUTO
+  LIMIT 8
+  OPTION ef_search = 64, metric = 'cosine';

@@ -1,0 +1,12 @@
+-- Dense search with phrase/text-match filters (Pinecone-style $match_phrase / Redis FILTER)
+-- Pattern: constrained semantic search for regulated corpora
+
+RETRIEVE documents
+  EMBED TEXT $question
+  SEARCH DENSE ON embedding CANDIDATES 30
+  WHERE department = 'compliance'
+    AND MATCH_PHRASE(body, 'federal reserve')
+    AND year >= 2024
+    AND NOT confidential = true
+  FILTER_MODE PUSHDOWN
+  LIMIT 10;

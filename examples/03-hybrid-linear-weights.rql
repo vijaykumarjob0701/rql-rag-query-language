@@ -1,0 +1,13 @@
+-- Hybrid with explicit linear score mix (when backends expose raw scores)
+-- Inspired by TopK SQL / Weaviate alpha-style weighting
+
+RETRIEVE products
+  EMBED TEXT $question
+  SEARCH
+    DENSE ON embedding CANDIDATES 30
+    AND BM25 ON description QUERY $question CANDIDATES 30
+    AND SPARSE ON sparse_embedding CANDIDATES 30
+  WHERE category = 'electronics' AND price < 500 AND in_stock = true
+  FUSE LINEAR WEIGHTS (0.5, 0.3, 0.2)
+  DIVERSIFY PER brand MAX 2
+  LIMIT 12;

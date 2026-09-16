@@ -1,0 +1,21 @@
+-- Multi-hop: find entities first, then evidence chunks mentioning them
+-- Pattern: agentic / multi-hop RAG without full GraphRAG
+
+WITH entities AS (
+  RETRIEVE entities
+    EMBED TEXT $question
+    SEARCH DENSE ON name_embedding CANDIDATES 15
+    WHERE type IN ('Person', 'Organization', 'Product')
+    LIMIT 5
+)
+RETRIEVE chunks
+  EMBED TEXT $question
+  SEARCH
+    DENSE ON embedding CANDIDATES 50
+    AND BM25 ON content QUERY $question CANDIDATES 30
+  WHERE entity_ids CONTAINS_ANY (SELECT id FROM entities)
+    AND tenant = $tenant
+  FILTER_MODE PUSHDOWN
+  FUSE RRF K 60
+  LIMIT 12
+  OPTION explain = true;

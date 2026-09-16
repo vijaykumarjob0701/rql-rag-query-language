@@ -1,0 +1,13 @@
+-- Small-to-big / parent document expansion after chunk retrieval
+-- Pattern: structured retrieval for long documents
+
+RETRIEVE chunks
+  EMBED TEXT $question
+  SEARCH DENSE ON embedding CANDIDATES 40
+  WHERE corpus = 'employee_handbook'
+  FILTER_MODE ITERATIVE
+  EXPAND PARENT doc_id
+  -- optional: also pull neighboring chunks
+  -- EXPAND WINDOW 1 AROUND chunk_index
+  RERANK MODEL 'bge-reranker-v2-m3' TOP 5
+  LIMIT 5;

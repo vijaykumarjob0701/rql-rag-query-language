@@ -1,0 +1,10 @@
+-- Multi-vector / late-interaction (ColBERT-style) + metadata
+-- Pattern: high-accuracy retrieval when backend supports multi-vector (e.g. Turbopuffer late_interaction, TopK multi_vector)
+
+RETRIEVE passages
+  EMBED MODEL 'colbert-v2' TEXT $question   -- yields token vectors
+  SEARCH COLBERT ON token_vectors CANDIDATES 100
+  WHERE collection = 'wiki' AND lang = 'en'
+  FILTER_MODE AUTO
+  RERANK MODEL 'mono-t5' TOP 20
+  LIMIT 10;

@@ -1,0 +1,16 @@
+-- GraphRAG-lite: vector seed nodes then traverse relationships
+-- Compiles best to Neo4j Cypher SEARCH + MATCH; other backends approximate via edge tables
+
+RETRIEVE Movie AS m
+  EMBED VECTOR $plot_embedding
+  SEARCH DENSE ON embedding METRIC cosine CANDIDATES 8
+  WHERE release_year >= 1990 AND rating >= 7.0
+  FILTER_MODE PUSHDOWN
+  LIMIT 8
+THEN TRAVERSE (m)-[:ACTED_IN]->(p:Person)
+  RETURN p.name, p.bio_chunk_id
+  LIMIT 20
+THEN RETRIEVE chunks
+  WHERE id IN $bio_chunk_ids
+  SEARCH DENSE ON embedding CANDIDATES 10
+  LIMIT 10;
