@@ -30,7 +30,15 @@ Pass~1--5 notes (journal 0011; \texttt{knowledge/reads/rrf-cormack-sigir09/}) tr
 Bruch, Gai, and Ingber~\citep{bruch2023fusion} analyse hybrid lexical--semantic fusion via a \emph{convex combination} of normalised channel scores (TM2C2: theoretical min--max + \(\alpha\)) versus RRF (including parametric \(\eta_{\mathrm{Lex}},\eta_{\mathrm{Sem}}\) and RRF-CC).
 They argue CC learning is largely agnostic among monotone normalisers, RRF is parameter-sensitive, and CC is sample-efficient; on their suite they report TM2C2 beating default RRF on NDCG (disagreement with Chen et al.).
 Pass~1--5 notes (journal 0016; \texttt{knowledge/reads/bruch-arxiv-2210.11934/}) treat the \textbf{CC/TM2C2 formulas, normalisation role, and RRF-vs-CC delineation} as \established{} literature mechanisms for logical \(\mathrm{Fuse}_{linear}\) (with \(\mathrm{Fuse}_{ltr}\) as the learned multi-parameter end of the continuum); author Recall/NDCG tables remain \provisional{} / AUTHOR-only.
-RQL packaging and planner policy (when to emit RRF vs linear vs LTR) remain \hypothesis{}.
+
+\paragraph{Chen et al.\ (cite-chase from Bruch [5]; multimodal re-read).}
+Chen, Zhang, Lu, Bendersky, and Najork~\citep{chen2022ood} study \emph{zero-shot} hybrid retrieval and fuse lexical (+expansion) with deep (NPR) channels via RRF (\(k{=}60\)).
+They argue score linear interpolation needs min--max normalisation and \(\alpha\) tuning that conflicts with zero-shot transfer; on Robust04 and TREC-COVID, their best-tuned min--max BM25$+$NPR interpolation still underperforms RRF(BM25, NPR) by about 3\% relative Recall@1K (Fig.~2; primary metric Recall@1K/MAP, not NDCG).
+Pass~1--5 notes (journal 0017; \texttt{knowledge/reads/chen-ecir2022-2201.10582/}) treat the \textbf{RRF-for-zero-shot mechanism and the linear-interp critique} as \established{} literature; author Recall/MAP tables remain \provisional{} / AUTHOR-only.
+
+\paragraph{Resolving Chen$\leftrightarrow$Bruch (setup disagreement).}
+The author-level disagreement is \established{} as a \emph{literature conflict of setups}, not a single false claim: different metrics (Recall@1K vs NDCG), different linear forms (simple min--max \(\alpha\)-interp vs TM2C2 \(\phi_{\mathrm{tmm}}\)), different objectives (zero-shot / no labels vs sample-efficient \(\alpha\) with labels), and different channel/dataset suites.
+RQL packaging and the planner preference rule among \(\{\mathrm{Fuse}_{rrf},\mathrm{Fuse}_{linear},\mathrm{Fuse}_{ltr}\}\) remain \hypothesis{} (see \S\ref{sec:fuse-preference}).
 
 \subsection{Late interaction / multi-vector retrieval}
 \paragraph{ColBERT (multimodal re-read).}

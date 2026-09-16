@@ -48,4 +48,4 @@ Requires TeX Live with `article`, `booktabs`, `hyperref`, `natbib`/`biblatex` (t
 - OKF packaging (methodology, not runtime): `../knowledge/reads/{acorn-2403.04871,vbase-osdi23,filtered-diskann-www23}/`
 - Markdown algebra mirror: `../docs/08-algebra-sketch.md`
 - Evolved idea (provisional): `../docs/07-evolved-idea.md`
-- Latest build: `main.pdf` (**10 pages**, 2026-09-16 evening IST)
+- Latest build: `main.pdf` (**14 pages**, 2026-09-16 ~23:35 IST)

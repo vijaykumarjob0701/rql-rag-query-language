@@ -8,7 +8,8 @@ Patterns below map to example programs in the companion repo (\texttt{examples/*
   \item \textbf{Hybrid BM25+dense with RRF / linear:}
     \(\mathrm{Fuse}_{rrf}(k{=}60)\) over channel-local rankings~\citep{cormack2009rrf} \established{} as the portable default when scores are incomparable;
     optional cross-encoder \(\mathrm{Rerank}\) afterward (\texttt{examples/02-hybrid-rrf.rql}).
-    Prefer \(\mathrm{Fuse}_{linear}(\alpha)\) (Bruch-style normalised convex combination~\citep{bruch2023fusion} \established{} as mechanism, journal 0016) when calibrated scores exist;
+    Prefer \(\mathrm{Fuse}_{linear}(\alpha)\) (Bruch-style normalised convex combination~\citep{bruch2023fusion} \established{} as mechanism, journal 0016) when calibrated scores + small labels exist;
+    keep RRF under zero-shot / uncalibrated scores~\citep{chen2022ood} \established{} as the competing literature recommendation (journal 0017; preference rule \hypothesis{}, \S\ref{sec:fuse-preference});
     escalate to \(\mathrm{Fuse}_{ltr}\) for multi-feature learned fuse \hypothesis{}
     (\texttt{examples/03-hybrid-linear-weights.rql}, \texttt{12-fuse-learned-explain.rql}).
   \item Multi-query / HyDE-style rewrite as plan nodes (costed) \provisional{}.

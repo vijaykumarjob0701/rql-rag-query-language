@@ -34,13 +34,24 @@ BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface optio
 \subsection{Fusion and rewrite rules}
 Examples \hypothesis{}:
 \begin{itemize}
-  \item Independent channel searches $\rightarrow$ parallel schedule; fuse with \(\mathrm{Fuse}_{rrf}\) when scores incomparable~\citep{cormack2009rrf}, else \(\mathrm{Fuse}_{linear}\) / \(\mathrm{Fuse}_{ltr}\) when calibrated~\citep{bruch2023fusion} \hypothesis{} (policy).
+  \item Independent channel searches $\rightarrow$ parallel schedule; choose fuse family per \S\ref{sec:fuse-preference} \hypothesis{} (policy grounded in Cormack/Chen/Bruch mechanisms~\citep{cormack2009rrf,chen2022ood,bruch2023fusion}).
   \item \(\mathrm{Search}_{late}\) compile ladder: native MaxSim multi-vector~\citep{khattab2020colbert} \established{} scoring;
     else PLAID-class centroid interaction + multi-stage prune~\citep{santhanam2022plaid} \established{} as mechanism (journal 0014) if \texttt{late\_plaid} advertised;
     else MUVERA FDE$\rightarrow$MIPS~$+$~$\mathrm{MAXSIM\_RERANK}$~\citep{jayaram2024muvera} if \texttt{fde\_mips} capability exists (journal 0013);
     else fail closed with EXPLAIN (do not silently substitute single-vector cosine).
   \item Low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/over-fetch depending on capabilities and predicate shape.
   \item $\mathrm{VSimJoin}$ $\rightarrow$ prefer iterator nested loops when $\mathrm{ITERATIVE}$ exists~\citep{zhang2023vbase}.
+\end{itemize}
+
+\subsection{When \(\mathrm{Fuse}_{rrf}\) vs \(\mathrm{Fuse}_{linear}\) (planner preference)}
+\label{sec:fuse-preference}
+Chen et al.~\citep{chen2022ood} and Bruch et al.~\citep{bruch2023fusion} disagree on which fuse wins empirically; the disagreement is \established{} as a literature conflict of \emph{setups} (journal 0017 cite-chase): Recall@1K zero-shot RRF vs NDCG TM2C2, different linear forms, and different label budgets.
+We therefore treat the following as a planner \hypothesis{} (not a reproduced metric claim):
+\begin{itemize}
+  \item Prefer \(\mathrm{Fuse}_{rrf}(k{=}60)\) when channel scores are incomparable/uncalibrated, or when no (or vanishing) labeled queries exist to tune \(\alpha\)/\(\phi\) --- Chen-style zero-shot portability~\citep{cormack2009rrf,chen2022ood} \established{} as mechanism.
+  \item Prefer \(\mathrm{Fuse}_{linear}(\alpha)\) with documented \(\phi\) (TM2C2-class theoretical min--max when available) when scores are comparable and a small labeled set can tune \(\alpha\) --- Bruch-style~\citep{bruch2023fusion} \established{} as mechanism.
+  \item Escalate to \(\mathrm{Fuse}_{ltr}\) when query features or multi-channel weights justify learning beyond a single \(\alpha\) \hypothesis{}.
+  \item \texttt{EXPLAIN} must surface fuse family, \(k\) or \(\alpha\)/\(\phi\), and input channels.
 \end{itemize}
 
 \begin{figure}[t]
