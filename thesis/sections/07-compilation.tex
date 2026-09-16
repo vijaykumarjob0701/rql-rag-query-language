@@ -11,7 +11,7 @@ Vendor API cells below are \established{} from official docs (2026-09-16 survey)
   \item Emit backend calls through adapters (pgvector SQL, Qdrant Query API, Elasticsearch/OpenSearch DSL, Weaviate GraphQL, Milvus \texttt{hybrid\_search}, \ldots).
 \end{enumerate}
 
-A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only; the journal~0023 planner stub (\S\ref{sec:planner-stub-compile}) implements a rule-based layer~2---Hypothesis packaging, not a production compiler.
+A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only; the journal~0023 planner stub (\S\ref{sec:planner-stub-compile}) implements a rule-based layer~2; the journal~0024 emit stub (\S\ref{sec:adapter-emit-stub}) sketches layer~3 request bodies---Hypothesis packaging, not a production compiler or live smoke.
 
 \subsection{Established adapter surface survey (docs-only, Sep 2026)}
 \label{sec:vendor-matrix}
@@ -46,7 +46,14 @@ Schema freeze is \hypothesis{} IR; vendor cells remain \established{} as a surfa
 \subsection{Prototype Logical$\rightarrow$Physical planner stub}
 \label{sec:planner-stub-compile}
 Journal 0023 implements layer~2 of the compile stack as a \hypothesis{} rule engine: capability profiles under \texttt{rql\_planner/profiles/} encode docs-only flags (\texttt{rrfNative}, \texttt{annIterator}, \texttt{multiVectorLate}, \ldots) from \S\ref{sec:vendor-matrix}; the planner emits schema-valid PhysicalPlan trees for the four toy-parsed logical examples across three profiles (12/12 validated).
-This is capability negotiation scaffolding---not a Cascades cost model and not adapter emission.
+This is capability negotiation scaffolding---not a Cascades cost model; adapter emission is a separate sketch stub (\S\ref{sec:adapter-emit-stub}).
+
+\subsection{Prototype adapter emit stub (Hypothesis sketches)}
+\label{sec:adapter-emit-stub}
+Journal 0024 implements layer~3 of the compile stack as a \hypothesis{} emitter under \texttt{experiments/harness/rql\_adapters/}: PhysicalPlan JSON plus a docs-derived profile yields \emph{vendor request sketches} only---Qdrant Query API-shaped JSON (\texttt{filter} + \texttt{prefetch}/\texttt{fusion=rrf} or \texttt{nearest}), Elasticsearch \texttt{retriever.rrf} / \texttt{knn}(+filter) JSON, and pgvector SQL (\texttt{ORDER BY embedding <=> \ldots\ LIMIT}, with iterative-scan comments when \texttt{FilterExec} mode is \texttt{ITERATIVE}).
+Every artifact is labeled Hypothesis / approximate / \texttt{notExecuted}; the stub never opens sockets or hits live vector DBs.
+A smoke subset (hybrid-RRF + filtered-dense $\times$ three profiles = 6/6) is written under \texttt{experiments/results/rql\_adapters/}.
+Live adapter smoke remains a human P1 task (protocol 03)---not claimed done here.
 
 \subsection{Substrait adjacency}
 Substrait~\citep{substrait} motivates a binary/portable plan encoding across engines.

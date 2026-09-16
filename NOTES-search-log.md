@@ -297,5 +297,19 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 
 **Honesty:** Planner packaging is **Hypothesis**. Profiles are docs-derived — **not** live probes. No latency/recall invented.
 
-**Next seed:** Substrait/Calcite deeper read **or** adapter emit stub (PhysicalPlan → backend JSON/SQL, no live CI).
+**Next seed (done in 0024):** adapter emit stub (PhysicalPlan → backend JSON/SQL, no live CI).
+
+## 2026-09-17 ~00:00 IST — Adapter emit stub (PhysicalPlan → vendor sketches)
+
+| Query / action | Result |
+|----------------|--------|
+| Implement `experiments/harness/rql_adapters/` | qdrant / elasticsearch / pgvector emit (strings/JSON/SQL only) |
+| CLI `emit_rql.py` + `test_rql_adapters.py` | **6/6** hybrid-rrf + filtered-dense × 3 profiles |
+| Results | `experiments/results/rql_adapters/*.emit.json` (+ `*.request.sql`) + `emit_validate.txt` |
+| Thesis weave | §07 layer-3 emit stub; abstract/conclusion; rebuild PDF |
+| Journal | `0024-adapter-emit-stub.md` |
+
+**Honesty:** Emit packaging is **Hypothesis**. Docs-shaped sketches — **not** executed. No latency/recall invented. No live DB calls.
+
+**Next seed:** deeper Substrait / Apache Calcite read for IR adjacency.
 

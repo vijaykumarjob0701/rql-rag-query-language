@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-17 ~00:00 IST — Adapter emit stub (PhysicalPlan → vendor sketches)
+
+- Hypothesis emitters under `experiments/harness/rql_adapters/` (qdrant Query API JSON; elasticsearch retriever/knn JSON; pgvector SQL).
+- CLI `emit_rql.py`; test `test_rql_adapters.py`: **hybrid-rrf + filtered-dense × 3 profiles = 6/6** (not executed; approximate sketches).
+- Results `experiments/results/rql_adapters/`; journal `0024`; thesis §07 (+ abstract/conclusion) cite emit stub.
+- Integrity: **no** live vector-DB network; live smoke remains HUMAN_TODO (protocol 03). **No push.**
+
 ## 2026-09-16 ~23:59 IST — LogicalPlan → PhysicalPlan planner stub
 
 - Hypothesis rule engine under `experiments/harness/rql_planner/` (profiles: qdrant / elasticsearch / pgvector from docs/09 — **not** live probes).

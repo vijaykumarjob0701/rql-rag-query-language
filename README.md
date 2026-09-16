@@ -50,7 +50,7 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0014-plaid-multimodal-reread.md`](journal/0014-plaid-multimodal-reread.md) | PLAID Pass 1–5 (centroid interaction Established) |
 | [`journal/0015-next-bruch-or-human-note.md`](journal/0015-next-bruch-or-human-note.md) | Hand-off seed (not Pass 1–5) |
 | [`journal/0016-bruch-fusion-multimodal-reread.md`](journal/0016-bruch-fusion-multimodal-reread.md) | Bruch CC/TM2C2 Pass 1–5 (Fuse_linear Established) |
-| … | See [`journal/README.md`](journal/README.md) for 0017–0023 (Chen, Condorcet, FANNS, vendor matrix, schema freeze, toy parser, **physical planner stub**) |
+| … | See [`journal/README.md`](journal/README.md) for 0017–0024 (Chen, Condorcet, FANNS, vendor matrix, schema freeze, toy parser, planner stub, **adapter emit stub**) |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 

@@ -28,6 +28,14 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 
 ## P1 — Backend adapter smoke (real DBs)
 
+### Adapter emit stub — **DONE by agent (2026-09-17 ~00:00 IST)** — emit only
+
+| Field | Value |
+|-------|--------|
+| Status | Hypothesis sketches under `experiments/harness/rql_adapters/` + results `experiments/results/rql_adapters/` (journal 0024) |
+| **Still P1 for Vijay** | Live smoke vs real/local clusters per `experiments/protocols/03-adapter-smoke.md` — emit stub **does not** satisfy smoke; agents must **not** hit live DBs or invent `smoke.json` |
+
+
 ### Docs-only vendor API matrix — **DONE by agent (2026-09-16 ~23:50 IST)**
 
 | Field | Value |
