@@ -19,4 +19,8 @@
 | [`reads/substrait-spec-2026-09/`](reads/substrait-spec-2026-09/) | Substrait spec/docs (portable plan IR) | [`../journal/0025-substrait-calcite-ir-adjacency.md`](../journal/0025-substrait-calcite-ir-adjacency.md) |
 | [`reads/calcite-begoli-sigmod18/`](reads/calcite-begoli-sigmod18/) | Begoli et al. Calcite SIGMOD’18 / arXiv:1802.10233 | [`../journal/0025-substrait-calcite-ir-adjacency.md`](../journal/0025-substrait-calcite-ir-adjacency.md) |
 
+| [`reads/hyde-2212.10496/`](reads/hyde-2212.10496/) | HyDE ACL 2023 / arXiv:2212.10496 | [`../journal/0032-hyde-multimodal-reread.md`](../journal/0032-hyde-multimodal-reread.md) |
+| [`reads/blinkdb-eurosys13/`](reads/blinkdb-eurosys13/) | BlinkDB EuroSys 2013 | [`../journal/0031-blinkdb-aqp-budgets-multimodal-reread.md`](../journal/0031-blinkdb-aqp-budgets-multimodal-reread.md) |
+| [`reads/fanns-lin2025-2505.06501/`](reads/fanns-lin2025-2505.06501/) | FANNS survey Lin 2025 | [`../journal/0019-fanns-lin2025-multimodal-reread.md`](../journal/0019-fanns-lin2025-multimodal-reread.md) |
+
 Spec references: https://github.com/GoogleCloudPlatform/open-knowledge-format
