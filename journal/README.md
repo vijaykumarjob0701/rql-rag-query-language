@@ -52,6 +52,11 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0002 | [`0002-first-landscape-pass.md`](0002-first-landscape-pass.md) | v1 direct survey of vendor APIs & emerging languages |
 | 0003 | [`0003-adjacent-brainstorm-deep-dive.md`](0003-adjacent-brainstorm-deep-dive.md) | v2 sideways angles + provisional aha insights |
 | 0004 | [`0004-slow-path-methodology.md`](0004-slow-path-methodology.md) | Decision to slow down; strategy + multimodal tooling |
-| [`0005-okf-correction.md`](0005-okf-correction.md) | User correction: Google **OKF** (Open Knowledge Format), not LangExtract |
+| 0005 | [`0005-okf-correction.md`](0005-okf-correction.md) | User correction: Google **OKF** (Open Knowledge Format), not LangExtract |
+| 0006 | [`0006-acorn-multimodal-reread.md`](0006-acorn-multimodal-reread.md) | ACORN Pass 1–5 multimodal re-read + OKF bundle |
+| 0007 | [`0007-vbase-seed-stub.md`](0007-vbase-seed-stub.md) | VBASE queued as second seed (stub only) |
+| 0008 | [`0008-human-todos-hand-off.md`](0008-human-todos-hand-off.md) | HUMAN_TODO list for benches Vijay must run |
+
+Also: OKF-shaped notes under [`../knowledge/reads/acorn-2403.04871/`](../knowledge/reads/acorn-2403.04871/).
 
 *Add new rows here when you add entries.*
