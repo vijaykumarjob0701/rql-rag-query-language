@@ -24,7 +24,7 @@ Operator & Signature (sketch) & Notes \\
 \midrule
 $\mathrm{Search}_{dense}(q,k)$ & $\rightarrow E$ & ANN leaf \\
 $\mathrm{Search}_{bm25}(q,k)$ & $\rightarrow E$ & Lexical leaf \\
-$\mathrm{Search}_{late}(q,k)$ & $\rightarrow E$ & Late interaction leaf \\
+$\mathrm{Search}_{late}(q,k)$ & $\rightarrow E$ & Late interaction / MaxSim-sum scoring \established{}~\citep{khattab2020colbert} (journal 0012); RQL op name / compile \hypothesis{} \\
 $\mathrm{Filter}(P)$ & $E\rightarrow E$ & Predicates / ACL \\
 $\mathrm{Union}$ & $E\times E\rightarrow E$ & Multi-query \\
 $\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})$ & $E^*\rightarrow E$ & Formula \(\sum 1/(k+r(d))\), default \(k{=}60\) \established{}~\citep{cormack2009rrf} (journal 0011); RQL op name / compile \hypothesis{} \\
@@ -49,6 +49,10 @@ $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
     Equality/label predicates with a capable filtered graph may compile to $\mathrm{SPECIALIZED}$~\citep{gollapudi2023filtered} \hypothesis{}; unsupported predicate shapes must not silently use that path.
   \item \textbf{Hybrid fuse (RRF seed).}
     Parallel \(\mathrm{Search}_{dense}\) and \(\mathrm{Search}_{bm25}\) (or other channels) remain separate until \(\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})\) with default \(k_{\mathrm{rrf}}=60\)~\citep{cormack2009rrf} \established{} for the score; choosing RRF vs \(\mathrm{Fuse}_{linear}\) when scores are calibrated is physical/policy \hypothesis{}.
+  \item \textbf{Late-interaction leaf + rewrites (ColBERT / PLAID / MUVERA).}
+    Logical \(\mathrm{Search}_{late}\) carries MaxSim-sum semantics~\citep{khattab2020colbert} \established{}.
+    Physical compile targets \hypothesis{}: (i) native multi-vector MaxSim; (ii) PLAID-class centroid prune~\citep{santhanam2022plaid} \provisional{} (cite-only); (iii) MUVERA FDE$\rightarrow$MIPS then MaxSim/Chamfer rerank~\citep{jayaram2024muvera} when only single-vector ANN is available (journal 0013).
+    Missing both multi-vector and FDE capabilities $\rightarrow$ refuse or EXPLAIN, not silent dense cosine substitution.
   \item \textbf{Similarity join.}
     $\mathrm{VSimJoin}_{\theta}(E_1,E_2)$ may compile to nested $\mathrm{Search}_{dense}$ / range-iterator joins when $\mathrm{ITERATIVE}$ (or equivalent) exists~\citep{zhang2023vbase} \hypothesis{}; otherwise to blocked nested loops with explicit cost --- not claimed implemented.
 \end{itemize}
@@ -59,5 +63,5 @@ Mandatory predicates in $P_{\mathrm{acl}}\subseteq P$ must be enforced by physic
 Rewrite operators carry explicit token/latency cost attributes for the optimiser.
 
 \subsection{Delineation from survey material}
-RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009, 0010, 0011).
+RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0013).
 \textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.

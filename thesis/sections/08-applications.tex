@@ -11,7 +11,10 @@ Patterns below map to example programs in the companion repo (\texttt{examples/*
     Prefer \(\mathrm{Fuse}_{linear}\) / learned mix when calibrated scores exist \hypothesis{} (\texttt{examples/03-hybrid-linear-weights.rql}, \texttt{12-fuse-learned-explain.rql}).
   \item Multi-query / HyDE-style rewrite as plan nodes (costed) \provisional{}.
   \item Parent expansion and bounded multi-hop graph retrieval \provisional{}.
-  \item Late-interaction search with optional planner rewrite \provisional{}.
+  \item \textbf{Late-interaction search:}
+    logical \(\mathrm{Search}_{late}\) with MaxSim-sum semantics~\citep{khattab2020colbert} \established{};
+    optional planner rewrite toward PLAID-class pruning~\citep{santhanam2022plaid} \provisional{} or MUVERA FDE$\rightarrow$MIPS$+$MaxSim rerank~\citep{jayaram2024muvera} when the adapter lacks native multi-vector support \hypothesis{}
+    (\texttt{examples/09-colbert-late-interaction.rql}).
 \end{itemize}
 
-RQL's value is making these patterns \emph{comparable} under EXPLAIN and shared eval harnesses \hypothesis{} --- not inventing RRF itself \established{}.
+RQL's value is making these patterns \emph{comparable} under EXPLAIN and shared eval harnesses \hypothesis{} --- not inventing RRF or MaxSim themselves \established{}.

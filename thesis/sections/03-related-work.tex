@@ -27,6 +27,16 @@ RRF is unsupervised and \emph{rank-only} (no requirement that channel scores be 
 Pass~1--5 notes (journal 0011; \texttt{knowledge/reads/rrf-cormack-sigir09/}) treat the \textbf{formula and default \(k\)} as \established{} IR prior art for logical \(\mathrm{Fuse}_{rrf}\); author TREC/LETOR MAP tables are \textbf{not reproduced here} \provisional{} as unreproduced empirics.
 Modern dense+BM25 product stacks already ship RRF; learned/linear fusion (e.g.\ Bruch-style CC) remains a separate sibling operator \hypothesis{}.
 
+\subsection{Late interaction / multi-vector retrieval}
+\paragraph{ColBERT (multimodal re-read).}
+Khattab and Zaharia~\citep{khattab2020colbert} introduce contextualized late interaction: bags of BERT embeddings scored by MaxSim-sum (Eq.~(3)).
+Pass~1--5 notes (journal 0012; \texttt{knowledge/reads/colbert-sigir20/}) treat the \textbf{MaxSim scoring definition and offline document-bag pattern} as \established{}; author MS~MARCO MRR/latency tables are \textbf{not reproduced here} \provisional{}.
+
+\paragraph{MUVERA (multimodal re-read).}
+Dhulipala et al.~\citep{jayaram2024muvera} reduce Chamfer/MaxSim multi-vector search to single-vector MIPS via Fixed Dimensional Encodings, then Chamfer rerank---contrasting PLAID's multi-stage centroid pipeline~\citep{santhanam2022plaid}.
+Pass~1--5 notes (journal 0013; \texttt{knowledge/reads/muvera-2405.19504/}) treat the \textbf{FDE reduction + MIPS + MaxSim rerank mechanism} as \established{} literature; RQL rewrite packaging and unreproduced BEIR/PLAID numbers remain \hypothesis{} / \provisional{}.
+PLAID itself is cite-only pending a dedicated multimodal pass.
+
 \subsection{IR query languages}
 Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator algebra~\citep{metzler2004indri} \provisional{} (URL-verified references; deep re-read pending).
 RQL steals composability, not surface syntax fidelity \hypothesis{}.

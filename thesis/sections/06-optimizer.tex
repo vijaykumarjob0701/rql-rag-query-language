@@ -32,7 +32,16 @@ Unlike classical selectivity-only costing, plans expose a vector:
 BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface options such as \texttt{RECALL TARGET} / \texttt{LATENCY} \hypothesis{}.
 
 \subsection{Fusion and rewrite rules}
-Examples \hypothesis{}: independent channel searches $\rightarrow$ parallel schedule; $\mathrm{Search}_{late}$ without multi-vector support $\rightarrow$ optional FDE-style rewrite if available~\citep{jayaram2024muvera}; low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/over-fetch depending on capabilities and predicate shape; $\mathrm{VSimJoin}$ $\rightarrow$ prefer iterator nested loops when $\mathrm{ITERATIVE}$ exists~\citep{zhang2023vbase}.
+Examples \hypothesis{}:
+\begin{itemize}
+  \item Independent channel searches $\rightarrow$ parallel schedule; fuse with \(\mathrm{Fuse}_{rrf}\) when scores incomparable~\citep{cormack2009rrf}.
+  \item \(\mathrm{Search}_{late}\) compile ladder: native MaxSim multi-vector~\citep{khattab2020colbert} \established{} scoring;
+    else PLAID-class centroid prune~\citep{santhanam2022plaid} \provisional{} if advertised;
+    else MUVERA FDE$\rightarrow$MIPS~$+$~$\mathrm{MAXSIM\_RERANK}$~\citep{jayaram2024muvera} if \texttt{fde\_mips} capability exists (journal 0013);
+    else fail closed with EXPLAIN (do not silently substitute single-vector cosine).
+  \item Low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/over-fetch depending on capabilities and predicate shape.
+  \item $\mathrm{VSimJoin}$ $\rightarrow$ prefer iterator nested loops when $\mathrm{ITERATIVE}$ exists~\citep{zhang2023vbase}.
+\end{itemize}
 
 \begin{figure}[t]
 \centering

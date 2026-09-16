@@ -14,7 +14,13 @@ Reciprocal Rank Fusion (RRF) combines ranked lists without score calibration~\ci
 Production engines also expose weighted linear fusion and learned rankers; choice is workload-dependent \provisional{}.
 
 \subsection{Late interaction}
-ColBERT-style late interaction~\citep{khattab2020colbert} and subsequent engines/rewrites (e.g.\ MUVERA~\citep{jayaram2024muvera}) show that multi-vector retrieval admits planner rewrites \provisional{} (pending dedicated multimodal reads).
+ColBERT~\citep{khattab2020colbert} defines \emph{late interaction}: independent encoders produce bags of contextualized embeddings \(E_q,E_d\), scored by a sum of maximum similarities (MaxSim)
+\[
+S_{q,d}=\sum_{i\in[|E_q|]}\max_{j\in[|E_d|]} E_{q_i}\cdot E_{d_j}^{\top}
+\]
+(Eq.~(3) in~\citet{khattab2020colbert}; cosine via L2-normalized dots; squared L2 also evaluated) \established{} (multimodal journal 0012).
+Document bags are offline-indexable; MaxSim is pruning-friendly for end-to-end retrieval.
+Subsequent engines add physical rewrites: PLAID-style centroid pruning~\citep{santhanam2022plaid} \provisional{} (cite-only; multimodal pending) and MUVERA Fixed Dimensional Encodings that reduce Chamfer/MaxSim search to single-vector MIPS plus MaxSim rerank~\citep{jayaram2024muvera} \established{} as a literature mechanism (journal 0013); RQL compile packaging remains \hypothesis{}.
 
 \subsection{RAG as a staged pipeline}
 A typical RAG retrieve path is: embed $\rightarrow$ search channels $\rightarrow$ filter $\rightarrow$ fuse $\rightarrow$ (rerank) $\rightarrow$ expand/traverse $\rightarrow$ generate.
