@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall. Fuse_linear → FusionExec native (weightedFusionNative); semantics not interchangeable across vendors.",
+    "logicalPlanRef": "experiments/results/rql_parser/04-hybrid-linear.logical.json",
+    "profileId": "elasticsearch"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "PRE"
+    ],
+    "hybridBm25Dense": true,
+    "rrfNative": true,
+    "weightedFusionNative": true,
+    "multiVectorLate": false,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": true,
+    "annIterator": false,
+    "vendorHints": [
+      "elasticsearch"
+    ]
+  },
+  "root": {
+    "id": "fexec_filter0",
+    "op": "FilterExec",
+    "mode": "PRE",
+    "pruningStrategy": "SSP",
+    "predicate": {
+      "expr": "category = 'electronics' AND price < 500",
+      "aclHard": false
+    },
+    "input": {
+      "id": "fuse_fuse0",
+      "op": "FusionExec",
+      "family": "linear",
+      "native": true,
+      "inputs": [
+        {
+          "id": "ann_dense0",
+          "op": "AnnExec",
+          "k": 30,
+          "index": "hnsw",
+          "metric": "cosine",
+          "efSearch": 64,
+          "queryRef": "$q_dense",
+          "collection": "products"
+        },
+        {
+          "id": "bm25_bm251",
+          "op": "Bm25Exec",
+          "k": 30,
+          "queryText": "electronics deals",
+          "collection": "products"
+        }
+      ],
+      "alpha": [
+        0.5,
+        0.5
+      ]
+    }
+  }
+}

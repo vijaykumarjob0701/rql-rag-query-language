@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall. Fuse_linear → ShimCast client_linear (weightedFusionNative=false).",
+    "logicalPlanRef": "experiments/results/rql_parser/04-hybrid-linear.logical.json",
+    "profileId": "pgvector"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "POST",
+      "ITERATIVE"
+    ],
+    "hybridBm25Dense": false,
+    "rrfNative": false,
+    "weightedFusionNative": false,
+    "multiVectorLate": false,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": true,
+    "annIterator": true,
+    "vendorHints": [
+      "pgvector"
+    ]
+  },
+  "root": {
+    "id": "fexec_filter0",
+    "op": "FilterExec",
+    "mode": "PRE",
+    "pruningStrategy": "SSP",
+    "predicate": {
+      "expr": "category = 'electronics' AND price < 500",
+      "aclHard": false
+    },
+    "input": {
+      "id": "shim_lin_fuse0",
+      "op": "ShimCast",
+      "shim": "client_linear",
+      "expensive": true,
+      "aclUnsafe": false,
+      "input": {
+        "id": "fuse_fuse0",
+        "op": "FusionExec",
+        "family": "linear",
+        "native": false,
+        "inputs": [
+          {
+            "id": "ann_dense0",
+            "op": "AnnExec",
+            "k": 30,
+            "index": "hnsw",
+            "metric": "cosine",
+            "efSearch": 100,
+            "queryRef": "$q_dense",
+            "collection": "products"
+          },
+          {
+            "id": "bm25_bm251",
+            "op": "Bm25Exec",
+            "k": 30,
+            "queryText": "electronics deals",
+            "collection": "products"
+          }
+        ],
+        "alpha": [
+          0.5,
+          0.5
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall. Search_late: no multiVectorLate/latePlaid/fdeMips advertised; emit LateInteractExec variant=colbert (adapter must fail closed — do not silently substitute dense cosine).",
+    "logicalPlanRef": "experiments/results/rql_parser/03-late.logical.json",
+    "profileId": "pgvector"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "POST",
+      "ITERATIVE"
+    ],
+    "hybridBm25Dense": false,
+    "rrfNative": false,
+    "weightedFusionNative": false,
+    "multiVectorLate": false,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": true,
+    "annIterator": true,
+    "vendorHints": [
+      "pgvector"
+    ]
+  },
+  "root": {
+    "id": "late_late0",
+    "op": "LateInteractExec",
+    "variant": "colbert",
+    "k": 10,
+    "queryRef": "$q_tok",
+    "collection": "passages_mv"
+  }
+}

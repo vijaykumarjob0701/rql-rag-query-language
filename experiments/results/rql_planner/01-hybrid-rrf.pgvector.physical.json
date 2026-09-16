@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall. Fuse_rrf → ShimCast client_rrf (rrfNative=false); expensive; ACL-safe only if filters applied server-side.",
+    "logicalPlanRef": "experiments/results/rql_parser/01-hybrid-rrf.logical.json",
+    "profileId": "pgvector"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "POST",
+      "ITERATIVE"
+    ],
+    "hybridBm25Dense": false,
+    "rrfNative": false,
+    "weightedFusionNative": false,
+    "multiVectorLate": false,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": true,
+    "annIterator": true,
+    "vendorHints": [
+      "pgvector"
+    ]
+  },
+  "root": {
+    "id": "shim_rrf_fuse0",
+    "op": "ShimCast",
+    "shim": "client_rrf",
+    "expensive": true,
+    "aclUnsafe": false,
+    "input": {
+      "id": "fuse_fuse0",
+      "op": "FusionExec",
+      "family": "rrf",
+      "native": false,
+      "inputs": [
+        {
+          "id": "ann_dense0",
+          "op": "AnnExec",
+          "k": 50,
+          "index": "hnsw",
+          "metric": "cosine",
+          "efSearch": 100,
+          "queryRef": "$q_dense",
+          "collection": "chunks"
+        },
+        {
+          "id": "bm25_bm251",
+          "op": "Bm25Exec",
+          "k": 50,
+          "queryText": "portable retrieval IR for RAG",
+          "collection": "chunks"
+        }
+      ],
+      "k_rrf": 60
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall.",
+    "logicalPlanRef": "experiments/results/rql_parser/02-filtered-dense.logical.json",
+    "profileId": "pgvector"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "POST",
+      "ITERATIVE"
+    ],
+    "hybridBm25Dense": false,
+    "rrfNative": false,
+    "weightedFusionNative": false,
+    "multiVectorLate": false,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": true,
+    "annIterator": true,
+    "vendorHints": [
+      "pgvector"
+    ]
+  },
+  "root": {
+    "id": "fexec_filter0",
+    "op": "FilterExec",
+    "mode": "ITERATIVE",
+    "pruningStrategy": "VSP",
+    "predicate": {
+      "expr": "tenant_id = 'acme' AND clearance >= 2",
+      "aclHard": true
+    },
+    "input": {
+      "id": "ann_dense0",
+      "op": "AnnExec",
+      "k": 20,
+      "index": "hnsw",
+      "metric": "cosine",
+      "efSearch": 100,
+      "queryRef": "$q_dense",
+      "collection": "chunks"
+    }
+  },
+  "budgets": {
+    "aclSafe": true
+  }
+}
