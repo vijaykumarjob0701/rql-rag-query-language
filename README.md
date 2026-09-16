@@ -34,12 +34,37 @@ RAG efficiency is dominated by: embedding cost, ANN latency under filters, hybri
 |------|----------|
 | [`docs/01-landscape.md`](docs/01-landscape.md) | Survey of vector DB query APIs with concrete examples |
 | [`docs/02-gaps-and-needs.md`](docs/02-gaps-and-needs.md) | Gaps vs SQL / Redis / MongoDB |
-| [`docs/03-proposal.md`](docs/03-proposal.md) | RQL goals, grammar sketch, compilation, planner |
+| [`docs/03-proposal.md`](docs/03-proposal.md) | RQL goals, grammar sketch, compilation, planner (v1) |
 | [`docs/04-related-work.md`](docs/04-related-work.md) | Papers, OSS, products (2024–2026) |
+| [`docs/05-brainstorm-adjacent.md`](docs/05-brainstorm-adjacent.md) | **v2** Adjacent search angles (22) |
+| [`docs/06-deep-literature.md`](docs/06-deep-literature.md) | **v2** 28 papers/systems from sideways search |
+| [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) | **v2** Algebra, layers, steal-vs-invent map |
 | [`docs/references.md`](docs/references.md) | All URLs used |
-| [`examples/`](examples/) | Example RQL queries for real RAG patterns |
+| [`NOTES-search-log.md`](NOTES-search-log.md) | Search queries + what each turned up |
+| [`examples/`](examples/) | Example RQL queries (incl. v2 patterns 10–12) |
 
 ---
+
+
+
+---
+
+## Deep dive (v2) — adjacent research → evolved algebra
+
+v1 answered “what query surfaces exist on vector DBs?” v2 asks the transformer-style question: **what adjacent fields already solved pieces of this problem?**
+
+We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DBs, BlinkDB budgets, Calcite/Cascades, BigDAWG polystores, Substrait, Datalog, filtered ANN, ColBERT/MUVERA, GraphRAG, Lara/SystemDS, HyDE, provenance, VSS joins, learned FANNS planners, …), searched primary literature, and re-derived RQL as:
+
+> a **retrieval algebra** over scored evidence + a **cost-based physical planner** for filter/ANN/fusion/late-interact strategies, compiled via **shims** to many backends — textual RQL is the frontend, not the product.
+
+| Doc | What you’ll find |
+|-----|------------------|
+| [`docs/05-brainstorm-adjacent.md`](docs/05-brainstorm-adjacent.md) | Full angle list + steal vs invent |
+| [`docs/06-deep-literature.md`](docs/06-deep-literature.md) | ≥28 annotated papers/systems |
+| [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) | Genealogy, algebra, layers, roadmap |
+| [`NOTES-search-log.md`](NOTES-search-log.md) | Transparent search process |
+
+**Biggest shift:** filter strategy and approximate budgets are first-class (like attention was for sequence models); portable **plans** beat portable SQL skins.
 
 ## Quick answers
 

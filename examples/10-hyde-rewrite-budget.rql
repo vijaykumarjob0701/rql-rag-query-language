@@ -1,0 +1,18 @@
+-- HyDE rewrite + dense search under explicit recall/latency budgets
+-- Pattern: algebraic REWRITE (Gao et al. HyDE) + BlinkDB-style contracts
+-- Evolved RQL v2: rewrite is a plan node with token cost, not app glue
+
+WITH hyp AS (
+  REWRITE HYDE
+    MODEL 'instruct-llm'
+    TEXT $question
+    AS hypothetical_doc
+)
+RETRIEVE chunks
+  EMBED MODEL 'contriever' TEXT hyp.hypothetical_doc
+  SEARCH DENSE ON embedding METRIC cosine CANDIDATES 80
+  WHERE tenant = $tenant AND acl_allows($user)
+  FILTER_MODE AUTO
+  LIMIT 10
+  OPTION RECALL TARGET 0.92 LATENCY 100ms
+         ef_search = AUTO;

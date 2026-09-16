@@ -1,0 +1,235 @@
+# 06 — Deep Literature (Adjacent Searches)
+
+**Research date:** 2026-09-16 (Europe/Dublin)  
+**Method:** Adjacent-angle WebSearch + primary abs/PDF fetch (arxiv, LOC, SIGMOD Record, USENIX/MS pages).  
+**Count:** **28** substantive papers/systems documented below (not vendor SDK fluff).  
+**Uncertainty flagged** where venue/year inferred from arXiv date or secondary pages.
+
+Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis: [`07-evolved-idea.md`](07-evolved-idea.md).
+
+---
+
+## A. Filtered ANN / hybrid vector+predicate (physical algebra)
+
+### 1. ACORN — Patel, Kraft, Guestrin, Zaharia (2024)
+- **Venue/ID:** arXiv:2403.04871 (SIGMOD-era hybrid search; confirm venue on camera-ready)
+- **URL:** https://arxiv.org/abs/2403.04871
+- **Takeaway:** Predicate-agnostic hybrid search on HNSW via *predicate subgraph traversal* (emulating an ideal hybrid strategy without building one index per predicate). Contrasts with Filtered-DiskANN / HQANN-style equality-only / low-cardinality predicate sets. Directly motivates RQL’s `FILTER_MODE` beyond naive PRE/POST.
+- **Implication for RQL:** Logical `WHERE` must compile to a **physical filter strategy** chosen by selectivity & predicate shape (equality vs arbitrary), not a single global default.
+
+### 2. Filtered-DiskANN — Gollapudi et al. (2023, WWW)
+- **URL:** https://harsha-simhadri.org/pubs/Filtered-DiskANN23.pdf · https://github.com/microsoft/DiskANN
+- **Takeaway:** Label-aware Vamana graphs (FilteredVamana streaming, StitchedVamana batch) for equality/OR-style label filters with strong latency-recall; **not** general arbitrary predicates.
+- **Implication for RQL:** Capability profiles: backends advertise supported filter classes; planner refuses or rewrites unsupported `WHERE` shapes.
+
+### 3. HQI — Mohoney et al., “High-Throughput Vector Similarity Search in Knowledge Graphs” (2023)
+- **Venue/ID:** arXiv:2304.01926
+- **URL:** https://arxiv.org/abs/2304.01926
+- **Takeaway:** Workload-aware Hybrid Query Index: qd-tree-like partitions using historical filters + vectors; per-leaf IVF with attribute bitmaps; batch matrix-mult optimizations for related-KG hybrid queries.
+- **Implication for RQL:** Optional `OPTION workload_hint=…` / stats catalog; partition pruning as physical rewrite.
+
+### 4. CAPS — Gupta et al. (2023)
+- **Venue/ID:** arXiv:2308.15014
+- **URL:** https://arxiv.org/abs/2308.15014
+- **Takeaway:** Constrained ANN via **space partitions** (not graphs); competitive recall-latency with much smaller index than graph constrained search.
+- **Implication for RQL:** Physical trait `IndexKind ∈ {HNSW, IVF, Partition, DiskANN}`; planner picks by size/latency SLO.
+
+### 5. Survey of FANNS — Lin et al. (2025)
+- **Venue/ID:** arXiv:2505.06501
+- **URL:** https://arxiv.org/abs/2505.06501
+- **Takeaway:** Formalizes hybrid dataset/query + metrics; pruning-focused taxonomy of filtered ANN; highlights inconsistent problem definitions — the field needs shared vocabulary.
+- **Implication for RQL:** Adopt survey vocabulary in EXPLAIN (`pruning_strategy`, `selectivity`, `query_difficulty`).
+
+### 6. Compass — (2025)
+- **Venue/ID:** arXiv:2510.27141
+- **URL:** https://arxiv.org/abs/2510.27141
+- **Takeaway:** General filtered search without a new specialized index: combine HNSW/IVF with B+-trees and a shared candidate queue for arbitrary conjunctions/disjunctions/ranges.
+- **Implication for RQL:** Prefer compiling to **composable existing indexes** over requiring vendor-specific hybrid indexes.
+
+### 7. SIEVE — (2025)
+- **Venue/ID:** arXiv:2507.11907
+- **URL:** https://arxiv.org/abs/2507.11907
+- **Takeaway:** Collection of predicate-specific proximity indexes; router picks fastest index per query; large speedups vs single HNSW under hard predicates.
+- **Implication for RQL:** Multi-index collections as physical option; `EXPLAIN` shows which specialized index was chosen.
+
+### 8. Learning-based Filtered-ANN planning — Gan & Wang (2026)
+- **Venue/ID:** arXiv:2602.17914
+- **URL:** https://arxiv.org/abs/2602.17914
+- **Takeaway:** Lightweight ML selects pre- vs post-filtering (and related plans) from dataset/query statistics; generic to backend ANN.
+- **Implication for RQL:** `FILTER_MODE AUTO` becomes a **learned physical policy**, not a heuristic constant.
+
+### 9. Query-aware routing for FANNS — (2026)
+- **Venue/ID:** arXiv:2606.19898
+- **URL:** https://arxiv.org/abs/2606.19898
+- **Takeaway:** No single filtered-ANN method dominates even within one dataset; per-query routing over ACORN/UNG/SIEVE-class methods using predicted recall + offline QPS tables.
+- **Implication for RQL:** Physical planner = **router**; logical plan stays stable across backends.
+
+### 10. VBASE — Zhang et al. (OSDI 2023)
+- **URL:** https://www.microsoft.com/en-us/research/publication/vbase-unifying-online-vector-similarity-search-and-relational-queries-via-relaxed-monotonicity/ · PDF: https://www.usenix.org/system/files/osdi23-zhang-qianxi_1.pdf · code: https://github.com/microsoft/MSVBASE
+- **Takeaway:** “Relaxed monotonicity” — incremental Open/Next/Close traversal continues until enough tuples satisfy relational predicates, then final sort; unifies ANN with SQL filters/joins/analytics far beyond TopK-only APIs.
+- **Implication for RQL:** Treat ANN as an **iterator** in a relational plan (not a one-shot TopK RPC); enables `VSIM JOIN` and iterative filter as first-class.
+
+---
+
+## B. Fusion, late interaction, rewriting (logical operators)
+
+### 11. Reciprocal Rank Fusion — Cormack, Clarke, Büttcher (SIGIR 2009)
+- **URL:** https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf
+- **Takeaway:** Rank-only fusion `Σ 1/(k+rank)` (often k=60); strong metasearch baseline without score calibration.
+- **Implication for RQL:** `FUSE RRF` is historically grounded; keep as default portable fusion.
+
+### 12. Analysis of fusion for hybrid retrieval — Bruch et al. (2022)
+- **Venue/ID:** arXiv:2210.11934
+- **URL:** https://arxiv.org/abs/2210.11934
+- **Takeaway:** Convex combination (CC) of lexical+semantic scores often beats RRF; RRF is parameter-sensitive; CC is sample-efficient to learn.
+- **Implication for RQL:** First-class `FUSE LINEAR` / `FUSE LEARNED` alongside RRF; don’t overfit product defaults to RRF-only.
+
+### 13. ColBERT — Khattab & Zaharia (2020)
+- **Venue/ID:** arXiv:2004.12832
+- **URL:** https://arxiv.org/abs/2004.12832
+- **Takeaway:** Late interaction / MaxSim over token embeddings — accuracy of deep interaction with cheaper retrieval than full cross-encoders.
+- **Implication for RQL:** `SEARCH LATE_INTERACT` / `COLBERT` as a leaf, not an afterthought.
+
+### 14. PLAID — Santhanam et al. (2022)
+- **Venue/ID:** arXiv:2205.09707
+- **URL:** https://arxiv.org/abs/2205.09707
+- **Takeaway:** Centroid interaction + pruning engine making ColBERTv2 production-latency viable.
+- **Implication for RQL:** Physical rewrite: late-interact → centroid prune → exact MaxSim (like hash join variants).
+
+### 15. MUVERA — Dhulipala et al. (2024)
+- **Venue/ID:** arXiv:2405.19504
+- **URL:** https://arxiv.org/abs/2405.19504
+- **Takeaway:** Fixed-dimensional encodings reduce multi-vector retrieval to single-vector MIPS with approximation guarantees; then MaxSim rerank.
+- **Implication for RQL:** Optional rewrite `LATE_INTERACT ⇒ FDE_ANN + MAXSIM_RERANK`.
+
+### 16. HyDE — Gao, Ma, Lin, Callan (2022)
+- **Venue/ID:** arXiv:2212.10496
+- **URL:** https://arxiv.org/abs/2212.10496
+- **Takeaway:** Generate hypothetical document → embed → retrieve by doc–doc similarity (zero-shot dense retrieval without labels).
+- **Implication for RQL:** `REWRITE HYDE` as a plan node producing an embedding (or multi-HyDE union).
+
+### 17. MMR — Carbonell & Goldstein (SIGIR 1998)
+- **URL:** https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf
+- **Takeaway:** Diversity–relevance tradeoff via λ-parameterized marginal relevance.
+- **Implication for RQL:** Keep `DIVERSIFY MMR` as algebraic post-op (already in v1 proposal; now historically anchored).
+
+---
+
+## C. Classic IR & standards (language design ancestors)
+
+### 18. Indri / Galago structured query languages
+- **URLs:** http://lemurproject.org/lemur/IndriQueryLanguage.php · https://galagosearch.org/retrieval.html
+- **Takeaway:** Everything-is-an-operator IR: `#combine`, `#weight`, `#wand`, `#odN`/`#uwN`, `#filreq`/`#filrej`, field restriction; Galago makes ranking functions query-language parameters.
+- **Implication for RQL:** Prefer **composable scored operators** over SQL-only SELECT lists for ranking algebra.
+
+### 19. CQL — Contextual Query Language (Library of Congress / SRU)
+- **URL:** https://www.loc.gov/standards/sru/cql/
+- **Takeaway:** Human-readable portable IR language with context sets and conformance profiles — bridges “Google-simple” and “SQL-powerful.”
+- **Implication for RQL:** Ship **capability profiles** (Base, Hybrid, GraphHop, LateInteract) like CQL context sets.
+
+### 20. Lucene QueryParser / Terrier matchop
+- **URLs:** https://lucene.apache.org/core/10_5_1/queryparser/ · https://github.com/terrier-org/terrier-core/blob/5.x/doc/querylanguage.md
+- **Takeaway:** Production lexical QL (Boolean, proximity, boosts) vs research matchop (`#band`, `#uwN`, weighting models).
+- **Implication for RQL:** `BM25` leaf should accept Lucene-like query strings as optional sugar over structured ops.
+
+---
+
+## D. Optimizers, federation, declarative compute (plan IR)
+
+### 21. Apache Calcite — Begoli et al. (2018)
+- **Venue/ID:** arXiv:1802.10233
+- **URL:** https://arxiv.org/abs/1802.10233
+- **Takeaway:** Embeddable cost-based optimizer, Volcano/Cascades-style planners, adapters for heterogeneous models.
+- **Implication for RQL:** Implement planner as Calcite-like rule engine (logical Search/Filter/Fuse → physical).
+
+### 22. BigDAWG polystore — Duggan et al. (SIGMOD Record 2015)
+- **URL:** https://sigmod.org/publications/sigmodRecord/1506/pdfs/04_vision_Duggan.pdf
+- **Takeaway:** Islands (data model + QL + engines), shims, SCOPE/CAST across models; black-box performance monitoring for engine choice.
+- **Implication for RQL:** Each vector backend is a **shim** under a Retrieval Island; cross-engine plans use CAST (e.g., ANN hits → graph traverse).
+
+### 23. Substrait
+- **URL:** https://substrait.io/about/
+- **Takeaway:** Portable serialized compute/query plans (not SQL text); producers/consumers; extensions.
+- **Implication for RQL:** Long-term interchange format = **RQL Plan IR** (protobuf/JSON), with textual RQL as frontend — Substrait for retrieval.
+
+### 24. BlinkDB — Agarwal et al. (2012)
+- **Venue/ID:** arXiv:1203.5485
+- **URL:** https://arxiv.org/abs/1203.5485
+- **Takeaway:** Declarative error/latency constraints on approximate aggregation; Error-Latency Profiles select samples.
+- **Implication for RQL:** `OPTION recall_target=0.95, latency_ms=50` as first-class constraints driving `ef`/`nprobe`/candidate depths.
+
+### 25. SystemDS — Boehm et al. (2019)
+- **Venue/ID:** arXiv:1909.02976
+- **URL:** https://arxiv.org/abs/1909.02976
+- **Takeaway:** Declarative ML across the data-science lifecycle with compilation to distributed/federated runtimes.
+- **Implication for RQL:** Retrieval plans as compileable DAGs with cost models, not notebook scripts.
+
+### 26. Weld — Palkar et al. (2017)
+- **Venue/ID:** arXiv:1709.06416
+- **URL:** https://arxiv.org/abs/1709.06416
+- **Takeaway:** Cross-library IR that fuses data-parallel work and kills materialization between stages.
+- **Implication for RQL:** Fuse embed→ANN→filter→rerank without dumping full candidate payloads to the client.
+
+### 27. Lara / LaraDB — Hutchison, Howe, Suciu (2016–2017)
+- **Venue/ID:** arXiv:1604.03607 · arXiv:1703.07342
+- **URL:** https://arxiv.org/abs/1604.03607
+- **Takeaway:** Unify relational + linear algebra via associative tables and three ops: **join, union, ext**.
+- **Implication for RQL:** Minimal kernel: scored relations + join (incl. VSIM), union (multi-query), ext (rewrite/expand/traverse).
+
+---
+
+## E. GraphRAG, joins, vector-SQL optimizers
+
+### 28a. GraphRAG surveys — (2024–2025)
+- **URLs:** https://arxiv.org/abs/2408.08921 · https://arxiv.org/abs/2501.00309
+- **Takeaway:** Graph indexing → graph-guided retrieval → graph-enhanced generation; hybrid vector+structure is the norm; Cypher remains the practical graph surface.
+- **Implication for RQL:** `TRAVERSE` / path patterns compile to Cypher when available; otherwise entity-table joins.
+
+### 28b. DiskJoin / approximate vector joins — (2025–2026)
+- **URLs:** https://arxiv.org/abs/2508.18494 · https://arxiv.org/abs/2603.16360
+- **Takeaway:** Threshold vector similarity join as a batch primitive (distinct from online VSS); work sharing & merged indexes.
+- **Implication for RQL:** `VSIM JOIN … ON distance < θ` for entity linking / multi-corpus matching.
+
+### 28c. Exqutor — (2025)
+- **Venue/ID:** arXiv:2512.09695
+- **URL:** https://arxiv.org/abs/2512.09695
+- **Takeaway:** Vector-augmented analytical SQL suffers from bad ANN cardinality estimates; Exqutor uses exact-cardinality-style probes with vector indexes during optimization.
+- **Implication for RQL:** Planner may run **cheap cardinality probes** (or learned estimators) before choosing filter order.
+
+### 28d. Dedalus — Alvaro et al. (UC Berkeley, 2009–2011)
+- **URL:** https://www2.eecs.berkeley.edu/Pubs/TechRpts/2009/EECS-2009-173.html
+- **Takeaway:** Datalog + time for distributed mutable state / recursion with safety checks.
+- **Implication for RQL:** Bounded recursive multi-hop (`WITH RECURSIVE … MAX_HOPS n`) with stratified safety.
+
+---
+
+## Coverage matrix (angle → sources)
+
+| Angle (from doc 05) | Sources used |
+|---------------------|--------------|
+| Classic IR QLs | 18, 20 |
+| CQL | 19 |
+| Spatial analogy | (PostGIS docs — see search log; informs planner vocab) |
+| Array DBs | SciDB/Rasdaman docs in search log |
+| SQL/MM / MPEG-7 | ISO MPQF references in search log |
+| AQP | 24 |
+| Cascades/Calcite | 21 |
+| Polystores | 22 |
+| Substrait | 23 |
+| Datalog | 28d |
+| Filtered ANN | 1–10 |
+| Learned FANNS planners | 8, 9, 28c |
+| Hybrid fusion | 11, 12 |
+| ColBERT/late interact | 13–15 |
+| GraphRAG | 28a |
+| Declarative ML | 25–27 |
+| Query rewriting | 16 |
+| Provenance/EXPLAIN | ProvSQL lineage literature (search log; motivates § in doc 07) |
+| Vector joins | 28b |
+| VBASE iterator model | 10 |
+
+---
+
+## What we deliberately did *not* treat as “new RQL languages”
+
+TopK SQL, VelesQL, QQL, O’Reilly VQL — already covered in v1 [`04-related-work.md`](04-related-work.md). This deep dive asks what algebra those skins should compile to.

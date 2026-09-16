@@ -1,0 +1,21 @@
+-- Vector similarity join: chunk hits ↔ entity table (threshold join)
+-- Pattern: VBASE-style relational+vector plans; DiskJoin/SimJoin primitive
+-- Evolved RQL v2: ANN as iterator enabling joins, not only TopK RPC
+
+WITH hits AS (
+  RETRIEVE chunks
+    EMBED TEXT $question
+    SEARCH DENSE ON embedding CANDIDATES 40
+    WHERE lang = 'en'
+    FILTER_MODE ITERATIVE
+    LIMIT 40
+)
+RETRIEVE hits
+  VSIM JOIN entities
+    ON hits.embedding <=> entities.name_emb < 0.30
+    METRIC cosine
+  WHERE entities.type IN ('Person', 'Org', 'Product')
+  EXPAND PARENT hits.doc_id
+  RERANK MODEL 'bge-reranker-v2-m3' TOP 12
+  LIMIT 12
+  OPTION LATENCY 150ms;

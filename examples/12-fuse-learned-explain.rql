@@ -1,0 +1,20 @@
+-- Learned linear fusion + EXPLAIN provenance
+-- Pattern: Bruch et al. convex combination often beats RRF; audit the plan
+-- Evolved RQL v2: Fuse as algebra + Substrait-like portable plan artifact
+
+RETRIEVE chunks
+  EMBED MODEL 'text-embedding-3-large' TEXT $question
+  SEARCH
+    DENSE ON embedding CANDIDATES 50
+    AND BM25 ON content QUERY $question CANDIDATES 50
+    AND LATE_INTERACT ON token_vectors CANDIDATES 100
+  WHERE status = 'published'
+  FILTER_MODE AUTO
+  FUSE LINEAR WEIGHTS LEARNED 'fusion-ltr-v1'   -- or WEIGHTS 0.4, 0.3, 0.3
+  DIVERSIFY MMR LAMBDA 0.7
+  RERANK MODEL 'bge-reranker-v2-m3' TOP 10
+  LIMIT 8
+  OPTION RECALL TARGET 0.95 LATENCY 120ms;
+
+-- Companion (not executed as retrieval): request plan artifact
+-- EXPLAIN (LOGICAL, PHYSICAL, PROVENANCE);

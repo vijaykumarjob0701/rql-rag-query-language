@@ -15,3 +15,13 @@ These files illustrate **RQL (Retrieval Query Language)** patterns from [`../doc
 | `09-colbert-late-interaction.rql` | Multi-vector / ColBERT |
 
 Parameters like `$question`, `$tenant` are bound by the host application at compile/execute time.
+
+## Deep dive v2 examples (2026-09-16)
+
+| File | Pattern |
+|------|---------|
+| `10-hyde-rewrite-budget.rql` | `REWRITE HYDE` + recall/latency budgets |
+| `11-vsim-join-entities.rql` | `VSIM JOIN` chunk↔entity threshold join |
+| `12-fuse-learned-explain.rql` | Learned linear fusion + late interact + EXPLAIN |
+
+See `docs/07-evolved-idea.md` for the algebra these illustrate.
