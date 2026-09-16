@@ -330,3 +330,10 @@ Docs: https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-search-transa
 | Vespa | YQL | Yes | Ranking profiles | Document model |
 
 **Takeaway:** Combining vector similarity + metadata is **universally supported**; a **portable declarative language** for full RAG plans is **not**.
+
+
+---
+
+## Follow-up (2026-09-16)
+
+Docs-only hybrid/filter/fusion **API matrix** (Established adapter surfaces): [`09-vendor-api-matrix.md`](09-vendor-api-matrix.md) · journal [`0020`](../journal/0020-vendor-hybrid-api-matrix.md). Live smoke still HUMAN P1.

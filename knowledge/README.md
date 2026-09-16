@@ -15,4 +15,6 @@
 | [`reads/chen-ecir2022-2201.10582/`](reads/chen-ecir2022-2201.10582/) | Chen et al. ECIR 2022 zero-shot hybrid | [`../journal/0017-chen-ecir2022-multimodal-reread.md`](../journal/0017-chen-ecir2022-multimodal-reread.md) |
 | [`reads/montague-aslam-cikm02-condorcet/`](reads/montague-aslam-cikm02-condorcet/) | Montague & Aslam Condorcet-fuse CIKM 2002 | [`../journal/0018-montague-aslam-condorcet-multimodal-reread.md`](../journal/0018-montague-aslam-condorcet-multimodal-reread.md) |
 
+| [`reads/vendor-api-matrix-2026-09/`](reads/vendor-api-matrix-2026-09/) | Vendor hybrid API matrix (docs-only) | [`../journal/0020-vendor-hybrid-api-matrix.md`](../journal/0020-vendor-hybrid-api-matrix.md) |
+
 Spec references: https://github.com/GoogleCloudPlatform/open-knowledge-format
