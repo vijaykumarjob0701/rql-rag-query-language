@@ -215,4 +215,24 @@ Queued after Chen: Montague–Aslam Condorcet — **done in 0018**; still open: 
 | OKF bundle | `knowledge/reads/montague-aslam-cikm02-condorcet/` |
 | Thesis weave | Fuse_condorcet sibling of Fuse_rrf; RRF remains portable default |
 
-Queued (still open): FANNS survey Lin 2025 figures / filter-strategy taxonomy; vendor multi-vector / linear-fusion API matrix; optional Condorcet harness.
+Queued after Condorcet: FANNS survey — **done in 0019**; still open: vendor multi-vector / linear-fusion API matrix; optional Condorcet harness.
+
+## 2026-09-16 ~23:35 IST — FANNS survey Lin et al. 2025 multimodal (filter taxonomy)
+
+| Query / action | Result |
+|----------------|--------|
+| WebSearch `arXiv 2505.06501 FANNS survey Lin` | Title/authors verified: Yanjun Lin, Kai Zhang, Zhenying He, Yinan Jing, X. Sean Wang — *Survey of Filtered Approximate Nearest Neighbor Search over the Vector-Scalar Hybrid Data* |
+| `curl` arXiv PDF | `tooling/scripts/extract_out/fanns-lin2025-2505.06501.pdf` (**25 pages**) |
+| `extract_document.py` + `relate_components.py` | `fanns_lin2025_2505_06501/` (6 embedded imgs; 3 table extracts; 47 nodes / 65 edges); page renders 01–25 |
+| Pass 1–5 journal | `journal/0019-fanns-lin2025-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/fanns-lin2025-2505.06501/` |
+| Thesis weave | FilterExec ← VSP/VJP/SJP/SSP + A1–A17; add PARTITION/ROUTER; `lin2025fanns` bib; §03 related-work; abstract |
+
+**Established (survey structure):** pruning taxonomy VSP/VJP/SJP/SSP; A1–A17 map (Figs 1–2); selectivity×distribution difficulty schema (Figs 3–6); §6.3 multi-algorithm combination as literature direction.
+
+**AUTHOR-only:** Fig 3 oracle-partition recall curves — unreproduced.
+
+**Hypothesis (RQL):** FilterExec packaging PRE/POST/ITERATIVE/SUBGRAPH/SPECIALIZED/PARTITION/ROUTER/AUTO.
+
+Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix** (Qdrant, ES, Weaviate, Milvus); optional query-aware FANNS routing paper; optional Condorcet harness.
+

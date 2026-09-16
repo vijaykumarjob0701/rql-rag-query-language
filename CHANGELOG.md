@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-16 ~23:35 IST — FANNS survey Lin 2025 multimodal + FilterExec taxonomy weave
+
+- Completed Pass 1–5 on **Lin et al.** FANNS survey (arXiv:2505.06501, **25 pp**); journal `0019`; OKF `knowledge/reads/fanns-lin2025-2505.06501/`.
+- Extract: `fanns-lin2025-2505.06501.pdf` + `fanns_lin2025_2505_06501/` (47 nodes / 65 edges); full page PNG renders (Figs 1–6 / Tables 1–2 / A1–A17 via pages).
+- **Established (survey structure):** VSP/VJP/SJP/SSP pruning taxonomy; A1–A17 classification; selectivity×ID/POD/OOD difficulty; §6.3 multi-algo combination as literature direction.
+- **AUTHOR-only:** Fig 3 recall curves — unreproduced. **No** fabricated RQL metrics.
+- Thesis: strengthen §06 FilterExec with survey map; add `PARTITION`/`ROUTER`; bib `lin2025fanns`; related-work + abstract; rebuild `main.pdf`.
+- Meta: NOTES / docs/06 / docs/08 / journal index / filter-chooser toy modes.
+- **No** GitHub push.
+
+
 ## 2026-09-16 ~23:30 IST — Montague–Aslam Condorcet-fuse multimodal + Fuse_condorcet sibling
 
 - Completed Pass 1–5 on **Montague & Aslam** (CIKM 2002 / DOI 10.1145/584792.584881, **11 pp** author PDF); journal `0018`; OKF `knowledge/reads/montague-aslam-cikm02-condorcet/`.
