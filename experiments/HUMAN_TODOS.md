@@ -28,6 +28,16 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 
 ## P1 — Backend adapter smoke (real DBs)
 
+### Docs-only vendor API matrix — **DONE by agent (2026-09-16 ~23:50 IST)**
+
+| Field | Value |
+|-------|--------|
+| Status | Docs-only complete — `journal/0020-vendor-hybrid-api-matrix.md`, `docs/09-vendor-api-matrix.md`, OKF `knowledge/reads/vendor-api-matrix-2026-09/` |
+| **Still P1 for Vijay** | Live smoke vs real/local clusters per `experiments/protocols/03-adapter-smoke.md` — agents must **not** hit live DBs or commit credentials; do not invent `smoke.json` |
+| Why agent stopped at docs | Matrix cells are documentation claims; PRE/POST/RRF behaviour under load unverified |
+
+
+
 | Field | Value |
 |-------|--------|
 | Why agent stopped | Needs running Qdrant/pgvector/Pinecone (paid) / Weaviate clusters and credentials |
@@ -61,7 +71,7 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | MUVERA arXiv:2405.19504 | journal `0013`, OKF `knowledge/reads/muvera-2405.19504/` (26 pp; FDE rewrite mechanism) |
 | PLAID CIKM’22 | journal `0014`, OKF `knowledge/reads/plaid-cikm22/` (10 pp; centroid interaction/pruning **Established**; speedups AUTHOR-only) |
 | Bruch fusion TOIS/arXiv:2210.11934 | journal `0016`, OKF `knowledge/reads/bruch-arxiv-2210.11934/` (36 pp; CC/TM2C2 **Established** mechanism; AUTHOR NDCG unreproduced) |
-| Still open (P2) | FANNS survey Lin 2025 figure/table pass; vendor linear-fusion / multi-vector API matrix |
+| Still open (P2) | FANNS survey Lin 2025 figure/table pass (**done** journal 0019); vendor API matrix (**done** docs-only journal 0020 — live smoke still P1 below) |
 | Done (2026-09-16) | Chen et al. ECIR’22 RRF-vs-CC cite-chase (journal 0017; setup conflict → Fuse preference Hypothesis) |
 
 ## P2 — Production plan-stability soak
@@ -71,6 +81,8 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 ---
 
 ## Already done by agent (do not redo unless regenerating)
+
+- Vendor hybrid/filter/fusion API matrix docs-only (journal `0020`, `docs/09-vendor-api-matrix.md`, OKF `knowledge/reads/vendor-api-matrix-2026-09/`); **live smoke still P1**
 
 - ACORN Pass 1–5 + OKF bundle (`journal/0006`, `knowledge/reads/acorn-2403.04871/`)
 - VBASE Pass 1–5 + OKF (`journal/0009`, `knowledge/reads/vbase-osdi23/`)

@@ -13,6 +13,24 @@
 
 ---
 
+## 2026-09-16 ~23:50 IST — Vendor API matrix (docs-only)
+
+| Action | Result |
+|--------|--------|
+| WebSearch/WebFetch Qdrant filtering + hybrid Query API | Filter DSL; prefetch+`rrf`/`dbsf`; weighted RRF ≥1.17; multivector rescore; leaf filter propagation note |
+| WebFetch ES kNN filtered + RRF retriever + Profile | `knn.filter` during approx kNN; `retriever.rrf`; weights ≥9.2; Profile API |
+| WebFetch OpenSearch hybrid RRF | `hybrid` + score-ranker RRF (`rank_constant` default 60); normalisation alternative |
+| WebFetch Weaviate hybrid + filtering + multi-vector | `relativeScoreFusion`/`rankedFusion`; **pre-filtering**; ColBERT multi-vector ≥1.29 |
+| WebFetch Milvus `hybrid_search` API (+ search for rankers) | `expr`/`filter` before ANN (API wording); `RRFRanker`/`WeightedRanker`; HTML guides often 403 |
+| curl pgvector README | POST-filter on approx indexes; iterative scans ≥0.8.0; hybrid via FTS + external RRF example; SQL EXPLAIN |
+| Optional Pinecone/Redis docs | Pinecone filter-before-rank + client RRF; Redis FT.SEARCH filter=>KNN with BATCHES/ADHOC_BF |
+| Artifacts | `docs/09-vendor-api-matrix.md`; journal 0020; OKF vendor-api-matrix-2026-09; thesis §07 weave |
+| Policy | No live clusters/credentials; UNKNOWN cells preserved |
+
+**Next seed candidates:** freeze LogicalPlan JSON Schema (capability flags ↔ matrix); deeper Substrait/Calcite read; skeleton adapters emitting plans only (no live I/O in CI).
+
+---
+
 ## Search queries and what they turned up
 
 ### Batch 1 — Filtered ANN, joins, AQP, classic IR, ColBERT, fusion, optimizers

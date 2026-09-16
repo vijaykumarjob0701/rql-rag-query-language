@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-16 ~23:50 IST — Vendor hybrid/filter/fusion API matrix (docs-only)
+
+- Docs-only survey of **Qdrant, Elasticsearch/OpenSearch, Weaviate, Milvus, pgvector** (+ optional Pinecone/Redis); **no** live DB/credentials.
+- Artifacts: `docs/09-vendor-api-matrix.md` (citable tables + URLs); journal `0020`; OKF `knowledge/reads/vendor-api-matrix-2026-09/` (one concept/vendor).
+- **Established:** incompatible filter DSLs; heterogeneous filter+ANN composition (PRE / POST+iterative / leaf-propagated / hybrid-batch / UNKNOWN); native RRF on Qdrant/ES/OS/Milvus; weighted/score fusion variants not interchangeable; late-interaction native on Qdrant/Weaviate; EXPLAIN strong on pgvector (+ ES Profile / OS hybrid explain).
+- Thesis: §07 compilation cites matrix as Established adapter-surface survey; Hypothesis that RQL compiles via shims; related-work + abstract + conclusion; rebuild `main.pdf`.
+- HUMAN_TODOS: live adapter smoke remains **P1 for Vijay**.
+- **No** GitHub push; **no** invented API features (UNKNOWN left UNKNOWN).
+
+
+
 ## 2026-09-16 ~23:35 IST — FANNS survey Lin 2025 multimodal + FilterExec taxonomy weave
 
 - Completed Pass 1–5 on **Lin et al.** FANNS survey (arXiv:2505.06501, **25 pp**); journal `0019`; OKF `knowledge/reads/fanns-lin2025-2505.06501/`.

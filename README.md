@@ -82,6 +82,7 @@ After the v2 breadth pass we **slowed down**: strategy and multimodal reading be
 | [`docs/05-brainstorm-adjacent.md`](docs/05-brainstorm-adjacent.md) | **v2** Adjacent search angles (22) — provisional |
 | [`docs/06-deep-literature.md`](docs/06-deep-literature.md) | **v2** 28 papers/systems — provisional pending re-read |
 | [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) | **v2** Algebra sketch — provisional pending re-read |
+| [`docs/09-vendor-api-matrix.md`](docs/09-vendor-api-matrix.md) | **Docs-only** vendor hybrid/filter/fusion API matrix (Sep 2026) — Established adapter surfaces |
 | [`docs/references.md`](docs/references.md) | All URLs used |
 | [`NOTES-search-log.md`](NOTES-search-log.md) | Search queries + what each turned up |
 | [`examples/`](examples/) | Example RQL queries (incl. v2 patterns 10–12) |
