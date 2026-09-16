@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-16 ~23:59 IST — Toy RQL → LogicalPlan parser
+
+- Minimal **Hypothesis** frontend under `experiments/harness/rql_parser/` (grammar.md documents tiny EBNF).
+- Supports SEARCH DENSE/BM25/LATE|COLBERT, WHERE (+ ACL_HARD), FUSE RRF/LINEAR, K/CANDIDATES/LIMIT; rejects EMBED/WITH/RERANK/….
+- CLI: `experiments/harness/parse_rql.py parse path.rql [--validate]`; also `python -m rql_parser` from `experiments/harness/`.
+- Schema-aligned `.rql` under `schemas/examples/` (+ `examples/toy/`); test **4/4 parse+validate** → `experiments/results/rql_parser/`.
+- Journal `0022`; thesis §05/§07 (+ abstract/conclusion) cite prototype textual frontend.
+- **No** GitHub push; **no** fabricated metrics; not a full SQL engine.
+
+
 ## 2026-09-16 ~23:55 IST — LogicalPlan / PhysicalPlan schema freeze v0.1.0-draft
 
 - Freeze **Hypothesis IR** JSON Schema draft 2020-12 under `schemas/`: `logical-plan.schema.json`, `physical-plan.schema.json`, `examples/` (hybrid RRF, filtered dense, late+PLAID, client RRF shim, MUVERA ladder), `README.md`.

@@ -9,3 +9,5 @@ requests>=2.31.0,<3
 # langextract>=1.0.0
 # camelot-py[base]>=0.11.0
 # networkx>=3.0
+# Plan schema harness (experiments/harness/validate_plans.py):
+# jsonschema>=4.20.0

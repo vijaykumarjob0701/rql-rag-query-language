@@ -62,6 +62,7 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, PARTITION, ROUTER,
 ## Machine-checkable IR (draft)
 
 Hypothesis JSON Schema freeze (`0.1.0-draft`): [`../schemas/`](../schemas/) — LogicalPlan + PhysicalPlan + examples; journal **0021**. **Not** a standard.
+Toy textual frontend (Hypothesis): [`../experiments/harness/rql_parser/`](../experiments/harness/rql_parser/) — journal **0022**; schema-aligned `.rql` under `schemas/examples/`.
 
 ## What this does **not** claim
 

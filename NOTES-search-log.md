@@ -267,5 +267,20 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 
 **Honesty:** Draft schemas are **Hypothesis** packaging — not a published standard. Vendor matrix cells remain Established docs-only survey.
 
-**Next seed:** Substrait/Calcite deeper read **or** toy RQL parser → LogicalPlan JSON.
+**Next seed (done in 0022):** toy RQL parser → LogicalPlan JSON.
+
+## 2026-09-16 ~23:59 IST — Toy RQL parser → LogicalPlan
+
+| Query / action | Result |
+|----------------|--------|
+| Implement `experiments/harness/rql_parser/` | Tiny RETRIEVE/SEARCH/WHERE/FUSE subset → LogicalPlan 0.1.0-draft |
+| Schema-aligned `.rql` (4 files) | 01 hybrid RRF, 02 filtered dense, 03 late, 04 hybrid linear |
+| `test_rql_parser.py` + jsonschema | **4/4 parse + validate**; EMBED negative reject |
+| Results | `experiments/results/rql_parser/*.logical.json` + `parse_validate.txt` |
+| Thesis weave | §05 toy frontend; §07 layer-1 prototype; abstract/conclusion; rebuild PDF |
+| Journal | `0022-toy-rql-parser.md` |
+
+**Honesty:** Grammar packaging is **Hypothesis**. Not a full SQL engine. No retrieval metrics.
+
+**Next seed:** Substrait/Calcite deeper read **or** physical planner stub (Logical→Physical + FilterExec/ShimCast).
 
