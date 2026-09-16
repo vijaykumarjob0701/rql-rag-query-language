@@ -152,10 +152,11 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 ## D. Optimizers, federation, declarative compute (plan IR)
 
 ### 21. Apache Calcite — Begoli et al. (2018)
-- **Venue/ID:** arXiv:1802.10233
+- **Venue/ID:** arXiv:1802.10233 / SIGMOD’18
 - **URL:** https://arxiv.org/abs/1802.10233
-- **Takeaway:** Embeddable cost-based optimizer, Volcano/Cascades-style planners, adapters for heterogeneous models.
-- **Implication for RQL:** Implement planner as Calcite-like rule engine (logical Search/Filter/Fuse → physical).
+- **OKF:** `knowledge/reads/calcite-begoli-sigmod18/` · journal **0025**
+- **Takeaway (Established):** Embeddable algebra+optimizer; traits/calling convention; adapters + enumerable fallback; Volcano-like cost-based planner (Cascades vocabulary via Graefe 1995).
+- **Implication for RQL:** Planner as Calcite-*inspired* capability negotiation — **not** a Calcite embed (Hypothesis packaging).
 
 ### 22. BigDAWG polystore — Duggan et al. (SIGMOD Record 2015)
 - **URL:** https://sigmod.org/publications/sigmodRecord/1506/pdfs/04_vision_Duggan.pdf
@@ -163,9 +164,10 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **Implication for RQL:** Each vector backend is a **shim** under a Retrieval Island; cross-engine plans use CAST (e.g., ANN hits → graph traverse).
 
 ### 23. Substrait
-- **URL:** https://substrait.io/about/
-- **Takeaway:** Portable serialized compute/query plans (not SQL text); producers/consumers; extensions.
-- **Implication for RQL:** Long-term interchange format = **RQL Plan IR** (protobuf/JSON), with textual RQL as frontend — Substrait for retrieval.
+- **URL:** https://substrait.io/ · about · extensions · physical_relations
+- **OKF:** `knowledge/reads/substrait-spec-2026-09/` · journal **0025**
+- **Takeaway (Established):** Portable serialized plans (not SQL text); extension relations/functions; **no** hard logical/physical split in the spec (conventional).
+- **Implication for RQL:** Long-term interchange *may* emit/embed Substrait extensions — today RQL JSON is Substrait-*inspired* Hypothesis IR only (do not claim wire compatibility).
 
 ### 24. BlinkDB — Agarwal et al. (2012)
 - **Venue/ID:** arXiv:1203.5485

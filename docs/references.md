@@ -120,6 +120,10 @@ Research date: **2026-09-16**. Prefer primary product docs and dated 2024–2026
 88. https://sigmod.org/publications/sigmodRecord/1506/pdfs/04_vision_Duggan.pdf — BigDAWG polystore vision (2015)  
 89. https://substrait.io/ — Substrait portable plan IR  
 90. https://substrait.io/about/ — Substrait about / vision  
+90a. https://substrait.io/extensions/ — Substrait extensions  
+90b. https://substrait.io/relations/physical_relations/ — Substrait physical relations (conventional)  
+90c. https://15721.courses.cs.cmu.edu/spring2016/papers/graefe-ieee1995.pdf — Cascades (Graefe 1995)  
+90d. https://calcite.apache.org/docs/algebra.html — Calcite algebra / RelBuilder docs  
 91. https://arxiv.org/abs/1203.5485 — BlinkDB (2012)  
 92. https://arxiv.org/abs/1909.02976 — SystemDS (2019)  
 93. https://arxiv.org/abs/1709.06416 — Weld (2017)  

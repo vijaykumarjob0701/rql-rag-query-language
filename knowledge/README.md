@@ -16,5 +16,7 @@
 | [`reads/montague-aslam-cikm02-condorcet/`](reads/montague-aslam-cikm02-condorcet/) | Montague & Aslam Condorcet-fuse CIKM 2002 | [`../journal/0018-montague-aslam-condorcet-multimodal-reread.md`](../journal/0018-montague-aslam-condorcet-multimodal-reread.md) |
 
 | [`reads/vendor-api-matrix-2026-09/`](reads/vendor-api-matrix-2026-09/) | Vendor hybrid API matrix (docs-only) | [`../journal/0020-vendor-hybrid-api-matrix.md`](../journal/0020-vendor-hybrid-api-matrix.md) |
+| [`reads/substrait-spec-2026-09/`](reads/substrait-spec-2026-09/) | Substrait spec/docs (portable plan IR) | [`../journal/0025-substrait-calcite-ir-adjacency.md`](../journal/0025-substrait-calcite-ir-adjacency.md) |
+| [`reads/calcite-begoli-sigmod18/`](reads/calcite-begoli-sigmod18/) | Begoli et al. Calcite SIGMOD’18 / arXiv:1802.10233 | [`../journal/0025-substrait-calcite-ir-adjacency.md`](../journal/0025-substrait-calcite-ir-adjacency.md) |
 
 Spec references: https://github.com/GoogleCloudPlatform/open-knowledge-format

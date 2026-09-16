@@ -72,7 +72,8 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0022 | [`0022-toy-rql-parser.md`](0022-toy-rql-parser.md) | Toy RQL → LogicalPlan parser (Hypothesis subset; 4/4 validate) |
 | 0023 | [`0023-physical-planner-stub.md`](0023-physical-planner-stub.md) | Logical→Physical planner stub (Hypothesis; 12/12 validate) |
 | 0024 | [`0024-adapter-emit-stub.md`](0024-adapter-emit-stub.md) | PhysicalPlan → vendor emit stub (Hypothesis sketches; 6/6; not executed) |
+| 0025 | [`0025-substrait-calcite-ir-adjacency.md`](0025-substrait-calcite-ir-adjacency.md) | Substrait/Calcite IR adjacency Pass — Established priors; RQL inspired-by only |
 
-Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`, `plaid-cikm22`, `bruch-arxiv-2210.11934`, `chen-ecir2022-2201.10582`, `montague-aslam-cikm02-condorcet`, `fanns-lin2025-2505.06501`).
+Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`, `plaid-cikm22`, `bruch-arxiv-2210.11934`, `chen-ecir2022-2201.10582`, `montague-aslam-cikm02-condorcet`, `fanns-lin2025-2505.06501`, `substrait-spec-2026-09`, `calcite-begoli-sigmod18`).
 
 *Add new rows here when you add entries.*
