@@ -11,7 +11,7 @@ Vendor API cells below are \established{} from official docs (2026-09-16 survey)
   \item Emit backend calls through adapters (pgvector SQL, Qdrant Query API, Elasticsearch/OpenSearch DSL, Weaviate GraphQL, Milvus \texttt{hybrid\_search}, \ldots).
 \end{enumerate}
 
-A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only; the journal~0023 planner stub (\S\ref{sec:planner-stub-compile}) implements a rule-based layer~2; the journal~0024 emit stub (\S\ref{sec:adapter-emit-stub}) sketches layer~3 request bodies---Hypothesis packaging, not a production compiler or live smoke.
+A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only; the journal~0023 planner stub (\S\ref{sec:planner-stub-compile}) implements a rule-based layer~2; the journal~0024 emit stub (\S\ref{sec:adapter-emit-stub}) sketches layer~3 request bodies; an offline end-to-end CLI (journal 0026; \S\ref{sec:e2e-pipeline}) glues layers~1--3 over toy examples---Hypothesis packaging, not a production compiler or live smoke.
 
 \subsection{Established adapter surface survey (docs-only, Sep 2026)}
 \label{sec:vendor-matrix}
@@ -55,6 +55,13 @@ Every artifact is labeled Hypothesis / approximate / \texttt{notExecuted}; the s
 A smoke subset (hybrid-RRF + filtered-dense $\times$ three profiles = 6/6) is written under \texttt{experiments/results/rql\_adapters/}.
 Live adapter smoke remains a human P1 task (protocol 03)---not claimed done here.
 
+\subsection{Offline end-to-end pipeline CLI}
+\label{sec:e2e-pipeline}
+Journal 0026 glues layers~1--3 into a single offline command (\texttt{experiments/harness/rql\_pipeline.py}): toy \texttt{.rql} $\rightarrow$ LogicalPlan $\rightarrow$ plan(profile) $\rightarrow$ PhysicalPlan $\rightarrow$ vendor emit sketches, writing a run folder under \texttt{experiments/results/e2e/}.
+Profiles \texttt{qdrant}/\texttt{elasticsearch}/\texttt{pgvector}; optional JSON Schema validation for both plan kinds; every artifact remains \texttt{notExecuted} (no live vector-DB I/O).
+Smoke on \texttt{examples/toy/*.rql}: four queries $\times$ three profiles $= 12/12$ schema-validated (\texttt{experiments/results/e2e/run\_validate.txt}).
+This establishes that an offline E2E prototype exists as files-on-disk; it does \textbf{not} replace human P0 FANNS/dataset work or P1 live adapter smoke \hypothesis{}.
+
 \subsection{Substrait / Calcite IR adjacency}
 \label{sec:substrait-calcite-adjacency}
 \noindent\textit{Source facts below are \established{} from Substrait docs (accessed 2026-09-17) and Begoli et al.~\citep{begoli2018calcite}; Cascades~\citep{graefe1995cascades} is cited for optimizer vocabulary.
@@ -71,6 +78,6 @@ Physical properties are modeled primarily as \textbf{traits} (ordering, partitio
 Calcite's cost-based engine uses Volcano-like dynamic programming over equivalence sets~\citep{begoli2018calcite}; Cascades~\citep{graefe1995cascades} supplies classic vocabulary (task-based search, memoization, property \emph{enforcers}) behind many ``Cascades/Volcano-style'' citations.
 
 \paragraph{Hypothesis: RQL is inspired-by, not identical.}
-We \hypothesis{} that RQL's draft \texttt{LogicalPlan}/\texttt{PhysicalPlan} JSON (\texttt{0.1.0-draft}; journal 0021) and capability-negotiated compile stack (journals 0022--0024) are \emph{Substrait-inspired} (portable plan IR; domain ops as future extension relations; adapters as plan consumers) and \emph{Calcite-inspired} (algebra tree + physical strategies via capability/trait negotiation; pushdown vs explicit \texttt{ShimCast} fallback).
+We \hypothesis{} that RQL's draft \texttt{LogicalPlan}/\texttt{PhysicalPlan} JSON (\texttt{0.1.0-draft}; journal 0021) and capability-negotiated compile stack (journals 0022--0024, 0026) are \emph{Substrait-inspired} (portable plan IR; domain ops as future extension relations; adapters as plan consumers) and \emph{Calcite-inspired} (algebra tree + physical strategies via capability/trait negotiation; pushdown vs explicit \texttt{ShimCast} fallback).
 Honest non-claims: RQL does \textbf{not} implement Substrait protobuf wire compatibility; is \textbf{not} a Calcite extension or \texttt{VolcanoPlanner}; and journal~0023 is \textbf{not} a Cascades cost model.
 A future retrieval-oriented Substrait dialect (custom relations for $\mathrm{Search}_{late}$ / $\mathrm{Fuse}_{rrf}$ / FANNS filter modes) remains optional future work---not claimed done here.
