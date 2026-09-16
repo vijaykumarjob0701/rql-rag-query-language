@@ -35,4 +35,4 @@ resource: https://arxiv.org/abs/2405.19504
 - [log.md](log.md)
 
 ## Related
-ColBERT MaxSim (journal 0012); PLAID (unread multimodal); Bruch Fuse_linear still open.
+ColBERT MaxSim (journal 0012); PLAID (journal 0014); Bruch Fuse_linear: journal 0016.

@@ -15,7 +15,7 @@ generated:
 | MaxSim-sum score Eq. (3) | Semantics of `Search_late` / channel `late` | Scoring **[Established]**; op name **[Hypothesis]** |
 | Offline doc bags + online query encode | Indexing contract / adapter capability `multi_vector` | **[Hypothesis]** |
 | faiss IVFPQ → exact MaxSim (§3.6) | Physical `LATE_EXACT` / `LATE_IVF_CANDIDATE` | **[Hypothesis]** |
-| PLAID centroid prune (unread) | Physical `LATE_PLAID` | **[Hypothesis]** cite-only |
+| PLAID centroid interaction (0014) | Physical `LATE_PLAID` | **[Hypothesis]** cite-only |
 | MUVERA FDE→MIPS→MaxSim rerank (0013) | Rewrite `Search_late ⇒ FDE_ANN + MAXSIM_RERANK` | **[Hypothesis]** |
 
 ## Hard constraints

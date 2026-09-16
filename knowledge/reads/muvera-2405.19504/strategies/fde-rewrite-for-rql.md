@@ -15,7 +15,7 @@ generated:
 | Step | Physical form | When |
 |------|---------------|------|
 | 1 | Native multi-vector MaxSim (ColBERT-class index) | Adapter capability `multi_vector` |
-| 2 | PLAID-class centroid prune → MaxSim | Capability `late_plaid` (cite-only until multimodal) |
+| 2 | PLAID-class centroid prune → MaxSim | Capability `late_plaid` (journal 0014; mechanism Established) |
 | 3 | **MUVERA:** build/query FDEs via MIPS → `MAXSIM_RERANK` | Capability `fde_mips` / strong single-vector ANN only |
 | fail | EXPLAIN + error | No multi-vector and no FDE extension |
 

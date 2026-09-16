@@ -38,4 +38,4 @@ resource: https://arxiv.org/abs/2210.11934
 - [log.md](log.md)
 
 ## Related next seeds
-Chen et al. RRF-vs-CC claim; Condorcet Fuse (Montague–Aslam); FANNS survey Lin 2025; vendor weighted linear APIs.
+Chen et al. RRF-vs-CC (**done** journal 0017); Condorcet Fuse (**done** journal 0018); FANNS survey Lin 2025; vendor weighted linear APIs.

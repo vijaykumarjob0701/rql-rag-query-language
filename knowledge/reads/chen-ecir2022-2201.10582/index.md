@@ -36,4 +36,4 @@ resource: https://arxiv.org/abs/2201.10582
 - [log.md](log.md)
 
 ## Related next seeds
-Montague–Aslam Condorcet; FANNS survey Lin 2025 figures; vendor weighted-linear APIs; Bruch OKF (done 0016).
+Montague–Aslam Condorcet (**done** journal 0018); FANNS survey Lin 2025 figures; vendor weighted-linear APIs; Bruch OKF (done 0016).

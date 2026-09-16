@@ -22,7 +22,7 @@ Legend: **AUTHOR-CLAIM** = stated by paper; **ESTABLISHED-FOR-US** = we verified
 3. **AUTHOR-CLAIM / ESTABLISHED-FOR-US (mechanism):** RRF rewritten with per-channel \(\eta_{\mathrm{Lex}},\eta_{\mathrm{Sem}}\) is parametric; default \(\eta=60\) is one point in a sensitive landscape.  
    Evidence: Eqs. (7)–(8); Figs 7–8; [../equations/rrf-bruch-parametric.md](../equations/rrf-bruch-parametric.md)
 
-4. **AUTHOR-CLAIM (not reproduced):** On authors’ primary BM25+MiniLM suite, TM2C2 (\(\alpha=0.8\)) beats RRF(\(\eta=60\)) on NDCG in-domain and zero-shot (Table 2; Fig 5); disagrees with Chen et al. [5].  
+4. **AUTHOR-CLAIM (not reproduced):** On authors’ primary BM25+MiniLM suite, TM2C2 (\(\alpha=0.8\)) beats RRF(\(\eta=60\)) on NDCG in-domain and zero-shot (Table 2; Fig 5); disagrees with Chen et al. [5] (cite-chase **done**: journal 0017 / Chen ECIR’22 — setup conflict, not universal winner).  
    Evidence: Table 2; Fig 5; §7 — **do not cite as our measurement**
 
 5. **AUTHOR-CLAIM (not reproduced):** Learning \(\alpha\) for TM2C2 is sample-efficient (Fig 12; often <~5% of training queries).  

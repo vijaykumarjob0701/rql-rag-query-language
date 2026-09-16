@@ -35,4 +35,4 @@ resource: https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf
 - [log.md](log.md)
 
 ## Related next seeds
-Bruch linear/CC fusion; Condorcet Fuse (Montague–Aslam); FANNS survey; ColBERT/MUVERA for late-interaction leaves.
+Bruch linear/CC fusion (**done** journal 0016); Condorcet Fuse (**done** journal 0018); FANNS survey; Chen et al. RRF-vs-CC (**done** journal 0017).

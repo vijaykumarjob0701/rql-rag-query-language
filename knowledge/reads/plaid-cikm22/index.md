@@ -39,4 +39,4 @@ resource: https://arxiv.org/abs/2205.09707
 - [log.md](log.md)
 
 ## Related
-ColBERT MaxSim (journal 0012); MUVERA FDE (journal 0013); Bruch Fuse_linear still open.
+ColBERT MaxSim (journal 0012); MUVERA FDE (journal 0013); Bruch Fuse_linear: journal 0016.

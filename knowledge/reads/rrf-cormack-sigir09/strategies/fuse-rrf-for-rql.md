@@ -20,7 +20,8 @@ generated:
 
 - Name the logical op \(\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})\) in the evidence algebra.
 - Compile to vendor fusion primitives or local fuse over channel-local rankings.
-- Keep \(\mathrm{Fuse}_{linear}\) / learned fuse as siblings when scores are comparable (Bruch — not this paper).
+- Keep \(\mathrm{Fuse}_{condorcet}\) as the majoritarian rank-only sibling (Montague–Aslam journal 0018; OKF `montague-aslam-cikm02-condorcet`).
+- Keep \(\mathrm{Fuse}_{linear}\) / \(\mathrm{Fuse}_{ltr}\) as siblings when scores are comparable (Bruch journal 0016; OKF `bruch-arxiv-2210.11934`).
 - EXPLAIN must show \(k\) and input channel ranks, not opaque “hybrid=on”.
 
 ## Do not

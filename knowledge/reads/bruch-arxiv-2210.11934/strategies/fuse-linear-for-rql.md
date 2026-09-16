@@ -20,7 +20,7 @@ generated:
 
 - Name \(\mathrm{Fuse}_{linear}(\alpha)\) (and optional \(\phi\) / norm mode) in the evidence algebra.
 - Name \(\mathrm{Fuse}_{ltr}(\mathrm{model})\) for multi-feature / learned rankers beyond single \(\alpha\).
-- Planner policy: prefer RRF when channels lack calibrated comparable scores; prefer linear/CC when scores + small labeled set exist; escalate to LTR when features justify it.
+- Planner policy: prefer RRF when channels lack calibrated comparable scores or zero-shot/no labels (Chen ECIR’22, journal 0017); prefer linear/CC when scores + small labeled set exist (Bruch); escalate to LTR when features justify it. Chen↔Bruch disagreement = setup conflict (Established), not a universal winner.
 - EXPLAIN must show \(\alpha\), \(\phi\), and input channels — not opaque `hybrid=on`.
 
 ## Do not
