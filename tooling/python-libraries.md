@@ -7,19 +7,24 @@
 
 ---
 
-## Likely Google libraries (user memory check)
+## Google Open Knowledge Format (OKF) — confirmed by user
 
-The user recalled a recent Google library that relates entities / images / document structure. Strong matches:
+**User correction (2026-09-16):** the Google piece they meant was **OKF** (Open Knowledge Format), not LangExtract.
 
-| Library | What it is | Why it matches the memory | Install / access |
-|---------|------------|---------------------------|------------------|
-| **LangExtract** (`google/langextract`) | Open-source Python lib (announced ~2025 on Google Developers Blog) for LLM-based structured extraction with **precise source grounding**, relationship-style attributes, JSONL export, interactive HTML visualization | “Entities + relationships + grounding to source spans”; very recent; widely discussed | `pip install langextract` — https://github.com/google/langextract · https://developers.googleblog.com/introducing-langextract-a-gemini-powered-information-extraction-library/ |
-| **Google Cloud Document AI — Layout Parser** | Managed processor: layout elements, context-aware chunks, **table & image annotation** options for RAG | Multimodal document structure; image↔table↔text in one API | `google-cloud-documentai` + GCP processor — https://cloud.google.com/document-ai/docs/layout-parse-quickstart |
-| **Document AI Form / Custom Extractors** | Schematized **entities** (nested properties), normalized values, confidence | Classic “entity extraction from docs” Google product | Same client library; specialized processors |
+| Piece | What it is | Why it matters for this research | Links |
+|-------|------------|----------------------------------|-------|
+| **OKF (Open Knowledge Format)** | Google Cloud open, vendor-neutral format: knowledge as a directory of **markdown concepts + YAML frontmatter**, cross-linked into a **graph** (relationships via markdown links). Interactive HTML visualizer shows concepts as nodes and links as edges (including ER/schema-style views for tables). | Matches “relate different entities” + portable knowledge graph humans and agents can both read; good target shape for multimodal paper notes (figure / table / claim as linked concepts) | Spec/repo: https://github.com/GoogleCloudPlatform/open-knowledge-format · Blog: https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing · Also under Knowledge Catalog: https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf |
+| **Knowledge Catalog + unstructured insights** | Google Cloud catalog that can ingest OKF and extract entities/context from unstructured files (e.g. PDFs) into a context graph | Managed path from documents → related entities | https://docs.cloud.google.com/dataplex/docs/introduction |
 
-**Also Google-adjacent (not the likely “recent lib”):** Vision API OCR; Gemini multimodal document understanding via API (not a dedicated extraction package).
+**Related but not what the user meant:**
 
-**Recommendation:** Treat **LangExtract** as the open-source name most people mean in 2025–2026; treat **Document AI Layout Parser** as the managed multimodal layout/entity/image path. Local RQL research can stay offline with pymupdf/pdfplumber/Docling and optionally call LangExtract later for entity graphs over extracted text.
+| Library | Role |
+|---------|------|
+| **LangExtract** (`google/langextract`) | Gemini-powered span-grounded entity extraction — useful optionally, but **not** the user’s OKF |
+| **Document AI Layout Parser / Extractors** | Managed layout + tables/images + schematized entities |
+| Vision API / Gemini multimodal | OCR / general document understanding |
+
+**Recommendation for this repo:** Keep local PDF extract (`pymupdf`/`pdfplumber`) as Pass-2 inventory. For synthesis, prefer emitting an **OKF-shaped bundle** (one concept file per figure/table/claim/paper, markdown links for “Figure 3 supports Table 1”, etc.) so relationships stay human-readable and graph-visualizable — aligned with Google’s OKF, without requiring GCP.
 
 ---
 
@@ -78,7 +83,8 @@ There is no single tiny library that perfectly pairs every figure with its capti
 | **unstructured** | Local/API | Elements with metadata coordinates | GitHub above |
 | **LlamaParse** / LlamaIndex parse | API-oriented | Strong practical PDF→md; not fully offline | https://docs.llamaindex.ai/ |
 | **Google Document AI** | Cloud | Layout Parser + extractors | cloud.google.com/document-ai |
-| **LangExtract** | OSS + LLM | Entities/relations with span grounding (text-first; feed it extracted text) | github.com/google/langextract |
+| **OKF** | Format + viz | Linked markdown concepts / knowledge graph (Google Cloud open format) | github.com/GoogleCloudPlatform/open-knowledge-format |
+| **LangExtract** | OSS + LLM | Entities/relations with span grounding (optional; not what user meant) | github.com/google/langextract |
 | **LayoutLMv3** | Model (HF) | Multimodal transformer for VrD tasks (IE/RE) | https://huggingface.co/docs/transformers/model_doc/layoutlmv3 |
 | **Donut** | Model (HF) | OCR-free document → structured generation | https://huggingface.co/docs/transformers/model_doc/donut |
 | **GraphDoc** | Research code | Graph attention over text/layout/image nodes (2022) | https://github.com/ZZR8066/GraphDoc · arXiv:2203.13530 |
@@ -89,7 +95,8 @@ There is no single tiny library that perfectly pairs every figure with its capti
 
 | Tool | Role |
 |------|------|
-| **LangExtract** | Extract typed entities + attributes with source offsets; visualize; good stepping stone to a graph |
+| **OKF bundle + visualizer** | Represent extracted concepts as linked markdown; visualize relationship graph (user-confirmed Google format) |
+| **LangExtract** (optional) | Typed entities + span grounding over extracted text — complementary to OKF, not a substitute |
 | **Document AI entities** | Nested entity properties for forms/invoices |
 | **spaCy + custom** | Classical NER on `full_text.md`; link to figure refs via heuristics |
 | **networkx** | Build/save relation graphs from `relations.json` (used conceptually by our scripts) |

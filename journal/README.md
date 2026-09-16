@@ -52,5 +52,6 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0002 | [`0002-first-landscape-pass.md`](0002-first-landscape-pass.md) | v1 direct survey of vendor APIs & emerging languages |
 | 0003 | [`0003-adjacent-brainstorm-deep-dive.md`](0003-adjacent-brainstorm-deep-dive.md) | v2 sideways angles + provisional aha insights |
 | 0004 | [`0004-slow-path-methodology.md`](0004-slow-path-methodology.md) | Decision to slow down; strategy + multimodal tooling |
+| [`0005-okf-correction.md`](0005-okf-correction.md) | User correction: Google **OKF** (Open Knowledge Format), not LangExtract |
 
 *Add new rows here when you add entries.*

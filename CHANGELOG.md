@@ -2,6 +2,12 @@
 
 All dates are **Europe/Dublin** local time. Entries describe human-readable research increments (aligned with git commits when the parent agent commits).
 
+## 2026-09-16 — Correction: Google OKF
+
+- User clarified the Google format/library was **OKF (Open Knowledge Format)**, not LangExtract.
+- Updated `tooling/python-libraries.md` and added `journal/0005-okf-correction.md`.
+- Implication: prefer OKF-shaped linked markdown for multimodal paper notes / entity graphs.
+
 ## 2026-09-16 — Slow-path methodology, journal, tooling
 
 - Added `journal/` so GitHub readers can follow thinking chronologically (`0001`–`0004`).

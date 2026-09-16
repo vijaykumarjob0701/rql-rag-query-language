@@ -16,12 +16,12 @@ How should we search, read, preprocess, and iterate so that only validated 1–5
 ## Where we looked
 
 - Existing project docs (`README`, docs/05–07) for alignment — **no expansion of literature claims**  
-- Web survey (2024–2026) of Python document libraries: PyMuPDF, pdfplumber, Docling, unstructured, marker, MinerU, camelot, LayoutParser, LayoutLM/Donut ecosystem, GraphDoc, Google Document AI, **LangExtract**, etc.
+- Web survey (2024–2026) of Python document libraries: PyMuPDF, pdfplumber, Docling, unstructured, marker, MinerU, camelot, LayoutParser, LayoutLM/Donut ecosystem, GraphDoc, Google Document AI, LangExtract (later deprioritized), **OKF**, etc.
 
 ## What we did (this step)
 
 1. Wrote slow-path methodology: principles, search strategy (funnel + mutation), read protocol (5 passes), preprocess/synthesis (promotion gates), iteration loop + stop criteria.  
-2. Surveyed libraries into `tooling/python-libraries.md`, explicitly identifying likely Google libraries behind the user’s vague memory (entity/image/document relations).  
+2. Surveyed libraries into `tooling/python-libraries.md` (initial Google guess later corrected to OKF in `0005`).  
 3. Built minimal local scripts: `extract_document.py`, `relate_components.py`, notes template, venv + smoke-test on one public PDF.  
 4. Introduced this `journal/` so humans can follow chronological thinking.
 
@@ -32,7 +32,7 @@ Smoke-test PDF only (tooling validation) — **not** yet a full protocol pass on
 ## 1–5% seed
 
 **Process seed:** often only 1–5% of a source unlocks the next search; that fraction frequently lives in a figure, table, or caption relationship — so inventory + relate passes are mandatory before synthesis.  
-**Tooling seed:** Google’s recent open-source **LangExtract** (`google/langextract`) matches “library that relates entities (with source grounding / visualization)”; Google **Document AI Layout Parser** (image/table annotation + layout chunks) matches the multimodal/document side. Neither replaces local baseline extractors for offline PDF work.
+**Tooling seed (later corrected):** We initially guessed LangExtract; the user confirmed **OKF (Open Knowledge Format)** — see `0005`. Local baseline extractors still do offline PDF inventory; OKF is the preferred *shape* for linked notes.
 
 ## Uncertainty
 
@@ -57,3 +57,9 @@ Ran baseline pipeline on **ACORN** arXiv:2403.04871 (15 pp PDF):
 - `relate_components.py`: 64 refs / 21 captions → heuristic `relations.json`  
 
 Reinforces protocol rule: tooling assists inventory; Pass 2 still requires opening the PDF for figures/tables.
+
+---
+
+## Correction (same day)
+
+User clarified the Google piece was **OKF (Open Knowledge Format)**, not LangExtract. See `journal/0005-okf-correction.md`. Seed insight above about “entity/relation tooling” still holds; the **format** we should align notes to is OKF-shaped linked markdown.
