@@ -1,0 +1,8 @@
+{"selectivity": 0.01, "mode": "PRE", "recall_at_10": 1.0, "latency_p50_ms": 0.0351, "latency_p95_ms": 0.0935, "qps": 21483.6894, "n_queries": 100}
+{"selectivity": 0.01, "mode": "POST", "recall_at_10": 1.0, "latency_p50_ms": 3.2479, "latency_p95_ms": 4.9308, "qps": 289.9817, "n_queries": 100}
+{"selectivity": 0.05, "mode": "PRE", "recall_at_10": 1.0, "latency_p50_ms": 0.1197, "latency_p95_ms": 0.1651, "qps": 7179.041, "n_queries": 100}
+{"selectivity": 0.05, "mode": "POST", "recall_at_10": 1.0, "latency_p50_ms": 2.9647, "latency_p95_ms": 5.2355, "qps": 281.7403, "n_queries": 100}
+{"selectivity": 0.1, "mode": "PRE", "recall_at_10": 1.0, "latency_p50_ms": 0.2147, "latency_p95_ms": 0.2564, "qps": 4657.1172, "n_queries": 100}
+{"selectivity": 0.1, "mode": "POST", "recall_at_10": 1.0, "latency_p50_ms": 2.7607, "latency_p95_ms": 3.8426, "qps": 346.1134, "n_queries": 100}
+{"selectivity": 0.5, "mode": "PRE", "recall_at_10": 1.0, "latency_p50_ms": 0.892, "latency_p95_ms": 2.925, "qps": 824.5145, "n_queries": 100}
+{"selectivity": 0.5, "mode": "POST", "recall_at_10": 1.0, "latency_p50_ms": 2.008, "latency_p95_ms": 3.3812, "qps": 433.0773, "n_queries": 100}

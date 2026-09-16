@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-17 — Colab FANNS synthetic run + LINKS
+
+- Ran `fanns_microbench_colab.ipynb` on Colab T4 GPU; results under `experiments/results/fanns/colab_synth_20260916_233628/` (**not P0**).
+- Recorded live Colab URL in `experiments/colab/LINKS.md`.
+- Journal `0029-colab-fanns-synth-run.md`.
+
 ## 2026-09-17 ~00:25 IST — Human + Colab paths for experiment results
 
 - `experiments/HOW_TO_PROVIDE_RESULTS.md`: preferred commit layout; FANNS/datasets/adapters paths; metrics.json schema; Options A (local), B (Colab zip), C (agent CPU smoke).

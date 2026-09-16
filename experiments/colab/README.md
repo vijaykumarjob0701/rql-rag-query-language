@@ -2,6 +2,10 @@
 
 **Date:** 2026-09-17 (Europe/Dublin)
 
+## Live Colab links
+
+See [`LINKS.md`](LINKS.md) for Drive/Colab URLs of uploaded notebooks.
+
 ## Notebook
 
 | File | Purpose |

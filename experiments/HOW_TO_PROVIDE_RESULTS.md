@@ -126,3 +126,5 @@ tooling/.venv/bin/python experiments/harness/fanns_synthetic_cpu.py
 - Do not commit API keys or cluster credentials with adapter `smoke.json`.
 - Do not commit multi-GB `.fvecs` / shards; digests + metrics only.
 - Do not treat Option C (or Colab synthetic-only) as closing HUMAN_TODOS P0.
+
+**Update 2026-09-17:** Agent ran Colab synthetic microbench (T4); artifacts in `results/fanns/colab_synth_20260916_233628/`; live notebook URL in `colab/LINKS.md`. **P0 SIFT1M (or equivalent) still open.**

@@ -111,3 +111,5 @@ tooling/.venv/bin/python experiments/harness/rql_pipeline.py \
 | Continue agent seed | Only low-cost polish (extra emit vendors, grammar docs) — **not** a substitute for P0. |
 
 Journal companions: [`../journal/0027-pause-human-p0-checklist.md`](../journal/0027-pause-human-p0-checklist.md), [`../journal/0028-human-colab-results-paths.md`](../journal/0028-human-colab-results-paths.md).
+
+**Update 2026-09-17:** Agent ran Colab synthetic microbench (T4); artifacts in `results/fanns/colab_synth_20260916_233628/`; live notebook URL in `colab/LINKS.md`. **P0 SIFT1M (or equivalent) still open.**

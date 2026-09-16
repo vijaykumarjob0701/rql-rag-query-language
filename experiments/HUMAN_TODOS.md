@@ -121,3 +121,5 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 - Deterministic FilterExec chooser toy test (`experiments/harness/test_filter_strategy_chooser.py` → `experiments/results/filter_chooser/unit_test.txt`)
 - Deterministic MaxSim toy test (`experiments/harness/test_maxsim_late.py` → `experiments/results/maxsim/unit_test.txt`)
 - Planned-run printer (no scores)
+
+**Update 2026-09-17:** Agent ran Colab synthetic microbench (T4); artifacts in `results/fanns/colab_synth_20260916_233628/`; live notebook URL in `colab/LINKS.md`. **P0 SIFT1M (or equivalent) still open.**
