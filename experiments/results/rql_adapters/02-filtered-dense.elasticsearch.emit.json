@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "elasticsearch",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Elasticsearch retriever / knn request sketch (docs RRF + knn.filter; journal 0020).",
+    "Hypothesis / approximate — not executed.",
+    "FilterExec mode=PRE → knn.filter / retriever filter (ES docs: filter during approximate kNN — Established surface).",
+    "AnnExec → knn (+ optional filter) sketch."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "elasticsearch",
+    "logicalPlanRef": "experiments/results/rql_parser/02-filtered-dense.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "_approximate": true,
+    "_notExecuted": true,
+    "knn": {
+      "field": "embedding",
+      "query_vector": "$q_dense",
+      "k": 20,
+      "num_candidates": 100,
+      "filter": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "tenant_id": "acme"
+              }
+            },
+            {
+              "range": {
+                "clearance": {
+                  "gte": 2
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "size": 20
+  }
+}

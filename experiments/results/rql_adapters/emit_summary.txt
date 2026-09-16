@@ -1,0 +1,13 @@
+PhysicalPlan → vendor request emit stub (Hypothesis sketches; not executed)
+src: experiments/results/rql_planner
+out: experiments/results/rql_adapters
+stems: ['01-hybrid-rrf', '02-filtered-dense']
+profiles: ['qdrant', 'elasticsearch', 'pgvector']
+ok: 6/6
+
+OK: 01-hybrid-rrf@qdrant → 01-hybrid-rrf.qdrant.emit.json
+OK: 01-hybrid-rrf@elasticsearch → 01-hybrid-rrf.elasticsearch.emit.json
+OK: 01-hybrid-rrf@pgvector → 01-hybrid-rrf.pgvector.emit.json, 01-hybrid-rrf.pgvector.request.sql
+OK: 02-filtered-dense@qdrant → 02-filtered-dense.qdrant.emit.json
+OK: 02-filtered-dense@elasticsearch → 02-filtered-dense.elasticsearch.emit.json
+OK: 02-filtered-dense@pgvector → 02-filtered-dense.pgvector.emit.json, 02-filtered-dense.pgvector.request.sql

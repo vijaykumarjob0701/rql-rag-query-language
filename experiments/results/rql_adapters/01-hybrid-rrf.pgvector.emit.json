@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "pgvector",
+  "format": "sql",
+  "filesuggested_ext": "request.sql",
+  "notes": [
+    "pgvector SQL sketch (ORDER BY embedding <=> … LIMIT; iterative comment if ITERATIVE).",
+    "Hypothesis / approximate — not executed.",
+    "ShimCast client_rrf → dual SQL + client merge note."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "pgvector",
+    "logicalPlanRef": "experiments/results/rql_parser/01-hybrid-rrf.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "bodyRef": "01-hybrid-rrf.pgvector.request.sql"
+}
