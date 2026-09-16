@@ -61,6 +61,7 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0011 | [`0011-rrf-cormack-multimodal-reread.md`](0011-rrf-cormack-multimodal-reread.md) | Cormack RRF SIGIR’09 Pass 1–5 + OKF (Fuse_rrf established) |
 | 0012 | [`0012-colbert-multimodal-reread.md`](0012-colbert-multimodal-reread.md) | ColBERT SIGIR’20 Pass 1–5 — MaxSim **Established** |
 | 0013 | [`0013-muvera-multimodal-reread.md`](0013-muvera-multimodal-reread.md) | MUVERA arXiv:2405.19504 Pass 1–5 — FDE rewrite |
+| 0014 | [`0014-plaid-multimodal-reread.md`](0014-plaid-multimodal-reread.md) | PLAID CIKM’22 Pass 1–5 — centroid interaction Established |
 
 Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`).
 

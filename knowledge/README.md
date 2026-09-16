@@ -10,5 +10,6 @@
 | [`reads/rrf-cormack-sigir09/`](reads/rrf-cormack-sigir09/) | Cormack et al. RRF SIGIR 2009 | [`../journal/0011-rrf-cormack-multimodal-reread.md`](../journal/0011-rrf-cormack-multimodal-reread.md) |
 | [`reads/colbert-sigir20/`](reads/colbert-sigir20/) | ColBERT SIGIR 2020 | [`../journal/0012-colbert-multimodal-reread.md`](../journal/0012-colbert-multimodal-reread.md) |
 | [`reads/muvera-2405.19504/`](reads/muvera-2405.19504/) | MUVERA arXiv:2405.19504 | [`../journal/0013-muvera-multimodal-reread.md`](../journal/0013-muvera-multimodal-reread.md) |
+| [`reads/plaid-cikm22/`](reads/plaid-cikm22/) | PLAID CIKM 2022 | [`../journal/0014-plaid-multimodal-reread.md`](../journal/0014-plaid-multimodal-reread.md) |
 
 Spec references: https://github.com/GoogleCloudPlatform/open-knowledge-format
