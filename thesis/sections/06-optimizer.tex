@@ -1,26 +1,30 @@
 \section{Physical planning (original sketch)}
 \label{sec:optimizer}
 
-\noindent\textit{This section is \hypothesis{}.}
+\noindent\textit{This section is \hypothesis{} unless a citation marks established prior art.}
 
 \subsection{Physical filter modes}
-Inspired by FANNS literature and ACORN's taxonomy~\citep{patel2024acorn}:
+Grounded in FANNS practice and multimodal re-reads of ACORN~\citep{patel2024acorn}, Filtered-DiskANN~\citep{gollapudi2023filtered}, and VBASE~\citep{zhang2023vbase}:
 \[
 \mathrm{FilterExec}\in\{\mathrm{PRE},\,\mathrm{POST},\,\mathrm{ITERATIVE},\,\mathrm{SUBGRAPH},\,\mathrm{SPECIALIZED},\,\mathrm{AUTO}\}.
 \]
 \begin{itemize}
-  \item $\mathrm{PRE}$: restrict candidates then exact/ANN on survivors.
-  \item $\mathrm{POST}$: ANN then predicate; often needs over-fetch.
-  \item $\mathrm{SUBGRAPH}$: ACORN-like traversal when the backend capability exists.
-  \item $\mathrm{SPECIALIZED}$: equality-constrained indices (e.g.\ Filtered-DiskANN class) when applicable \provisional{}.
-  \item $\mathrm{ITERATIVE}$: iterator/scan integration (VBASE-class) \provisional{}.
-  \item $\mathrm{AUTO}$: choose using stats; \textbf{never} violate ACL hard constraints.
+  \item $\mathrm{PRE}$: restrict candidates then exact/ANN on survivors (high selectivity / small survivor set).
+  \item $\mathrm{POST}$: ANN then predicate; often needs over-fetch; brittle under low selectivity or low query--predicate correlation~\citep{patel2024acorn}.
+  \item $\mathrm{SUBGRAPH}$: ACORN-like predicate-subgraph traversal when the backend capability exists~\citep{patel2024acorn}.
+  \item $\mathrm{SPECIALIZED}$: label/equality-constrained graph indices (FilteredVamana / StitchedVamana class) when the predicate matches advertised capabilities~\citep{gollapudi2023filtered}.
+  \item $\mathrm{ITERATIVE}$: Volcano-style $\mathrm{Open}/\mathrm{Next}/\mathrm{Close}$ ANN with early-stop (relaxed monotonicity class) enabling filter-during-traversal and join patterns~\citep{zhang2023vbase}.
+  \item $\mathrm{AUTO}$: choose using stats (selectivity, specificity, correlation, empty-result risk); \textbf{never} violate ACL hard constraints.
 \end{itemize}
+
+\paragraph{Capability negotiation.}
+Adapters must advertise which modes exist.
+Missing $\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/$\mathrm{ITERATIVE}$ forces fallback --- the algebra must not pretend universal support \hypothesis{}.
 
 \subsection{Cost vector}
 Unlike classical selectivity-only costing, plans expose a vector:
 \begin{enumerate}
-  \item Recall proxy (candidate depth, filter empty-result risk),
+  \item Recall proxy (candidate depth, filter empty-result risk, low-specificity risk~\citep{gollapudi2023filtered}),
   \item Latency (p50/p95 targets),
   \item ACL safety (boolean hard constraint),
   \item Token/dollar budget (embeddings, rerankers, rewrites).
@@ -28,7 +32,7 @@ Unlike classical selectivity-only costing, plans expose a vector:
 BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface options such as \texttt{RECALL TARGET} / \texttt{LATENCY} \hypothesis{}.
 
 \subsection{Fusion and rewrite rules}
-Examples \hypothesis{}: independent channel searches $\rightarrow$ parallel schedule; $\mathrm{Search}_{late}$ without multi-vector support $\rightarrow$ optional FDE-style rewrite if available~\citep{jayaram2024muvera}; low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/over-fetch.
+Examples \hypothesis{}: independent channel searches $\rightarrow$ parallel schedule; $\mathrm{Search}_{late}$ without multi-vector support $\rightarrow$ optional FDE-style rewrite if available~\citep{jayaram2024muvera}; low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/over-fetch depending on capabilities and predicate shape; $\mathrm{VSimJoin}$ $\rightarrow$ prefer iterator nested loops when $\mathrm{ITERATIVE}$ exists~\citep{zhang2023vbase}.
 
 \begin{figure}[t]
 \centering

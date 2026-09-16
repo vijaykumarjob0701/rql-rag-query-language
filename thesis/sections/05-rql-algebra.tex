@@ -3,34 +3,53 @@
 
 \noindent\textit{All operators in this section are \hypothesis{} unless marked otherwise.}
 
-\subsection{Domain}
-An \textbf{evidence relation} $E$ is a multiset of tuples
-\[
-(\mathit{id},\; \mathit{payload},\; \mathit{score},\; \mathit{channel},\; \mathit{provenance},\; \ldots).
-\]
-Scores are channel-local until a fuse operator.
+\subsection{Typed evidence relation}
+An \textbf{evidence relation} $E$ is a multiset of tuples with at least:
+\begin{align*}
+E \subseteq\ &\mathit{Id} \times \mathit{Payload} \times \mathit{Score} \times \mathit{Channel}\\
+&\times \mathit{Provenance} \times \mathit{Attr}^* .
+\end{align*}
+Informal signature: each tuple carries a channel-local score until a fuse operator.
+Mandatory ACL attributes (tenant, clearance, \ldots) are part of $\mathit{Attr}$ and must remain enforceable in every physical plan \hypothesis{}.
+
+\paragraph{Channels.}
+$\mathit{Channel}\in\{\mathsf{dense},\mathsf{bm25},\mathsf{late},\mathsf{graph},\mathsf{fused},\ldots\}$.
+Scores are comparable \emph{within} a channel; cross-channel comparison requires $\mathrm{Fuse}$.
 
 \subsection{Logical operators (kernel)}
 \begin{center}
-\begin{tabular}{@{}llp{0.42\textwidth}@{}}
+\begin{tabular}{@{}llp{0.40\textwidth}@{}}
 \toprule
-Operator & Informal type & Notes \\
+Operator & Signature (sketch) & Notes \\
 \midrule
-$\mathrm{Search}_{dense}$ & $\rightarrow E$ & ANN leaf \\
-$\mathrm{Search}_{bm25}$ & $\rightarrow E$ & Lexical leaf \\
-$\mathrm{Search}_{late}$ & $\rightarrow E$ & Late interaction leaf \\
+$\mathrm{Search}_{dense}(q,k)$ & $\rightarrow E$ & ANN leaf \\
+$\mathrm{Search}_{bm25}(q,k)$ & $\rightarrow E$ & Lexical leaf \\
+$\mathrm{Search}_{late}(q,k)$ & $\rightarrow E$ & Late interaction leaf \\
 $\mathrm{Filter}(P)$ & $E\rightarrow E$ & Predicates / ACL \\
 $\mathrm{Union}$ & $E\times E\rightarrow E$ & Multi-query \\
-$\mathrm{Fuse}_{rrf}$ / $\mathrm{Fuse}_{linear}$ & $E^*\rightarrow E$ & RRF \established{} as prior art; naming in RQL \hypothesis{} \\
+$\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})$ & $E^*\rightarrow E$ & RRF \established{} as IR prior art~\citep{cormack2009rrf}; naming in RQL \hypothesis{} \\
+$\mathrm{Fuse}_{linear}(\alpha)$ & $E^*\rightarrow E$ & Weighted mix \\
 $\mathrm{Diversify}_{mmr}$ & $E\rightarrow E$ & Diversity \\
-$\mathrm{Rerank}$ & $E\rightarrow E$ & Cross-encoder etc. \\
+$\mathrm{Rerank}_{m}$ & $E\rightarrow E$ & Cross-encoder etc. \\
 $\mathrm{Expand}$ & $E\rightarrow E$ & Parent/window \\
 $\mathrm{Rewrite}$ & $q\rightarrow q^*$ & HyDE / multi-query \\
-$\mathrm{Traverse}$ & $E\rightarrow E$ & Bounded graph hop \\
-$\mathrm{VSimJoin}$ & $E\times E\rightarrow E$ & Similarity join \\
+$\mathrm{Traverse}_{h}$ & $E\rightarrow E$ & Bounded graph hop \\
+$\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+\subsection{Rewrite examples (hypothesis, literature-grounded)}
+\begin{itemize}
+  \item \textbf{Post-filter brittleness (ACORN seed).}
+    $\mathrm{Filter}(P)\circ \mathrm{Search}_{dense}(q,k)$ may be rewritten toward a physical $\mathrm{SUBGRAPH}$ or over-fetched $\mathrm{POST}$ plan when estimated selectivity / query--predicate correlation is adverse~\citep{patel2024acorn} \hypothesis{} (choice is physical; logical $\mathrm{Filter}$ remains).
+  \item \textbf{Iterator pushdown (VBASE seed).}
+    When the adapter exposes Volcano-style ANN iteration, $\mathrm{Filter}(P)\circ \mathrm{Search}_{dense}$ may compile to $\mathrm{FilterExec}=\mathrm{ITERATIVE}$ (filter during $\mathrm{Next}$) rather than TopK-then-drop~\citep{zhang2023vbase} \hypothesis{}.
+  \item \textbf{Label-specialized graphs (Filtered-DiskANN seed).}
+    Equality/label predicates with a capable filtered graph may compile to $\mathrm{SPECIALIZED}$~\citep{gollapudi2023filtered} \hypothesis{}; unsupported predicate shapes must not silently use that path.
+  \item \textbf{Similarity join.}
+    $\mathrm{VSimJoin}_{\theta}(E_1,E_2)$ may compile to nested $\mathrm{Search}_{dense}$ / range-iterator joins when $\mathrm{ITERATIVE}$ (or equivalent) exists~\citep{zhang2023vbase} \hypothesis{}; otherwise to blocked nested loops with explicit cost --- not claimed implemented.
+\end{itemize}
 
 \subsection{Semantics sketch}
 Channels remain separate until fuse.
@@ -38,5 +57,5 @@ Mandatory predicates in $P_{\mathrm{acl}}\subseteq P$ must be enforced by physic
 Rewrite operators carry explicit token/latency cost attributes for the optimiser.
 
 \subsection{Delineation from survey material}
-RRF~\citep{cormack2009rrf}, HNSW~\citep{malkov2018hnsw}, and ACORN's predicate-subgraph idea~\citep{patel2024acorn} are prior art.
+RRF~\citep{cormack2009rrf}, HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009, 0010).
 \textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.

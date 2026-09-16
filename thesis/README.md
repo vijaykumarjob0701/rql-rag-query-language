@@ -31,10 +31,10 @@ Requires TeX Live with `article`, `booktabs`, `hyperref`, `natbib`/`biblatex` (t
 | `00-abstract.tex` | draft | Honest about provisional stage |
 | `01-introduction.tex` | draft | Motivation: accuracy/latency/reliability |
 | `02-background.tex` | draft | ANN, hybrid, RAG pipeline stages |
-| `03-related-work.tex` | draft | Careful; ACORN multimodally read; others provisional |
+| `03-related-work.tex` | draft | ACORN + VBASE + Filtered-DiskANN multimodally read |
 | `04-problem-formulation.tex` | draft | Formal problem for portable retrieval IR |
-| `05-rql-algebra.tex` | **HYPOTHESIS** | Original contribution sketch |
-| `06-optimizer.tex` | **HYPOTHESIS** | FANNS/fusion planner ideas |
+| `05-rql-algebra.tex` | **HYPOTHESIS** | Typed evidence + rewrite examples (ACORN/VBASE/FDANN seeds) |
+| `06-optimizer.tex` | **HYPOTHESIS** | FilterExec modes tied to ACORN/VBASE/FDANN |
 | `07-compilation.tex` | **HYPOTHESIS** | Adapters / polystore shims |
 | `08-applications.tex` | draft | RAG patterns → RQL |
 | `09-evaluation-plan.tex` | plan only | No fake results |
@@ -44,6 +44,8 @@ Requires TeX Live with `article`, `booktabs`, `hyperref`, `natbib`/`biblatex` (t
 
 ## Relationship to research notes
 
-- Journal: `../journal/` (esp. `0006` ACORN)
-- OKF packaging (methodology, not runtime): `../knowledge/reads/acorn-2403.04871/`
+- Journal: `../journal/` (`0006` ACORN, `0009` VBASE, `0010` Filtered-DiskANN)
+- OKF packaging (methodology, not runtime): `../knowledge/reads/{acorn-2403.04871,vbase-osdi23,filtered-diskann-www23}/`
+- Markdown algebra mirror: `../docs/08-algebra-sketch.md`
 - Evolved idea (provisional): `../docs/07-evolved-idea.md`
+- Latest build: `main.pdf` (**10 pages**, 2026-09-16 evening IST)

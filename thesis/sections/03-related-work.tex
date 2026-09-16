@@ -11,9 +11,13 @@ Patel et al.~\citep{patel2024acorn} argue that pre- and post-filtering are britt
 They propose denser, predicate-agnostic HNSW variants (ACORN-$\gamma$, ACORN-1) that \emph{search the predicate subgraph} to approximate an oracle HNSW over surviving vectors.
 Our Pass~1--5 notes (journal 0006; OKF bundle under \texttt{knowledge/reads/acorn-2403.04871/}) treat author QPS claims as \textbf{not reproduced here} \established{} for the problem taxonomy; \provisional{} for unreproduced numeric speedups.
 
-\paragraph{Filtered-DiskANN and others.}
-Filtered-DiskANN~\citep{gollapudi2023filtered} and related specialised structures target constrained equality predicates \provisional{} (queued for multimodal read).
-VBASE~\citep{zhang2023vbase} frames vector similarity as composable with relational execution via relaxed monotonicity \provisional{} (journal stub 0007 only).
+\paragraph{Filtered-DiskANN (multimodal re-read).}
+Gollapudi et al.~\citep{gollapudi2023filtered} change \emph{graph construction} (FilteredVamana / StitchedVamana) so edges respect geometry and labels, then search with label-aware greedy expansion.
+Pass~1--5 notes (journal 0010; \texttt{knowledge/reads/filtered-diskann-www23/}) ground $\mathrm{FilterExec}=\mathrm{SPECIALIZED}$ for equality/label predicates; complex SQL-like filters remain an author-stated open problem \established{} for the specialised-graph idea; \provisional{} for unreproduced QPS curves.
+
+\paragraph{VBASE (multimodal re-read).}
+Zhang et al.~\citep{zhang2023vbase} formalise \emph{relaxed monotonicity} and expose ANN traversal as Volcano $\mathrm{Open}/\mathrm{Next}/\mathrm{Close}$ inside PostgreSQL, enabling filter-during-traversal, multi-column TopK, range filters, and vector joins without a predicted over-fetch $K'$.
+Pass~1--5 notes (journal 0009; \texttt{knowledge/reads/vbase-osdi23/}) ground $\mathrm{FilterExec}=\mathrm{ITERATIVE}$ and a concrete path for $\mathrm{VSimJoin}$ \established{} for the iterator architecture; \provisional{} for unreproduced latency claims.
 
 \subsection{IR query languages}
 Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator algebra~\citep{metzler2004indri} \provisional{} (URL-verified references; deep re-read pending).

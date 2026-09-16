@@ -9,7 +9,7 @@ As a result, accuracy, latency, and reliability become properties of brittle Pyt
 \subsection{Motivation (accuracy, latency, reliability)}
 \begin{description}
   \item[Accuracy.] Hybrid fusion (e.g.\ reciprocal rank fusion~\citep{cormack2009rrf}), over-fetch+rerank, and multi-query rewriting improve recall only when stages are explicit and tunable.
-  \item[Latency.] Filter placement (pre vs.\ post vs.\ subgraph traversal) and ANN parameters dominate end-to-end cost~\citep{patel2024acorn}.
+  \item[Latency.] Filter placement (pre vs.\ post vs.\ subgraph vs.\ specialised label graphs vs.\ iterator ANN) and ANN parameters dominate end-to-end cost~\citep{patel2024acorn,gollapudi2023filtered,zhang2023vbase}.
   \item[Reliability.] Silent empty results, client-side ACL filtering, and irreproducible \texttt{efSearch} folklore are operational failures; plans with \texttt{EXPLAIN} and mandatory predicate pushdown targets are the remedy \hypothesis{}.
 \end{description}
 
@@ -24,5 +24,5 @@ The textual DSL is a frontend, not the contribution's centre of mass \hypothesis
   \item A hypothesized retrieval algebra and physical operator set (Sections~\ref{sec:algebra}--\ref{sec:optimizer}) \hypothesis{}.
   \item Compilation/adapter doctrine inspired by Substrait and polystores (Section~\ref{sec:compilation}) \hypothesis{}.
   \item An evaluation and reproducibility \emph{plan} without fabricated metrics (Section~\ref{sec:eval}).
-  \item Careful related-work positioning, with ACORN multimodally re-read (Section~\ref{sec:related}).
+  \item Careful related-work positioning, with ACORN, VBASE, and Filtered-DiskANN multimodally re-read (Section~\ref{sec:related}).
 \end{enumerate}
