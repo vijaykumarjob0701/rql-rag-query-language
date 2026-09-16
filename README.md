@@ -50,7 +50,7 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0014-plaid-multimodal-reread.md`](journal/0014-plaid-multimodal-reread.md) | PLAID Pass 1–5 (centroid interaction Established) |
 | [`journal/0015-next-bruch-or-human-note.md`](journal/0015-next-bruch-or-human-note.md) | Hand-off seed (not Pass 1–5) |
 | [`journal/0016-bruch-fusion-multimodal-reread.md`](journal/0016-bruch-fusion-multimodal-reread.md) | Bruch CC/TM2C2 Pass 1–5 (Fuse_linear Established) |
-| … | See [`journal/README.md`](journal/README.md) for 0017–0022 (Chen, Condorcet, FANNS, vendor matrix, schema freeze, **toy RQL parser**) |
+| … | See [`journal/README.md`](journal/README.md) for 0017–0023 (Chen, Condorcet, FANNS, vendor matrix, schema freeze, toy parser, **physical planner stub**) |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 
@@ -86,6 +86,7 @@ After the v2 breadth pass we **slowed down**: strategy and multimodal reading be
 | [`docs/09-vendor-api-matrix.md`](docs/09-vendor-api-matrix.md) | **Docs-only** vendor hybrid/filter/fusion API matrix (Sep 2026) — Established adapter surfaces |
 | [`schemas/`](schemas/) | **Hypothesis IR** LogicalPlan/PhysicalPlan JSON Schema `0.1.0-draft` + examples |
 | [`experiments/harness/rql_parser/`](experiments/harness/rql_parser/) | **Hypothesis** toy RQL → LogicalPlan parser (tiny subset; journal 0022) |
+| [`experiments/harness/rql_planner/`](experiments/harness/rql_planner/) | **Hypothesis** Logical→Physical planner stub + vendor capability profiles (journal 0023) |
 | [`docs/references.md`](docs/references.md) | All URLs used |
 | [`NOTES-search-log.md`](NOTES-search-log.md) | Search queries + what each turned up |
 | [`examples/`](examples/) | Example RQL queries (incl. v2 patterns 10–12) |

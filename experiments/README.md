@@ -25,6 +25,8 @@ python3 harness/test_maxsim_late.py
 ../tooling/.venv/bin/python harness/validate_plans.py
 ../tooling/.venv/bin/python harness/test_rql_parser.py
 ../tooling/.venv/bin/python harness/parse_rql.py parse ../schemas/examples/01-hybrid-rrf.rql --validate
+../tooling/.venv/bin/python harness/test_rql_planner.py
+../tooling/.venv/bin/python harness/plan_rql.py plan results/rql_parser/01-hybrid-rrf.logical.json --profile qdrant --validate
 ```
 
 ## Status
@@ -36,6 +38,7 @@ python3 harness/test_maxsim_late.py
 | Deterministic MaxSim unit test | works (fixed toy embeddings; ColBERT Eq.3) |
 | Plan schema validator | works (jsonschema; schemas/examples → results/plan_schema/validate.txt) |
 | Toy RQL → LogicalPlan parser | works (Hypothesis subset; schemas/examples/*.rql → results/rql_parser/) |
+| Logical→Physical planner stub | works (Hypothesis rules; 4×3 profiles → results/rql_planner/; schema-valid) |
 | ANN / RAG end-to-end benches | **not run** |
 
 ## Human hand-off

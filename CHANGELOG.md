@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-16 ~23:59 IST — LogicalPlan → PhysicalPlan planner stub
+
+- Hypothesis rule engine under `experiments/harness/rql_planner/` (profiles: qdrant / elasticsearch / pgvector from docs/09 — **not** live probes).
+- Rules: Filter→FilterExec (chooser + FANNS labels); Fuse_rrf/linear→FusionExec native or ShimCast; Search_late→LateInteractExec (colbert default; optional plaid/muvera).
+- CLI: `experiments/harness/plan_rql.py`; test **4 logical × 3 profiles = 12/12 validate** → `experiments/results/rql_planner/`.
+- Journal `0023`; thesis §06/§07 (+ abstract/conclusion) cite stub.
+- **No** GitHub push; **no** fabricated latency/recall; not a Cascades cost model.
+
+
 ## 2026-09-16 ~23:59 IST — Toy RQL → LogicalPlan parser
 
 - Minimal **Hypothesis** frontend under `experiments/harness/rql_parser/` (grammar.md documents tiny EBNF).

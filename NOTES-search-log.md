@@ -282,5 +282,20 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 
 **Honesty:** Grammar packaging is **Hypothesis**. Not a full SQL engine. No retrieval metrics.
 
-**Next seed:** Substrait/Calcite deeper read **or** physical planner stub (Logical→Physical + FilterExec/ShimCast).
+**Next seed (done in 0023):** physical planner stub (Logical→Physical + FilterExec/ShimCast).
+
+## 2026-09-16 ~23:59 IST — Physical planner stub (Logical→Physical)
+
+| Query / action | Result |
+|----------------|--------|
+| Implement `experiments/harness/rql_planner/` | Deterministic Filter/Fuse/Late rules + capability profiles |
+| Profiles (docs-derived) | `qdrant.json`, `elasticsearch.json`, `pgvector.json` (journal 0020 flags) |
+| `test_rql_planner.py` + jsonschema | **12/12 plan + validate** (4 logical × 3 profiles) |
+| Results | `experiments/results/rql_planner/*.physical.json` + `plan_validate.txt` |
+| Thesis weave | §06 planner stub; §07 layer-2; abstract/conclusion; rebuild PDF |
+| Journal | `0023-physical-planner-stub.md` |
+
+**Honesty:** Planner packaging is **Hypothesis**. Profiles are docs-derived — **not** live probes. No latency/recall invented.
+
+**Next seed:** Substrait/Calcite deeper read **or** adapter emit stub (PhysicalPlan → backend JSON/SQL, no live CI).
 
