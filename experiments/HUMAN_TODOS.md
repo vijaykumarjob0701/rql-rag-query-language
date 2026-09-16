@@ -51,12 +51,13 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | Status | Completed independently — journal `0009`, OKF `knowledge/reads/vbase-osdi23/` (stub `0007` retained as history) |
 | Human follow-up (optional) | Spot-check PDF figures; compare MSVBASE GitHub APIs to §4.2 if desired |
 
-## P2 — Filtered-DiskANN multimodal — **DONE by agent**; RRF classic still open
+## P2 — Filtered-DiskANN + Cormack RRF multimodal — **DONE by agent**
 
 | Field | Value |
 |-------|--------|
 | Filtered-DiskANN | journal `0010`, OKF `knowledge/reads/filtered-diskann-www23/` |
-| Still open (P2) | Cormack et al. RRF SIGIR 2009 multimodal Pass 1–5; optional FANNS survey figure/table pass (`docs/references.md` #71, #61) |
+| Cormack RRF SIGIR’09 | journal `0011`, OKF `knowledge/reads/rrf-cormack-sigir09/` (2 pp; formula+k=60 **Established**) |
+| Still open (P2) | optional FANNS survey Lin 2025 figure/table pass; Bruch linear/CC fusion multimodal; Condorcet Fuse cite-chase (`docs/references.md` #61 etc.) |
 
 ## P2 — Production plan-stability soak
 
@@ -69,7 +70,8 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 - ACORN Pass 1–5 + OKF bundle (`journal/0006`, `knowledge/reads/acorn-2403.04871/`)
 - VBASE Pass 1–5 + OKF (`journal/0009`, `knowledge/reads/vbase-osdi23/`)
 - Filtered-DiskANN Pass 1–5 + OKF (`journal/0010`, `knowledge/reads/filtered-diskann-www23/`)
+- Cormack RRF Pass 1–5 + OKF (`journal/0011`, `knowledge/reads/rrf-cormack-sigir09/`)
 - Thesis LaTeX draft + PDF build (`thesis/main.pdf`) — algebra/optimizer expanded evening IST
-- Deterministic RRF unit test (`experiments/harness/test_rrf_fusion.py` → `experiments/results/rrf_unit_test.txt`)
+- Deterministic RRF unit tests (`experiments/harness/test_rrf_fusion.py` → `experiments/results/rrf_unit_test.txt`; property: channel-order invariance)
 - Deterministic FilterExec chooser toy test (`experiments/harness/test_filter_strategy_chooser.py` → `experiments/results/filter_chooser/unit_test.txt`)
 - Planned-run printer (no scores)

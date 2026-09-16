@@ -8,3 +8,6 @@ fused:
   D5	0.015873
   D4	0.015625
 OK: top-2 are D1, D3 as expected for this toy input
+OK: property channel-order invariance (scores identical)
+OK: property D1 score matches Cormack formula (0.032522)
+OK: property larger k reduces absolute RRF scores (damping)
