@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "LogicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Parsed by toy RQL frontend (Hypothesis). Not a full SQL engine."
+  },
+  "root": {
+    "id": "late0",
+    "op": "Search_late",
+    "k": 10,
+    "collection": "passages_mv",
+    "query": {
+      "channel": "late",
+      "text": "late interaction MaxSim",
+      "vectorRef": "$q_tok"
+    }
+  }
+}

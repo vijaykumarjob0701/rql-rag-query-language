@@ -1,0 +1,23 @@
+{
+  "stem": "04-hybrid-linear",
+  "profile": "pgvector",
+  "rql": "examples/toy/04-hybrid-linear.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "04-hybrid-linear/pgvector/04-hybrid-linear.logical.json",
+    "04-hybrid-linear/pgvector/04-hybrid-linear.pgvector.physical.json",
+    "04-hybrid-linear/pgvector/04-hybrid-linear.pgvector.emit.json",
+    "04-hybrid-linear/pgvector/04-hybrid-linear.pgvector.request.sql"
+  ],
+  "root_op": "FilterExec",
+  "vendor": "pgvector",
+  "emit_format": "sql",
+  "notExecuted": true
+}

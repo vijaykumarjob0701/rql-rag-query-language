@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "qdrant",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Qdrant Query API-shaped JSON (docs hybrid/filter surface; journal 0020).",
+    "Hypothesis / approximate sketch — not executed.",
+    "LateInteractExec → multivector nearest sketch (docs partial)."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "qdrant",
+    "logicalPlanRef": "experiments/results/e2e/smoke/03-late/qdrant/03-late.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "_approximate": true,
+    "_notExecuted": true,
+    "collection": "passages_mv",
+    "query": {
+      "nearest": {
+        "vector": {
+          "name": "colbert_multivector",
+          "vector": "$q_tok"
+        }
+      }
+    },
+    "limit": 10,
+    "_late_variant": "colbert"
+  }
+}

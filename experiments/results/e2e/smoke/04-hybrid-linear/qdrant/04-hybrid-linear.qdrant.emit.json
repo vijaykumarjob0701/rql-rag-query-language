@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "qdrant",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Qdrant Query API-shaped JSON (docs hybrid/filter surface; journal 0020).",
+    "Hypothesis / approximate sketch — not executed.",
+    "FilterExec mode=PRE pruningStrategy=SSP (leaf-propagated filter on Query API — docs Established; emit packaging Hypothesis)."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "qdrant",
+    "logicalPlanRef": "experiments/results/e2e/smoke/04-hybrid-linear/qdrant/04-hybrid-linear.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "query": {
+      "_unsupported": "FusionExec"
+    },
+    "limit": 20,
+    "filter": {
+      "_sketch_opaque_expr": "category = 'electronics' AND price < 500",
+      "must": [
+        {
+          "key": "_unparsed",
+          "match": {
+            "value": "SEE_NOTES"
+          }
+        }
+      ]
+    }
+  }
+}

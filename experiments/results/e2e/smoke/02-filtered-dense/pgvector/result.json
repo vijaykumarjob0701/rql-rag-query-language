@@ -1,0 +1,23 @@
+{
+  "stem": "02-filtered-dense",
+  "profile": "pgvector",
+  "rql": "examples/toy/02-filtered-dense.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "02-filtered-dense/pgvector/02-filtered-dense.logical.json",
+    "02-filtered-dense/pgvector/02-filtered-dense.pgvector.physical.json",
+    "02-filtered-dense/pgvector/02-filtered-dense.pgvector.emit.json",
+    "02-filtered-dense/pgvector/02-filtered-dense.pgvector.request.sql"
+  ],
+  "root_op": "FilterExec",
+  "vendor": "pgvector",
+  "emit_format": "sql",
+  "notExecuted": true
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "elasticsearch",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Elasticsearch retriever / knn request sketch (docs RRF + knn.filter; journal 0020).",
+    "Hypothesis / approximate — not executed.",
+    "FusionExec native RRF → retriever.rrf sketch."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "elasticsearch",
+    "logicalPlanRef": "experiments/results/e2e/smoke/01-hybrid-rrf/elasticsearch/01-hybrid-rrf.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "_approximate": true,
+    "_notExecuted": true,
+    "retriever": {
+      "rrf": {
+        "retrievers": [
+          {
+            "knn": {
+              "field": "embedding",
+              "query_vector": "$q_dense",
+              "k": 50,
+              "num_candidates": 100
+            }
+          },
+          {
+            "standard": {
+              "query": {
+                "match": {
+                  "text": "portable retrieval IR for RAG"
+                }
+              }
+            }
+          }
+        ],
+        "rank_constant": 60,
+        "rank_window_size": 50
+      }
+    },
+    "size": 50
+  }
+}

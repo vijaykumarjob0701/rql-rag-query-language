@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "qdrant",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Qdrant Query API-shaped JSON (docs hybrid/filter surface; journal 0020).",
+    "Hypothesis / approximate sketch — not executed.",
+    "FusionExec native=true → prefetch + fusion=rrf (Qdrant docs Established shape)."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "qdrant",
+    "logicalPlanRef": "experiments/results/e2e/smoke/01-hybrid-rrf/qdrant/01-hybrid-rrf.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "_approximate": true,
+    "_notExecuted": true,
+    "collection": "chunks",
+    "prefetch": [
+      {
+        "query": {
+          "nearest": {
+            "vector": {
+              "name": "dense",
+              "vector": "$q_dense"
+            }
+          }
+        },
+        "limit": 50,
+        "params": {
+          "hnsw_ef": 64
+        }
+      },
+      {
+        "query": {
+          "nearest": {
+            "vector": {
+              "name": "bm25_sparse",
+              "vector": {
+                "_sketch_text": "portable retrieval IR for RAG",
+                "_note": "sparse/BM25 vector placeholder"
+              }
+            }
+          }
+        },
+        "limit": 50
+      }
+    ],
+    "query": {
+      "fusion": "rrf"
+    },
+    "limit": 50,
+    "params": {
+      "_rrf_k_hint": 60
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "stem": "03-late",
+  "profile": "qdrant",
+  "rql": "examples/toy/03-late.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "03-late/qdrant/03-late.logical.json",
+    "03-late/qdrant/03-late.qdrant.physical.json",
+    "03-late/qdrant/03-late.qdrant.emit.json"
+  ],
+  "root_op": "LateInteractExec",
+  "vendor": "qdrant",
+  "emit_format": "json",
+  "notExecuted": true
+}

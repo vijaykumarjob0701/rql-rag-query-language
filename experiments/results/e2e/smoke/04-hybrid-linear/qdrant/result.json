@@ -1,0 +1,22 @@
+{
+  "stem": "04-hybrid-linear",
+  "profile": "qdrant",
+  "rql": "examples/toy/04-hybrid-linear.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "04-hybrid-linear/qdrant/04-hybrid-linear.logical.json",
+    "04-hybrid-linear/qdrant/04-hybrid-linear.qdrant.physical.json",
+    "04-hybrid-linear/qdrant/04-hybrid-linear.qdrant.emit.json"
+  ],
+  "root_op": "FilterExec",
+  "vendor": "qdrant",
+  "emit_format": "json",
+  "notExecuted": true
+}

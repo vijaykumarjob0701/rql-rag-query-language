@@ -1,0 +1,4 @@
+-- SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.
+-- vendor=pgvector label=Hypothesis approximate=true notExecuted=true
+-- FilterExec mode=PRE requested; pgvector approx indexes are typically POST — planner may still emit ITERATIVE for ACL (see physical plan).
+-- leaf op=ShimCast not sketched

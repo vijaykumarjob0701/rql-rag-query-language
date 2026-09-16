@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall. Fuse_rrf → FusionExec native (profile.rrfNative).",
+    "logicalPlanRef": "experiments/results/e2e/smoke/01-hybrid-rrf/qdrant/01-hybrid-rrf.logical.json",
+    "profileId": "qdrant"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "LEAF_PROPAGATED",
+      "UNKNOWN"
+    ],
+    "hybridBm25Dense": true,
+    "rrfNative": true,
+    "weightedFusionNative": true,
+    "multiVectorLate": true,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": false,
+    "annIterator": false,
+    "vendorHints": [
+      "qdrant"
+    ]
+  },
+  "root": {
+    "id": "fuse_fuse0",
+    "op": "FusionExec",
+    "family": "rrf",
+    "native": true,
+    "inputs": [
+      {
+        "id": "ann_dense0",
+        "op": "AnnExec",
+        "k": 50,
+        "index": "hnsw",
+        "metric": "cosine",
+        "efSearch": 64,
+        "queryRef": "$q_dense",
+        "collection": "chunks"
+      },
+      {
+        "id": "bm25_bm251",
+        "op": "Bm25Exec",
+        "k": 50,
+        "queryText": "portable retrieval IR for RAG",
+        "collection": "chunks"
+      }
+    ],
+    "k_rrf": 60
+  }
+}

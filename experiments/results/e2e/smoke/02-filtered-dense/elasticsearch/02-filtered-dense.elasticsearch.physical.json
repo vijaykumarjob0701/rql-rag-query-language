@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall.",
+    "logicalPlanRef": "experiments/results/e2e/smoke/02-filtered-dense/elasticsearch/02-filtered-dense.logical.json",
+    "profileId": "elasticsearch"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "PRE"
+    ],
+    "hybridBm25Dense": true,
+    "rrfNative": true,
+    "weightedFusionNative": true,
+    "multiVectorLate": false,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": true,
+    "annIterator": false,
+    "vendorHints": [
+      "elasticsearch"
+    ]
+  },
+  "root": {
+    "id": "fexec_filter0",
+    "op": "FilterExec",
+    "mode": "PRE",
+    "pruningStrategy": "SSP",
+    "predicate": {
+      "expr": "tenant_id = 'acme' AND clearance >= 2",
+      "aclHard": true
+    },
+    "input": {
+      "id": "ann_dense0",
+      "op": "AnnExec",
+      "k": 20,
+      "index": "hnsw",
+      "metric": "cosine",
+      "efSearch": 64,
+      "queryRef": "$q_dense",
+      "collection": "chunks"
+    }
+  },
+  "budgets": {
+    "aclSafe": true
+  }
+}

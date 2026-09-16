@@ -1,0 +1,22 @@
+{
+  "stem": "01-hybrid-rrf",
+  "profile": "elasticsearch",
+  "rql": "examples/toy/01-hybrid-rrf.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "01-hybrid-rrf/elasticsearch/01-hybrid-rrf.logical.json",
+    "01-hybrid-rrf/elasticsearch/01-hybrid-rrf.elasticsearch.physical.json",
+    "01-hybrid-rrf/elasticsearch/01-hybrid-rrf.elasticsearch.emit.json"
+  ],
+  "root_op": "FusionExec",
+  "vendor": "elasticsearch",
+  "emit_format": "json",
+  "notExecuted": true
+}

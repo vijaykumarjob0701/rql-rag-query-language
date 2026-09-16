@@ -1,0 +1,4 @@
+-- SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.
+-- vendor=pgvector label=Hypothesis approximate=true notExecuted=true
+-- LateInteractExec variant=colbert: no first-class MaxSim in pgvector README;
+-- fail-closed or external rescore. Placeholder LIMIT 10 on passages_mv.

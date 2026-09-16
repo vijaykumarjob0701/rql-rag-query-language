@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "PhysicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Hypothesis planner stub: deterministic capability rules only; no fabricated latency/recall.",
+    "logicalPlanRef": "experiments/results/e2e/smoke/03-late/qdrant/03-late.logical.json",
+    "profileId": "qdrant"
+  },
+  "capabilitiesUsed": {
+    "filterAnnComposition": [
+      "LEAF_PROPAGATED",
+      "UNKNOWN"
+    ],
+    "hybridBm25Dense": true,
+    "rrfNative": true,
+    "weightedFusionNative": true,
+    "multiVectorLate": true,
+    "latePlaid": false,
+    "fdeMips": false,
+    "explainNative": false,
+    "annIterator": false,
+    "vendorHints": [
+      "qdrant"
+    ]
+  },
+  "root": {
+    "id": "late_late0",
+    "op": "LateInteractExec",
+    "variant": "colbert",
+    "k": 10,
+    "queryRef": "$q_tok",
+    "collection": "passages_mv"
+  }
+}

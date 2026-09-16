@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "LogicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Parsed by toy RQL frontend (Hypothesis). Not a full SQL engine. Fuse_rrf packaging Hypothesis; RRF formula Established (Cormack)."
+  },
+  "root": {
+    "id": "fuse0",
+    "op": "Fuse_rrf",
+    "k_rrf": 60,
+    "inputs": [
+      {
+        "id": "dense0",
+        "op": "Search_dense",
+        "k": 50,
+        "collection": "chunks",
+        "query": {
+          "channel": "dense",
+          "text": "portable retrieval IR for RAG",
+          "vectorRef": "$q_dense"
+        },
+        "metric": "cosine"
+      },
+      {
+        "id": "bm251",
+        "op": "Search_bm25",
+        "k": 50,
+        "collection": "chunks",
+        "query": {
+          "channel": "bm25",
+          "text": "portable retrieval IR for RAG"
+        }
+      }
+    ]
+  }
+}

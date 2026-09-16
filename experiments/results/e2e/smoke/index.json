@@ -1,0 +1,91 @@
+{
+  "runId": "smoke",
+  "ok": 12,
+  "total": 12,
+  "records": [
+    {
+      "stem": "01-hybrid-rrf",
+      "profile": "qdrant",
+      "ok": true,
+      "root_op": "FusionExec",
+      "error": null
+    },
+    {
+      "stem": "01-hybrid-rrf",
+      "profile": "elasticsearch",
+      "ok": true,
+      "root_op": "FusionExec",
+      "error": null
+    },
+    {
+      "stem": "01-hybrid-rrf",
+      "profile": "pgvector",
+      "ok": true,
+      "root_op": "ShimCast",
+      "error": null
+    },
+    {
+      "stem": "02-filtered-dense",
+      "profile": "qdrant",
+      "ok": true,
+      "root_op": "FilterExec",
+      "error": null
+    },
+    {
+      "stem": "02-filtered-dense",
+      "profile": "elasticsearch",
+      "ok": true,
+      "root_op": "FilterExec",
+      "error": null
+    },
+    {
+      "stem": "02-filtered-dense",
+      "profile": "pgvector",
+      "ok": true,
+      "root_op": "FilterExec",
+      "error": null
+    },
+    {
+      "stem": "03-late",
+      "profile": "qdrant",
+      "ok": true,
+      "root_op": "LateInteractExec",
+      "error": null
+    },
+    {
+      "stem": "03-late",
+      "profile": "elasticsearch",
+      "ok": true,
+      "root_op": "LateInteractExec",
+      "error": null
+    },
+    {
+      "stem": "03-late",
+      "profile": "pgvector",
+      "ok": true,
+      "root_op": "LateInteractExec",
+      "error": null
+    },
+    {
+      "stem": "04-hybrid-linear",
+      "profile": "qdrant",
+      "ok": true,
+      "root_op": "FilterExec",
+      "error": null
+    },
+    {
+      "stem": "04-hybrid-linear",
+      "profile": "elasticsearch",
+      "ok": true,
+      "root_op": "FilterExec",
+      "error": null
+    },
+    {
+      "stem": "04-hybrid-linear",
+      "profile": "pgvector",
+      "ok": true,
+      "root_op": "FilterExec",
+      "error": null
+    }
+  ]
+}

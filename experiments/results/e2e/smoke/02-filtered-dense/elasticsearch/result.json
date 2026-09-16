@@ -1,0 +1,22 @@
+{
+  "stem": "02-filtered-dense",
+  "profile": "elasticsearch",
+  "rql": "examples/toy/02-filtered-dense.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "02-filtered-dense/elasticsearch/02-filtered-dense.logical.json",
+    "02-filtered-dense/elasticsearch/02-filtered-dense.elasticsearch.physical.json",
+    "02-filtered-dense/elasticsearch/02-filtered-dense.elasticsearch.emit.json"
+  ],
+  "root_op": "FilterExec",
+  "vendor": "elasticsearch",
+  "emit_format": "json",
+  "notExecuted": true
+}

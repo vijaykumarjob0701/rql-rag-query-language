@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "pgvector",
+  "format": "sql",
+  "filesuggested_ext": "request.sql",
+  "notes": [
+    "pgvector SQL sketch (ORDER BY embedding <=> … LIMIT; iterative comment if ITERATIVE).",
+    "Hypothesis / approximate — not executed.",
+    "ITERATIVE → comment + SET hint (docs Established; emit Hypothesis)."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "pgvector",
+    "logicalPlanRef": "experiments/results/e2e/smoke/02-filtered-dense/pgvector/02-filtered-dense.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "bodyRef": "02-filtered-dense.pgvector.request.sql"
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "elasticsearch",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Elasticsearch retriever / knn request sketch (docs RRF + knn.filter; journal 0020).",
+    "Hypothesis / approximate — not executed.",
+    "FilterExec mode=PRE → knn.filter / retriever filter (ES docs: filter during approximate kNN — Established surface)."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "elasticsearch",
+    "logicalPlanRef": "experiments/results/e2e/smoke/04-hybrid-linear/elasticsearch/04-hybrid-linear.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "error": "unsupported",
+    "op": "FusionExec"
+  }
+}

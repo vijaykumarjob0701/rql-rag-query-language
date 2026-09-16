@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "0.1.0-draft-emit",
+  "kind": "VendorRequestSketch",
+  "label": "Hypothesis",
+  "approximate": true,
+  "notExecuted": true,
+  "vendor": "qdrant",
+  "format": "json",
+  "filesuggested_ext": "request.json",
+  "notes": [
+    "Qdrant Query API-shaped JSON (docs hybrid/filter surface; journal 0020).",
+    "Hypothesis / approximate sketch — not executed.",
+    "FilterExec mode=PRE pruningStrategy=SSP (leaf-propagated filter on Query API — docs Established; emit packaging Hypothesis).",
+    "AnnExec → Query API nearest (dense) sketch."
+  ],
+  "banner": "SKETCH ONLY — Hypothesis / approximate — not executed against a live DB. Docs-shaped emit from PhysicalPlan; live smoke = HUMAN_TODO.",
+  "meta": {
+    "sourceProfileId": "qdrant",
+    "logicalPlanRef": "experiments/results/e2e/smoke/02-filtered-dense/qdrant/02-filtered-dense.logical.json",
+    "emitHonesty": "strings/JSON files only; no live DB calls"
+  },
+  "body": {
+    "_sketch": true,
+    "_label": "Hypothesis",
+    "_approximate": true,
+    "_notExecuted": true,
+    "collection": "chunks",
+    "query": {
+      "nearest": {
+        "vector": {
+          "name": "dense",
+          "vector": "$q_dense"
+        }
+      }
+    },
+    "limit": 20,
+    "filter": {
+      "must": [
+        {
+          "key": "tenant_id",
+          "match": {
+            "value": "acme"
+          }
+        },
+        {
+          "key": "clearance",
+          "range": {
+            "gte": 2
+          }
+        }
+      ]
+    },
+    "params": {
+      "hnsw_ef": 64
+    }
+  }
+}

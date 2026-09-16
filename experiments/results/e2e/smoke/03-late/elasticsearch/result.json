@@ -1,0 +1,22 @@
+{
+  "stem": "03-late",
+  "profile": "elasticsearch",
+  "rql": "examples/toy/03-late.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "03-late/elasticsearch/03-late.logical.json",
+    "03-late/elasticsearch/03-late.elasticsearch.physical.json",
+    "03-late/elasticsearch/03-late.elasticsearch.emit.json"
+  ],
+  "root_op": "LateInteractExec",
+  "vendor": "elasticsearch",
+  "emit_format": "json",
+  "notExecuted": true
+}

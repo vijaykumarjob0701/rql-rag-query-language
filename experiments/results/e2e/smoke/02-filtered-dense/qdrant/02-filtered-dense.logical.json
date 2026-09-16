@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "LogicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Parsed by toy RQL frontend (Hypothesis). Not a full SQL engine."
+  },
+  "root": {
+    "id": "filter0",
+    "op": "Filter",
+    "predicate": {
+      "expr": "tenant_id = 'acme' AND clearance >= 2",
+      "aclHard": true
+    },
+    "input": {
+      "id": "dense0",
+      "op": "Search_dense",
+      "k": 20,
+      "collection": "chunks",
+      "query": {
+        "channel": "dense",
+        "text": "ACL-safe filtered ANN",
+        "vectorRef": "$q_dense"
+      },
+      "metric": "cosine"
+    }
+  }
+}

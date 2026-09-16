@@ -1,0 +1,23 @@
+{
+  "stem": "03-late",
+  "profile": "pgvector",
+  "rql": "examples/toy/03-late.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "03-late/pgvector/03-late.logical.json",
+    "03-late/pgvector/03-late.pgvector.physical.json",
+    "03-late/pgvector/03-late.pgvector.emit.json",
+    "03-late/pgvector/03-late.pgvector.request.sql"
+  ],
+  "root_op": "LateInteractExec",
+  "vendor": "pgvector",
+  "emit_format": "sql",
+  "notExecuted": true
+}

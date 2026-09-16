@@ -1,0 +1,23 @@
+{
+  "stem": "01-hybrid-rrf",
+  "profile": "pgvector",
+  "rql": "examples/toy/01-hybrid-rrf.rql",
+  "ok": true,
+  "stages": {
+    "parse": "OK",
+    "validate_logical": "OK",
+    "plan": "OK",
+    "validate_physical": "OK",
+    "emit": "OK"
+  },
+  "artifacts": [
+    "01-hybrid-rrf/pgvector/01-hybrid-rrf.logical.json",
+    "01-hybrid-rrf/pgvector/01-hybrid-rrf.pgvector.physical.json",
+    "01-hybrid-rrf/pgvector/01-hybrid-rrf.pgvector.emit.json",
+    "01-hybrid-rrf/pgvector/01-hybrid-rrf.pgvector.request.sql"
+  ],
+  "root_op": "ShimCast",
+  "vendor": "pgvector",
+  "emit_format": "sql",
+  "notExecuted": true
+}
