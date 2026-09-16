@@ -9,3 +9,4 @@ high_selectivity_post: got=POST expected=POST OK
 mid_selectivity_pre: got=PRE expected=PRE OK
 
 OK: 6 cases passed
+wrote /workspace/rag-vector-query-lang/experiments/results/filter_chooser/unit_test.txt

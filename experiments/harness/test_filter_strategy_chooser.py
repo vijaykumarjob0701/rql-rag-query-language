@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-Mode = str  # PRE | POST | ITERATIVE | SUBGRAPH | SPECIALIZED | AUTO-resolved
+Mode = str  # PRE | POST | ITERATIVE | SUBGRAPH | SPECIALIZED | PARTITION | ROUTER | AUTO-resolved
 
 
 @dataclass(frozen=True)
