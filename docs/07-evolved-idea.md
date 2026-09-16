@@ -16,7 +16,7 @@
 | 5 | Polystore + Substrait: portable **plan IR + shims**, not one SQL dialect | RQL text → LogicalPlan → PhysicalPlan → adapters |
 | 6 | ColBERT/MUVERA: late interaction has **rewrites** (FDE, centroid prune) | `LATE_INTERACT` leaf + rewrite rules |
 | 7 | HyDE/multi-query: rewrites are **plan nodes** with token cost | `REWRITE` / `HYDE` / `DECOMPOSE` |
-| 8 | BlinkDB: declare **error/latency budgets** for approximate answers | `RECALL` / `LATENCY` options |
+| 8 | BlinkDB: declare **error/latency budgets** for approximate answers (**Pass 1–5 done**, journal **0031**) | `RECALL` / `LATENCY` options (Hypothesis packaging; ε≠recall@k) |
 | 9 | Lara: tiny kernel (join ∪ union ∪ ext) unifies relational + linear | Minimal RQL algebra |
 | 10 | GraphRAG + Datalog: multi-hop is **bounded recursion** | `TRAVERSE` / `WITH RECURSIVE` |
 

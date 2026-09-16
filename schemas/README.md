@@ -55,7 +55,7 @@ Optional top-level `capabilities` annotations mirror vendor-matrix flags (see be
 | `ShimCast` | Explicit client shim when native capability missing |
 | `RerankExec` / `PassThrough` | Rerank + EXPLAIN bookkeeping |
 
-Optional `budgets.recallTarget` / `budgets.latencyMs` / `budgets.aclSafe` (Hypothesis surface; BlinkDB-inspired).
+Optional `budgets.recallTarget` / `budgets.latencyMs` / `budgets.aclSafe` (Hypothesis surface; BlinkDB dual-contract + ELP **Established** as AQP prior — journal **0031**; packaging Hypothesis; do not equate ε with recall@k).
 
 ---
 
