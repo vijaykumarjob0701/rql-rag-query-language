@@ -20,6 +20,7 @@ experiments/
 cd experiments
 python3 harness/print_planned_runs.py configs/example.yaml
 python3 harness/test_rrf_fusion.py
+python3 harness/test_maxsim_late.py
 ```
 
 ## Status
@@ -28,6 +29,7 @@ python3 harness/test_rrf_fusion.py
 |-----------|--------|
 | Planned-run printer | works (no scores) |
 | Deterministic RRF unit test | works (fixed lists) |
+| Deterministic MaxSim unit test | works (fixed toy embeddings; ColBERT Eq.3) |
 | ANN / RAG end-to-end benches | **not run** |
 
 ## Human hand-off

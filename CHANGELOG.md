@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-16 late evening — ColBERT + MUVERA multimodal + Search_late weave
+
+- Completed Pass 1–5 on **ColBERT** (SIGIR’20, **10 pp**); journal `0012`; OKF `knowledge/reads/colbert-sigir20/`.
+- Completed Pass 1–5 on **MUVERA** (arXiv:2405.19504, **26 pp**); journal `0013`; OKF `knowledge/reads/muvera-2405.19504/` (PDF found — Bruch deferred).
+- Extract: `colbert-sigir20.pdf` + `colbert_sigir20/` (78 nodes / 196 edges); `muvera-2405.19504.pdf` + `muvera_2405/` (155 nodes / 109 edges); full page PNG renders.
+- Thesis: MaxSim/late interaction **Established** (Eq. 3); `Search_late` + ColBERT→PLAID→MUVERA rewrite ladder **Hypothesis**; related-work late-interact subsection; abstract/apps/optimizer updated; PLAID bib cite-only.
+- Docs mirror `docs/08-algebra-sketch.md`; HUMAN_TODOS / NOTES / READMEs updated.
+- Optional harness: deterministic MaxSim toy test → `experiments/results/maxsim/unit_test.txt`.
+- **No** GitHub push; **no** fabricated IR/RAG metrics (ColBERT/MUVERA tables AUTHOR-only).
+
 ## 2026-09-16 late evening — Cormack RRF multimodal + Fuse_rrf weave
 
 - Completed Pass 1–5 on **Cormack et al. RRF** (SIGIR’09, **2 pp**); journal `0011`; OKF `knowledge/reads/rrf-cormack-sigir09/`.

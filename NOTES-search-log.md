@@ -142,4 +142,21 @@ Queued after VBASE/Filtered-DiskANN: Cormack RRF — **done in 0011**; still ope
 | Pass 1–5 journal | `journal/0011-rrf-cormack-multimodal-reread.md` |
 | OKF bundle | `knowledge/reads/rrf-cormack-sigir09/` |
 
-Queued (still open): Bruch CC/linear multimodal; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; optional ColBERT/MUVERA abstract+figures.
+Queued after RRF: ColBERT/MUVERA — **done in 0012/0013**; still open: PLAID multimodal; Bruch CC/linear multimodal; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet.
+
+
+## 2026-09-16 ~22:57 IST — ColBERT + MUVERA multimodal execution
+
+| Query / action | Result |
+|----------------|--------|
+| `curl` arXiv PDF `2004.12832` | `tooling/scripts/extract_out/colbert-sigir20.pdf` (**10 pages**, 4918165 bytes) |
+| `extract_document.py` + `relate_components.py` | `colbert_sigir20/` (78 nodes / 196 edges); Figs 1–3 via page renders (vector graphics) |
+| Pass 1–5 journal | `journal/0012-colbert-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/colbert-sigir20/` |
+| `curl` arXiv PDF `2405.19504` | `tooling/scripts/extract_out/muvera-2405.19504.pdf` (**26 pages**, 2214748 bytes) — **not blocked** |
+| Extract + relate | `muvera_2405/` (155 nodes / 109 edges); full page renders 01–26 |
+| Pass 1–5 journal | `journal/0013-muvera-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/muvera-2405.19504/` |
+| MaxSim harness | `experiments/harness/test_maxsim_late.py` → `experiments/results/maxsim/unit_test.txt` |
+
+Queued (still open): PLAID multimodal (middle rewrite); Bruch CC/linear multimodal; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor multi-vector API matrix.

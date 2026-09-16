@@ -1,0 +1,10 @@
+MaxSim unit test (ColBERT Eq.3, L2-normalized dots)
+eq (2 embeddings × 3 dim): [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
+ed_a: [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+ed_b: [[0.0, 0.0, 1.0], [0.5773502691896257, 0.5773502691896257, 0.5773502691896257]]
+S(q, a) = 2.000000
+S(q, b) = 1.154701
+OK: S(q,a) == 2.0 (exact MaxSim on aligned axes)
+OK: property doc a ranks above doc b for this toy query
+OK: property extra orthogonal doc emb does not change MaxSim here
+OK: empty document bag raises ValueError (no silent zero)

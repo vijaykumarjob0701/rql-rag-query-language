@@ -42,6 +42,11 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0006-acorn-multimodal-reread.md`](journal/0006-acorn-multimodal-reread.md) | ACORN Pass 1–5 |
 | [`journal/0007-vbase-seed-stub.md`](journal/0007-vbase-seed-stub.md) | VBASE queued |
 | [`journal/0008-human-todos-hand-off.md`](journal/0008-human-todos-hand-off.md) | HUMAN_TODO hand-off |
+| [`journal/0009-vbase-multimodal-reread.md`](journal/0009-vbase-multimodal-reread.md) | VBASE Pass 1–5 |
+| [`journal/0010-filtered-diskann-multimodal-reread.md`](journal/0010-filtered-diskann-multimodal-reread.md) | Filtered-DiskANN Pass 1–5 |
+| [`journal/0011-rrf-cormack-multimodal-reread.md`](journal/0011-rrf-cormack-multimodal-reread.md) | Cormack RRF Pass 1–5 |
+| [`journal/0012-colbert-multimodal-reread.md`](journal/0012-colbert-multimodal-reread.md) | ColBERT Pass 1–5 (MaxSim Established) |
+| [`journal/0013-muvera-multimodal-reread.md`](journal/0013-muvera-multimodal-reread.md) | MUVERA Pass 1–5 (FDE rewrite) |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 
