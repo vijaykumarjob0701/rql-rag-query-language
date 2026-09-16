@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-17 ~01:10 IST — HyDE multimodal Pass 1–5 (Rewrite / REWRITE HYDE)
+
+- Completed Pass 1–5 on **HyDE** (ACL’23 / arXiv:2212.10496, **11 pp**); journal `0032`; OKF `knowledge/reads/hyde-2212.10496/`.
+- Extract: `hyde-2212.10496.pdf` + `hyde_2212/` (34 nodes / 77 edges; page_renders 01–11); Fig 1 + Tables 1–4 via PNG+text.
+- **Established (mechanism):** InstructLM hyp-doc generation → Contriever/mContriever encode → doc–doc MIPS (Eqs. 4–8; Fig 1); optional multi-sample mean ± query emb.
+- **Hypothesis:** RQL `Rewrite` / `REWRITE HYDE` surface, CTE packaging, token costs; compose with BlinkDB-inspired budgets (examples/10).
+- **AUTHOR-only:** Tables 1–4 DL19/20, BEIR, Mr.TyDi, generative-LM ablations — unreproduced.
+- Thesis weave: §02/§03/§05/§08/abstract/conclusion; bib ACL pages 1762–1777 + DOI; rebuild `main.pdf`.
+- Meta: docs/06–08, docs/references, NOTES, journal/knowledge indexes; optional toy-parser deferred note for `REWRITE HYDE`.
+- Integrity: **no** fake IR metrics; **no push.**
+
 ## 2026-09-17 ~00:55 IST — Thesis fold Colab synth + BlinkDB AQP budgets Pass 1–5
 
 - **A. Thesis fold:** §09 + Appendix A cite `colab_synth_20260916_233628` as **plumbing + qualitative PRE vs POST latency/QPS on synthetic** only; explicit **not P0** / not citation-ready ANN; journal `0030`.

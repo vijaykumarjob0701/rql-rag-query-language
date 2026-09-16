@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-16 (Europe/Dublin)  
 **Status:** `[hypothesis]` mirror of `thesis/sections/05-rql-algebra.tex` + filter modes from `06-optimizer.tex`  
-**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction) / **0016** (Bruch CC/TM2C2) / **0031** (BlinkDB AQP budgets). No fabricated metrics.
+**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction) / **0016** (Bruch CC/TM2C2) / **0031** (BlinkDB AQP budgets) / **0032** (HyDE rewrite). No fabricated metrics.
 
 ---
 
@@ -30,7 +30,7 @@ E \subseteq Id \times Payload \times Score \times Channel \times Provenance \tim
 | `Diversify_mmr` | E → E | |
 | `Rerank_m` | E → E | |
 | `Expand` | E → E | Parent/window |
-| `Rewrite` | q → q* | HyDE / multi-query |
+| `Rewrite` / `Rewrite_hyde` | q → q* (or emb*) | HyDE hyp-doc→encode→doc–doc MIPS **[Established]** mechanism (Gao ACL’23; journal 0032); RQL `REWRITE HYDE` packaging **[Hypothesis]**; multi-query sibling **[Provisional]** |
 | `Traverse_h` | E → E | Bounded graph hop |
 | `VSimJoin_θ` | E×E → E | Similarity join |
 
@@ -58,6 +58,12 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, PARTITION, ROUTER,
 3. Label predicates + FilteredVamana-class index → SPECIALIZED; else do not pretend.
 4. **Hybrid fuse:** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable **[Established]**; optional `Fuse_condorcet` majoritarian sibling **[Established]** mechanism (journal 0018) / **[Hypothesis]** when-to-use; `Fuse_linear(α)` (Bruch CC/TM2C2) when calibrated scores exist **[Established]** mechanism / **[Hypothesis]** policy; `Fuse_ltr` when multi-feature LTR justified `[hypothesis]`.
 5. **Late-interact ladder:** `Search_late` → native MaxSim multi-vector (ColBERT, 0012) → PLAID centroid interaction + multi-stage prune → residual MaxSim (journal **0014**, mechanism **[Established]**; AUTHOR speedups only) → MUVERA `FDE_ANN + MAXSIM_RERANK` (journal 0013); else fail closed / EXPLAIN — **never** silent dense cosine substitution.
+
+## HyDE rewrite `[hypothesis packaging]`
+
+- **Established (mechanism):** Gao et al. HyDE — InstructLM hyp-doc → Contriever encode → doc–doc MIPS (journal 0032).
+- **Hypothesis (RQL packaging):** `REWRITE HYDE MODEL … TEXT … AS …` / CTE; token cost on the plan node; feeds dense search (examples/10).
+- **Anti-overclaim:** AUTHOR DL/BEIR/Mr.TyDi tables unreproduced; not generative doc-id IR.
 
 ## Approximate budgets (BlinkDB-inspired)
 

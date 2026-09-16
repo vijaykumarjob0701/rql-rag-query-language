@@ -65,6 +65,12 @@ Pass~1--5 notes (journal 0014; \texttt{knowledge/reads/plaid-cikm22/}) treat the
 Dhulipala et al.~\citep{jayaram2024muvera} reduce Chamfer/MaxSim multi-vector search to single-vector MIPS via Fixed Dimensional Encodings, then Chamfer rerank---contrasting PLAID's multi-stage residual-preserving centroid pipeline~\citep{santhanam2022plaid}.
 Pass~1--5 notes (journal 0013; \texttt{knowledge/reads/muvera-2405.19504/}) treat the \textbf{FDE reduction + MIPS + MaxSim rerank mechanism} as \established{} literature; RQL rewrite packaging and unreproduced BEIR/PLAID latency numbers remain \hypothesis{} / \provisional{}.
 
+\paragraph{HyDE (multimodal re-read).}
+Gao et al.~\citep{gao2023hyde} factorize fully zero-shot dense retrieval \emph{without relevance labels} as Hypothetical Document Embeddings: an instruction-following LM generates one or more hypothetical documents from query+instruction; an unsupervised contrastive encoder (Contriever/mContriever) embeds them; real documents are retrieved by MIPS in document space (Eqs.~(4)--(8); Fig.~1).
+Query--document similarity is not explicitly trained; the dense bottleneck is argued to filter hallucinations.
+Pass~1--5 notes (journal 0032; \texttt{knowledge/reads/hyde-2212.10496/}) treat the \textbf{hyp-doc $\rightarrow$ encode $\rightarrow$ doc--doc retrieve mechanism} as \established{}; author DL19/20, BEIR, and Mr.TyDi tables remain unreproduced \provisional{}.
+RQL's \texttt{REWRITE HYDE} / $\mathrm{Rewrite}$ surface is \hypothesis{} packaging of that pipeline (token-costed plan node feeding dense search), not a claim of reproduced IR gains.
+
 \subsection{IR query languages}
 Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator algebra~\citep{metzler2004indri} \provisional{} (URL-verified references; deep re-read pending).
 RQL steals composability, not surface syntax fidelity \hypothesis{}.

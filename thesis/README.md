@@ -33,7 +33,7 @@ Requires TeX Live with `article`, `booktabs`, `hyperref`, `natbib`/`biblatex` (t
 | `02-background.tex` | draft | ANN, hybrid, RAG pipeline stages |
 | `03-related-work.tex` | draft + PLAID 0014 | ACORN + VBASE + Filtered-DiskANN + Cormack RRF + **ColBERT** + **MUVERA** multimodally read |
 | `04-problem-formulation.tex` | draft | Formal problem for portable retrieval IR |
-| `05-rql-algebra.tex` | **HYPOTHESIS** | Typed evidence + rewrites; Fuse_rrf (0011) + MaxSim (0012) **Established**; late rewrites **Hypothesis** |
+| `05-rql-algebra.tex` | **HYPOTHESIS** | Typed evidence + rewrites; Fuse_rrf (0011) + MaxSim (0012) **Established**; HyDE Rewrite mechanism (0032) **Established**, RQL packaging **Hypothesis**; late rewrites **Hypothesis** |
 | `06-optimizer.tex` | **HYPOTHESIS** | FilterExec modes (PRE/POST/ITERATIVE/SUBGRAPH/SPECIALIZED/PARTITION/ROUTER/AUTO; FANNS survey Lin 2025 journal 0019) + Search_late compile ladder |
 | `07-compilation.tex` | **HYPOTHESIS** (+ ESTABLISHED Substrait/Calcite adjacency) | Adapters; journal 0025 adjacency |
 | `08-applications.tex` | draft | Hybrid RRF + late-interact patterns grounded in Cormack/ColBERT/PLAID/MUVERA |

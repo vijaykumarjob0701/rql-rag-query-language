@@ -346,3 +346,16 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 | Pass 1–5 | Dual ERROR/TIME + ELP Established; RQL RECALL/LATENCY Hypothesis packaging; ε≠recall@k |
 | Thesis fold Colab synth | journals 0030; §09 + Appendix A honest labels |
 
+
+## 2026-09-17 ~01:10 IST — HyDE (Gao et al.) multimodal Pass 1–5
+
+| Query / action | Result |
+|----------------|--------|
+| `Gao Ma Lin Callan HyDE Precise Zero-Shot Dense Retrieval venue` | ACL 2023 Long Papers; Anthology 2023.acl-long.99; DOI 10.18653/v1/2023.acl-long.99; pp. 1762–1777 |
+| Fetch `https://arxiv.org/pdf/2212.10496.pdf` | **11 pp** arXiv v1; extract `tooling/scripts/extract_out/hyde_2212/` + page_renders |
+| Pass 1–5 | hyp-doc→Contriever→doc–doc MIPS **Established**; RQL `REWRITE HYDE` **Hypothesis**; Tables 1–4 AUTHOR-only |
+| Journal / OKF | `0032-hyde-multimodal-reread.md`; `knowledge/reads/hyde-2212.10496/` |
+| Thesis fold | §03/§05/§08 + abstract/conclusion; bib `gao2023hyde`; rebuild PDF |
+
+**Honesty:** No reproduced IR metrics. No push. Next optional: toy parser `REWRITE HYDE` / WITH CTE; Multi-HyDE/DMQR; Asai instruction-aware.
+

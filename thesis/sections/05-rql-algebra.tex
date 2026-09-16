@@ -34,7 +34,7 @@ $\mathrm{Fuse}_{ltr}(\mathrm{model})$ & $E^*\rightarrow E$ & Learned / multi-fea
 $\mathrm{Diversify}_{mmr}$ & $E\rightarrow E$ & Diversity \\
 $\mathrm{Rerank}_{m}$ & $E\rightarrow E$ & Cross-encoder etc. \\
 $\mathrm{Expand}$ & $E\rightarrow E$ & Parent/window \\
-$\mathrm{Rewrite}$ & $q\rightarrow q^*$ & HyDE / multi-query \\
+$\mathrm{Rewrite}$ / $\mathrm{Rewrite}_{hyde}$ & $q\rightarrow q^*$ (or emb*) & HyDE hyp-doc$\rightarrow$encode$\rightarrow$doc--doc MIPS \established{} as mechanism~\citep{gao2023hyde} (journal 0032); RQL op / \texttt{REWRITE HYDE} surface / costs \hypothesis{}; multi-query sibling still \provisional{} \\
 $\mathrm{Traverse}_{h}$ & $E\rightarrow E$ & Bounded graph hop \\
 $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
 \bottomrule
@@ -59,6 +59,9 @@ $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
     Logical $\mathrm{Search}_{late}$ carries MaxSim-sum semantics~\citep{khattab2020colbert} \established{}.
     Physical compile targets \hypothesis{}: (i) native multi-vector MaxSim; (ii) PLAID-class centroid interaction + multi-stage prune then residual MaxSim~\citep{santhanam2022plaid} \established{} as the literature pipeline (journal 0014; unreproduced speedups remain \provisional{}); (iii) MUVERA FDE$\rightarrow$MIPS then MaxSim/Chamfer rerank~\citep{jayaram2024muvera} when only single-vector ANN is available (journal 0013).
     Missing multi-vector, PLAID, and FDE capabilities $\rightarrow$ refuse or EXPLAIN, not silent dense cosine substitution.
+  \item \textbf{HyDE-style rewrite (Gao et al.).}
+    Logical $\mathrm{Rewrite}_{hyde}$ generates hypothetical document(s) via an instruction-following LM, embeds with the corpus contrastive encoder, and searches by doc--doc similarity~\citep{gao2023hyde} \established{} as mechanism (journal 0032; unreproduced AUTHOR tables \provisional{}).
+    RQL surface \texttt{REWRITE HYDE} / CTE packaging and token-cost attributes remain \hypothesis{}; optional multi-sample mean ($\pm$ raw query embedding) follows Eqs.~(6)--(8).
   \item \textbf{Similarity join.}
     $\mathrm{VSimJoin}_{\theta}(E_1,E_2)$ may compile to nested $\mathrm{Search}_{dense}$ / range-iterator joins when $\mathrm{ITERATIVE}$ (or equivalent) exists~\citep{zhang2023vbase} \hypothesis{}; otherwise to blocked nested loops with explicit cost --- not claimed implemented.
 \end{itemize}
@@ -70,7 +73,7 @@ Rewrite operators carry explicit token/latency cost attributes for the optimiser
 Optional plan-level budget attributes (\texttt{RECALL TARGET} / \texttt{LATENCY}) are \hypothesis{} packaging inspired by BlinkDB's dual ERROR/TIME contracts and ELP selection~\citep{agarwal2013blinkdb} \established{} as AQP mechanism (journal~0031)---mapped here to retrieval effort knobs, not to stratified SQL samples (\S\ref{sec:budgets}).
 
 \subsection{Delineation from survey material}
-RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018).
+RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HyDE hyp-doc rewrite~\citep{gao2023hyde} (journal 0032), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018, 0031--0032).
 \textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.
 
 \subsection{Draft LogicalPlan schema freeze (Hypothesis IR)}

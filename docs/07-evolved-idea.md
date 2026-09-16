@@ -15,7 +15,7 @@
 | 4 | VBASE: ANN as **iterator**, not TopK RPC | Open/Next plans; VSIM JOIN |
 | 5 | Polystore + Substrait: portable **plan IR + shims**, not one SQL dialect | RQL text → LogicalPlan → PhysicalPlan → adapters |
 | 6 | ColBERT/MUVERA: late interaction has **rewrites** (FDE, centroid prune) | `LATE_INTERACT` leaf + rewrite rules |
-| 7 | HyDE/multi-query: rewrites are **plan nodes** with token cost | `REWRITE` / `HYDE` / `DECOMPOSE` |
+| 7 | HyDE/multi-query: rewrites are **plan nodes** with token cost | `REWRITE` / `HYDE` / `DECOMPOSE` — HyDE mechanism Established (0032); packaging Hypothesis |
 | 8 | BlinkDB: declare **error/latency budgets** for approximate answers (**Pass 1–5 done**, journal **0031**) | `RECALL` / `LATENCY` options (Hypothesis packaging; ε≠recall@k) |
 | 9 | Lara: tiny kernel (join ∪ union ∪ ext) unifies relational + linear | Minimal RQL algebra |
 | 10 | GraphRAG + Datalog: multi-hop is **bounded recursion** | `TRAVERSE` / `WITH RECURSIVE` |
@@ -51,7 +51,7 @@
 | `Diversify_mmr(λ)` | E → E | Carbonell MMR |
 | `Rerank(model, n)` | E → E | Cross-encoder |
 | `Expand_parent` / `Expand_window` | E → E | Parent-child RAG |
-| `Rewrite_hyde` / `Rewrite_multi` | q → q* or emb* | HyDE / DMQR |
+| `Rewrite_hyde` / `Rewrite_multi` | q → q* or emb* | HyDE **[Established mech.** journal 0032**]** / DMQR **[Provisional]**; RQL packaging **[Hypothesis]** |
 | `Traverse(pattern)` | E → E | GraphRAG / Cypher |
 | `VSimJoin(θ)` | E×E → E | DiskJoin / SimJoin |
 | `Ext(f)` | E → E | Generic map/flatmap (Lara ext) |

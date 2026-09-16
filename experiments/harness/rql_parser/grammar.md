@@ -65,3 +65,24 @@ Comments: lines starting with `--` (after optional whitespace) are stripped befo
 ## Honesty
 
 Grammar and packaging are **Hypothesis**. Mechanisms named by ops (RRF, MaxSim, …) remain Established in literature; this parser does not re-prove them.
+
+
+## Deferred: `REWRITE HYDE` (journal 0032)
+
+HyDE mechanism is **Established** (Gao et al. ACL’23; OKF `knowledge/reads/hyde-2212.10496/`).  
+Toy parser still **rejects** `REWRITE` / `WITH` CTE (out of scope above).  
+
+**Suggested later EBNF (not implemented):**
+
+```ebnf
+(* aspirational — Hypothesis packaging only *)
+with_cte     = "WITH" ident "AS" "(" rewrite_hyde ")" ;
+rewrite_hyde = "REWRITE" "HYDE"
+               "MODEL" string
+               "TEXT" ( string | param )
+               [ "INST" string ]
+               [ "N" int ]
+               "AS" ident ;
+```
+
+Maps toward LogicalPlan `Rewrite` / `Rewrite_hyde` feeding `Search_dense`. Do not implement until schema gains an explicit Rewrite op (or encode as annotated Search). Integrity: no IR metrics from supporting the parse.

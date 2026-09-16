@@ -117,11 +117,13 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **Takeaway:** Fixed-dimensional encodings reduce multi-vector retrieval to single-vector MIPS with approximation guarantees; then MaxSim rerank.
 - **Implication for RQL:** Optional rewrite `LATE_INTERACT ⇒ FDE_ANN + MAXSIM_RERANK`.
 
-### 16. HyDE — Gao, Ma, Lin, Callan (2022)
-- **Venue/ID:** arXiv:2212.10496
-- **URL:** https://arxiv.org/abs/2212.10496
-- **Takeaway:** Generate hypothetical document → embed → retrieve by doc–doc similarity (zero-shot dense retrieval without labels).
-- **Implication for RQL:** `REWRITE HYDE` as a plan node producing an embedding (or multi-HyDE union).
+### 16. HyDE — Gao, Ma, Lin, Callan (ACL 2023) — **multimodal Pass 1–5 done (journal 0032)**
+- **Venue/ID:** ACL 2023 Long Papers, pp. 1762–1777; DOI 10.18653/v1/2023.acl-long.99; arXiv:2212.10496
+- **URL:** https://aclanthology.org/2023.acl-long.99/ · https://arxiv.org/abs/2212.10496
+- **OKF:** `knowledge/reads/hyde-2212.10496/`
+- **Takeaway (Established mechanism):** InstructLM generates hypothetical document(s) → unsupervised Contriever/mContriever embeds → MIPS in doc–doc space (Eqs. 4–8; Fig 1). No HyDE-specific training; query–doc scores not explicitly modeled.
+- **AUTHOR-only:** Tables 1–4 DL/BEIR/Mr.TyDi — unreproduced.
+- **Implication for RQL (Hypothesis packaging):** `REWRITE HYDE` / algebra `Rewrite_hyde` as costed plan node feeding `EMBED`/`Search_dense` (examples/10); multi-sample mean optional.
 
 ### 17. MMR — Carbonell & Goldstein (SIGIR 1998)
 - **URL:** https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf
