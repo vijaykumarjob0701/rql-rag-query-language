@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-16 late evening — Cormack RRF multimodal + Fuse_rrf weave
+
+- Completed Pass 1–5 on **Cormack et al. RRF** (SIGIR’09, **2 pp**); journal `0011`; OKF `knowledge/reads/rrf-cormack-sigir09/`.
+- Extract: `tooling/scripts/extract_out/cormack-sigir09-rrf.pdf` + `rrf_cormack_sigir09/` (9 nodes / 6 edges; page PNG renders for Tables 1–3).
+- Thesis: related-work fusion subsection; algebra Fuse_rrf + rewrite; applications hybrid pattern; abstract cites RRF; bib pages 758–759 + DOI.
+- Docs mirror `docs/08-algebra-sketch.md`; HUMAN_TODOS marks RRF P2 **done**.
+- RRF harness: re-ran unit test; added channel-order invariance property assertion.
+- **No** GitHub push; **no** fabricated IR/RAG metrics (Cormack MAPs labelled AUTHOR-only).
+
 ## 2026-09-16 evening — VBASE + Filtered-DiskANN multimodal + algebra expand
 
 - Completed Pass 1–5 on **VBASE** (OSDI’23); journal `0009` supersedes stub `0007`; OKF `knowledge/reads/vbase-osdi23/`.

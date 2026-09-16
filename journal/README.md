@@ -58,7 +58,8 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0008 | [`0008-human-todos-hand-off.md`](0008-human-todos-hand-off.md) | HUMAN_TODO list for benches Vijay must run |
 | 0009 | [`0009-vbase-multimodal-reread.md`](0009-vbase-multimodal-reread.md) | VBASE OSDI’23 Pass 1–5 + OKF bundle |
 | 0010 | [`0010-filtered-diskann-multimodal-reread.md`](0010-filtered-diskann-multimodal-reread.md) | Filtered-DiskANN WWW’23 Pass 1–5 + OKF |
+| 0011 | [`0011-rrf-cormack-multimodal-reread.md`](0011-rrf-cormack-multimodal-reread.md) | Cormack RRF SIGIR’09 Pass 1–5 + OKF (Fuse_rrf established) |
 
-Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`).
+Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`).
 
 *Add new rows here when you add entries.*

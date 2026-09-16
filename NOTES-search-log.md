@@ -129,4 +129,17 @@ Verified during thesis bib cleanup: MUVERA authors via https://arxiv.org/abs/240
 | Pass 1–5 journals | `journal/0009-vbase-multimodal-reread.md`, `journal/0010-filtered-diskann-multimodal-reread.md` |
 | OKF bundles | `knowledge/reads/vbase-osdi23/`, `knowledge/reads/filtered-diskann-www23/` |
 
-Queued (still open): Cormack RRF multimodal; FANNS survey Lin 2025 figure pass; MSVBASE code API vs paper §4.2.
+Queued after VBASE/Filtered-DiskANN: Cormack RRF — **done in 0011**; still open: FANNS survey Lin 2025 figure pass; MSVBASE code API vs paper §4.2.
+
+## 2026-09-16 ~22:55 IST — Cormack RRF multimodal execution
+
+| Query / action | Result |
+|----------------|--------|
+| WebSearch `Cormack Clarke Buettcher SIGIR 2009 Reciprocal Rank Fusion PDF` | Author PDF https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf; ACM 10.1145/1571941.1572114 |
+| `curl` author PDF | `tooling/scripts/extract_out/cormack-sigir09-rrf.pdf` (**2 pages**, 66196 bytes) |
+| `extract_document.py` + `relate_components.py` | `extract_out/rrf_cormack_sigir09/` (9 nodes / 6 edges; tables in body text) |
+| Page renders | `page_renders/page-01.png`, `page-02.png` — Tables 1–3 viewed |
+| Pass 1–5 journal | `journal/0011-rrf-cormack-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/rrf-cormack-sigir09/` |
+
+Queued (still open): Bruch CC/linear multimodal; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; optional ColBERT/MUVERA abstract+figures.
