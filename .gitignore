@@ -3,3 +3,9 @@
 __pycache__/
 *.pyc
 .venv/
+
+# Tooling
+tooling/.venv/
+tooling/scripts/extract_out/
+__pycache__/
+*.pyc
