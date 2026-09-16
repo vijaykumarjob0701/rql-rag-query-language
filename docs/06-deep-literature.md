@@ -78,11 +78,17 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **Takeaway:** Rank-only fusion `Σ 1/(k+rank)` (often k=60); strong metasearch baseline without score calibration.
 - **Implication for RQL:** `FUSE RRF` is historically grounded; keep as default portable fusion.
 
-### 12. Analysis of fusion for hybrid retrieval — Bruch et al. (2022)
-- **Venue/ID:** arXiv:2210.11934
+### 12. Analysis of fusion for hybrid retrieval — Bruch et al. (TOIS 2023 / arXiv:2210.11934)
+- **Venue/ID:** arXiv:2210.11934; DOI 10.1145/3596512 (ACM TOIS)
 - **URL:** https://arxiv.org/abs/2210.11934
-- **Takeaway:** Convex combination (CC) of lexical+semantic scores often beats RRF; RRF is parameter-sensitive; CC is sample-efficient to learn.
-- **Implication for RQL:** First-class `FUSE LINEAR` / `FUSE LEARNED` alongside RRF; don’t overfit product defaults to RRF-only.
+- **Takeaway:** Convex combination (CC/TM2C2) of normalised lexical+semantic scores; RRF parameter-sensitive; CC sample-efficient; AUTHORS report CC > RRF on their suite (unreproduced here). Multimodal Pass 1–5: journal `0016`; OKF `knowledge/reads/bruch-arxiv-2210.11934/`.
+- **Implication for RQL:** First-class `Fuse_linear` / `Fuse_ltr` alongside `Fuse_rrf`; don’t overfit product defaults to RRF-only.
+
+### 12b. Zero-shot hybrid / RRF vs linear interp — Chen et al. (ECIR 2022 / arXiv:2201.10582)
+- **Venue/ID:** ECIR 2022 LNCS; DOI 10.1007/978-3-030-99736-6_7; pp. 95–110; arXiv:2201.10582
+- **URL:** https://arxiv.org/abs/2201.10582
+- **Takeaway:** Zero-shot lexical+deep hybrid via **RRF** (\(k=60\)); argue score linear interpolation needs min-max + \(lpha\) tuning that fights zero-shot; AUTHORS report best-tuned BM25+NPR linear still ~3% relative Recall@1K behind RRF(BM25,NPR) on Robust04 & TREC-COVID (Fig 2; unreproduced here). Multimodal Pass 1–5: journal `0017`; OKF `knowledge/reads/chen-ecir2022-2201.10582/`.
+- **Implication for RQL:** Cite-chase of Bruch [5]: RRF-vs-CC “disagreement” is a **setup conflict** (Recall@1K zero-shot RRF vs NDCG TM2C2). Planner preference among Fuse_rrf / Fuse_linear is **Hypothesis** grounded in Established mechanisms.
 
 ### 13. ColBERT — Khattab & Zaharia (2020)
 - **Venue/ID:** arXiv:2004.12832

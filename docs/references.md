@@ -95,7 +95,8 @@ Research date: **2026-09-16**. Prefer primary product docs and dated 2024–2026
 
 ### Fusion / late interaction / rewriting
 71. https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf — Reciprocal Rank Fusion (SIGIR 2009)  
-72. https://arxiv.org/abs/2210.11934 — Analysis of fusion functions for hybrid retrieval (2022)  
+72. https://arxiv.org/abs/2210.11934 — Bruch et al. fusion analysis (TOIS 2023; DOI 10.1145/3596512); multimodal journal 0016  
+72b. https://arxiv.org/abs/2201.10582 — Chen et al. zero-shot hybrid / RRF vs linear interp (ECIR 2022; DOI 10.1007/978-3-030-99736-6_7); multimodal journal 0017
 73. https://arxiv.org/abs/2004.12832 — ColBERT (2020)  
 74. https://arxiv.org/abs/2205.09707 — PLAID late-interaction engine (2022)  
 75. https://arxiv.org/abs/2405.19504 — MUVERA multi-vector via FDEs (2024)  

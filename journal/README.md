@@ -64,6 +64,7 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0014 | [`0014-plaid-multimodal-reread.md`](0014-plaid-multimodal-reread.md) | PLAID CIKM’22 Pass 1–5 — centroid interaction Established |
 | 0015 | [`0015-next-bruch-or-human-note.md`](0015-next-bruch-or-human-note.md) | Hand-off seed note (not a Pass 1–5) |
 | 0016 | [`0016-bruch-fusion-multimodal-reread.md`](0016-bruch-fusion-multimodal-reread.md) | Bruch CC/TM2C2 vs RRF Pass 1–5 — Fuse_linear Established |
+| 0017 | [`0017-chen-ecir2022-multimodal-reread.md`](0017-chen-ecir2022-multimodal-reread.md) | Chen ECIR’22 Pass 1–5 — resolves Bruch RRF-vs-CC cite-chase |
 
 Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`, `plaid-cikm22`, `bruch-arxiv-2210.11934`).
 
