@@ -1,17 +1,38 @@
 \section{Compilation and adapters}
 \label{sec:compilation}
 
-\noindent\textit{\hypothesis{} doctrine; Substrait/polystore inspiration is \provisional{}/\established{} as prior systems.}
+\noindent\textit{\hypothesis{} doctrine; Substrait/polystore inspiration is \provisional{}/\established{} as prior systems.
+Vendor API cells below are \established{} from official docs (2026-09-16 survey); the claim that RQL compiles cleanly through them is \hypothesis{}.}
 
 \subsection{Layers}
 \begin{enumerate}
   \item Parse textual RQL to \texttt{LogicalPlan}.
   \item Optimise to \texttt{PhysicalPlan} with capability negotiation.
-  \item Emit backend calls through adapters (pgvector SQL, Qdrant query API, Pinecone, Neo4j, \ldots).
+  \item Emit backend calls through adapters (pgvector SQL, Qdrant Query API, Elasticsearch/OpenSearch DSL, Weaviate GraphQL, Milvus \texttt{hybrid\_search}, \ldots).
 \end{enumerate}
 
+\subsection{Established adapter surface survey (docs-only, Sep 2026)}
+\label{sec:vendor-matrix}
+A docs-only survey of public vendor APIs (journal 0020; companion package \texttt{docs/09-vendor-api-matrix.md}; OKF \texttt{knowledge/reads/vendor-api-matrix-2026-09/}) records, without live cluster calls:
+
+\begin{itemize}
+  \item \textbf{Filter DSLs} differ (Qdrant JSON \texttt{Filter}; ES/OS Query DSL; Weaviate \texttt{where}; Milvus \texttt{expr}; pgvector SQL \texttt{WHERE}).
+  \item \textbf{Filter$+$ANN composition} is not uniform: Weaviate documents pre-filtering; Elasticsearch documents \texttt{knn.filter} during approximate kNN; pgvector documents post-filter on approx indexes plus iterative scans ($\geq$0.8.0); Milvus API text states expr before ANN; Qdrant emphasises leaf filter propagation; Redis documents hybrid \texttt{BATCHES}/\texttt{ADHOC\_BF} modes.
+  \item \textbf{RRF} is first-class in Qdrant (\texttt{rrf}), Elasticsearch (\texttt{retriever.rrf}), OpenSearch (score-ranker RRF), and Milvus (\texttt{RRFRanker}); Weaviate exposes \texttt{rankedFusion}; pgvector/Pinecone often require client/SQL shims.
+  \item \textbf{Weighted / score fusion} appears as Milvus \texttt{WeightedRanker}, Weaviate \texttt{relativeScoreFusion}+\texttt{alpha}, Qdrant \texttt{dbsf}/formula, ES boosts/weighted RRF---semantics are \emph{not} interchangeable.
+  \item \textbf{Multi-vector / late interaction} is documented for Qdrant multivector rescore and Weaviate multi-vector (ColBERT-style); elsewhere often \textbf{UNKNOWN} or nested dense only.
+  \item \textbf{EXPLAIN / plan visibility}: PostgreSQL \texttt{EXPLAIN} (pgvector) and ES Profile / OpenSearch hybrid score explanation are clearly documented; several others remain \textbf{UNKNOWN}, so RQL \texttt{EXPLAIN} will often be adapter-synthesised.
+\end{itemize}
+
+\noindent URLs and UNKNOWN cells are cited in the package matrix; this section does not invent undocumented APIs \established{} as a \emph{surface survey}.
+
+\subsection{Hypothesis: RQL compiles to these shims}
+\label{sec:compile-hypothesis}
+We \hypothesis{} that a single RQL \texttt{LogicalPlan} can target the above surfaces via capability negotiation: map $\mathrm{Filter}\circ\mathrm{Search}_{dense}$ to the backend's PRE / POST$+$iterative / leaf-propagated / hybrid-batch mode; map $\mathrm{Fuse}_{rrf}$ to native RRF where present else an explicit client shim (ACL-marked); map $\mathrm{Fuse}_{linear}$ only when score-normalisation contracts match; map $\mathrm{Search}_{late}$ to native multivector paths or to the ColBERT$\rightarrow$PLAID$\rightarrow$MUVERA rewrite ladder.
+Live smoke verification remains a human P1 task---not claimed done here.
+
 \subsection{Capability negotiation}
-Profiles declare required features (hybrid+RRF, graph hop, late interaction).
+Profiles declare required features (hybrid+RRF, graph hop, late interaction, filter mode).
 Missing capabilities yield either a safe rewrite, a shim CAST (e.g.\ client-side fuse---explicitly marked expensive/unsafe for ACL), or a hard error \hypothesis{}.
 
 \subsection{Substrait adjacency}

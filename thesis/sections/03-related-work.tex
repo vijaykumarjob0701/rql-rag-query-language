@@ -3,7 +3,9 @@
 
 \subsection{Vector database interfaces}
 Commercial and OSS systems expose vendor-specific query surfaces (metadata filters, hybrid search APIs, SQL extensions such as pgvector).
-Survey details and URLs live in the companion research package; none is a cross-vendor ANSI-SQL analogue for multi-stage RAG plans \established{} (landscape notes).
+A \textbf{docs-only adapter-surface survey} (2026-09-16; journal 0020; \texttt{docs/09-vendor-api-matrix.md}) tabulates filter DSLs, filter$+$ANN composition (PRE/POST/iterative/UNKNOWN), hybrid/BM25$+$dense, RRF and weighted fusion primitives, multi-vector/late interaction, query surfaces, and EXPLAIN/plan visibility for Qdrant, Elasticsearch/OpenSearch, Weaviate, Milvus, and pgvector (optional Pinecone/Redis) \established{} as a \emph{documentation survey}---not a live bake-off.
+None of these vendors offers a cross-vendor ANSI-SQL analogue for multi-stage RAG plans \established{} (landscape notes + matrix).
+The hypothesis that RQL \texttt{LogicalPlan} compiles through negotiated shims onto these surfaces is stated in \S\ref{sec:compile-hypothesis}.
 
 \subsection{Filtered ANN / FANNS}
 \paragraph{Lin et al.\ survey (multimodal re-read).}
