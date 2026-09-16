@@ -17,6 +17,7 @@ Grounding: [`../docs/08-algebra-sketch.md`](../docs/08-algebra-sketch.md), thesi
 | [`examples/`](examples/) | Valid example plan JSON (logical + physical) |
 | Validator | [`../experiments/harness/validate_plans.py`](../experiments/harness/validate_plans.py) |
 | Pass output | [`../experiments/results/plan_schema/validate.txt`](../experiments/results/plan_schema/validate.txt) |
+| Planner stub | [`../experiments/harness/rql_planner/`](../experiments/harness/rql_planner/) (journal 0023; Logical→Physical) |
 
 ---
 
