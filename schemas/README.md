@@ -88,6 +88,17 @@ tooling/.venv/bin/python experiments/harness/validate_plans.py
 
 Expect `OK` lines and exit code 0; captured under `experiments/results/plan_schema/validate.txt`.
 
+### Toy textual frontend (journal 0022)
+
+Schema-aligned `.rql` files in `examples/` parse via:
+
+```bash
+tooling/.venv/bin/python experiments/harness/test_rql_parser.py
+tooling/.venv/bin/python experiments/harness/parse_rql.py parse schemas/examples/01-hybrid-rrf.rql --validate
+```
+
+Outputs land in `experiments/results/rql_parser/`. Tiny grammar: `experiments/harness/rql_parser/grammar.md` (Hypothesis; not a full SQL engine).
+
 ---
 
 ## Version

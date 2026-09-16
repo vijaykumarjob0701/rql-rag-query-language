@@ -25,3 +25,8 @@ Parameters like `$question`, `$tenant` are bound by the host application at comp
 | `12-fuse-learned-explain.rql` | Learned linear fusion + late interact + EXPLAIN |
 
 See `docs/07-evolved-idea.md` for the algebra these illustrate.
+
+## Toy-parser subset (2026-09-16)
+
+Executable-against-parser snippets (journal **0022**) live under [`toy/`](toy/) and `schemas/examples/*.rql`.
+They cover SEARCH/FILTER/FUSE only; the files above remain **aspirational** documentation until the grammar grows.
