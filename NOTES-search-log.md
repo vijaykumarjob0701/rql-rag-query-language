@@ -202,4 +202,17 @@ Queued (still open): Chen et al. RRF-vs-CC cite-chase; FANNS survey Lin 2025 fig
 
 **Resolution (no new metrics):** Chen prefers RRF for zero-shot (best min-max linear underperforms RRF ~3% rel.\ Recall@1K on Robust04/TREC-COVID, AUTHOR Fig 2); Bruch prefers TM2C2 on NDCG. Conflict = setups (metric / linear form / labels / channels), not a single false paper.
 
-Queued (still open): Montague–Aslam Condorcet; FANNS survey Lin 2025 figures; vendor multi-vector / linear-fusion API matrix.
+Queued after Chen: Montague–Aslam Condorcet — **done in 0018**; still open: FANNS survey Lin 2025 figures; vendor multi-vector / linear-fusion API matrix.
+
+## 2026-09-16 ~23:30 IST — Montague–Aslam Condorcet multimodal
+
+| Query / action | Result |
+|----------------|--------|
+| WebSearch `Montague Aslam Condorcet fusion CIKM 2002 PDF` | Author PDF https://www.khoury.northeastern.edu/~jaa/IS4200.10X1/resources/condorcet.pdf; ACM DOI 10.1145/584792.584881; pp. 538–548 |
+| `curl` author PDF | `tooling/scripts/extract_out/montague-aslam-cikm02-condorcet.pdf` (**11 pages**) |
+| `extract_document.py` + `relate_components.py` | `montague_condorcet_cikm02/` (53 nodes / 44 edges); page renders 01–11 |
+| Pass 1–5 journal | `journal/0018-montague-aslam-condorcet-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/montague-aslam-cikm02-condorcet/` |
+| Thesis weave | Fuse_condorcet sibling of Fuse_rrf; RRF remains portable default |
+
+Queued (still open): FANNS survey Lin 2025 figures / filter-strategy taxonomy; vendor multi-vector / linear-fusion API matrix; optional Condorcet harness.

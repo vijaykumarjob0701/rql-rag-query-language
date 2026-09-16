@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-16 ~23:30 IST — Montague–Aslam Condorcet-fuse multimodal + Fuse_condorcet sibling
+
+- Completed Pass 1–5 on **Montague & Aslam** (CIKM 2002 / DOI 10.1145/584792.584881, **11 pp** author PDF); journal `0018`; OKF `knowledge/reads/montague-aslam-cikm02-condorcet/`.
+- Extract: `montague-aslam-cikm02-condorcet.pdf` + `montague_condorcet_cikm02/` (53 nodes / 44 edges); full page PNG renders (Figs 1–5 / Tables 1–4 via pages).
+- **Established (mechanism):** pairwise-majority sort Condorcet-fuse (Alg 1+3); Fig 1 ranks×training fusion-input taxonomy; dependence-filter / weighted variants as AUTHOR literature.
+- **AUTHOR-only:** Fig 4/5 MAP curves; Table 2 sign tests — unreproduced.
+- Thesis: \(\mathrm{Fuse}_{condorcet}\) as Fuse-family sibling of \(\mathrm{Fuse}_{rrf}\) (RRF remains portable default); related-work / algebra / optimizer preference / abstract / apps / conclusion; bib DOI + pages 538–548.
+- Meta: NOTES / docs/06 §11b / docs/references 72c / journal index.
+- **No** GitHub push; **no** fabricated IR metrics. FANNS survey figure pass still open.
+
+
 ## 2026-09-16 ~23:35 IST — Chen ECIR’22 cite-chase + Fuse preference weave
 
 - Completed Pass 1–5 on **Chen et al.** (ECIR 2022 / arXiv:2201.10582, **16 pp**); journal `0017`; OKF `knowledge/reads/chen-ecir2022-2201.10582/`.

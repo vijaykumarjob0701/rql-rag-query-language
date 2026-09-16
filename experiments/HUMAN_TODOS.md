@@ -61,7 +61,7 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | MUVERA arXiv:2405.19504 | journal `0013`, OKF `knowledge/reads/muvera-2405.19504/` (26 pp; FDE rewrite mechanism) |
 | PLAID CIKM’22 | journal `0014`, OKF `knowledge/reads/plaid-cikm22/` (10 pp; centroid interaction/pruning **Established**; speedups AUTHOR-only) |
 | Bruch fusion TOIS/arXiv:2210.11934 | journal `0016`, OKF `knowledge/reads/bruch-arxiv-2210.11934/` (36 pp; CC/TM2C2 **Established** mechanism; AUTHOR NDCG unreproduced) |
-| Still open (P2) | FANNS survey Lin 2025 figure/table pass; Condorcet Fuse (Montague–Aslam); vendor linear-fusion API matrix |
+| Still open (P2) | FANNS survey Lin 2025 figure/table pass; vendor linear-fusion / multi-vector API matrix |
 | Done (2026-09-16) | Chen et al. ECIR’22 RRF-vs-CC cite-chase (journal 0017; setup conflict → Fuse preference Hypothesis) |
 
 ## P2 — Production plan-stability soak

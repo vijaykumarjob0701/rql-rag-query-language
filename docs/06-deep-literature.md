@@ -78,6 +78,13 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **Takeaway:** Rank-only fusion `Σ 1/(k+rank)` (often k=60); strong metasearch baseline without score calibration.
 - **Implication for RQL:** `FUSE RRF` is historically grounded; keep as default portable fusion.
 
+
+### 11b. Condorcet-fuse — Montague & Aslam (CIKM 2002)
+- **Venue/ID:** CIKM’02; DOI 10.1145/584792.584881; pp. 538–548
+- **URL:** https://www.khoury.northeastern.edu/~jaa/IS4200.10X1/resources/condorcet.pdf · https://doi.org/10.1145/584792.584881
+- **Takeaway:** Majoritarian fusion: sort document pool with pairwise majority runoff comparator (Alg 1+3), \(O(nk\log n)\), ranks only. Fig 1 taxonomy (ranks×training). AUTHORS report TREC MAP wins vs CombMNZ/rCombMNZ/Borda (unreproduced); dependence filtering for correlated runs. Multimodal Pass 1–5: journal `0018`; OKF `knowledge/reads/montague-aslam-cikm02-condorcet/`.
+- **Implication for RQL:** `Fuse_condorcet` as Fuse-family sibling of `Fuse_rrf` (both rank-only); keep RRF as portable default (Cormack AUTHORS prefer RRF on their suites).
+
 ### 12. Analysis of fusion for hybrid retrieval — Bruch et al. (TOIS 2023 / arXiv:2210.11934)
 - **Venue/ID:** arXiv:2210.11934; DOI 10.1145/3596512 (ACM TOIS)
 - **URL:** https://arxiv.org/abs/2210.11934
@@ -87,7 +94,7 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 ### 12b. Zero-shot hybrid / RRF vs linear interp — Chen et al. (ECIR 2022 / arXiv:2201.10582)
 - **Venue/ID:** ECIR 2022 LNCS; DOI 10.1007/978-3-030-99736-6_7; pp. 95–110; arXiv:2201.10582
 - **URL:** https://arxiv.org/abs/2201.10582
-- **Takeaway:** Zero-shot lexical+deep hybrid via **RRF** (\(k=60\)); argue score linear interpolation needs min-max + \(lpha\) tuning that fights zero-shot; AUTHORS report best-tuned BM25+NPR linear still ~3% relative Recall@1K behind RRF(BM25,NPR) on Robust04 & TREC-COVID (Fig 2; unreproduced here). Multimodal Pass 1–5: journal `0017`; OKF `knowledge/reads/chen-ecir2022-2201.10582/`.
+- **Takeaway:** Zero-shot lexical+deep hybrid via **RRF** (\(k=60\)); argue score linear interpolation needs min-max + \(\alpha\) tuning that fights zero-shot; AUTHORS report best-tuned BM25+NPR linear still ~3% relative Recall@1K behind RRF(BM25,NPR) on Robust04 & TREC-COVID (Fig 2; unreproduced here). Multimodal Pass 1–5: journal `0017`; OKF `knowledge/reads/chen-ecir2022-2201.10582/`.
 - **Implication for RQL:** Cite-chase of Bruch [5]: RRF-vs-CC “disagreement” is a **setup conflict** (Recall@1K zero-shot RRF vs NDCG TM2C2). Planner preference among Fuse_rrf / Fuse_linear is **Hypothesis** grounded in Established mechanisms.
 
 ### 13. ColBERT — Khattab & Zaharia (2020)
