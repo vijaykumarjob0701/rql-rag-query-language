@@ -11,11 +11,12 @@ Common strategies include \textbf{pre-filtering}, \textbf{post-filtering}, speci
 
 \subsection{Hybrid lexical--dense fusion}
 Reciprocal Rank Fusion (RRF) combines ranked lists without score calibration~\citep{cormack2009rrf} \established{} (journal 0011).
+Condorcet-fuse sorts candidates by pairwise majority over input rankings~\citep{montague2002condorcet} \established{} as the majoritarian rank-only sibling (journal 0018); Cormack AUTHORS later prefer RRF over Condorcet on their suites \provisional{} as unreproduced comparison.
 Bruch et al.~\citep{bruch2023fusion} analyse the sibling \emph{convex combination} of normalised lexical and semantic scores
 \(f_{\mathrm{Convex}}=\alpha\phi_{\mathrm{Sem}}(f_{\mathrm{Sem}})+(1-\alpha)\phi_{\mathrm{Lex}}(f_{\mathrm{Lex}})\)
 (especially TM2C2 with theoretical min--max \(\phi_{\mathrm{tmm}}\)) versus RRF, and argue RRF is parameter-sensitive while CC is sample-efficient to tune \established{} as literature mechanisms (journal 0016); author NDCG/Recall tables are unreproduced here \provisional{}.
 Chen et al.~\citep{chen2022ood} prefer RRF over tuned min--max linear interpolation in a zero-shot hybrid setting (Recall@1K; journal 0017), disagreeing with Bruch's TM2C2$>$RRF(60) NDCG claim --- an \established{} setup-level literature conflict (see \S\ref{sec:fuse-preference}).
-Planner choice among \(\mathrm{Fuse}_{rrf}\), \(\mathrm{Fuse}_{linear}\), and \(\mathrm{Fuse}_{ltr}\) remains workload-dependent \hypothesis{}.
+Planner choice among \(\mathrm{Fuse}_{rrf}\), \(\mathrm{Fuse}_{condorcet}\), \(\mathrm{Fuse}_{linear}\), and \(\mathrm{Fuse}_{ltr}\) remains workload-dependent \hypothesis{}.
 
 \subsection{Late interaction}
 ColBERT~\citep{khattab2020colbert} defines \emph{late interaction}: independent encoders produce bags of contextualized embeddings \(E_q,E_d\), scored by a sum of maximum similarities (MaxSim)

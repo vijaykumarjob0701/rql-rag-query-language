@@ -28,6 +28,7 @@ $\mathrm{Search}_{late}(q,k)$ & $\rightarrow E$ & Late interaction / MaxSim-sum 
 $\mathrm{Filter}(P)$ & $E\rightarrow E$ & Predicates / ACL \\
 $\mathrm{Union}$ & $E\times E\rightarrow E$ & Multi-query \\
 $\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})$ & $E^*\rightarrow E$ & Formula \(\sum 1/(k+r(d))\), default \(k{=}60\) \established{}~\citep{cormack2009rrf} (journal 0011); RQL op name / compile \hypothesis{} \\
+$\mathrm{Fuse}_{condorcet}$ & $E^*\rightarrow E$ & Pairwise-majority sort (Condorcet-fuse) \established{} as mechanism~\citep{montague2002condorcet} (journal 0018); RQL op / compile \hypothesis{} \\
 $\mathrm{Fuse}_{linear}(\alpha)$ & $E^*\rightarrow E$ & Convex combo of normalised channel scores \established{} as mechanism~\citep{bruch2023fusion} (journal 0016); RQL op name / \(\phi\) / compile \hypothesis{} \\
 $\mathrm{Fuse}_{ltr}(\mathrm{model})$ & $E^*\rightarrow E$ & Learned / multi-feature fuse beyond single \(\alpha\) \hypothesis{} (continuum with linear; not a Bruch TM2C2 claim) \\
 $\mathrm{Diversify}_{mmr}$ & $E\rightarrow E$ & Diversity \\
@@ -51,8 +52,9 @@ $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
   \item \textbf{Hybrid fuse (RRF / linear / LTR).}
     Parallel \(\mathrm{Search}_{dense}\) and \(\mathrm{Search}_{bm25}\) (or other channels) remain separate until a fuse op.
     \(\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})\) with default \(k_{\mathrm{rrf}}=60\)~\citep{cormack2009rrf} is the portable \emph{rank-only} default when scores are incomparable \established{} (journal 0011).
+    \(\mathrm{Fuse}_{condorcet}\) is the majoritarian rank-only sibling (pairwise-majority sort)~\citep{montague2002condorcet} \established{} as mechanism (journal 0018); offer when pairwise Condorcet semantics are desired, without displacing RRF as default \hypothesis{} (Cormack AUTHORS prefer RRF on their suites).
     \(\mathrm{Fuse}_{linear}(\alpha)\) follows Bruch-style convex combination of normalised scores~\citep{bruch2023fusion} \established{} as mechanism (journal 0016; unreproduced NDCG \provisional{}); escalate to \(\mathrm{Fuse}_{ltr}\) when a learned multi-feature model is justified \hypothesis{}.
-    Choosing among \(\{rrf,linear,ltr\}\) is physical/policy \hypothesis{} (\S\ref{sec:fuse-preference}; Chen$\leftrightarrow$Bruch setup disagreement \established{}, journals 0016--0017).
+    Choosing among \(\{rrf,condorcet,linear,ltr\}\) is physical/policy \hypothesis{} (\S\ref{sec:fuse-preference}; Chen$\leftrightarrow$Bruch setup disagreement \established{}, journals 0016--0017).
   \item \textbf{Late-interaction leaf + rewrites (ColBERT / PLAID / MUVERA).}
     Logical $\mathrm{Search}_{late}$ carries MaxSim-sum semantics~\citep{khattab2020colbert} \established{}.
     Physical compile targets \hypothesis{}: (i) native multi-vector MaxSim; (ii) PLAID-class centroid interaction + multi-stage prune then residual MaxSim~\citep{santhanam2022plaid} \established{} as the literature pipeline (journal 0014; unreproduced speedups remain \provisional{}); (iii) MUVERA FDE$\rightarrow$MIPS then MaxSim/Chamfer rerank~\citep{jayaram2024muvera} when only single-vector ANN is available (journal 0013).
@@ -67,5 +69,5 @@ Mandatory predicates in $P_{\mathrm{acl}}\subseteq P$ must be enforced by physic
 Rewrite operators carry explicit token/latency cost attributes for the optimiser.
 
 \subsection{Delineation from survey material}
-RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016).
+RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018).
 \textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.

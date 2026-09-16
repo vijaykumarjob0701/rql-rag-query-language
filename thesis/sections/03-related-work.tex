@@ -23,8 +23,13 @@ Pass~1--5 notes (journal 0009; \texttt{knowledge/reads/vbase-osdi23/}) ground $\
 \paragraph{Cormack et al.\ (multimodal re-read).}
 Cormack, Clarke, and B\"{u}ttcher~\citep{cormack2009rrf} define Reciprocal Rank Fusion as
 \(\mathrm{RRFscore}(d)=\sum_{r\in R} 1/(k+r(d))\) with \(k=60\) fixed after a pilot study.
-RRF is unsupervised and \emph{rank-only} (no requirement that channel scores be calibrated), unlike CombMNZ; Condorcet Fuse is the pairwise-majority comparator.
+RRF is unsupervised and \emph{rank-only} (no requirement that channel scores be calibrated), unlike CombMNZ.
 Pass~1--5 notes (journal 0011; \texttt{knowledge/reads/rrf-cormack-sigir09/}) treat the \textbf{formula and default \(k\)} as \established{} IR prior art for logical \(\mathrm{Fuse}_{rrf}\); author TREC/LETOR MAP tables are \textbf{not reproduced here} \provisional{} as unreproduced empirics.
+
+Montague and Aslam~\citep{montague2002condorcet} introduce \emph{Condorcet-fuse}: a majoritarian (Social Choice) fusion that sorts the candidate pool using a pairwise majority runoff over input rankings as the comparison function (\(O(nk\log n)\); ranks only).
+Their Fig.~1 taxonomy places Condorcet-fuse beside Borda-fuse/rCombMNZ in the ranks-only / no-training cell, opposite CombMNZ on the score axis; weighted Condorcet and dependence filtering (correlated-run prune) are optional variants.
+Pass~1--5 notes (journal 0018; \texttt{knowledge/reads/montague-aslam-cikm02-condorcet/}) treat the \textbf{pairwise-majority sort mechanism and Fig.~1 fusion-input taxonomy} as \established{} literature for logical \(\mathrm{Fuse}_{condorcet}\) as a Fuse-family sibling of \(\mathrm{Fuse}_{rrf}\); author TREC MAP / sign-test tables remain \provisional{} / AUTHOR-only.
+Cormack et al.\ later report RRF matching or beating Condorcet Fuse on their suites \established{} as an AUTHOR comparison (journal 0011) --- motivating RRF as the portable default while retaining Condorcet as an optional majoritarian sibling \hypothesis{}.
 
 \paragraph{Bruch et al.\ (multimodal re-read).}
 Bruch, Gai, and Ingber~\citep{bruch2023fusion} analyse hybrid lexical--semantic fusion via a \emph{convex combination} of normalised channel scores (TM2C2: theoretical min--max + \(\alpha\)) versus RRF (including parametric \(\eta_{\mathrm{Lex}},\eta_{\mathrm{Sem}}\) and RRF-CC).

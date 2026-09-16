@@ -34,7 +34,7 @@ BlinkDB-style explicit budgets~\citep{agarwal2013blinkdb} motivate surface optio
 \subsection{Fusion and rewrite rules}
 Examples \hypothesis{}:
 \begin{itemize}
-  \item Independent channel searches $\rightarrow$ parallel schedule; choose fuse family per \S\ref{sec:fuse-preference} \hypothesis{} (policy grounded in Cormack/Chen/Bruch mechanisms~\citep{cormack2009rrf,chen2022ood,bruch2023fusion}).
+  \item Independent channel searches $\rightarrow$ parallel schedule; choose fuse family per \S\ref{sec:fuse-preference} \hypothesis{} (policy grounded in Cormack/Montague/Chen/Bruch mechanisms~\citep{cormack2009rrf,montague2002condorcet,chen2022ood,bruch2023fusion}).
   \item \(\mathrm{Search}_{late}\) compile ladder: native MaxSim multi-vector~\citep{khattab2020colbert} \established{} scoring;
     else PLAID-class centroid interaction + multi-stage prune~\citep{santhanam2022plaid} \established{} as mechanism (journal 0014) if \texttt{late\_plaid} advertised;
     else MUVERA FDE$\rightarrow$MIPS~$+$~$\mathrm{MAXSIM\_RERANK}$~\citep{jayaram2024muvera} if \texttt{fde\_mips} capability exists (journal 0013);
@@ -49,9 +49,10 @@ Chen et al.~\citep{chen2022ood} and Bruch et al.~\citep{bruch2023fusion} disagre
 We therefore treat the following as a planner \hypothesis{} (not a reproduced metric claim):
 \begin{itemize}
   \item Prefer \(\mathrm{Fuse}_{rrf}(k{=}60)\) when channel scores are incomparable/uncalibrated, or when no (or vanishing) labeled queries exist to tune \(\alpha\)/\(\phi\) --- Chen-style zero-shot portability~\citep{cormack2009rrf,chen2022ood} \established{} as mechanism.
+  \item Offer \(\mathrm{Fuse}_{condorcet}\) (pairwise-majority sort) as a rank-only Fuse-family sibling when majoritarian semantics are desired~\citep{montague2002condorcet} \established{} as mechanism (journal 0018); do not displace RRF as the portable default (Cormack AUTHORS prefer RRF on their suites) \hypothesis{}.
   \item Prefer \(\mathrm{Fuse}_{linear}(\alpha)\) with documented \(\phi\) (TM2C2-class theoretical min--max when available) when scores are comparable and a small labeled set can tune \(\alpha\) --- Bruch-style~\citep{bruch2023fusion} \established{} as mechanism.
   \item Escalate to \(\mathrm{Fuse}_{ltr}\) when query features or multi-channel weights justify learning beyond a single \(\alpha\) \hypothesis{}.
-  \item \texttt{EXPLAIN} must surface fuse family, \(k\) or \(\alpha\)/\(\phi\), and input channels.
+  \item \texttt{EXPLAIN} must surface fuse family, \(k\) or \(\alpha\)/\(\phi\) or Condorcet comparator, and input channels.
 \end{itemize}
 
 \begin{figure}[t]

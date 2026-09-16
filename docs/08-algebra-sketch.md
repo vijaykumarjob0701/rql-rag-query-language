@@ -25,6 +25,7 @@ E \subseteq Id \times Payload \times Score \times Channel \times Provenance \tim
 | `Filter(P)` | E → E | Predicates / ACL |
 | `Union` | E×E → E | Multi-query |
 | `Fuse_rrf(k)` | E* → E | RRF formula + k=60 **[Established]** (Cormack SIGIR’09; journal 0011); RQL naming/compile **[Hypothesis]** |
+| `Fuse_condorcet` | E* → E | Pairwise-majority sort **[Established]** (Montague–Aslam CIKM’02; journal 0018); RQL naming/compile **[Hypothesis]** |
 | `Fuse_linear(α)` / `Fuse_ltr` | E* → E | CC/TM2C2 normalised convex combo **[Established]** mechanism (Bruch TOIS/arXiv:2210.11934; journal 0016); LTR + RQL packaging/policy **[Hypothesis]**; AUTHOR NDCG **[Provisional]** |
 | `Diversify_mmr` | E → E | |
 | `Rerank_m` | E → E | |
@@ -53,7 +54,7 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, AUTO\}
 1. Adverse selectivity/correlation → prefer SUBGRAPH / ITERATIVE / SPECIALIZED / over-fetch POST (by capability).
 2. `VSimJoin` → iterator nested loops when `ann_iterator` available (VBASE-class).
 3. Label predicates + FilteredVamana-class index → SPECIALIZED; else do not pretend.
-4. **Hybrid fuse:** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable **[Established]**; `Fuse_linear(α)` (Bruch CC/TM2C2) when calibrated scores exist **[Established]** mechanism / **[Hypothesis]** policy; `Fuse_ltr` when multi-feature LTR justified `[hypothesis]`.
+4. **Hybrid fuse:** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable **[Established]**; optional `Fuse_condorcet` majoritarian sibling **[Established]** mechanism (journal 0018) / **[Hypothesis]** when-to-use; `Fuse_linear(α)` (Bruch CC/TM2C2) when calibrated scores exist **[Established]** mechanism / **[Hypothesis]** policy; `Fuse_ltr` when multi-feature LTR justified `[hypothesis]`.
 5. **Late-interact ladder:** `Search_late` → native MaxSim multi-vector (ColBERT, 0012) → PLAID centroid interaction + multi-stage prune → residual MaxSim (journal **0014**, mechanism **[Established]**; AUTHOR speedups only) → MUVERA `FDE_ANN + MAXSIM_RERANK` (journal 0013); else fail closed / EXPLAIN — **never** silent dense cosine substitution.
 
 ## What this does **not** claim
