@@ -1,0 +1,12 @@
+OK: both schemas are valid JSON Schema draft 2020-12
+jsonschema package available (version 4.26.0)
+OK: 01-hybrid-rrf.logical.json validates as LogicalPlan
+OK: 01-hybrid-rrf.physical.json validates as PhysicalPlan
+OK: 02-filtered-dense.logical.json validates as LogicalPlan
+OK: 02-filtered-dense.physical.json validates as PhysicalPlan
+OK: 03-late-plaid-rewrite.logical.json validates as LogicalPlan
+OK: 03-late-plaid-rewrite.physical.json validates as PhysicalPlan
+OK: 04-hybrid-rrf-client-shim.physical.json validates as PhysicalPlan
+OK: 05-muvera-fde-ladder.physical.json validates as PhysicalPlan
+
+RESULT: all 8 example plan(s) passed
