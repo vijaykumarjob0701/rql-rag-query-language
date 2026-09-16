@@ -50,6 +50,7 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0014-plaid-multimodal-reread.md`](journal/0014-plaid-multimodal-reread.md) | PLAID Pass 1–5 (centroid interaction Established) |
 | [`journal/0015-next-bruch-or-human-note.md`](journal/0015-next-bruch-or-human-note.md) | Hand-off seed (not Pass 1–5) |
 | [`journal/0016-bruch-fusion-multimodal-reread.md`](journal/0016-bruch-fusion-multimodal-reread.md) | Bruch CC/TM2C2 Pass 1–5 (Fuse_linear Established) |
+| … | See [`journal/README.md`](journal/README.md) for 0017–0021 (Chen, Condorcet, FANNS, vendor matrix, **schema freeze**) |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 
@@ -83,6 +84,7 @@ After the v2 breadth pass we **slowed down**: strategy and multimodal reading be
 | [`docs/06-deep-literature.md`](docs/06-deep-literature.md) | **v2** 28 papers/systems — provisional pending re-read |
 | [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) | **v2** Algebra sketch — provisional pending re-read |
 | [`docs/09-vendor-api-matrix.md`](docs/09-vendor-api-matrix.md) | **Docs-only** vendor hybrid/filter/fusion API matrix (Sep 2026) — Established adapter surfaces |
+| [`schemas/`](schemas/) | **Hypothesis IR** LogicalPlan/PhysicalPlan JSON Schema `0.1.0-draft` + examples |
 | [`docs/references.md`](docs/references.md) | All URLs used |
 | [`NOTES-search-log.md`](NOTES-search-log.md) | Search queries + what each turned up |
 | [`examples/`](examples/) | Example RQL queries (incl. v2 patterns 10–12) |

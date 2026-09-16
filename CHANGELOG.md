@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-16 ~23:55 IST — LogicalPlan / PhysicalPlan schema freeze v0.1.0-draft
+
+- Freeze **Hypothesis IR** JSON Schema draft 2020-12 under `schemas/`: `logical-plan.schema.json`, `physical-plan.schema.json`, `examples/` (hybrid RRF, filtered dense, late+PLAID, client RRF shim, MUVERA ladder), `README.md`.
+- Validator harness `experiments/harness/validate_plans.py` (`jsonschema`); all 8 examples **passed** → `experiments/results/plan_schema/validate.txt`.
+- Journal `0021`; thesis §05/§07 (+ abstract/conclusion) cite schema freeze as Hypothesis IR — **not** a standard.
+- Maps optional capability flags to vendor matrix (journal 0020 / docs/09).
+- **No** GitHub push; **no** fabricated metrics; schemas remain draft Hypothesis.
+
+
 ## 2026-09-16 ~23:50 IST — Vendor hybrid/filter/fusion API matrix (docs-only)
 
 - Docs-only survey of **Qdrant, Elasticsearch/OpenSearch, Weaviate, Milvus, pgvector** (+ optional Pinecone/Redis); **no** live DB/credentials.

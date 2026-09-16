@@ -254,3 +254,18 @@ Queued after Condorcet: FANNS survey — **done in 0019**; still open: vendor mu
 
 Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix** (Qdrant, ES, Weaviate, Milvus); optional query-aware FANNS routing paper; optional Condorcet harness.
 
+## 2026-09-16 ~23:55 IST — LogicalPlan / PhysicalPlan schema freeze
+
+| Query / action | Result |
+|----------------|--------|
+| In-repo synthesis (docs/08, thesis §05–§07, docs/09, journal 0020) | No new external multimodal paper pass |
+| Author `schemas/logical-plan.schema.json` + `physical-plan.schema.json` | JSON Schema draft 2020-12; version `0.1.0-draft` Hypothesis IR |
+| Examples under `schemas/examples/` | 8 files: hybrid RRF L/P, filtered dense L/P, late+PLAID L/P, client RRF shim P, MUVERA ladder P |
+| `pip install jsonschema` in `tooling/.venv` + `validate_plans.py` | **All 8 examples passed** → `experiments/results/plan_schema/validate.txt` |
+| Thesis weave | §05 LogicalPlan freeze; §07 PhysicalPlan freeze; abstract/conclusion; rebuild PDF |
+| Journal | `0021-logical-physical-plan-schema-v0.1.md` |
+
+**Honesty:** Draft schemas are **Hypothesis** packaging — not a published standard. Vendor matrix cells remain Established docs-only survey.
+
+**Next seed:** Substrait/Calcite deeper read **or** toy RQL parser → LogicalPlan JSON.
+
