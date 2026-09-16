@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-16 (Europe/Dublin)  
 **Status:** `[hypothesis]` mirror of `thesis/sections/05-rql-algebra.tex` + filter modes from `06-optimizer.tex`  
-**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE). No fabricated metrics.
+**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction). No fabricated metrics.
 
 ---
 
@@ -53,11 +53,11 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, AUTO\}
 2. `VSimJoin` → iterator nested loops when `ann_iterator` available (VBASE-class).
 3. Label predicates + FilteredVamana-class index → SPECIALIZED; else do not pretend.
 4. **Hybrid fuse (RRF):** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable; linear/learned when calibrated `[hypothesis]`.
-5. **Late-interact ladder:** `Search_late` → native MaxSim multi-vector (ColBERT) → PLAID-class centroid prune (cite-only) → MUVERA `FDE_ANN + MAXSIM_RERANK` (journal 0013); else fail closed / EXPLAIN — **never** silent dense cosine substitution.
+5. **Late-interact ladder:** `Search_late` → native MaxSim multi-vector (ColBERT, 0012) → PLAID centroid interaction + multi-stage prune → residual MaxSim (journal **0014**, mechanism **[Established]**; AUTHOR speedups only) → MUVERA `FDE_ANN + MAXSIM_RERANK` (journal 0013); else fail closed / EXPLAIN — **never** silent dense cosine substitution.
 
 ## What this does **not** claim
 
 - Reproduced ANN speedups from ACORN / VBASE / Filtered-DiskANN.
-- Reproduced ColBERT MRR/latency or MUVERA BEIR/PLAID numbers.
+- Reproduced ColBERT MRR/latency, PLAID GPU/CPU speedups (Tables 3–6 / Fig 6), or MUVERA BEIR/PLAID numbers.
 - That every vendor implements multi-vector or FDE modes.
 - That OKF packaging is part of the RQL runtime.
