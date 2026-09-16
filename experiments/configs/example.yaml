@@ -1,0 +1,15 @@
+# Example evaluation matrix — prints only; does not invent scores
+name: rql-eval-smoke-matrix
+date: 2026-09-16
+metrics: [recall@10, ndcg@10, latency_p50_ms, latency_p95_ms, plan_stability]
+baselines: [sdk_glue, vendor_filters, pgvector_sql]
+channels: [dense, bm25, hybrid]
+fuse: [rrf, linear]
+filter_mode: [PRE, POST, AUTO]
+rerank: [off, on]
+datasets_planned:
+  - id: synthetic_filter_sweep
+    note: Generate predicates at target selectivities; see HUMAN_TODOS.md
+  - id: sift_scale_fanns
+    note: Follow published FANNS protocols when executed; do not copy ACORN tables
+runs: []  # populated by harness printer as planned tuples only

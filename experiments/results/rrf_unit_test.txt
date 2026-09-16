@@ -1,0 +1,10 @@
+RRF unit test (k=60)
+dense: ['D1', 'D2', 'D3', 'D4']
+bm25: ['D3', 'D1', 'D5', 'D2']
+fused:
+  D1	0.032522
+  D3	0.032266
+  D2	0.031754
+  D5	0.015873
+  D4	0.015625
+OK: top-2 are D1, D3 as expected for this toy input
