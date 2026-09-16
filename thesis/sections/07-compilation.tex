@@ -35,6 +35,12 @@ Live smoke verification remains a human P1 task---not claimed done here.
 Profiles declare required features (hybrid+RRF, graph hop, late interaction, filter mode).
 Missing capabilities yield either a safe rewrite, a shim CAST (e.g.\ client-side fuse---explicitly marked expensive/unsafe for ACL), or a hard error \hypothesis{}.
 
+\subsection{Draft PhysicalPlan schema freeze (Hypothesis IR)}
+\label{sec:physical-schema}
+Companion JSON Schema \texttt{schemas/physical-plan.schema.json} (\texttt{0.1.0-draft}; journal 0021) freezes physical nodes used by capability negotiation: \texttt{FilterExec} modes \{\texttt{PRE},\texttt{POST},\texttt{ITERATIVE},\texttt{SUBGRAPH},\texttt{SPECIALIZED},\texttt{PARTITION},\texttt{ROUTER},\texttt{AUTO}\}, \texttt{AnnExec}, \texttt{FusionExec}, \texttt{LateInteractExec} (\texttt{colbert}/\texttt{plaid}/\texttt{muvera}), \texttt{ShimCast}, and optional recall/latency/ACL budgets.
+Capability flags on plans mirror the docs-only vendor matrix (\S\ref{sec:vendor-matrix}) so missing RRF or late-interaction ads compile to explicit shims or fail closed---never silent dense cosine for $\mathrm{Search}_{late}$ \hypothesis{}.
+Schema freeze is \hypothesis{} IR; vendor cells remain \established{} as a surface survey only.
+
 \subsection{Substrait adjacency}
 Substrait~\citep{substrait} motivates a binary/portable plan encoding across engines.
 RQL may eventually emit a retrieval-oriented dialect or embed custom extensions; this draft does not claim a finished Substrait specification \hypothesis{}.

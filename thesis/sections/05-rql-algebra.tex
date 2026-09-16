@@ -71,3 +71,10 @@ Rewrite operators carry explicit token/latency cost attributes for the optimiser
 \subsection{Delineation from survey material}
 RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018).
 \textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.
+
+\subsection{Draft LogicalPlan schema freeze (Hypothesis IR)}
+\label{sec:logical-schema}
+A machine-checkable JSON Schema (draft 2020-12) for \texttt{LogicalPlan} is frozen at package path \texttt{schemas/logical-plan.schema.json} (version \texttt{0.1.0-draft}; journal 0021).
+It encodes the kernel operators above plus optional capability annotations aligned to the Sep~2026 vendor matrix (\S\ref{sec:vendor-matrix}).
+This freeze is \hypothesis{} IR packaging---\textbf{not} a published standard---and does not promote unreproduced AUTHOR metrics.
+Validated examples live under \texttt{schemas/examples/}; the harness \texttt{experiments/harness/validate\_plans.py} checks them with \texttt{jsonschema}.

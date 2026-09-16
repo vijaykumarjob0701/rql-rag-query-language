@@ -59,6 +59,10 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, PARTITION, ROUTER,
 4. **Hybrid fuse:** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable **[Established]**; optional `Fuse_condorcet` majoritarian sibling **[Established]** mechanism (journal 0018) / **[Hypothesis]** when-to-use; `Fuse_linear(α)` (Bruch CC/TM2C2) when calibrated scores exist **[Established]** mechanism / **[Hypothesis]** policy; `Fuse_ltr` when multi-feature LTR justified `[hypothesis]`.
 5. **Late-interact ladder:** `Search_late` → native MaxSim multi-vector (ColBERT, 0012) → PLAID centroid interaction + multi-stage prune → residual MaxSim (journal **0014**, mechanism **[Established]**; AUTHOR speedups only) → MUVERA `FDE_ANN + MAXSIM_RERANK` (journal 0013); else fail closed / EXPLAIN — **never** silent dense cosine substitution.
 
+## Machine-checkable IR (draft)
+
+Hypothesis JSON Schema freeze (`0.1.0-draft`): [`../schemas/`](../schemas/) — LogicalPlan + PhysicalPlan + examples; journal **0021**. **Not** a standard.
+
 ## What this does **not** claim
 
 - Reproduced ANN speedups from ACORN / VBASE / Filtered-DiskANN / FANNS survey Fig 3.
