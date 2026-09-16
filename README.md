@@ -38,6 +38,10 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0002-first-landscape-pass.md`](journal/0002-first-landscape-pass.md) | v1 direct vendor/API survey |
 | [`journal/0003-adjacent-brainstorm-deep-dive.md`](journal/0003-adjacent-brainstorm-deep-dive.md) | v2 sideways angles (provisional aha’s) |
 | [`journal/0004-slow-path-methodology.md`](journal/0004-slow-path-methodology.md) | Decision to slow down; methodology + tooling |
+| [`journal/0005-okf-correction.md`](journal/0005-okf-correction.md) | OKF (not LangExtract) |
+| [`journal/0006-acorn-multimodal-reread.md`](journal/0006-acorn-multimodal-reread.md) | ACORN Pass 1–5 |
+| [`journal/0007-vbase-seed-stub.md`](journal/0007-vbase-seed-stub.md) | VBASE queued |
+| [`journal/0008-human-todos-hand-off.md`](journal/0008-human-todos-hand-off.md) | HUMAN_TODO hand-off |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 
@@ -73,6 +77,10 @@ After the v2 breadth pass we **slowed down**: strategy and multimodal reading be
 | [`docs/references.md`](docs/references.md) | All URLs used |
 | [`NOTES-search-log.md`](NOTES-search-log.md) | Search queries + what each turned up |
 | [`examples/`](examples/) | Example RQL queries (incl. v2 patterns 10–12) |
+
+| [`knowledge/`](knowledge/) | OKF-shaped multimodal paper-read bundles |
+| [`thesis/`](thesis/) | Incremental LaTeX draft + `main.pdf` (not camera-ready) |
+| [`experiments/`](experiments/) | Repro stubs + [`HUMAN_TODOS.md`](experiments/HUMAN_TODOS.md) for Vijay-run benches |
 | [`CHANGELOG.md`](CHANGELOG.md) | Dated human-readable increments |
 
 ---

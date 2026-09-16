@@ -106,3 +106,14 @@
 | `NOTES-search-log.md` | This file |
 
 **Did not push to GitHub** (per instructions).
+
+## 2026-09-16 (Europe/Dublin) — ACORN Pass 5 next-query log (not all executed)
+
+Queued mutations from journal 0006 (for later execution, not claimed as completed searches in this step):
+1. Filtered-DiskANN FilteredVamana StitchedVamana equality predicate cardinality
+2. VBASE relaxed monotonicity OSDI 2023 vector similarity iterator join
+3. Cormack Clarke Buettcher reciprocal rank fusion SIGIR 2009
+4. FANNS filtered approximate nearest neighbor survey Lin 2025 arXiv:2505.06501
+5. filtered ANN query planning selectivity correlation cost model 2026
+
+Verified during thesis bib cleanup: MUVERA authors via https://arxiv.org/abs/2405.19504 (Dhulipala, Hadian, Jayaram, Lee, Mirrokni).

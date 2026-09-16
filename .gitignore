@@ -9,3 +9,13 @@ tooling/.venv/
 tooling/scripts/extract_out/
 __pycache__/
 *.pyc
+
+# Thesis build intermediates (keep main.pdf if desired)
+thesis/*.aux
+thesis/*.bbl
+thesis/*.blg
+thesis/*.fdb_latexmk
+thesis/*.fls
+thesis/*.log
+thesis/*.out
+thesis/*.synctex.gz
