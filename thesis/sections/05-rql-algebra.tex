@@ -78,3 +78,8 @@ A machine-checkable JSON Schema (draft 2020-12) for \texttt{LogicalPlan} is froz
 It encodes the kernel operators above plus optional capability annotations aligned to the Sep~2026 vendor matrix (\S\ref{sec:vendor-matrix}).
 This freeze is \hypothesis{} IR packaging---\textbf{not} a published standard---and does not promote unreproduced AUTHOR metrics.
 Validated examples live under \texttt{schemas/examples/}; the harness \texttt{experiments/harness/validate\_plans.py} checks them with \texttt{jsonschema}.
+
+\subsection{Toy textual RQL frontend (Hypothesis prototype)}
+\label{sec:toy-parser}
+A minimal parser under \texttt{experiments/harness/rql\_parser/} (journal 0022) maps a \emph{tiny} textual subset---\texttt{RETRIEVE}/\texttt{SEARCH} \{\texttt{DENSE},\texttt{BM25},\texttt{LATE}/\texttt{COLBERT}\}, opaque \texttt{WHERE} predicates, optional \texttt{ACL\_HARD}, \texttt{FUSE RRF}/\texttt{LINEAR}, \texttt{K}/\texttt{CANDIDATES}/\texttt{LIMIT}---onto LogicalPlan JSON conforming to the draft schema.
+It is an existence proof that a textual frontend can target the frozen IR; it is \textbf{not} a full SQL engine and rejects \texttt{EMBED}/\texttt{WITH}/\texttt{RERANK}/\ldots{} with explicit errors \hypothesis{}.

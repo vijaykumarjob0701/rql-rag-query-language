@@ -11,6 +11,8 @@ Vendor API cells below are \established{} from official docs (2026-09-16 survey)
   \item Emit backend calls through adapters (pgvector SQL, Qdrant Query API, Elasticsearch/OpenSearch DSL, Weaviate GraphQL, Milvus \texttt{hybrid\_search}, \ldots).
 \end{enumerate}
 
+A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only---Hypothesis packaging, not a production compiler.
+
 \subsection{Established adapter surface survey (docs-only, Sep 2026)}
 \label{sec:vendor-matrix}
 A docs-only survey of public vendor APIs (journal 0020; companion package \texttt{docs/09-vendor-api-matrix.md}; OKF \texttt{knowledge/reads/vendor-api-matrix-2026-09/}) records, without live cluster calls:
