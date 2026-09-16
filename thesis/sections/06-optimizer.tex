@@ -4,27 +4,35 @@
 \noindent\textit{This section is \hypothesis{} unless a citation marks established prior art.}
 
 \subsection{Physical filter modes}
-Grounded in FANNS practice and multimodal re-reads of ACORN~\citep{patel2024acorn}, Filtered-DiskANN~\citep{gollapudi2023filtered}, and VBASE~\citep{zhang2023vbase}:
+\label{sec:filterexec}
+Grounded in the FANNS survey taxonomy of Lin et al.~\citep{lin2025fanns} (pruning strategies VSP/VJP/SJP/SSP; families A1--A17; journal 0019) and multimodal re-reads of ACORN~\citep{patel2024acorn}, Filtered-DiskANN~\citep{gollapudi2023filtered}, and VBASE~\citep{zhang2023vbase}:
 \[
-\mathrm{FilterExec}\in\{\mathrm{PRE},\,\mathrm{POST},\,\mathrm{ITERATIVE},\,\mathrm{SUBGRAPH},\,\mathrm{SPECIALIZED},\,\mathrm{AUTO}\}.
+\mathrm{FilterExec}\in\{\mathrm{PRE},\,\mathrm{POST},\,\mathrm{ITERATIVE},\,\mathrm{SUBGRAPH},\,\mathrm{SPECIALIZED},\,\mathrm{PARTITION},\,\mathrm{ROUTER},\,\mathrm{AUTO}\}.
 \]
+\paragraph{Survey taxonomy $\rightarrow$ modes (packaging).}
+Lin et al.\ argue that coarse pre-/post-/in-filtering is too coarse and propose a pruning-focused classification \established{} as \emph{survey structure} (Figs.~1--2):
 \begin{itemize}
-  \item $\mathrm{PRE}$: restrict candidates then exact/ANN on survivors (high selectivity / small survivor set).
-  \item $\mathrm{POST}$: ANN then predicate; often needs over-fetch; brittle under low selectivity or low query--predicate correlation~\citep{patel2024acorn}.
-  \item $\mathrm{SUBGRAPH}$: ACORN-like predicate-subgraph traversal when the backend capability exists~\citep{patel2024acorn}.
-  \item $\mathrm{SPECIALIZED}$: label/equality-constrained graph indices (FilteredVamana / StitchedVamana class) when the predicate matches advertised capabilities~\citep{gollapudi2023filtered}.
-  \item $\mathrm{ITERATIVE}$: Volcano-style $\mathrm{Open}/\mathrm{Next}/\mathrm{Close}$ ANN with early-stop (relaxed monotonicity class) enabling filter-during-traversal and join patterns~\citep{zhang2023vbase}.
-  \item $\mathrm{AUTO}$: choose using stats (selectivity, specificity, correlation, empty-result risk); \textbf{never} violate ACL hard constraints.
+  \item $\mathrm{PRE}$ $\leftarrow$ SSP / Pre-Filtering family (A12): exact scalar filter then scan the survivor set~\citep{lin2025fanns}.
+  \item $\mathrm{POST}$ $\leftarrow$ VSP / Post-Filtering family (A1): ANN top-$K'$ then predicate; $K'$ estimation is brittle under unknown selectivity~\citep{lin2025fanns,patel2024acorn}.
+  \item $\mathrm{ITERATIVE}$ $\leftarrow$ VBase (A2) as a VSP refinement with filter-aware updates and relaxed-monotonicity stopping~\citep{lin2025fanns,zhang2023vbase}; Volcano $\mathrm{Open}/\mathrm{Next}/\mathrm{Close}$ when the backend advertises iterators.
+  \item $\mathrm{SUBGRAPH}$ $\leftarrow$ VJP / ACORN-class predicate-subgraph traversal (A4; AIRSHIP A3 related)~\citep{lin2025fanns,patel2024acorn}.
+  \item $\mathrm{SPECIALIZED}$ $\leftarrow$ VJP equality/range graph families (Filtered-DiskANN A9; SeRF/iRangeGraph A10--A11 class) when the predicate matches advertised capabilities~\citep{lin2025fanns,gollapudi2023filtered}.
+  \item $\mathrm{PARTITION}$ $\leftarrow$ SJP workload/filter partitions with per-subset FANNS (Milvus-Partition A13; HQI A14; related multi-subset SJP)~\citep{lin2025fanns}.
+  \item $\mathrm{ROUTER}$ $\leftarrow$ system-level \emph{combination of multiple FANNS algorithms} with per-query selection (survey open direction \S6.3; selectivity cost-model switches in ADBV/Milvus/VBase; ACORN$\rightarrow$PRE when highly selective)~\citep{lin2025fanns} \established{} as a \emph{literature direction}; RQL opcode packaging \hypothesis{}.
+  \item $\mathrm{AUTO}$ $\leftarrow$ choose among \emph{advertised} modes using stats (selectivity, specificity, query--predicate correlation / ID--POD--OOD distribution factor~\citep{lin2025fanns}, empty-result risk); \textbf{never} violate ACL hard constraints \hypothesis{}.
 \end{itemize}
+\noindent\textit{Label discipline:} VSP/VJP/SJP/SSP and A1--A17 are \established{} survey vocabulary; FilterExec names and the planner policy that binds them are \hypothesis{}.
+Author recall curves (e.g.\ survey Fig.~3) are \textbf{not reproduced here}.
 
 \paragraph{Capability negotiation.}
 Adapters must advertise which modes exist.
-Missing $\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/$\mathrm{ITERATIVE}$ forces fallback --- the algebra must not pretend universal support \hypothesis{}.
+Missing $\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/$\mathrm{PARTITION}$/$\mathrm{ITERATIVE}$/$\mathrm{ROUTER}$ forces a documented fallback --- the algebra must not pretend universal support \hypothesis{}.
+\texttt{EXPLAIN} should surface $\mathrm{FilterExec}$, survey $\mathrm{pruning\_strategy}$ when known, selectivity estimates, and optional distribution factor.
 
 \subsection{Cost vector}
 Unlike classical selectivity-only costing, plans expose a vector:
 \begin{enumerate}
-  \item Recall proxy (candidate depth, filter empty-result risk, low-specificity risk~\citep{gollapudi2023filtered}),
+  \item Recall proxy (candidate depth, filter empty-result risk, low-specificity risk~\citep{gollapudi2023filtered}, distribution-mismatch risk~\citep{lin2025fanns}),
   \item Latency (p50/p95 targets),
   \item ACL safety (boolean hard constraint),
   \item Token/dollar budget (embeddings, rerankers, rewrites).
@@ -39,7 +47,8 @@ Examples \hypothesis{}:
     else PLAID-class centroid interaction + multi-stage prune~\citep{santhanam2022plaid} \established{} as mechanism (journal 0014) if \texttt{late\_plaid} advertised;
     else MUVERA FDE$\rightarrow$MIPS~$+$~$\mathrm{MAXSIM\_RERANK}$~\citep{jayaram2024muvera} if \texttt{fde\_mips} capability exists (journal 0013);
     else fail closed with EXPLAIN (do not silently substitute single-vector cosine).
-  \item Low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/over-fetch depending on capabilities and predicate shape.
+  \item Low selectivity + $\mathrm{POST}$ $\rightarrow$ rewrite toward $\mathrm{ITERATIVE}$/$\mathrm{SUBGRAPH}$/$\mathrm{SPECIALIZED}$/$\mathrm{PARTITION}$/over-fetch depending on capabilities and predicate shape~\citep{lin2025fanns,patel2024acorn}.
+  \item High selectivity + cheap survivors $\rightarrow$ prefer $\mathrm{PRE}$ (SSP) or $\mathrm{ROUTER}$ policies that switch to Pre-Filtering~\citep{lin2025fanns}.
   \item $\mathrm{VSimJoin}$ $\rightarrow$ prefer iterator nested loops when $\mathrm{ITERATIVE}$ exists~\citep{zhang2023vbase}.
 \end{itemize}
 
@@ -48,11 +57,11 @@ Examples \hypothesis{}:
 Chen et al.~\citep{chen2022ood} and Bruch et al.~\citep{bruch2023fusion} disagree on which fuse wins empirically; the disagreement is \established{} as a literature conflict of \emph{setups} (journal 0017 cite-chase): Recall@1K zero-shot RRF vs NDCG TM2C2, different linear forms, and different label budgets.
 We therefore treat the following as a planner \hypothesis{} (not a reproduced metric claim):
 \begin{itemize}
-  \item Prefer \(\mathrm{Fuse}_{rrf}(k{=}60)\) when channel scores are incomparable/uncalibrated, or when no (or vanishing) labeled queries exist to tune \(\alpha\)/\(\phi\) --- Chen-style zero-shot portability~\citep{cormack2009rrf,chen2022ood} \established{} as mechanism.
+  \item Prefer \(\mathrm{Fuse}_{rrf}(k{=}60)\) when channel scores are incomparable/uncalibrated, or when no (or vanishing) labeled queries exist to tune $\alpha$/$\phi$ --- Chen-style zero-shot portability~\citep{cormack2009rrf,chen2022ood} \established{} as mechanism.
   \item Offer \(\mathrm{Fuse}_{condorcet}\) (pairwise-majority sort) as a rank-only Fuse-family sibling when majoritarian semantics are desired~\citep{montague2002condorcet} \established{} as mechanism (journal 0018); do not displace RRF as the portable default (Cormack AUTHORS prefer RRF on their suites) \hypothesis{}.
-  \item Prefer \(\mathrm{Fuse}_{linear}(\alpha)\) with documented \(\phi\) (TM2C2-class theoretical min--max when available) when scores are comparable and a small labeled set can tune \(\alpha\) --- Bruch-style~\citep{bruch2023fusion} \established{} as mechanism.
-  \item Escalate to \(\mathrm{Fuse}_{ltr}\) when query features or multi-channel weights justify learning beyond a single \(\alpha\) \hypothesis{}.
-  \item \texttt{EXPLAIN} must surface fuse family, \(k\) or \(\alpha\)/\(\phi\) or Condorcet comparator, and input channels.
+  \item Prefer \(\mathrm{Fuse}_{linear}(\alpha)\) with documented $\phi$ (TM2C2-class theoretical min--max when available) when scores are comparable and a small labeled set can tune $\alpha$ --- Bruch-style~\citep{bruch2023fusion} \established{} as mechanism.
+  \item Escalate to \(\mathrm{Fuse}_{ltr}\) when query features or multi-channel weights justify learning beyond a single $\alpha$ \hypothesis{}.
+  \item \texttt{EXPLAIN} must surface fuse family, $k$ or $\alpha$/$\phi$ or Condorcet comparator, and input channels.
 \end{itemize}
 
 \begin{figure}[t]

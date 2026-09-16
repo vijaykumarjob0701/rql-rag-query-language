@@ -6,6 +6,11 @@ Commercial and OSS systems expose vendor-specific query surfaces (metadata filte
 Survey details and URLs live in the companion research package; none is a cross-vendor ANSI-SQL analogue for multi-stage RAG plans \established{} (landscape notes).
 
 \subsection{Filtered ANN / FANNS}
+\paragraph{Lin et al.\ survey (multimodal re-read).}
+Lin et al.~\citep{lin2025fanns} formalise hybrid datasets/queries and propose a pruning-focused taxonomy---\textbf{VSP}, \textbf{VJP}, \textbf{SJP}, \textbf{SSP}---classifying 17 algorithm families (A1--A17; Figs.~1--2).
+They further argue that hybrid query difficulty depends on \emph{selectivity and distribution} (ID/POD/OOD; Figs.~3--6), and highlight combining multiple FANNS algorithms with dynamic selection as a system-level direction (\S6.3).
+Pass~1--5 notes (journal 0019; \texttt{knowledge/reads/fanns-lin2025-2505.06501/}) treat the \textbf{taxonomy and A1--A17 map} as \established{} survey structure grounding $\mathrm{FilterExec}$ packaging; author Fig.~3 recall curves remain unreproduced \provisional{}.
+
 \paragraph{ACORN (multimodal re-read).}
 Patel et al.~\citep{patel2024acorn} argue that pre- and post-filtering are brittle under selectivity and query--predicate correlation, and that specialised equality indices constrain predicate cardinality.
 They propose denser, predicate-agnostic HNSW variants (ACORN-$\gamma$, ACORN-1) that \emph{search the predicate subgraph} to approximate an oracle HNSW over surviving vectors.

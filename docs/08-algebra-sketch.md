@@ -37,21 +37,23 @@ E \subseteq Id \times Payload \times Score \times Channel \times Provenance \tim
 ## Physical `FilterExec` modes
 
 \[
-FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, AUTO\}
+FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, PARTITION, ROUTER, AUTO\}
 \]
 
 | Mode | Literature seed | When (sketch) |
 |------|-----------------|---------------|
-| PRE | classical | Small survivor set |
-| POST | ACORN critique | High selectivity / correlation; over-fetch |
-| SUBGRAPH | ACORN | Predicate-agnostic denser graph capability |
-| SPECIALIZED | Filtered-DiskANN | Label/equality graph capability |
-| ITERATIVE | VBASE Open/Next + RM | Filter-during-traversal / join-friendly iterator |
-| AUTO | planner | Stats + **never** drop ACL hard constraints |
+| PRE | FANNS SSP / A12 (Lin 2025 survey) | Small survivor set / high selectivity |
+| POST | FANNS VSP / A1 | Low selectivity / cheap over-fetch |
+| SUBGRAPH | FANNS VJP / ACORN A4 | Predicate-subgraph capability |
+| SPECIALIZED | FANNS VJP / Filtered-DiskANN A9 | Label/equality (or range) graph capability |
+| ITERATIVE | FANNS A2 VBase + VBASE Open/Next | Filter-during-traversal / join-friendly iterator |
+| PARTITION | FANNS SJP / Milvus-Partition·HQI A13–A14 | Workload-stable partitions / multi-subset indices |
+| ROUTER | FANNS §6.3 multi-algorithm combo | Per-query choose among advertised FANNS impls |
+| AUTO | planner | Stats (selectivity × distribution) + **never** drop ACL hard constraints |
 
 ## Rewrite examples `[hypothesis]`
 
-1. Adverse selectivity/correlation → prefer SUBGRAPH / ITERATIVE / SPECIALIZED / over-fetch POST (by capability).
+1. Adverse selectivity/correlation → prefer SUBGRAPH / ITERATIVE / SPECIALIZED / PARTITION / ROUTER / over-fetch POST (by capability; Lin 2025 taxonomy).
 2. `VSimJoin` → iterator nested loops when `ann_iterator` available (VBASE-class).
 3. Label predicates + FilteredVamana-class index → SPECIALIZED; else do not pretend.
 4. **Hybrid fuse:** channel-local rankings → `Fuse_rrf(k=60)` when scores incomparable **[Established]**; optional `Fuse_condorcet` majoritarian sibling **[Established]** mechanism (journal 0018) / **[Hypothesis]** when-to-use; `Fuse_linear(α)` (Bruch CC/TM2C2) when calibrated scores exist **[Established]** mechanism / **[Hypothesis]** policy; `Fuse_ltr` when multi-feature LTR justified `[hypothesis]`.
@@ -59,7 +61,7 @@ FilterExec ∈ \{PRE, POST, ITERATIVE, SUBGRAPH, SPECIALIZED, AUTO\}
 
 ## What this does **not** claim
 
-- Reproduced ANN speedups from ACORN / VBASE / Filtered-DiskANN.
+- Reproduced ANN speedups from ACORN / VBASE / Filtered-DiskANN / FANNS survey Fig 3.
 - Reproduced ColBERT MRR/latency, PLAID GPU/CPU speedups (Tables 3–6 / Fig 6), or MUVERA BEIR/PLAID numbers.
 - That every vendor implements multi-vector or FDE modes.
 - That OKF packaging is part of the RQL runtime.

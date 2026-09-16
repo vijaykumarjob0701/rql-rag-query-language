@@ -48,7 +48,7 @@ $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
   \item \textbf{Iterator pushdown (VBASE seed).}
     When the adapter exposes Volcano-style ANN iteration, $\mathrm{Filter}(P)\circ \mathrm{Search}_{dense}$ may compile to $\mathrm{FilterExec}=\mathrm{ITERATIVE}$ (filter during $\mathrm{Next}$) rather than TopK-then-drop~\citep{zhang2023vbase} \hypothesis{}.
   \item \textbf{Label-specialized graphs (Filtered-DiskANN seed).}
-    Equality/label predicates with a capable filtered graph may compile to $\mathrm{SPECIALIZED}$~\citep{gollapudi2023filtered} \hypothesis{}; unsupported predicate shapes must not silently use that path.
+    Equality/label predicates with a capable filtered graph may compile to $\mathrm{SPECIALIZED}$~\citep{gollapudi2023filtered} \hypothesis{}; workload-stable partitions may compile to $\mathrm{PARTITION}$ and multi-algorithm backends to $\mathrm{ROUTER}$~\citep{lin2025fanns} \hypothesis{}; unsupported predicate shapes must not silently use specialised paths.
   \item \textbf{Hybrid fuse (RRF / linear / LTR).}
     Parallel \(\mathrm{Search}_{dense}\) and \(\mathrm{Search}_{bm25}\) (or other channels) remain separate until a fuse op.
     \(\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})\) with default \(k_{\mathrm{rrf}}=60\)~\citep{cormack2009rrf} is the portable \emph{rank-only} default when scores are incomparable \established{} (journal 0011).
