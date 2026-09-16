@@ -73,6 +73,8 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0023 | [`0023-physical-planner-stub.md`](0023-physical-planner-stub.md) | Logical→Physical planner stub (Hypothesis; 12/12 validate) |
 | 0024 | [`0024-adapter-emit-stub.md`](0024-adapter-emit-stub.md) | PhysicalPlan → vendor emit stub (Hypothesis sketches; 6/6; not executed) |
 | 0025 | [`0025-substrait-calcite-ir-adjacency.md`](0025-substrait-calcite-ir-adjacency.md) | Substrait/Calcite IR adjacency Pass — Established priors; RQL inspired-by only |
+| 0026 | [`0026-e2e-pipeline-cli.md`](0026-e2e-pipeline-cli.md) | Offline E2E CLI glue (parse→plan→emit; 12/12; no live DB) |
+| 0027 | [`0027-pause-human-p0-checklist.md`](0027-pause-human-p0-checklist.md) | Pause / human P0 checklist hand-off |
 
 Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`, `plaid-cikm22`, `bruch-arxiv-2210.11934`, `chen-ecir2022-2201.10582`, `montague-aslam-cikm02-condorcet`, `fanns-lin2025-2505.06501`, `substrait-spec-2026-09`, `calcite-begoli-sigmod18`).
 
