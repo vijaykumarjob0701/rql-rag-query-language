@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-17 ~00:10 IST — Substrait / Calcite IR adjacency
+
+- Careful docs+paper pass: **Substrait** (substrait.io spec pages) + **Apache Calcite** Begoli et al. (arXiv:1802.10233 / SIGMOD’18, 10 pp) + Cascades Graefe 1995 skim for vocabulary.
+- Journal `0025-substrait-calcite-ir-adjacency.md`; OKF `knowledge/reads/substrait-spec-2026-09/` + `calcite-begoli-sigmod18/`.
+- **Established:** portable plan IR (not SQL text); Substrait extension points; no hard logical/physical split in Substrait; Calcite traits/calling convention + adapters; Volcano-like planner; Cascades enforcers vocabulary.
+- **Hypothesis only:** RQL Logical/Physical JSON + compile stack are Substrait-/Calcite-*inspired* — **not** a Substrait implementation or Calcite embedding.
+- Thesis: strengthen §07 adjacency + §03 related-work; abstract/conclusion; bib `graefe1995cascades` + notes; `schemas/README.md` extension-points note; rebuild `main.pdf`.
+- Integrity: **no** overclaim that RQL implements Substrait. **No push.**
+
 ## 2026-09-17 ~00:00 IST — Adapter emit stub (PhysicalPlan → vendor sketches)
 
 - Hypothesis emitters under `experiments/harness/rql_adapters/` (qdrant Query API JSON; elasticsearch retriever/knn JSON; pgvector SQL).

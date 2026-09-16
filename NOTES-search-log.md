@@ -311,5 +311,19 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 
 **Honesty:** Emit packaging is **Hypothesis**. Docs-shaped sketches — **not** executed. No latency/recall invented. No live DB calls.
 
-**Next seed:** deeper Substrait / Apache Calcite read for IR adjacency.
+**Next seed (done in 0025):** deeper Substrait / Apache Calcite read for IR adjacency.
+
+## 2026-09-17 ~00:10 IST — Substrait / Calcite IR adjacency
+
+| Query / action | Result |
+|----------------|--------|
+| Fetch substrait.io (about, relations, extensions, serialization) | Portable plan IR; extension points; no hard logical/physical split |
+| Download Calcite arXiv:1802.10233 (10 pp) + page PNGs | Figs 1–4; traits; adapters; Volcano-like planner |
+| Skim Cascades Graefe 1995 (10 pp) | Tasks / memo / enforcers vocabulary |
+| Journal + OKF | `0025`; `substrait-spec-2026-09/`; `calcite-begoli-sigmod18/` |
+| Thesis weave | §03 + §07 adjacency; abstract/conclusion; bib Cascades; rebuild PDF |
+
+**Honesty:** Established = Substrait/Calcite/Cascades source facts. RQL adjacency = **Hypothesis** (inspired-by). **No** Substrait wire compat claim. **No push.**
+
+**Next seed candidates:** end-to-end CLI glue `rql→plan→emit` (no live DB); **or** pause checklist for human P0 (protocol 03 live smoke / decide Substrait Extension*Rel in-scope?).
 
