@@ -187,3 +187,19 @@ Queued after PLAID: Bruch — **done in 0016**; still open: Chen et al.; FANNS s
 | Linear harness | `experiments/harness/test_linear_fusion.py` → `experiments/results/linear_fusion/unit_test.txt` |
 
 Queued (still open): Chen et al. RRF-vs-CC cite-chase; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor multi-vector / linear-fusion API matrix.
+
+## 2026-09-16 ~23:35 IST — Chen ECIR’22 cite-chase (Bruch [5]) multimodal
+
+| Query / action | Result |
+|----------------|--------|
+| Bruch refs → [5] Tao Chen et al. ECIR 2022 | “Out-of-Domain Semantics to the Rescue! Zero-Shot Hybrid Retrieval Models” |
+| WebSearch + arXiv PDF `2201.10582` | `tooling/scripts/extract_out/chen-ecir2022-2201.10582.pdf` (**16 pages**) |
+| Springer DOI | 10.1007/978-3-030-99736-6_7; pp. 95–110 |
+| `extract_document.py` + `relate_components.py` | `chen_ecir2022/` (47 nodes / 86 edges); page renders 01–16 |
+| Pass 1–5 journal | `journal/0017-chen-ecir2022-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/chen-ecir2022-2201.10582/` |
+| Thesis weave | Fuse_rrf vs Fuse_linear preference subsection (Established disagreement → Hypothesis planner rule); Chen bib + related-work |
+
+**Resolution (no new metrics):** Chen prefers RRF for zero-shot (best min-max linear underperforms RRF ~3% rel.\ Recall@1K on Robust04/TREC-COVID, AUTHOR Fig 2); Bruch prefers TM2C2 on NDCG. Conflict = setups (metric / linear form / labels / channels), not a single false paper.
+
+Queued (still open): Montague–Aslam Condorcet; FANNS survey Lin 2025 figures; vendor multi-vector / linear-fusion API matrix.

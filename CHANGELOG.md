@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-16 ~23:35 IST — Chen ECIR’22 cite-chase + Fuse preference weave
+
+- Completed Pass 1–5 on **Chen et al.** (ECIR 2022 / arXiv:2201.10582, **16 pp**); journal `0017`; OKF `knowledge/reads/chen-ecir2022-2201.10582/`.
+- Extract: `chen-ecir2022-2201.10582.pdf` + `chen_ecir2022/` (47 nodes / 86 edges); full page PNG renders (Figs 1–2 / Tables 1–5 via pages).
+- **Resolved Bruch disagreement as setup conflict:** Chen AUTHOR Recall@1K RRF>linear-interp (zero-shot); Bruch AUTHOR NDCG TM2C2>RRF(60); different \(\phi\)/metrics/labels.
+- Thesis: short \(\mathrm{Fuse}_{rrf}\) vs \(\mathrm{Fuse}_{linear}\) preference subsection (**Established** disagreement → **Hypothesis** planner rule); related-work Chen paragraph; abstract/background/algebra/apps/conclusion; bib DOI 10.1007/978-3-030-99736-6_7.
+- **No** GitHub push; **no** fabricated IR metrics.
+
 ## 2026-09-16 ~23:25 IST — Bruch fusion multimodal + Fuse_linear weave
 
 - Completed Pass 1–5 on **Bruch et al.** (ACM TOIS / arXiv:2210.11934, **36 pp**); journal `0016` (kept `0015` as hand-off only); OKF `knowledge/reads/bruch-arxiv-2210.11934/`.
