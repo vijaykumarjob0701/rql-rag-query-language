@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-16 ~23:25 IST — Bruch fusion multimodal + Fuse_linear weave
+
+- Completed Pass 1–5 on **Bruch et al.** (ACM TOIS / arXiv:2210.11934, **36 pp**); journal `0016` (kept `0015` as hand-off only); OKF `knowledge/reads/bruch-arxiv-2210.11934/`.
+- Extract: `bruch-arxiv-2210.11934.pdf` + `bruch_2210/` (181 nodes / 283 edges); full page PNG renders (Figs 1–20 / Tables 1–8 via pages + appendices).
+- **Established (mechanism):** convex combination / TM2C2 (Eqs. 2–5); RRF-vs-CC delineation; normalisation role; sample-efficiency claim as AUTHOR literature.
+- **AUTHOR-only:** Table 2/4 NDCG/Recall; Fig 5/12 curves — unreproduced.
+- Thesis: `Fuse_linear` / `Fuse_ltr` vs `Fuse_rrf` labels; related-work Bruch paragraph; abstract/background/algebra/optimizer/apps/eval/conclusion; bib DOI 10.1145/3596512.
+- Docs: `docs/08-algebra-sketch.md`, HUMAN_TODOS, NOTES, READMEs.
+- Optional harness: weighted linear/CC on fixed toy scores → `experiments/results/linear_fusion/unit_test.txt`.
+- **No** GitHub push; **no** fabricated IR metrics.
+
 ## 2026-09-16 ~23:05 IST — PLAID multimodal + rewrite-ladder middle
 
 - Completed Pass 1–5 on **PLAID** (CIKM’22 / arXiv:2205.09707, **10 pp**); journal `0014`; OKF `knowledge/reads/plaid-cikm22/`.

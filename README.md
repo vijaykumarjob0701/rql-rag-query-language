@@ -48,6 +48,8 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0012-colbert-multimodal-reread.md`](journal/0012-colbert-multimodal-reread.md) | ColBERT Pass 1–5 (MaxSim Established) |
 | [`journal/0013-muvera-multimodal-reread.md`](journal/0013-muvera-multimodal-reread.md) | MUVERA Pass 1–5 (FDE rewrite) |
 | [`journal/0014-plaid-multimodal-reread.md`](journal/0014-plaid-multimodal-reread.md) | PLAID Pass 1–5 (centroid interaction Established) |
+| [`journal/0015-next-bruch-or-human-note.md`](journal/0015-next-bruch-or-human-note.md) | Hand-off seed (not Pass 1–5) |
+| [`journal/0016-bruch-fusion-multimodal-reread.md`](journal/0016-bruch-fusion-multimodal-reread.md) | Bruch CC/TM2C2 Pass 1–5 (Fuse_linear Established) |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 

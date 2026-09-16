@@ -1,0 +1,29 @@
+Linear/CC unit test (Bruch-style convex combination)
+lex: {'D1': 12.0, 'D2': 8.0, 'D3': 15.0, 'D4': 3.0}
+sem: {'D1': 0.82, 'D2': 0.91, 'D3': 0.55, 'D4': 0.4}
+fused alpha=0.0 minmax:
+  D3	1.000000
+  D1	0.750000
+  D2	0.416667
+  D4	0.000000
+fused alpha=0.5 minmax:
+  D1	0.786765
+  D2	0.708333
+  D3	0.647059
+  D4	0.000000
+fused alpha=0.8 minmax:
+  D2	0.883333
+  D1	0.808824
+  D3	0.435294
+  D4	0.000000
+fused alpha=1.0 minmax:
+  D2	1.000000
+  D1	0.823529
+  D3	0.294118
+  D4	0.000000
+OK: alpha=0 prefers highest lexical (D3)
+OK: alpha=1 prefers highest semantic (D2)
+OK: alpha=0.8 keeps D1 above D4 on this toy
+OK: property score is affine in alpha under fixed min-max norms
+OK: property tmm scores stay in [0,1] for this toy
+OK: identity norm runs (scale mismatch intentional; Bruch warns)

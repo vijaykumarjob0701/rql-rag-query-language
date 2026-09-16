@@ -172,5 +172,18 @@ Queued (still open): PLAID multimodal (middle rewrite); Bruch CC/linear multimod
 | OKF bundle | `knowledge/reads/plaid-cikm22/` |
 | Thesis weave | Centroid interaction + 4-stage prune **Established**; AUTHOR speedups only; ladder middle filled |
 
-Queued (still open): **Bruch** CC/linear multimodal (next — do not thin-rush 0015); FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor multi-vector API matrix.
+Queued after PLAID: Bruch — **done in 0016**; still open: Chen et al.; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor API matrix.
 
+## 2026-09-16 ~23:25 IST — Bruch fusion multimodal execution
+
+| Query / action | Result |
+|----------------|--------|
+| WebSearch `Bruch fusion hybrid retrieval continuum` + docs/06 §12 | arXiv:2210.11934; DOI 10.1145/3596512 (ACM TOIS) |
+| `curl` arXiv PDF | `tooling/scripts/extract_out/bruch-arxiv-2210.11934.pdf` (**36 pages**) |
+| `extract_document.py` + `relate_components.py` | `bruch_2210/` (181 nodes / 283 edges; 81 figs / 13 tables); page renders 01–36 |
+| Pass 1–5 journal | `journal/0016-bruch-fusion-multimodal-reread.md` (0015 remains hand-off only) |
+| OKF bundle | `knowledge/reads/bruch-arxiv-2210.11934/` |
+| Thesis weave | Fuse_linear / Fuse_ltr vs Fuse_rrf Established-vs-Hypothesis; AUTHOR NDCG only |
+| Linear harness | `experiments/harness/test_linear_fusion.py` → `experiments/results/linear_fusion/unit_test.txt` |
+
+Queued (still open): Chen et al. RRF-vs-CC cite-chase; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor multi-vector / linear-fusion API matrix.
