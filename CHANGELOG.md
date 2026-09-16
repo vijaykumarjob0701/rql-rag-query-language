@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-17 ~00:25 IST — Human + Colab paths for experiment results
+
+- `experiments/HOW_TO_PROVIDE_RESULTS.md`: preferred commit layout; FANNS/datasets/adapters paths; metrics.json schema; Options A (local), B (Colab zip), C (agent CPU smoke).
+- Colab: `experiments/colab/fanns_microbench_colab.ipynb` + `colab/README.md` (synthetic PRE/POST; optional SIFT1M license stub; zip → `results/fanns/<run_id>/`).
+- Datasets stub: `experiments/datasets/README.md` + `.gitignore` for `data/`.
+- Optional smoke: `experiments/harness/fanns_synthetic_cpu.py` → `results/fanns/synthetic_cpu_smoke_2026-09-17/` (**smoke / not P0**).
+- Journal `0028`; HUMAN_TODOS / PAUSE_CHECKLIST mention Colab path.
+- Integrity: **no** ACORN paste; **no** fabricated P0; **no push.**
+
 ## 2026-09-17 ~00:12 IST — E2E pipeline CLI + human P0 pause checklist
 
 - Offline E2E glue: `experiments/harness/rql_pipeline.py` (+ `run_rql.py`) runs toy `.rql` → parse → LogicalPlan → plan(profile) → PhysicalPlan → emit(adapter) → `experiments/results/e2e/<run_id>/`.

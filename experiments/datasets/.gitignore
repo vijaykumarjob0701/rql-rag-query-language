@@ -1,0 +1,16 @@
+# Large vector binaries / shards — digests go in README.md
+data/
+*.fvecs
+*.ivecs
+*.bvecs
+*.hdf5
+*.h5
+*.bin
+*.npy
+*.npz
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+!README.md
+!.gitignore

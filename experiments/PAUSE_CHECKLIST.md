@@ -1,6 +1,6 @@
 # PAUSE_CHECKLIST — hand-off for human P0
 
-**Date:** 2026-09-17 ~00:12 IST (Europe/Dublin)  
+**Date:** 2026-09-17 ~00:25 IST (Europe/Dublin)  
 **Purpose:** Summarize what is **Established / in-repo** vs what **blocks citation-ready** evaluation.  
 **Policy:** Agents must not fake GPU ANN benches, invent smoke.json, or hit live DBs. See [`HUMAN_TODOS.md`](HUMAN_TODOS.md) and [`protocols/`](protocols/).
 
@@ -37,6 +37,7 @@
 | Logical→Physical planner stub | `experiments/harness/rql_planner/` · 0023 | 12/12 |
 | Physical→vendor emit stub | `experiments/harness/rql_adapters/` · 0024 | 6/6 (subset) |
 | **E2E CLI glue** | `experiments/harness/rql_pipeline.py` · 0026 | **4 toys × 3 profiles = 12/12** |
+| Human+Colab result paths | `HOW_TO_PROVIDE_RESULTS.md` · `colab/` · 0028 | docs + optional CPU smoke (**not P0**) |
 | Deterministic unit toys | RRF / linear / MaxSim / filter chooser | unit txt under `results/` |
 | Thesis draft + PDF | `thesis/main.pdf` | rebuilt with E2E sentence |
 
@@ -55,8 +56,8 @@
 
 | Item | Protocol | Expected artifacts | Why agent stopped |
 |------|----------|--------------------|-------------------|
-| **Filtered-ANN microbench** | [`protocols/01-fanns-microbench.md`](protocols/01-fanns-microbench.md) | `experiments/results/fanns/<run_id>/metrics.json`, `plans/`, `ENV.txt` | Large vectors / GT kNN / optional GPU; hours; must not copy ACORN tables |
-| **Dataset acquisition + licenses** | [`protocols/02-datasets.md`](protocols/02-datasets.md) | `experiments/datasets/README.md` (URLs, digests, licenses) | Large downloads / license acceptance |
+| **Filtered-ANN microbench** | [`protocols/01-fanns-microbench.md`](protocols/01-fanns-microbench.md) · **return via** [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) (A local / **B [Colab](colab/)** / C smoke≠P0) | `experiments/results/fanns/<run_id>/metrics.json`, `plans/`, `ENV.txt` | Large vectors / GT kNN / optional GPU; hours; must not copy ACORN tables |
+| **Dataset acquisition + licenses** | [`protocols/02-datasets.md`](protocols/02-datasets.md) · stub [`datasets/README.md`](datasets/README.md) | `experiments/datasets/README.md` (URLs, digests, licenses) | Large downloads / license acceptance |
 
 Without P0, thesis evaluation sections remain a **plan**, not results.
 
@@ -95,7 +96,9 @@ tooling/.venv/bin/python experiments/harness/rql_pipeline.py \
 
 1. **P0 datasets** — accept licenses; record digests in `experiments/datasets/README.md`.  
 2. **P0 FANNS microbench** — one library (FAISS or HNSWlib) × selectivity sweep; mark AUTHOR_CLAIM vs REPRODUCED.  
-3. **P1 adapter smoke** — local docker Qdrant + pgvector; feed sketches from E2E emit as starting points (still validate live).  
+   - Local: Option A in [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md).  
+   - **Colab:** [`colab/fanns_microbench_colab.ipynb`](colab/fanns_microbench_colab.ipynb) → zip → `experiments/results/fanns/<run_id>/` (synthetic ≠ P0; use licensed SIFT1M cell for P0).  
+3. **P1 adapter smoke** — local docker Qdrant + pgvector; feed sketches from E2E emit as starting points (still validate live); path `results/adapters/<backend>/smoke.json`.  
 4. Optional P1 judgments once retrieval runs exist.
 
 ---
@@ -107,4 +110,4 @@ tooling/.venv/bin/python experiments/harness/rql_pipeline.py \
 | **Pause for human P0** (recommended) | Citation-ready eval is the bottleneck; offline stack is sufficient for a draft thesis narrative. |
 | Continue agent seed | Only low-cost polish (extra emit vendors, grammar docs) — **not** a substitute for P0. |
 
-Journal companion: [`../journal/0027-pause-human-p0-checklist.md`](../journal/0027-pause-human-p0-checklist.md).
+Journal companions: [`../journal/0027-pause-human-p0-checklist.md`](../journal/0027-pause-human-p0-checklist.md), [`../journal/0028-human-colab-results-paths.md`](../journal/0028-human-colab-results-paths.md).

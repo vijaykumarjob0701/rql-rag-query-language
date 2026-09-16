@@ -1,6 +1,6 @@
 # HUMAN_TODOS — what Vijay should run / push back
 
-**Date:** 2026-09-16 (Europe/Dublin)  
+**Date:** 2026-09-17 (Europe/Dublin)  
 **Policy:** Agents must not fake GPU ANN benches, paid APIs, large datasets, production clusters, or human judgments. Items below are explicit hand-offs. Push results into the listed artifact paths in this same GitHub repo.
 
 Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2** nice-to-have.
@@ -13,9 +13,11 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 |-------|--------|
 | Why agent stopped | Needs large vectors, ground-truth kNN, possibly GPU; hours of compute; must not copy ACORN tables |
 | Protocol | `experiments/protocols/01-fanns-microbench.md` |
+| **How to return results** | [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) — Option A local · **Option B [Colab notebook](colab/fanns_microbench_colab.ipynb)** (zip → `results/fanns/<run_id>/`) · Option C agent synthetic smoke (**not** P0) |
 | Suggested command sketch | Build/index with chosen library (FAISS/HNSWlib/DiskANN); sweep selectivity × filter_mode; record recall@10 + p50/p95 |
 | Expected artifacts | `experiments/results/fanns/<run_id>/metrics.json`, `plans/*.json`, `ENV.txt` (CPU/GPU, lib versions) |
 | Push back | PR with results + ENV; mark AUTHOR_CLAIM vs REPRODUCED in CSV |
+| Note | Colab **synthetic** cells are plumbing only — **P0 needs licensed large set (e.g. SIFT1M)** per protocol 01 |
 
 ## P0 — Dataset acquisition + license notes
 
@@ -23,6 +25,7 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 |-------|--------|
 | Why agent stopped | Large downloads / license acceptance (BEIR, MS MARCO, LAION-scale, SIFT1M mirrors) |
 | Protocol | `experiments/protocols/02-datasets.md` |
+| **How to return results** | [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md); stub [`datasets/README.md`](datasets/README.md) (+ `datasets/.gitignore` for `data/`) |
 | Expected artifacts | `experiments/datasets/README.md` (URLs, digests, licenses); data itself may be gitignored |
 | Push back | Digests + license checklist committed; binaries via LFS or external mirror noted |
 
@@ -59,6 +62,7 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | Why agent stopped | Needs running Qdrant/pgvector/Pinecone (paid) / Weaviate clusters and credentials |
 | Protocol | `experiments/protocols/03-adapter-smoke.md` |
 | Expected artifacts | `experiments/results/adapters/<backend>/smoke.json` (latency only OK); **never commit API keys** |
+| **How to return results** | [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) |
 | Push back | Sanitized smoke JSON + docker-compose if local |
 
 ## P1 — Human / LLM-as-judge relevance (RAG quality)
@@ -101,6 +105,7 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 - Vendor hybrid/filter/fusion API matrix docs-only (journal `0020`, `docs/09-vendor-api-matrix.md`, OKF `knowledge/reads/vendor-api-matrix-2026-09/`); **live smoke still P1**
 - Offline E2E pipeline CLI (journal `0026`, `experiments/harness/rql_pipeline.py`, `experiments/results/e2e/`); **live smoke still P1**
 - Pause / human P0 checklist (journal `0027`, `experiments/PAUSE_CHECKLIST.md`)
+- Human+Colab result paths (journal `0028`, `HOW_TO_PROVIDE_RESULTS.md`, `colab/`); synthetic CPU smoke **not P0**
 
 - ACORN Pass 1–5 + OKF bundle (`journal/0006`, `knowledge/reads/acorn-2403.04871/`)
 - VBASE Pass 1–5 + OKF (`journal/0009`, `knowledge/reads/vbase-osdi23/`)

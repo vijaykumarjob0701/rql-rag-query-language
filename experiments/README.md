@@ -8,10 +8,14 @@
 ```
 experiments/
   README.md
+  HOW_TO_PROVIDE_RESULTS.md  # human+Colab return paths
+  HUMAN_TODOS.md / PAUSE_CHECKLIST.md
   protocols/          # human-readable evaluation protocols
   configs/            # YAML run matrices
-  harness/            # tiny runners (plan printer, unit tests)
-  results/            # gitkeep; real outputs only when produced
+  harness/            # tiny runners + optional fanns_synthetic_cpu.py
+  colab/              # Colab notebook for FANNS microbench export
+  datasets/           # README digests; data/ gitignored
+  results/            # real outputs only when produced (incl. fanns/)
 ```
 
 ## Quick start
@@ -45,8 +49,10 @@ python3 harness/test_maxsim_late.py
 | Physical→vendor adapter emit stub | works (Hypothesis sketches; hybrid-rrf+filtered-dense×3 → results/rql_adapters/; **not executed**) |
 | Offline E2E pipeline CLI | works (Hypothesis; examples/toy × 3 profiles → results/e2e/; **12/12**; **not executed**) |
 | Pause / human P0 checklist | `PAUSE_CHECKLIST.md` (what blocks citation-ready) |
-| ANN / RAG end-to-end benches | **not run** |
+| Human+Colab result paths | `HOW_TO_PROVIDE_RESULTS.md` + `colab/` (journal 0028) |
+| Synthetic FANNS CPU smoke | optional `harness/fanns_synthetic_cpu.py` — **smoke / not P0** |
+| ANN / RAG end-to-end benches (P0) | **not run** (human / Colab with licensed data) |
 
 ## Human hand-off
 
-See [`PAUSE_CHECKLIST.md`](PAUSE_CHECKLIST.md) and [`HUMAN_TODOS.md`](HUMAN_TODOS.md) for benches Vijay must run (GPU ANN, datasets, DBs, judgments). Do not invent those results.
+See [`PAUSE_CHECKLIST.md`](PAUSE_CHECKLIST.md), [`HUMAN_TODOS.md`](HUMAN_TODOS.md), and [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) (incl. **Colab** Option B). Do not invent P0 results; synthetic smoke ≠ SIFT1M P0.
