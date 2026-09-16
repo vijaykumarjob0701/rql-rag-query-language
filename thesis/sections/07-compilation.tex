@@ -11,7 +11,7 @@ Vendor API cells below are \established{} from official docs (2026-09-16 survey)
   \item Emit backend calls through adapters (pgvector SQL, Qdrant Query API, Elasticsearch/OpenSearch DSL, Weaviate GraphQL, Milvus \texttt{hybrid\_search}, \ldots).
 \end{enumerate}
 
-A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only---Hypothesis packaging, not a production compiler.
+A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only; the journal~0023 planner stub (\S\ref{sec:planner-stub-compile}) implements a rule-based layer~2---Hypothesis packaging, not a production compiler.
 
 \subsection{Established adapter surface survey (docs-only, Sep 2026)}
 \label{sec:vendor-matrix}
@@ -42,6 +42,11 @@ Missing capabilities yield either a safe rewrite, a shim CAST (e.g.\ client-side
 Companion JSON Schema \texttt{schemas/physical-plan.schema.json} (\texttt{0.1.0-draft}; journal 0021) freezes physical nodes used by capability negotiation: \texttt{FilterExec} modes \{\texttt{PRE},\texttt{POST},\texttt{ITERATIVE},\texttt{SUBGRAPH},\texttt{SPECIALIZED},\texttt{PARTITION},\texttt{ROUTER},\texttt{AUTO}\}, \texttt{AnnExec}, \texttt{FusionExec}, \texttt{LateInteractExec} (\texttt{colbert}/\texttt{plaid}/\texttt{muvera}), \texttt{ShimCast}, and optional recall/latency/ACL budgets.
 Capability flags on plans mirror the docs-only vendor matrix (\S\ref{sec:vendor-matrix}) so missing RRF or late-interaction ads compile to explicit shims or fail closed---never silent dense cosine for $\mathrm{Search}_{late}$ \hypothesis{}.
 Schema freeze is \hypothesis{} IR; vendor cells remain \established{} as a surface survey only.
+
+\subsection{Prototype Logical$\rightarrow$Physical planner stub}
+\label{sec:planner-stub-compile}
+Journal 0023 implements layer~2 of the compile stack as a \hypothesis{} rule engine: capability profiles under \texttt{rql\_planner/profiles/} encode docs-only flags (\texttt{rrfNative}, \texttt{annIterator}, \texttt{multiVectorLate}, \ldots) from \S\ref{sec:vendor-matrix}; the planner emits schema-valid PhysicalPlan trees for the four toy-parsed logical examples across three profiles (12/12 validated).
+This is capability negotiation scaffolding---not a Cascades cost model and not adapter emission.
 
 \subsection{Substrait adjacency}
 Substrait~\citep{substrait} motivates a binary/portable plan encoding across engines.

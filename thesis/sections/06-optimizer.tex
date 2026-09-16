@@ -64,6 +64,12 @@ We therefore treat the following as a planner \hypothesis{} (not a reproduced me
   \item \texttt{EXPLAIN} must surface fuse family, $k$ or $\alpha$/$\phi$ or Condorcet comparator, and input channels.
 \end{itemize}
 
+\subsection{Prototype physical planner stub (Hypothesis)}
+\label{sec:planner-stub}
+A deterministic stub under \texttt{experiments/harness/rql\_planner/} (journal 0023) maps LogicalPlan JSON to PhysicalPlan JSON against docs-derived capability profiles (Qdrant / Elasticsearch / pgvector from the Sep~2026 vendor matrix; \textbf{not} live probes).
+Rules (Hypothesis packaging only): $\mathrm{Filter}\rightarrow$\texttt{FilterExec} mode via the toy selectivity/ACL chooser aligned with \S\ref{sec:filterexec}; $\mathrm{Fuse}_{rrf}\rightarrow$ native \texttt{FusionExec} or explicit \texttt{ShimCast client\_rrf}; $\mathrm{Search}_{late}\rightarrow$\texttt{LateInteractExec} (\texttt{colbert} default; optional PLAID/MUVERA rewrite flags when advertised).
+No fabricated latency or recall numbers; schema validation of planned outputs is a structural check only.
+
 \begin{figure}[t]
 \centering
 \input{figures/plan-layers.tikz}
