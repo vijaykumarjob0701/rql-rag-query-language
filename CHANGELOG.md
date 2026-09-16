@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-17 ~00:12 IST — E2E pipeline CLI + human P0 pause checklist
+
+- Offline E2E glue: `experiments/harness/rql_pipeline.py` (+ `run_rql.py`) runs toy `.rql` → parse → LogicalPlan → plan(profile) → PhysicalPlan → emit(adapter) → `experiments/results/e2e/<run_id>/`.
+- Profiles: qdrant / elasticsearch / pgvector; schema validate on; **4×3 = 12/12** → `experiments/results/e2e/run_validate.txt`.
+- Journals `0026-e2e-pipeline-cli.md`, `0027-pause-human-p0-checklist.md`; hand-off `experiments/PAUSE_CHECKLIST.md`.
+- Thesis: §07 offline E2E subsection + abstract/conclusion one-liners; rebuild `main.pdf`.
+- Integrity: **no** live vector-DB network; **no** fabricated metrics; **no push.** Recommend **pause for human P0** (protocols 01–02).
+
 ## 2026-09-17 ~00:10 IST — Substrait / Calcite IR adjacency
 
 - Careful docs+paper pass: **Substrait** (substrait.io spec pages) + **Apache Calcite** Begoli et al. (arXiv:1802.10233 / SIGMOD’18, 10 pp) + Cascades Graefe 1995 skim for vocabulary.

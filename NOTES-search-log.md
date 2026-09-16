@@ -13,6 +13,16 @@
 
 ---
 
+
+## 2026-09-17 ~00:12 IST — E2E CLI + pause checklist
+
+| Action | Result |
+|--------|--------|
+| `rql_pipeline.py` offline glue | parse→plan→emit; run folder under `experiments/results/e2e/smoke/` |
+| Smoke `examples/toy` × 3 profiles | **12/12** schema-validated; `run_validate.txt` |
+| Pause checklist | `experiments/PAUSE_CHECKLIST.md` + journal 0027 |
+| Policy | No live DBs; no push; recommend human P0 before more seeds |
+
 ## 2026-09-16 ~23:50 IST — Vendor API matrix (docs-only)
 
 | Action | Result |

@@ -28,6 +28,14 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 
 ## P1 — Backend adapter smoke (real DBs)
 
+
+### Offline E2E pipeline CLI — **DONE by agent (2026-09-17 ~00:11 IST)** — offline only
+
+| Field | Value |
+|-------|--------|
+| Status | `experiments/harness/rql_pipeline.py`; results `experiments/results/e2e/` (journal 0026); pause checklist journal 0027 / `PAUSE_CHECKLIST.md` |
+| **Still P1 for Vijay** | Live smoke per protocol 03 — E2E offline **does not** satisfy smoke |
+
 ### Adapter emit stub — **DONE by agent (2026-09-17 ~00:00 IST)** — emit only
 
 | Field | Value |
@@ -91,6 +99,8 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 ## Already done by agent (do not redo unless regenerating)
 
 - Vendor hybrid/filter/fusion API matrix docs-only (journal `0020`, `docs/09-vendor-api-matrix.md`, OKF `knowledge/reads/vendor-api-matrix-2026-09/`); **live smoke still P1**
+- Offline E2E pipeline CLI (journal `0026`, `experiments/harness/rql_pipeline.py`, `experiments/results/e2e/`); **live smoke still P1**
+- Pause / human P0 checklist (journal `0027`, `experiments/PAUSE_CHECKLIST.md`)
 
 - ACORN Pass 1–5 + OKF bundle (`journal/0006`, `knowledge/reads/acorn-2403.04871/`)
 - VBASE Pass 1–5 + OKF (`journal/0009`, `knowledge/reads/vbase-osdi23/`)

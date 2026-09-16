@@ -1,6 +1,6 @@
 # Experiments — reproducibility stubs
 
-**Date:** 2026-09-16 (Europe/Dublin)  
+**Date:** 2026-09-17 (Europe/Dublin)  
 **Policy:** No fabricated metrics. This directory holds protocols, configs, and harness stubs. Report only runs you actually execute.
 
 ## Layout
@@ -29,6 +29,7 @@ python3 harness/test_maxsim_late.py
 ../tooling/.venv/bin/python harness/plan_rql.py plan results/rql_parser/01-hybrid-rrf.logical.json --profile qdrant --validate
 ../tooling/.venv/bin/python harness/test_rql_adapters.py
 ../tooling/.venv/bin/python harness/emit_rql.py emit-batch results/rql_planner/ --stems 01-hybrid-rrf,02-filtered-dense --out-dir results/rql_adapters/
+../tooling/.venv/bin/python harness/rql_pipeline.py --inputs ../examples/toy --validate --run-id smoke
 ```
 
 ## Status
@@ -42,8 +43,10 @@ python3 harness/test_maxsim_late.py
 | Toy RQL → LogicalPlan parser | works (Hypothesis subset; schemas/examples/*.rql → results/rql_parser/) |
 | Logical→Physical planner stub | works (Hypothesis rules; 4×3 profiles → results/rql_planner/; schema-valid) |
 | Physical→vendor adapter emit stub | works (Hypothesis sketches; hybrid-rrf+filtered-dense×3 → results/rql_adapters/; **not executed**) |
+| Offline E2E pipeline CLI | works (Hypothesis; examples/toy × 3 profiles → results/e2e/; **12/12**; **not executed**) |
+| Pause / human P0 checklist | `PAUSE_CHECKLIST.md` (what blocks citation-ready) |
 | ANN / RAG end-to-end benches | **not run** |
 
 ## Human hand-off
 
-See [`HUMAN_TODOS.md`](HUMAN_TODOS.md) for benches Vijay must run (GPU ANN, datasets, DBs, judgments). Do not invent those results.
+See [`PAUSE_CHECKLIST.md`](PAUSE_CHECKLIST.md) and [`HUMAN_TODOS.md`](HUMAN_TODOS.md) for benches Vijay must run (GPU ANN, datasets, DBs, judgments). Do not invent those results.
