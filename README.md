@@ -28,24 +28,52 @@ RAG efficiency is dominated by: embedding cost, ANN latency under filters, hybri
 
 ---
 
+## Research journal (read this first)
+
+New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entries in order (`0001` → `0002` → …). The journal records incremental thinking: questions asked, where we looked, what we read, 1–5% seeds, and next questions — so you can follow the path from the original RAG/vector QL question to later findings without treating early dumps as final truth.
+
+| Entry | Summary |
+|-------|---------|
+| [`journal/0001-initial-question.md`](journal/0001-initial-question.md) | Original question & goals (accuracy, reliability, speed) |
+| [`journal/0002-first-landscape-pass.md`](journal/0002-first-landscape-pass.md) | v1 direct vendor/API survey |
+| [`journal/0003-adjacent-brainstorm-deep-dive.md`](journal/0003-adjacent-brainstorm-deep-dive.md) | v2 sideways angles (provisional aha’s) |
+| [`journal/0004-slow-path-methodology.md`](journal/0004-slow-path-methodology.md) | Decision to slow down; methodology + tooling |
+
+Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
+
+---
+
+## Methodology (slow path)
+
+After the v2 breadth pass we **slowed down**: strategy and multimodal reading before more paper dumps. Protocols live in [`methodology/`](methodology/); PDF extract/relate helpers in [`tooling/`](tooling/).
+
+**Important:** v2 literature in [`docs/06-deep-literature.md`](docs/06-deep-literature.md) and the evolved algebra in [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) are **provisional** until sources are re-read with the multimodal protocol (text + figures + tables + relationships). Do not treat them as settled RQL claims yet.
+
+| Path | Contents |
+|------|----------|
+| [`methodology/`](methodology/) | Principles, search strategy, read protocol, synthesis gates, iteration loop |
+| [`tooling/`](tooling/) | Library survey + `extract_document.py` / `relate_components.py` |
+
+---
+
 ## Package contents
 
 | Path | Contents |
 |------|----------|
+| [`journal/`](journal/) | **Start here** — chronological research thinking |
+| [`methodology/`](methodology/) | Slow-path research protocols |
+| [`tooling/`](tooling/) | Multimodal PDF extraction helpers |
 | [`docs/01-landscape.md`](docs/01-landscape.md) | Survey of vector DB query APIs with concrete examples |
 | [`docs/02-gaps-and-needs.md`](docs/02-gaps-and-needs.md) | Gaps vs SQL / Redis / MongoDB |
 | [`docs/03-proposal.md`](docs/03-proposal.md) | RQL goals, grammar sketch, compilation, planner (v1) |
 | [`docs/04-related-work.md`](docs/04-related-work.md) | Papers, OSS, products (2024–2026) |
-| [`docs/05-brainstorm-adjacent.md`](docs/05-brainstorm-adjacent.md) | **v2** Adjacent search angles (22) |
-| [`docs/06-deep-literature.md`](docs/06-deep-literature.md) | **v2** 28 papers/systems from sideways search |
-| [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) | **v2** Algebra, layers, steal-vs-invent map |
+| [`docs/05-brainstorm-adjacent.md`](docs/05-brainstorm-adjacent.md) | **v2** Adjacent search angles (22) — provisional |
+| [`docs/06-deep-literature.md`](docs/06-deep-literature.md) | **v2** 28 papers/systems — provisional pending re-read |
+| [`docs/07-evolved-idea.md`](docs/07-evolved-idea.md) | **v2** Algebra sketch — provisional pending re-read |
 | [`docs/references.md`](docs/references.md) | All URLs used |
 | [`NOTES-search-log.md`](NOTES-search-log.md) | Search queries + what each turned up |
 | [`examples/`](examples/) | Example RQL queries (incl. v2 patterns 10–12) |
-
----
-
-
+| [`CHANGELOG.md`](CHANGELOG.md) | Dated human-readable increments |
 
 ---
 
@@ -53,7 +81,7 @@ RAG efficiency is dominated by: embedding cost, ANN latency under filters, hybri
 
 v1 answered “what query surfaces exist on vector DBs?” v2 asks the transformer-style question: **what adjacent fields already solved pieces of this problem?**
 
-We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DBs, BlinkDB budgets, Calcite/Cascades, BigDAWG polystores, Substrait, Datalog, filtered ANN, ColBERT/MUVERA, GraphRAG, Lara/SystemDS, HyDE, provenance, VSS joins, learned FANNS planners, …), searched primary literature, and re-derived RQL as:
+We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DBs, BlinkDB budgets, Calcite/Cascades, BigDAWG polystores, Substrait, Datalog, filtered ANN, ColBERT/MUVERA, GraphRAG, Lara/SystemDS, HyDE, provenance, VSS joins, learned FANNS planners, …), searched primary literature (breadth-first; **not yet** full multimodal re-read), and *provisionally* re-derived RQL as:
 
 > a **retrieval algebra** over scored evidence + a **cost-based physical planner** for filter/ANN/fusion/late-interact strategies, compiled via **shims** to many backends — textual RQL is the frontend, not the product.
 
