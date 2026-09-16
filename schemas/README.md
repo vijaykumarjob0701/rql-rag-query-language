@@ -102,6 +102,26 @@ Outputs land in `experiments/results/rql_parser/`. Tiny grammar: `experiments/ha
 
 ---
 
+
+
+---
+
+## Substrait / Calcite extension points (adjacency note)
+
+**Date:** 2026-09-17 (Europe/Dublin) · journal [`0025`](../journal/0025-substrait-calcite-ir-adjacency.md)
+
+These schemas are **Hypothesis IR**, Substrait-*inspired* and Calcite-*inspired* — **not** Substrait protobuf and **not** a Calcite `RelNode` binding.
+
+| If we ever chase interchange… | Possible hook (still Hypothesis) |
+|-------------------------------|----------------------------------|
+| Substrait custom relations | Map `Search_*` / `Fuse_*` / `LateInteractExec` → `ExtensionLeafRel` / `ExtensionSingleRel` / `ExtensionMultiRel` with a documented `detail` schema |
+| Substrait simple extensions | Encode similarity / fusion helpers as YAML function extensions (URN-scoped) — only if a consumer exists |
+| Substrait `AdvancedExtension` | Budgets / EXPLAIN hints as *optimization*; semantic `ShimCast` as *enhancement* (must not be silently dropped) |
+| Calcite-style traits | Today's `capabilities.*` + `FilterExec.mode` play an analogous role to calling-convention / physical traits |
+| Calcite enumerable fallback | Explicit `ShimCast` when native RRF / late / iterative ads missing |
+
+**Do not** bump `schemaVersion` solely for this note; no wire format claimed.
+
 ## Version
 
 `schemaVersion` **const** `0.1.0-draft` on every document. Breaking changes bump the draft tag and journal a follow-up entry.

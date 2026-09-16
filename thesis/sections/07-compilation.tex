@@ -55,6 +55,22 @@ Every artifact is labeled Hypothesis / approximate / \texttt{notExecuted}; the s
 A smoke subset (hybrid-RRF + filtered-dense $\times$ three profiles = 6/6) is written under \texttt{experiments/results/rql\_adapters/}.
 Live adapter smoke remains a human P1 task (protocol 03)---not claimed done here.
 
-\subsection{Substrait adjacency}
-Substrait~\citep{substrait} motivates a binary/portable plan encoding across engines.
-RQL may eventually emit a retrieval-oriented dialect or embed custom extensions; this draft does not claim a finished Substrait specification \hypothesis{}.
+\subsection{Substrait / Calcite IR adjacency}
+\label{sec:substrait-calcite-adjacency}
+\noindent\textit{Source facts below are \established{} from Substrait docs (accessed 2026-09-17) and Begoli et al.~\citep{begoli2018calcite}; Cascades~\citep{graefe1995cascades} is cited for optimizer vocabulary.
+RQL packaging remains \hypothesis{} adjacency---\textbf{not} a Substrait implementation or Calcite embedding (journal 0025).}
+
+\paragraph{Established prior systems.}
+Substrait~\citep{substrait} is an open, cross-language specification for \emph{serialized relational/compute plans} (binary protobuf and text), complementary to SQL: producers and consumers exchange plans rather than SQL text.
+Plans are trees of relations (DAGs via reference relations) with emit/ordering, optional hints and constraints, and distribution/orderedness properties.
+The specification does \textbf{not} enforce a hard logical/physical split---operators such as hash join, exchange, and top-$N$ are conventionally physical; the consuming system decides what counts as a physical plan.
+Extension points include YAML simple extensions (types and functions via extension URNs), \texttt{AdvancedExtension} (ignorable \emph{optimization} hints vs semantic \emph{enhancements}), and custom \texttt{ExtensionLeafRel}/\texttt{ExtensionSingleRel}/\texttt{ExtensionMultiRel} relations whose detail schemas are producer/consumer agreements.
+
+Apache Calcite~\citep{begoli2018calcite} is an embeddable relational algebra and optimizer framework over heterogeneous sources: SQL parser or \texttt{RelBuilder} yields a tree of relational operators; pluggable rules, metadata providers, and planner engines rewrite that tree; adapters expose external schemas and push operators into backend \emph{calling conventions}.
+Physical properties are modeled primarily as \textbf{traits} (ordering, partitioning, calling convention) rather than a mandatory dual logical/physical operator class hierarchy; an \emph{enumerable} convention supplies iterator-based client operators when a backend cannot execute an op.
+Calcite's cost-based engine uses Volcano-like dynamic programming over equivalence sets~\citep{begoli2018calcite}; Cascades~\citep{graefe1995cascades} supplies classic vocabulary (task-based search, memoization, property \emph{enforcers}) behind many ``Cascades/Volcano-style'' citations.
+
+\paragraph{Hypothesis: RQL is inspired-by, not identical.}
+We \hypothesis{} that RQL's draft \texttt{LogicalPlan}/\texttt{PhysicalPlan} JSON (\texttt{0.1.0-draft}; journal 0021) and capability-negotiated compile stack (journals 0022--0024) are \emph{Substrait-inspired} (portable plan IR; domain ops as future extension relations; adapters as plan consumers) and \emph{Calcite-inspired} (algebra tree + physical strategies via capability/trait negotiation; pushdown vs explicit \texttt{ShimCast} fallback).
+Honest non-claims: RQL does \textbf{not} implement Substrait protobuf wire compatibility; is \textbf{not} a Calcite extension or \texttt{VolcanoPlanner}; and journal~0023 is \textbf{not} a Cascades cost model.
+A future retrieval-oriented Substrait dialect (custom relations for $\mathrm{Search}_{late}$ / $\mathrm{Fuse}_{rrf}$ / FANNS filter modes) remains optional future work---not claimed done here.

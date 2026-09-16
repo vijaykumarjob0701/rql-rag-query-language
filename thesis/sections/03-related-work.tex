@@ -70,7 +70,10 @@ Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator alg
 RQL steals composability, not surface syntax fidelity \hypothesis{}.
 
 \subsection{Optimisers, portable plans, polystores}
-Apache Calcite~\citep{begoli2018calcite} and Substrait~\citep{substrait} motivate logical/physical separation and portable plan IR.
+\label{sec:rw-substrait-calcite}
+Substrait~\citep{substrait} \established{} a cross-language \emph{serialized plan} IR (plans not SQL text), with extension relations/functions and only a \emph{conventional} logical/physical split (docs pass: journal 0025; OKF \texttt{knowledge/reads/substrait-spec-2026-09/}).
+Apache Calcite~\citep{begoli2018calcite} \established{} an embeddable algebra+optimizer over heterogeneous adapters, modeling physical properties as traits/calling conventions and citing Volcano/Cascades lineage~\citep{graefe1995cascades} (multimodal pass: journal 0025; OKF \texttt{knowledge/reads/calcite-begoli-sigmod18/}).
+RQL steals portable-plan and adapter doctrine as \hypothesis{} adjacency---it does \textbf{not} claim to implement Substrait or embed Calcite (\S\ref{sec:substrait-calcite-adjacency}).
 BigDAWG-style polystores~\citep{duggan2015bigdawg} motivate islands + shims \provisional{}.
 BlinkDB~\citep{agarwal2013blinkdb} motivates explicit approximate budgets \provisional{}.
 
