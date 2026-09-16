@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "kind": "LogicalPlan",
+  "meta": {
+    "label": "Hypothesis",
+    "notes": "Parsed by toy RQL frontend (Hypothesis). Not a full SQL engine. LIMIT 12 recorded in meta only (LogicalPlan has no Limit op; Search.k came from K/CANDIDATES). Fuse_linear packaging Hypothesis; convex-combo mechanism Established (Bruch)."
+  },
+  "root": {
+    "id": "filter0",
+    "op": "Filter",
+    "predicate": {
+      "expr": "category = 'electronics' AND price < 500",
+      "aclHard": false
+    },
+    "input": {
+      "id": "fuse0",
+      "op": "Fuse_linear",
+      "alpha": [
+        0.5,
+        0.5
+      ],
+      "inputs": [
+        {
+          "id": "dense0",
+          "op": "Search_dense",
+          "k": 30,
+          "collection": "products",
+          "query": {
+            "channel": "dense",
+            "text": "electronics deals",
+            "vectorRef": "$q_dense"
+          },
+          "metric": "cosine"
+        },
+        {
+          "id": "bm251",
+          "op": "Search_bm25",
+          "k": 30,
+          "collection": "products",
+          "query": {
+            "channel": "bm25",
+            "text": "electronics deals"
+          }
+        }
+      ]
+    }
+  }
+}
