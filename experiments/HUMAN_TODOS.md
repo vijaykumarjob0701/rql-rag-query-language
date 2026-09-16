@@ -51,7 +51,7 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | Status | Completed independently — journal `0009`, OKF `knowledge/reads/vbase-osdi23/` (stub `0007` retained as history) |
 | Human follow-up (optional) | Spot-check PDF figures; compare MSVBASE GitHub APIs to §4.2 if desired |
 
-## P2 — Filtered-DiskANN + Cormack RRF + ColBERT + MUVERA multimodal — **DONE by agent**
+## P2 — Filtered-DiskANN + Cormack RRF + ColBERT + MUVERA + PLAID multimodal — **DONE by agent**
 
 | Field | Value |
 |-------|--------|
@@ -59,7 +59,8 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | Cormack RRF SIGIR’09 | journal `0011`, OKF `knowledge/reads/rrf-cormack-sigir09/` (2 pp; formula+k=60 **Established**) |
 | ColBERT SIGIR’20 | journal `0012`, OKF `knowledge/reads/colbert-sigir20/` (10 pp; MaxSim Eq.3 **Established**) |
 | MUVERA arXiv:2405.19504 | journal `0013`, OKF `knowledge/reads/muvera-2405.19504/` (26 pp; FDE rewrite mechanism) |
-| Still open (P2) | **PLAID** multimodal (ColBERT→PLAID middle rewrite); Bruch linear/CC fusion multimodal; optional FANNS survey Lin 2025 figure/table pass; Condorcet Fuse cite-chase (`docs/references.md` #61 etc.) |
+| PLAID CIKM’22 | journal `0014`, OKF `knowledge/reads/plaid-cikm22/` (10 pp; centroid interaction/pruning **Established**; speedups AUTHOR-only) |
+| Still open (P2) | **Bruch** linear/CC fusion multimodal (do not rush thin 0015); optional FANNS survey Lin 2025 figure/table pass; Condorcet Fuse cite-chase (`docs/references.md` #61 etc.) |
 
 ## P2 — Production plan-stability soak
 
@@ -75,7 +76,8 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 - Cormack RRF Pass 1–5 + OKF (`journal/0011`, `knowledge/reads/rrf-cormack-sigir09/`)
 - ColBERT Pass 1–5 + OKF (`journal/0012`, `knowledge/reads/colbert-sigir20/`)
 - MUVERA Pass 1–5 + OKF (`journal/0013`, `knowledge/reads/muvera-2405.19504/`)
-- Thesis LaTeX draft + PDF build (`thesis/main.pdf`) — late-interact + FDE rewrite weave
+- PLAID Pass 1–5 + OKF (`journal/0014`, `knowledge/reads/plaid-cikm22/`)
+- Thesis LaTeX draft + PDF build (`thesis/main.pdf`) — ColBERT→PLAID→MUVERA ladder complete (mechanisms)
 - Deterministic RRF unit tests (`experiments/harness/test_rrf_fusion.py` → `experiments/results/rrf_unit_test.txt`; property: channel-order invariance)
 - Deterministic FilterExec chooser toy test (`experiments/harness/test_filter_strategy_chooser.py` → `experiments/results/filter_chooser/unit_test.txt`)
 - Deterministic MaxSim toy test (`experiments/harness/test_maxsim_late.py` → `experiments/results/maxsim/unit_test.txt`)

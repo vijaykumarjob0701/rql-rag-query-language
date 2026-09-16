@@ -160,3 +160,17 @@ Queued after RRF: ColBERT/MUVERA — **done in 0012/0013**; still open: PLAID mu
 | MaxSim harness | `experiments/harness/test_maxsim_late.py` → `experiments/results/maxsim/unit_test.txt` |
 
 Queued (still open): PLAID multimodal (middle rewrite); Bruch CC/linear multimodal; FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor multi-vector API matrix.
+
+## 2026-09-16 ~23:05 IST — PLAID multimodal execution
+
+| Query / action | Result |
+|----------------|--------|
+| WebSearch `PLAID Santhanam ColBERT Efficient Passage Search arXiv 2022` | arXiv:2205.09707; CIKM’22 DOI 10.1145/3511808.3557325; pp 1747–1756 |
+| `curl` arXiv PDF | `tooling/scripts/extract_out/plaid-2205.09707.pdf` (**10 pages**) |
+| `extract_document.py` + `relate_components.py` | `plaid_2205/` (87 nodes / 87 edges); page renders 01–10 |
+| Pass 1–5 journal | `journal/0014-plaid-multimodal-reread.md` |
+| OKF bundle | `knowledge/reads/plaid-cikm22/` |
+| Thesis weave | Centroid interaction + 4-stage prune **Established**; AUTHOR speedups only; ladder middle filled |
+
+Queued (still open): **Bruch** CC/linear multimodal (next — do not thin-rush 0015); FANNS survey Lin 2025 figures; Montague–Aslam Condorcet; vendor multi-vector API matrix.
+

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-16 ~23:05 IST — PLAID multimodal + rewrite-ladder middle
+
+- Completed Pass 1–5 on **PLAID** (CIKM’22 / arXiv:2205.09707, **10 pp**); journal `0014`; OKF `knowledge/reads/plaid-cikm22/`.
+- Extract: `plaid-2205.09707.pdf` + `plaid_2205/` (87 nodes / 87 edges); full page PNG renders (Figs 1–8 / Tables 1–6 via pages).
+- **Established (mechanism):** centroid interaction (Eqs. 2–4), centroid pruning (Eq. 5), four-stage funnel (Fig 5).
+- **AUTHOR-only:** latency/speedup/MRR tables (abstract 7× GPU / 45× CPU; Tables 3–6; Fig 6 ablation) — unreproduced.
+- Thesis: ColBERT→**PLAID**→MUVERA ladder middle filled; abstract / background / related-work / algebra / optimizer / applications updated; bib CIKM pages+DOI.
+- Docs: `docs/08-algebra-sketch.md`, HUMAN_TODOS, NOTES, READMEs.
+- **No** GitHub push; **no** fabricated IR metrics; Bruch fusion **not** started (quality bar first; leave next note).
+
 ## 2026-09-16 late evening — ColBERT + MUVERA multimodal + Search_late weave
 
 - Completed Pass 1–5 on **ColBERT** (SIGIR’20, **10 pp**); journal `0012`; OKF `knowledge/reads/colbert-sigir20/`.
