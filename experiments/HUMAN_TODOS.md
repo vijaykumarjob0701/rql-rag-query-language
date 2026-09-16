@@ -44,18 +44,19 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 | Expected artifacts | `experiments/results/judgments/<set_id>/labels.jsonl`, judge prompt hash |
 | Push back | Label file + agreement stats; no fabricated nDCG |
 
-## P1 — Complete VBASE multimodal Pass 1–5
+## P1 — Complete VBASE multimodal Pass 1–5 — **DONE by agent (2026-09-16 evening IST)**
 
 | Field | Value |
 |-------|--------|
-| Why agent stopped | Time-boxed; only stub `journal/0007` exists |
-| Protocol | Follow `methodology/02-read-protocol.md` |
-| Commands | Download OSDI PDF → `tooling/scripts/extract_document.py` → `relate_components.py` → journal `0008` + OKF under `knowledge/reads/vbase-osdi23/` |
-| Push back | Journal + OKF bundle PR |
+| Status | Completed independently — journal `0009`, OKF `knowledge/reads/vbase-osdi23/` (stub `0007` retained as history) |
+| Human follow-up (optional) | Spot-check PDF figures; compare MSVBASE GitHub APIs to §4.2 if desired |
 
-## P2 — Filtered-DiskANN / RRF classic multimodal reads
+## P2 — Filtered-DiskANN multimodal — **DONE by agent**; RRF classic still open
 
-Same pattern as VBASE; seed URLs in `docs/references.md` #57 and #71.
+| Field | Value |
+|-------|--------|
+| Filtered-DiskANN | journal `0010`, OKF `knowledge/reads/filtered-diskann-www23/` |
+| Still open (P2) | Cormack et al. RRF SIGIR 2009 multimodal Pass 1–5; optional FANNS survey figure/table pass (`docs/references.md` #71, #61) |
 
 ## P2 — Production plan-stability soak
 
@@ -66,6 +67,9 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 ## Already done by agent (do not redo unless regenerating)
 
 - ACORN Pass 1–5 + OKF bundle (`journal/0006`, `knowledge/reads/acorn-2403.04871/`)
-- Thesis LaTeX draft + PDF build (`thesis/main.pdf`)
+- VBASE Pass 1–5 + OKF (`journal/0009`, `knowledge/reads/vbase-osdi23/`)
+- Filtered-DiskANN Pass 1–5 + OKF (`journal/0010`, `knowledge/reads/filtered-diskann-www23/`)
+- Thesis LaTeX draft + PDF build (`thesis/main.pdf`) — algebra/optimizer expanded evening IST
 - Deterministic RRF unit test (`experiments/harness/test_rrf_fusion.py` → `experiments/results/rrf_unit_test.txt`)
+- Deterministic FilterExec chooser toy test (`experiments/harness/test_filter_strategy_chooser.py` → `experiments/results/filter_chooser/unit_test.txt`)
 - Planned-run printer (no scores)

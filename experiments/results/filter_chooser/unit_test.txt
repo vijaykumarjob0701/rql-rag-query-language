@@ -1,0 +1,11 @@
+FilterExec strategy chooser unit test (deterministic toy thresholds)
+NOT an ANN benchmark; documents decision rule only.
+
+acl_hard_prefers_iterator: got=ITERATIVE expected=ITERATIVE OK
+low_specificity_label_specialized: got=SPECIALIZED expected=SPECIALIZED OK
+very_low_selectivity_subgraph: got=SUBGRAPH expected=SUBGRAPH OK
+mid_low_selectivity_iterator: got=ITERATIVE expected=ITERATIVE OK
+high_selectivity_post: got=POST expected=POST OK
+mid_selectivity_pre: got=PRE expected=PRE OK
+
+OK: 6 cases passed
