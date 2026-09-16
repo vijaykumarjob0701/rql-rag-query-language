@@ -117,3 +117,16 @@ Queued mutations from journal 0006 (for later execution, not claimed as complete
 5. filtered ANN query planning selectivity correlation cost model 2026
 
 Verified during thesis bib cleanup: MUVERA authors via https://arxiv.org/abs/2405.19504 (Dhulipala, Hadian, Jayaram, Lee, Mirrokni).
+
+## 2026-09-16 evening IST — VBASE + Filtered-DiskANN multimodal execution
+
+| Query / action | Result |
+|----------------|--------|
+| WebSearch `VBASE Unifying Online Vector Similarity Search … OSDI 2023 Zhang` | Confirmed USENIX OSDI’23 title/authors; PDF `osdi23-zhang-qianxi_1.pdf` (not a different “Ending the Anomaly” paper) |
+| `curl` USENIX VBASE PDF | Saved `tooling/scripts/extract_out/vbase-osdi23-zhang.pdf` (20 pp) |
+| `curl` Filtered-DiskANN PDF | Saved `tooling/scripts/extract_out/filtered-diskann-www23.pdf` (11 pp; author host, not arXiv) |
+| `extract_document.py` + `relate_components.py` | `extract_out/vbase_osdi23/` (149 nodes / 306 edges); `extract_out/filtered_diskann_www23/` (88 / 189) |
+| Pass 1–5 journals | `journal/0009-vbase-multimodal-reread.md`, `journal/0010-filtered-diskann-multimodal-reread.md` |
+| OKF bundles | `knowledge/reads/vbase-osdi23/`, `knowledge/reads/filtered-diskann-www23/` |
+
+Queued (still open): Cormack RRF multimodal; FANNS survey Lin 2025 figure pass; MSVBASE code API vs paper §4.2.

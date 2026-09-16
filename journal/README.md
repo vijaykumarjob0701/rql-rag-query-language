@@ -54,9 +54,11 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0004 | [`0004-slow-path-methodology.md`](0004-slow-path-methodology.md) | Decision to slow down; strategy + multimodal tooling |
 | 0005 | [`0005-okf-correction.md`](0005-okf-correction.md) | User correction: Google **OKF** (Open Knowledge Format), not LangExtract |
 | 0006 | [`0006-acorn-multimodal-reread.md`](0006-acorn-multimodal-reread.md) | ACORN Pass 1–5 multimodal re-read + OKF bundle |
-| 0007 | [`0007-vbase-seed-stub.md`](0007-vbase-seed-stub.md) | VBASE queued as second seed (stub only) |
+| 0007 | [`0007-vbase-seed-stub.md`](0007-vbase-seed-stub.md) | VBASE queued stub — **superseded by 0009** |
 | 0008 | [`0008-human-todos-hand-off.md`](0008-human-todos-hand-off.md) | HUMAN_TODO list for benches Vijay must run |
+| 0009 | [`0009-vbase-multimodal-reread.md`](0009-vbase-multimodal-reread.md) | VBASE OSDI’23 Pass 1–5 + OKF bundle |
+| 0010 | [`0010-filtered-diskann-multimodal-reread.md`](0010-filtered-diskann-multimodal-reread.md) | Filtered-DiskANN WWW’23 Pass 1–5 + OKF |
 
-Also: OKF-shaped notes under [`../knowledge/reads/acorn-2403.04871/`](../knowledge/reads/acorn-2403.04871/).
+Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`).
 
 *Add new rows here when you add entries.*

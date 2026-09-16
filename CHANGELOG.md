@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-16 evening — VBASE + Filtered-DiskANN multimodal + algebra expand
+
+- Completed Pass 1–5 on **VBASE** (OSDI’23); journal `0009` supersedes stub `0007`; OKF `knowledge/reads/vbase-osdi23/`.
+- Completed Pass 1–5 on **Filtered-DiskANN** (WWW’23); journal `0010`; OKF `knowledge/reads/filtered-diskann-www23/`.
+- Expanded thesis §05 algebra (typed evidence, signatures, rewrite examples) and §06 FilterExec modes; related-work updated; abstract mentions three multimodal reads.
+- Added markdown mirror `docs/08-algebra-sketch.md`.
+- Deterministic toy `FilterExec` chooser unit test → `experiments/results/filter_chooser/unit_test.txt`.
+- **No** GitHub push; **no** fabricated ANN metrics.
+
 All dates are **Europe/Dublin** local time. Entries describe human-readable research increments (aligned with git commits when the parent agent commits).
 
 ## 2026-09-16 — HUMAN_TODO hand-off + thesis rebuild

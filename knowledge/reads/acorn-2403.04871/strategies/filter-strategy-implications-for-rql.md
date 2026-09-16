@@ -19,7 +19,7 @@ generated:
 | Post-filtering (+ overfetch) | `FilterExec=POST` | High selectivity, positive correlation, cheap overfetch |
 | Predicate subgraph (ACORN) | `FilterExec=SUBGRAPH` | Backend capability present; low–mid selectivity / correlation risk |
 | Specialized equality graph (Filtered-DiskANN) | `FilterExec=SPECIALIZED` | Known small equality predicate set + capable index |
-| Iterator / relaxed scan (VBASE — *unread this step*) | `FilterExec=ITERATIVE` | Needs Open/Next integration — **seed only** |
+| Iterator / relaxed scan (VBASE — see journal 0009) | `FilterExec=ITERATIVE` | Open/Next + relaxed monotonicity when capability present |
 | Unknown | `FilterExec=AUTO` | Cost model + stats; hard constraint: ACL predicates must not be client-side-only |
 
 ## Planner signals suggested by ACORN
