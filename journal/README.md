@@ -87,3 +87,4 @@ Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acor
 *Add new rows here when you add entries.*
 
 - `0034-thesis-publishability-polish.md` — thesis clarity/publishability polish (2026-09-17); arXiv-style proposal+prototype framing; no new empirics.
+- [`0035-evidence-audit-and-repro-repo.md`](0035-evidence-audit-and-repro-repo.md) — Evidence audit + rql-repro companion
