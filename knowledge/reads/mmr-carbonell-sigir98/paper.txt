@@ -1,0 +1,132 @@
+    The Use of MMR, Diversity-Based Reranking for Reordering
+               Documents and Producing Summaries
+                             Jaime Carbonell                                   Jade Goldstein
+                      Language Technologies Institute                   Language Technologies Institute
+                        Carnegie Mellon University                        Carnegie Mellon University
+                             jgc@cs.cmu.edu                                   jade@cs.cmu.edu
+
+Abstract This paper presents a method for combin-                     2 Maximal Marginal Relevance
+ing query-relevance with information-novelty in the con-
+text of text retrieval and summarization. The Maxi-                   Most modern IR search engines produce a ranked list
+mal Marginal Relevance (MMR) criterion strives to re-                 of retrieved documents ordered by declining relevance to
+duce redundancy while maintaining query relevance in                  the user's query. In contrast, we motivated the need for
+re-ranking retrieved documents and in selecting appro-                \relevant novelty" as a potentially superior criterion. A
+priate passages for text summarization. Preliminary re-                rst approximation to measuring relevant novelty is to
+sults indicate some bene ts for MMR diversity ranking                 measure relevance and novelty independently and provide
+in document retrieval and in single document summariza-               a linear combination as the metric. We call the linear
+tion. The latter are borne out by the recent results of the           combination \marginal relevance" { i.e. a document has
+SUMMAC conference in the evaluation of summariza-                     high marginal relevance if it is both relevant to the query
+tion systems. However, the clearest advantage is demon-               and contains minimal similarity to previously selected
+strated in constructing non-redundant multi-document                  documents. We strive to maximize marginal relevance in
+summaries, where MMR results are clearly superior to                  retrieval and summarization, hence we label our method
+non-MMR passage selection.                                            \maximal marginal relevance" (MMR).
+                                                                                           h                                         i
+1 Introduction                                                        MMR def
+                                                                          = Arg max (Sim1 (Di ; Q)?(1?) max Sim2 (Di ; Dj ))
+                                                                                                         Dj 2S
+                                                                               Di 2RnS
+With the continuing growth of online information, it                      Where C is a document collection (or document stream);
+has become increasingly important to provide improved                 Q is a query or user pro le; R = IR(C, Q, ), i.e., the
+mechanisms to nd information quickly. Conventional IR                 ranked list of documents retrieved by an IR system, given
+systems rank and assimilate documents based on maxi-                  C and Q and a relevance threshold , below which it will
+mizing relevance to the user query [1, 5]. In cases where             not retrieve documents ( can be degree of match or
+relevant documents are few, or cases where very-high re-              number of documents); S is the subset of documents in
+call is necessary, pure relevance ranking is very appropri-           R already selected; RnS is the set di erence, i.e, the set
+ate. But in cases where there is a vast sea of potentially            of as yet unselected documents in R; Sim1 is the sim-
+relevant documents, highly redundant with each other or               ilarity metric used in document retrieval and relevance
+(in the extreme) containing partially or fully duplicative            ranking between documents (passages) and a query; and
+information we must utilize means beyond pure relevance               Sim2 can be the same as Sim1 or a di erent metric.
+for document ranking.                                                     Given the above de nition, MMR computes incre-
+    A new document ranking method is one where each                   mentally the standard relevance-ranked list when the pa-
+document in the ranked list is selected according to a                rameter =1, and computes a maximal diversity ranking
+combined criterion of query relevance and novelty of in-              among the documents in R when =0. For intermediate
+formation. The latter measures the degree of dissimilar-              values of  in the interval [0,1], a linear combination of
+ity between the document being considered and previ-                  both criteria is optimized. Users wishing to sample the
+ously selected ones already in the ranked list. Of course,            information space around the query, should set  at a
+some users may prefer to drill down on a narrow topic,                smaller value, and those wishing to focus in on multi-
+and others a panoramic sampling bearing relevance to the              ple potentially overlapping or reinforcing relevant docu-
+query. Best is a user-tunable method; Maximal Marginal                ments, should set  to a value closer to . We found that
+Relevance (MMR) provides precisely such functionality,                a particularly e ective search strategy (reinforced by the
+as discussed below.                                                   user study discussed below) is to start with a small  (e.g.
+                                                                       = .3) in order to understand the information space in
+Permission to make digital/hard copy of all or part of this work      the region of the query, and then to focus on the most
+for personal or classroom use is granted without fee provided that    important parts using a reformulated query (possibly via
+copies are not made or distributed for pro t or commercial ad-        relevance feedback) and a larger value of  (e.g.  = .7).
+vantage, the copyright notice, the title of the publication and its
+date appear, and notice is given that copying is by permission of
+ACM, Inc. To copy otherwise, to republish, to post on servers or
+to redistribute to lists, requires prior speci c permission and/or    3 Document Reordering
+fee. SIGIR'98, Melbourne, Australia c 1998 ACM 1-58113-015-5
+8/98 $5.00.                                                           We performed a pilot experiment with ve users who were
+                                                                      undergraduates from various disciplines. The purpose of
+                                                                      the study was to nd out if they could tell what was
+                                                                      the di erence between a standard ranking method and
+MMR. The users were asked to nd information from                               Sentence Precision
+documents and were not told how the order in which             Document                    TREC and      CMU
+documents were presented - only that either \method R"         Percentage               CMU Relevant Relevant
+or \method S" were used. The majority of people said                   10              1          .78      .83
+they preferred the method which gave in their opinion                  10             .7          .76      .83
+                                                                       10             .3          .74      .79
+the most broad and interesting topics (MMR). In the -                  10 Lead Sentences          .74      .83
+nal section they were asked to select a search method and              25              1          .74      .76
+use it for a search task. 80% chose the method MMR.                    25             .7          .73      .74
+The users indicated a di erential preference for MMR in                25             .3          .74      .76
+navigation and for locating the relevant candidate doc-                25 Lead Sentences          .60      .65
+uments more quickly, and pure- relevance ranking when
+looking at related documents within that band. Three of                       Table 1: Precision Scores
+the ve users clearly discovered the di erential utility of
+diversity search and relevance-only search.                 CMU assessor marking the document as relevant (yield-
+                                                            ing 23 documents) and (2) at least two of the three CMU
+4 Summarization                                             assessors marking the document as relevant (yielding 18
+                                                            documents). From these scores we can see there is no
+If we consider document summarization by relevant- signi cant statistical di erence between the =1, =.7,
+passage extraction, we must again consider relevance and =.3 scores. This is often explained by cases where
+as well as anti-redundancy. Summaries need to avoid the =1 summary failed to pick up a piece of relevant
+redundancy, as it defeats the purpose of summarization. information and the reranking with =.7 or .3 might.
+If we move beyond single document summarization to              The MMR-passage selection method for summariza-
+document cluster summarization, where the summary           tion  works better for longer documents (which typically
+must pool passages from di erent but possibly overlap- contain more inherent passage redundancy across docu-
+ping documents, reducing redundancy becomes an even ment sections such as abstract, introduction, conclusion,
+more signi cant problem.                                    results, etc.). MMR is also extremely useful in extraction
+    Automated document summarization dates back to of passages from multiple documents about the same top-
+Luhn's work at IBM in the 1950's [4], and evolved through ics. News stories contain much repetition of background
+several e orts to the recent TIPSTER e ort which in- information. Our preliminary results for multi-document
+cludes trainable methods [3], linguistic approaches [6] summarization show that in the top 10 passages returned
+and our information-centric method [2], the rst to focus for news story collections in response to a query, there is
+on anti-redundancy measures.                                signi cant repetition in content over the retrieved pas-
+    Human summarization of documents, sometimes called sages and the passages often contain duplicate or near-
+\abstraction" is a xed- length summary, re ecting the replication in the sentences. MMR reduces or eliminates
+key points that the abstractor { rather than the user { such redundancy.
+deems important. A di erent user with di erent informa-
+tion needs may require a totally di erent summary of the 5 Concluding Remarks
+same document. We created single document summaries
+by segmenting the document into passages (sentences in We have shown that MMR ranking provides a useful and
+our case) and using MMR with a cosine similarity metric bene cial manner of providing information to the user by
+to rerank the passages in response to a user generated or allowing the user to minimize redundancy. This is espe-
+system generated query. The top ranking passages were cially true in the case of query-relevant multi-document
+presented in the original document order.                   summarization. We are currently performing studies on
+    In the May 1998 SUMMAC conference [6], featuring how this extends to several document collections as well
+a government-run evaluation of 15 summarization sys- as studies on the e ectiveness of our system.
+tems, our MMR-based summarizer produced the highest-
+utility query-relevant summaries with an F-score of .73 References
+{ derived from precision and recall by assessors making
+topic-relevance judgements from summaries. Our system [1] Buckley C. Implementation of the smart information re-
+also scored highest (70% accuracy) on informative sum-          trieval system. Technical Report TR 85-686, Cornell Uni-
+maries, where the assessor judged whether the summary           versity.
+contained the information required to answer a set of key [2] J.G.Carbonell, Y. Geng, and J. Goldstein. Automated
+questions. It should be noted that some parameters, such        query-relevant summarization and diversity-based rerank-
+as summary length, varied among systems and therefore           ing. In 15th International Joint Conference on Arti cial
+the evaluation results are indicative but not de nitive         Intelligence, Workshop: AI in Digital Libraries, pages 9{
+measures of comparative performance.                            14, Nagoya, Japan, August 1997.
+    In order to evaluate what the relevance loss for a di- [3] J.M. Kupiec, J. Pedersen, and F. Chen. A trainable docu-
+versity gain in single document summarization, three as-        ment summarizer. In Proceedings of the 18th Annual Int.
+sessors went through 50 articles from 200 articles of a         ACM/SIGIR Conference on Research and Development
+TIPSTER topic and marked each sentence as relevant,             in IR, pages 68{73, Seattle, WA, July 1995.
+somewhat relevant and irrelevant. The article was also [4] P.H. Luhn. Automatic creation of literature abstracts.
+marked as relevant or irrelevant. The assessor scores were      IBM Journal, pages 159{165, 1958.
+compared against the TREC relevance judgments pro- [5] G. Salton. Automatic Text Processing: The Transforma-
+vided for the topic.                                            tion, Analysis, and Retrieval of Information by Computer.
+    The sentence precision results are given in Table 1 for     Addison-Wesley, 1989.
+compression factors .25 and .1. Two precision scores were [6] In TIPSTER Text Phase III 18-Month Workshop, Fairfax,
+calculated, (1) that of TREC relevance plus at least one        VA, May 1998.
+
