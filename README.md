@@ -123,3 +123,9 @@ We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DB
 4. **Biggest gap?** Portable expression of *retrieval plans* (hybrid + filter + multi-stage + graph hop), not merely “nearest neighbors.”
 
 *Research date: 2026-09-16 (Europe/Dublin).*
+
+## Companion reproducibility repo
+
+Runnable code + dataset registry (no multi-GB binaries): **[rql-repro](https://github.com/vijaykumarjob0701/rql-repro)**  
+Evidence checklist: [`EVIDENCE.md`](EVIDENCE.md)
+

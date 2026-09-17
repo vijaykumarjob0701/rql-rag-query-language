@@ -24,3 +24,14 @@ Run id \texttt{colab\_synth\_20260916\_233628} (Europe/Dublin wall clock aligned
   \item \textbf{What it supports:} harness wiring and a qualitative PRE$\ll$POST latency/QPS shape on this synthetic setup.
   \item \textbf{What it does not support:} P0 claims, SIFT1M completion, or citation-ready filtered-ANN recall tables.
 \end{itemize}
+
+
+\subsection{Companion reproducibility repository}
+\label{sec:repro-companion}
+Runnable code, dataset registry (no multi-GB binaries in git), synthetic fixtures, and small result smoke fixtures are maintained in a \textbf{separate} companion repository so this research tree can stay narrative-first (thesis, journal, OKF reads):
+\begin{itemize}[leftmargin=*]
+  \item URL: \url{https://github.com/vijaykumarjob0701/rql-repro}
+  \item Research narrative / schemas-as-spec: \url{https://github.com/vijaykumarjob0701/rql-rag-query-language}
+  \item Evidence split: see root \path{EVIDENCE.md} in both repos (2026-09-17 Europe/Dublin audit).
+\end{itemize}
+P0 FANNS (licensed large sets + ground truth), live adapter smokes, and RAG judgments remain human/Colab hand-offs; the companion repo holds download scripts and pinned offline package wiring only.

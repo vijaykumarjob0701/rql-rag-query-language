@@ -1,3 +1,9 @@
+## 2026-09-17 ~01:10 IST — Evidence audit + companion repro split
+
+- Root `EVIDENCE.md`: in-repo vs venue-grade gaps; recommend separate `rql-repro`.
+- Thesis §A: companion repo URL `https://github.com/vijaykumarjob0701/rql-repro`.
+- Journal `0035`; rebuild `main.pdf`. Companion built under `/workspace/rql-repro/` (parent pushes). **No push.**
+
 ## 2026-09-17 ~01:20 IST — MMR multimodal Pass 1–5 (Diversify_mmr / DIVERSIFY MMR)
 
 - Completed Pass 1–5 on **MMR** (Carbonell & Goldstein, SIGIR’98, **2 pp**); journal `0033`; OKF `knowledge/reads/mmr-carbonell-sigir98/`.
