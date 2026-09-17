@@ -4,6 +4,21 @@
 - Thesis §A: companion repo URL `https://github.com/vijaykumarjob0701/rql-repro`.
 - Journal `0035`; rebuild `main.pdf`. Companion built under `/workspace/rql-repro/` (parent pushes). **No push.**
 
+## 2026-09-17 — FAISS HNSW32 SIFT1M PRE/POST microbench
+
+- Results: `experiments/results/fanns/sift1m_faiss_HNSW32_20260917_022017/` (1000 queries).
+- Journal 0038; thesis §09 updated. P0 partially addressed (index-ANN curves); live adapters/judgments still open.
+
+## 2026-09-17 — SIFT1M FAISS HNSW32 filtered-ANN microbench
+
+- Ran protocol-01 FAISS-index PRE/POST on full SIFT1M (nq=1000); primary index **HNSW32**.
+- Artifacts: `experiments/results/fanns/sift1m_faiss_HNSW32_20260917_022017/` (+ `rql-repro` twin).
+- Harness: `rql-repro/code/bench/fanns_sift1m_faiss_microbench.py`; journal `0038`.
+- EVIDENCE / HUMAN_TODOS / PAUSE: P0 **partially** addressed; live adapters + judgments still open.
+- Thesis §09 folded measured bullet; PDF rebuild.
+- **No push.**
+
+
 ## 2026-09-17 — SIFT1M via Hugging Face mirror
 
 - Digests + download script pointer; results `experiments/results/fanns/sift1m_{subset,full}_*` (NumPy brute PRE/POST).

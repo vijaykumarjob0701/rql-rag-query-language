@@ -56,7 +56,7 @@
 
 | Item | Protocol | Expected artifacts | Why agent stopped |
 |------|----------|--------------------|-------------------|
-| **Filtered-ANN microbench** | [`protocols/01-fanns-microbench.md`](protocols/01-fanns-microbench.md) · **return via** [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) (A local / **B [Colab](colab/)** / C smoke≠P0) | `experiments/results/fanns/<run_id>/metrics.json`, `plans/`, `ENV.txt` | Large vectors / GT kNN / optional GPU; hours; must not copy ACORN tables |
+| **Filtered-ANN microbench** | protocol 01 | **Partial** — FAISS HNSW32 curves at `results/fanns/sift1m_faiss_HNSW32_20260917_022017/`; depth sweeps optional | Agent delivered index microbench; not ACORN; further sweeps optional |
 | **Dataset acquisition + licenses** | [`protocols/02-datasets.md`](protocols/02-datasets.md) · stub [`datasets/README.md`](datasets/README.md) | `experiments/datasets/README.md` (URLs, digests, licenses) | Large downloads / license acceptance |
 
 Without P0, thesis evaluation sections remain a **plan**, not results.
@@ -112,4 +112,6 @@ tooling/.venv/bin/python experiments/harness/rql_pipeline.py \
 
 Journal companions: [`../journal/0027-pause-human-p0-checklist.md`](../journal/0027-pause-human-p0-checklist.md), [`../journal/0028-human-colab-results-paths.md`](../journal/0028-human-colab-results-paths.md).
 
-**Update 2026-09-17:** Agent ran Colab synthetic microbench (T4); artifacts in `results/fanns/colab_synth_20260916_233628/`; live notebook URL in `colab/LINKS.md`. **P0 SIFT1M (or equivalent) still open.**
+**Update 2026-09-17 (later):** **P0 partially addressed** — FAISS HNSW32 SIFT1M PRE/POST curves in `results/fanns/sift1m_faiss_HNSW32_20260917_022017/` (journal 0038). Dataset digests filled. Still missing: live adapters (P1), judgments (P1), optional depth/multi-index sweeps. Pause remains appropriate for those human-owned items.
+
+**Earlier:** Colab synthetic microbench in `results/fanns/colab_synth_20260916_233628/`.

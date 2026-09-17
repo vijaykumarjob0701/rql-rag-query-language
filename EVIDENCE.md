@@ -29,7 +29,7 @@ This audit separates **what is already in-repo and checkable** from **what is st
 
 | Gap | Status | Where it should land |
 |-----|--------|----------------------|
-| **P0 large-set FANNS with ground truth** (e.g. SIFT1M + selectivities) | **SIFT1M obtained** (HF mirror); digests in companion REGISTRY; subset+full NumPy PRE/POST microbench present — still need FAISS/index sweeps for venue-grade | Companion cache + `code/bench/fanns_sift1m_microbench.py`; research: `experiments/results/fanns/sift1m_*` |
+| **P0 large-set FANNS with ground truth** (e.g. SIFT1M + selectivities) | **SIFT1M obtained**; NumPy plumbing + **FAISS HNSW32 PRE/POST curves** (nq=1000) present — still not ACORN-class / depth-sweep complete; live adapters + judgments still missing | Companion `code/bench/fanns_sift1m_faiss_microbench.py`; results `experiments/results/fanns/sift1m_faiss_HNSW32_20260917_022017/` |
 | **Dataset binaries** | Correctly **absent** from git | Companion `datasets/REGISTRY.md` + `download_sift1m.sh`; **digests filled 2026-09-17** from HF `qbo-odp/sift1m` |
 | **Live adapter smokes** (Qdrant / ES / pgvector) | Missing | `experiments/results/adapters/` (sanitized); never commit secrets |
 | **RAG judgments** (nDCG / human prefs) | Missing | Protocol `experiments/protocols/04-rag-judgments.md`; results TBD |
@@ -58,7 +58,7 @@ https://github.com/vijaykumarjob0701/rql-repro
 |------|---------|
 | Offline compile-stack prototype | **Supported** (12/12 E2E + unit scripts) |
 | Literature / honesty discipline | **Supported** (OKF + thesis labels) |
-| Citation-ready FANNS / RAG empirics | **Not supported yet** (P0 + live + judgments missing) |
+| Citation-ready FANNS / RAG empirics | **Partial** — FAISS HNSW32 SIFT1M curves on disk (journal 0038); still missing depth sweeps / live adapters / judgments |
 | Venue-grade artifact package | **Split recommended** → `rql-repro` |
 
-**Update 2026-09-17 (later):** SIFT1M downloaded via Hugging Face `qbo-odp/sift1m`; real SHA-256 in companion `datasets/REGISTRY.md`. Microbench results: `experiments/results/fanns/sift1m_subset_20260917_012242/` (subset smoke) and `experiments/results/fanns/sift1m_full_20260917_012246/` (full 1M NumPy PRE/POST). TexMex HTTPS still dead. Venue-grade index sweeps still open. Earlier same-day: Colab synth N=200k in `colab_synth_large_20260917_001447/`.
+**Update 2026-09-17 (later):** SIFT1M via HF `qbo-odp/sift1m`; digests in companion REGISTRY. NumPy PRE/POST: `sift1m_{subset,full}_20260917_01224*`. **FAISS HNSW32 index microbench:** `sift1m_faiss_HNSW32_20260917_022017/` (nq=1000, PRE/POST × s∈{0.01,0.05,0.1,0.5}; journal 0038). Not ACORN numbers. Live adapters + judgments still open. Colab synth: `colab_synth_large_20260917_001447/`.

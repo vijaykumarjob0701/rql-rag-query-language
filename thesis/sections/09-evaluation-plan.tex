@@ -23,13 +23,22 @@ No fabricated metrics.}
     artifacts under \texttt{experiments/results/fanns/colab\_synth\_20260916\_233628/}.
     \textbf{Honest label:} plumbing + qualitative PRE vs POST latency/QPS \emph{shape} on synthetic data only.
     \textbf{Not} P0; \textbf{not} SIFT1M; Recall@$10{=}1.0$ on this easy setup is \textbf{not} a citation-ready ANN quality claim.
+  \item \textbf{SIFT1M FAISS HNSW32 filtered-ANN microbench} (journal 0038):
+    \texttt{faiss-cpu}~1.15.1; full base $N{=}10^6$, $d{=}128$, $n_q{=}1000$, $k{=}10$, seed~$42$;
+    index \texttt{HNSW32} ($M{=}32$, \texttt{efConstruction}{=}200, \texttt{efSearch}{=}64);
+    PRE via \texttt{IDSelectorBitmap}; POST top-($k{\times}50$) then filter;
+    filtered GT = \texttt{IndexFlatL2}+\texttt{IDSelectorBitmap};
+    artifacts \texttt{experiments/results/fanns/sift1m\_faiss\_HNSW32\_20260917\_022017/}.
+    Example (real): at $s{=}0.1$, PRE recall@$10{\approx}0.90$ / ${\sim}0.24$\,ms p50; POST ${\approx}0.998$ / ${\sim}1.5$\,ms p50.
+    \textbf{Honest label:} stronger than NumPy brute; synthetic Bernoulli predicates; single depth setting;
+    \textbf{not} ACORN (or any paper) numbers; live adapters and RAG judgments still absent.
 \end{itemize}
 Planned-run printer \texttt{print\_planned\_runs.py} emits \texttt{score=NOT\_RUN} only---by design.
 
 \subsection{What remains for citation-grade ANN / RAG}
 \label{sec:eval-remains}
 \begin{itemize}[leftmargin=*]
-  \item \textbf{P0 --- large-set filtered ANN:} SIFT1M (or another licensed vector set) with ground-truth $k$NN; PRE/POST/ITERATIVE/(SUBGRAPH if available) sweeps; report recall@$k$ and latency with library versions in \texttt{ENV.txt}. Protocol: \texttt{experiments/protocols/01-fanns-microbench.md}; checklist: \texttt{experiments/PAUSE\_CHECKLIST.md}.
+  \item \textbf{P0 --- large-set filtered ANN (partially done):} FAISS HNSW32 PRE/POST on SIFT1M exists (journal 0038); still open: candidate-depth / multi-index sweeps, ITERATIVE/SUBGRAPH if claimed, and any paper-table reproduction (\textbf{not} claimed). Protocol 01; \texttt{PAUSE\_CHECKLIST.md}.
   \item \textbf{P1 --- live adapters:} docker/smoke against real Qdrant, Elasticsearch/OpenSearch, and pgvector using emitted sketches; ACL fail-closed checks. Protocol~03.
   \item \textbf{Datasets + judgments:} BEIR/MS MARCO-style collections under license; synthetic metadata predicates for selectivity sweeps; human or shared judgments for RAG end-to-end---none claimed here. Protocol~02; \texttt{experiments/HUMAN\_TODOS.md}.
   \item \textbf{Cost-model validation:} measured selectivity/latency models for \texttt{AUTO} FilterExec---not implemented.
@@ -51,4 +60,4 @@ Separate \authoronly{} citations from \textbf{REPRODUCED} rows in any future res
 Channels $\in\{$dense, bm25, both$\}$; fuse $\in\{$RRF, linear$\}$; filter mode $\in\{$PRE, POST, AUTO$\}$; rerank on/off; rewrite on/off.
 
 \textbf{No end-to-end RAG, BEIR, or human-judgment metrics are claimed.
-No licensed large-set FANNS P0 is claimed.}
+SIFT1M FAISS HNSW32 microbench is measured plumbing (journal 0038) --- not an ACORN-class claim.}

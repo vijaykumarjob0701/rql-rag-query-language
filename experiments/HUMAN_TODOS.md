@@ -11,13 +11,12 @@ Legend: **P0** blocks citation-ready eval; **P1** needed for solid paper; **P2**
 
 | Field | Value |
 |-------|--------|
-| Why agent stopped | Needs large vectors, ground-truth kNN, possibly GPU; hours of compute; must not copy ACORN tables |
+| Status (2026-09-17) | **Partially addressed by agent** — FAISS HNSW32 PRE/POST on full SIFT1M (`results/fanns/sift1m_faiss_HNSW32_20260917_022017/`, journal 0038). Still open: depth sweeps, live adapters, judgments. |
+| Why agent originally stopped | Large vectors / GT kNN / optional GPU; must not copy ACORN tables |
 | Protocol | `experiments/protocols/01-fanns-microbench.md` |
-| **How to return results** | [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) — Option A local · **Option B [Colab notebook](colab/fanns_microbench_colab.ipynb)** (zip → `results/fanns/<run_id>/`) · Option C agent synthetic smoke (**not** P0) |
-| Suggested command sketch | Build/index with chosen library (FAISS/HNSWlib/DiskANN); sweep selectivity × filter_mode; record recall@10 + p50/p95 |
-| Expected artifacts | `experiments/results/fanns/<run_id>/metrics.json`, `plans/*.json`, `ENV.txt` (CPU/GPU, lib versions) |
-| Push back | PR with results + ENV; mark AUTHOR_CLAIM vs REPRODUCED in CSV |
-| Note | Colab **synthetic** cells are plumbing only — **P0 needs licensed large set (e.g. SIFT1M)** per protocol 01 |
+| **How to return further results** | [`HOW_TO_PROVIDE_RESULTS.md`](HOW_TO_PROVIDE_RESULTS.md) — Option A local · Option B Colab · Option C smoke≠P0 |
+| Expected artifacts | `experiments/results/fanns/<run_id>/metrics.json`, `plans/*.json`, `ENV.txt` |
+| Note | Index curves present; **not** ACORN reproduction; Colab synthetic ≠ P0 |
 
 ## P0 — Dataset acquisition + license notes
 
@@ -122,4 +121,6 @@ Long-running identical RQL → plan hash stability across versions; needs CI mac
 - Deterministic MaxSim toy test (`experiments/harness/test_maxsim_late.py` → `experiments/results/maxsim/unit_test.txt`)
 - Planned-run printer (no scores)
 
-**Update 2026-09-17:** Agent ran Colab synthetic microbench (T4); artifacts in `results/fanns/colab_synth_20260916_233628/`; live notebook URL in `colab/LINKS.md`. **P0 SIFT1M (or equivalent) still open.**
+**Update 2026-09-17 (later):** SIFT1M obtained (HF); NumPy PRE/POST plumbing + **FAISS HNSW32 index microbench** at `results/fanns/sift1m_faiss_HNSW32_20260917_022017/` (journal `0038`). **P0 partially addressed** — FAISS index curves present; still missing live adapters / judgments; depth sweeps / multi-index optional. Do not treat as ACORN reproduction.
+
+**Earlier same day:** Colab synthetic microbench (T4) in `results/fanns/colab_synth_20260916_233628/`; live notebook URL in `colab/LINKS.md`.
