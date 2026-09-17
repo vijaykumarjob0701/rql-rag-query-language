@@ -48,7 +48,7 @@
 | `Filter(P)` | E → E | Predicates / ACL |
 | `Union` | E×E → E | Multi-query |
 | `Fuse_rrf(k)` / `Fuse_linear(w)` / `Fuse_ltr(model)` | E* → E | Cormack RRF; Bruch CC; LTR |
-| `Diversify_mmr(λ)` | E → E | Carbonell MMR |
+| `Diversify_mmr(λ)` | E → E | Carbonell MMR **[Established formula** journal 0033**]**; RQL packaging **[Hypothesis]** |
 | `Rerank(model, n)` | E → E | Cross-encoder |
 | `Expand_parent` / `Expand_window` | E → E | Parent-child RAG |
 | `Rewrite_hyde` / `Rewrite_multi` | q → q* or emb* | HyDE **[Established mech.** journal 0032**]** / DMQR **[Provisional]**; RQL packaging **[Hypothesis]** |

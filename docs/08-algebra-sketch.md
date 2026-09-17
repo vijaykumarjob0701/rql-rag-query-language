@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-16 (Europe/Dublin)  
 **Status:** `[hypothesis]` mirror of `thesis/sections/05-rql-algebra.tex` + filter modes from `06-optimizer.tex`  
-**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction) / **0016** (Bruch CC/TM2C2) / **0031** (BlinkDB AQP budgets) / **0032** (HyDE rewrite). No fabricated metrics.
+**Honesty:** Not settled algebra. Grounding cites multimodal journals 0006 / 0009 / 0010 / **0011** (RRF) / **0012** (ColBERT MaxSim) / **0013** (MUVERA FDE) / **0014** (PLAID centroid interaction) / **0016** (Bruch CC/TM2C2) / **0031** (BlinkDB AQP budgets) / **0032** (HyDE rewrite) / **0033** (MMR diversify). No fabricated metrics.
 
 ---
 
@@ -27,7 +27,7 @@ E \subseteq Id \times Payload \times Score \times Channel \times Provenance \tim
 | `Fuse_rrf(k)` | E* → E | RRF formula + k=60 **[Established]** (Cormack SIGIR’09; journal 0011); RQL naming/compile **[Hypothesis]** |
 | `Fuse_condorcet` | E* → E | Pairwise-majority sort **[Established]** (Montague–Aslam CIKM’02; journal 0018); RQL naming/compile **[Hypothesis]** |
 | `Fuse_linear(α)` / `Fuse_ltr` | E* → E | CC/TM2C2 normalised convex combo **[Established]** mechanism (Bruch TOIS/arXiv:2210.11934; journal 0016); LTR + RQL packaging/policy **[Hypothesis]**; AUTHOR NDCG **[Provisional]** |
-| `Diversify_mmr` | E → E | |
+| `Diversify_mmr(λ)` | E → E | MMR formula + λ extremes **[Established]** (Carbonell SIGIR’98; journal 0033); RQL naming/compile **[Hypothesis]** |
 | `Rerank_m` | E → E | |
 | `Expand` | E → E | Parent/window |
 | `Rewrite` / `Rewrite_hyde` | q → q* (or emb*) | HyDE hyp-doc→encode→doc–doc MIPS **[Established]** mechanism (Gao ACL’23; journal 0032); RQL `REWRITE HYDE` packaging **[Hypothesis]**; multi-query sibling **[Provisional]** |

@@ -1,21 +1,24 @@
 \section{Reproducibility checklist}
 \label{sec:repro}
 
-\begin{enumerate}
+\noindent\textit{Companion to Section~\ref{sec:eval}: artifact layout for measured plumbing and for future P0/P1 runs.}
+
+\begin{enumerate}[leftmargin=*]
   \item Scripts and configs under \texttt{experiments/} with pinned dependency files when benchmarks are added.
-  \item Dataset license notes and download digests (\textbf{HUMAN\_TODO}: \texttt{experiments/protocols/02-datasets.md}).
+  \item Dataset license notes and download digests (\textbf{HUMAN\_TODO}: \path{experiments/protocols/02-datasets.md}).
   \item Seeded RNGs where stochasticity exists; report ANN library versions in \texttt{ENV.txt}.
   \item Store logical/physical plan JSON beside metrics (no orphaned scores).
-  \item Separate AUTHOR\_CLAIM citations from REPRODUCED runs in result tables.
+  \item Separate \authoronly{} citations from REPRODUCED runs in result tables.
   \item Research notes: journal + OKF-shaped bundles for paper reads.
-  \item Hand-off list for compute/credentials beyond the agent sandbox: \texttt{experiments/HUMAN\_TODOS.md}.
+  \item Hand-off list for compute/credentials beyond the agent sandbox: \path{experiments/HUMAN_TODOS.md}.
+  \item Offline E2E validation log: \path{experiments/results/e2e/run_validate.txt} (12/12 toy; \texttt{notExecuted}).
 \end{enumerate}
 
 \subsection{Colab synthetic FANNS smoke (in-repo, not P0)}
 \label{sec:repro-colab-synth}
 Run id \texttt{colab\_synth\_20260916\_233628} (Europe/Dublin wall clock aligned with journal~0029):
-\begin{itemize}
-  \item Path: \texttt{experiments/results/fanns/colab\_synth\_20260916\_233628/} (\texttt{metrics.json}, \texttt{ENV.txt}, \texttt{plans/}).
+\begin{itemize}[leftmargin=*]
+  \item Path: \path{experiments/results/fanns/colab_synth_20260916_233628/} (\texttt{metrics.json}, \texttt{ENV.txt}, \texttt{plans/}).
   \item Colab notebook URL registry: \texttt{experiments/colab/LINKS.md}.
   \item Backend: \texttt{faiss-gpu}~1.15.1 on T4; synthetic Gaussian vectors only.
   \item \textbf{What it supports:} harness wiring and a qualitative PRE$\ll$POST latency/QPS shape on this synthetic setup.

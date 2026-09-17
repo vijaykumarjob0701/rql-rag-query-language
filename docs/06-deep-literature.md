@@ -125,10 +125,13 @@ Companion: [`05-brainstorm-adjacent.md`](05-brainstorm-adjacent.md) · synthesis
 - **AUTHOR-only:** Tables 1–4 DL/BEIR/Mr.TyDi — unreproduced.
 - **Implication for RQL (Hypothesis packaging):** `REWRITE HYDE` / algebra `Rewrite_hyde` as costed plan node feeding `EMBED`/`Search_dense` (examples/10); multi-sample mean optional.
 
-### 17. MMR — Carbonell & Goldstein (SIGIR 1998)
-- **URL:** https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf
-- **Takeaway:** Diversity–relevance tradeoff via λ-parameterized marginal relevance.
-- **Implication for RQL:** Keep `DIVERSIFY MMR` as algebraic post-op (already in v1 proposal; now historically anchored).
+### 17. MMR — Carbonell & Goldstein (SIGIR 1998) — **multimodal Pass 1–5 done (journal 0033)**
+- **Venue/ID:** SIGIR 1998, pp. 335–336; DOI 10.1145/290941.291025
+- **URL:** https://www.cs.cmu.edu/~jgc/publication/MMR_DiversityBased_Reranking_SIGIR_1998.pdf · https://doi.org/10.1145/290941.291025
+- **OKF:** `knowledge/reads/mmr-carbonell-sigir98/`
+- **Takeaway (Established formula):** MMR def = Arg max_{Di ∈ R∖S} [λ Sim₁(Di,Q) − (1−λ) max_{Dj ∈ S} Sim₂(Di,Dj)]; λ=1 relevance-only; λ=0 max diversity.
+- **AUTHOR-only:** Table 1 sentence precision; SUMMAC F=.73; n=5 pilot — unreproduced.
+- **Implication for RQL (Hypothesis packaging):** `DIVERSIFY MMR` / algebra `Diversify_mmr(λ)` as post-retrieve/post-fuse diversity node (not a Fuse op).
 
 ---
 

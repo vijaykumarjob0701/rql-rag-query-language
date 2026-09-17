@@ -1,20 +1,46 @@
-\section{Evaluation plan (no fabricated results)}
+\section{Evaluation: what we measured vs what remains}
 \label{sec:eval}
 
-\noindent\textit{This section specifies \textbf{what we will measure}, not results we have not run.}
+\noindent\textit{This section separates \textbf{feasibility evidence already on disk} from \textbf{citation-grade ANN/RAG work that is not claimed}.
+No fabricated metrics.}
 
-\subsection{Datasets (planned)}
-\begin{itemize}
-  \item Retrieval: BEIR/MS MARCO-style collections as available under license; synthetic metadata predicates for filter selectivity sweeps.
-  \item Filtered-ANN microbenchmarks aligned with published FANNS setups (e.g.\ SIFT-scale vectors with attribute predicates), following protocols from prior work such as ACORN~\citep{patel2024acorn}---\textbf{re-run}, do not copy tables.
+\subsection{What we measured (feasibility / plumbing)}
+\label{sec:eval-measured}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Deterministic unit tests (not IR benchmarks):}
+    RRF on fixed lists (\texttt{experiments/harness/test\_rrf\_fusion.py} $\rightarrow$ \texttt{experiments/results/rrf\_unit\_test.txt});
+    weighted linear/CC on fixed toy scores (\texttt{test\_linear\_fusion.py} $\rightarrow$ \texttt{experiments/results/linear\_fusion/});
+    MaxSim toy check (\texttt{test\_maxsim\_late.py});
+    filter-strategy chooser (\texttt{test\_filter\_strategy\_chooser.py}).
+  \item \textbf{Schema + compile stack:}
+    LogicalPlan/PhysicalPlan JSON Schema \texttt{0.1.0-draft} validated by \texttt{validate\_plans.py};
+    toy parser 4/4 (journal 0022);
+    planner stub 4 logical $\times$ 3 profiles $= 12/12$ (journal 0023);
+    adapter emit smoke hybrid-RRF + filtered-dense $\times$ 3 $= 6/6$ sketches (journal 0024);
+    offline E2E CLI 4 queries $\times$ 3 profiles $= \mathbf{12/12}$ schema-validated (\texttt{experiments/results/e2e/run\_validate.txt}; journal 0026).
+  \item \textbf{Colab synthetic FANNS PRE/POST smoke} (journal 0029--0030):
+    T4 GPU, \texttt{faiss-gpu}~1.15.1; $N{=}50{,}000$, $d{=}128$, seed~$42$; selectivities $\{0.01,0.05,0.1,0.5\}$;
+    artifacts under \texttt{experiments/results/fanns/colab\_synth\_20260916\_233628/}.
+    \textbf{Honest label:} plumbing + qualitative PRE vs POST latency/QPS \emph{shape} on synthetic data only.
+    \textbf{Not} P0; \textbf{not} SIFT1M; Recall@$10{=}1.0$ on this easy setup is \textbf{not} a citation-ready ANN quality claim.
 \end{itemize}
-\textbf{HUMAN\_TODO:} dataset download, licenses, and digests --- see \texttt{experiments/HUMAN\_TODOS.md} and \texttt{experiments/protocols/02-datasets.md}.
+Planned-run printer \texttt{print\_planned\_runs.py} emits \texttt{score=NOT\_RUN} only---by design.
 
-\subsection{Metrics}
+\subsection{What remains for citation-grade ANN / RAG}
+\label{sec:eval-remains}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{P0 --- large-set filtered ANN:} SIFT1M (or another licensed vector set) with ground-truth $k$NN; PRE/POST/ITERATIVE/(SUBGRAPH if available) sweeps; report recall@$k$ and latency with library versions in \texttt{ENV.txt}. Protocol: \texttt{experiments/protocols/01-fanns-microbench.md}; checklist: \texttt{experiments/PAUSE\_CHECKLIST.md}.
+  \item \textbf{P1 --- live adapters:} docker/smoke against real Qdrant, Elasticsearch/OpenSearch, and pgvector using emitted sketches; ACL fail-closed checks. Protocol~03.
+  \item \textbf{Datasets + judgments:} BEIR/MS MARCO-style collections under license; synthetic metadata predicates for selectivity sweeps; human or shared judgments for RAG end-to-end---none claimed here. Protocol~02; \texttt{experiments/HUMAN\_TODOS.md}.
+  \item \textbf{Cost-model validation:} measured selectivity/latency models for \texttt{AUTO} FilterExec---not implemented.
+\end{itemize}
+
+\subsection{Metrics (when P0/P1 exist)}
 Recall@$k$, nDCG@$k$, latency p50/p95, throughput (QPS) where applicable, \textbf{plan stability} (same RQL $\rightarrow$ same logical plan hash), and ACL violation count (must be zero).
+Separate \authoronly{} citations from \textbf{REPRODUCED} rows in any future result table.
 
-\subsection{Baselines}
-\begin{enumerate}
+\subsection{Baselines (planned)}
+\begin{enumerate}[leftmargin=*]
   \item Hand-written SDK glue (LangChain/LlamaIndex-style scripts).
   \item Vendor filter+hybrid APIs directly.
   \item pgvector SQL hybrid patterns.
@@ -24,22 +50,5 @@ Recall@$k$, nDCG@$k$, latency p50/p95, throughput (QPS) where applicable, \textb
 \subsection{Ablation matrix (planned)}
 Channels $\in\{$dense, bm25, both$\}$; fuse $\in\{$RRF, linear$\}$; filter mode $\in\{$PRE, POST, AUTO$\}$; rerank on/off; rewrite on/off.
 
-\subsection{What exists today (agent-run)}
-\begin{itemize}
-  \item Planned-run printer: \texttt{experiments/harness/print\_planned\_runs.py} (emits \texttt{score=NOT\_RUN} only).
-  \item Deterministic RRF unit test on fixed lists: \texttt{experiments/harness/test\_rrf\_fusion.py} $\rightarrow$ \texttt{experiments/results/rrf\_unit\_test.txt}.
-  \item Deterministic weighted linear/CC fusion on fixed toy scores: \texttt{experiments/harness/test\_linear\_fusion.py} $\rightarrow$ \texttt{experiments/results/linear\_fusion/unit\_test.txt} (not an IR benchmark).
-  \item Colab FANNS \emph{synthetic} microbench (T4 GPU, \texttt{faiss-gpu}~1.15.1; $N{=}50{,}000$, $d{=}128$, seed~$42$; selectivities $\{0.01,0.05,0.1,0.5\}$; modes PRE/POST): artifacts under \texttt{experiments/results/fanns/colab\_synth\_20260916\_233628/} (journal~0029; notebook URL in \texttt{experiments/colab/LINKS.md}).
-\end{itemize}
-
-\paragraph{Honest label for the Colab synthetic run.}
-This run is \textbf{plumbing + qualitative PRE vs POST latency/QPS shape on synthetic data} only.
-It is \textbf{not} P0: SIFT1M (or another licensed large vector set) with ground-truth $k$NN was \textbf{not} run.
-Recall@$10{=}1.0$ on this easy synthetic predicate setup is \textbf{not} a citation-ready ANN quality claim --- do not treat the numbers as paper results or as ACORN/FANNS table reproductions.
-See Appendix~\ref{sec:repro} for the artifact checklist.
-
-\textbf{No end-to-end RAG, BEIR, or human-judgment metrics are claimed. No licensed large-set FANNS P0 is claimed.}
-
-\subsection{What requires a human (Vijay)}
-GPU/CPU FANNS microbench, production/docker vector DB smokes, paid APIs, large datasets, and relevance judgments are listed as \textbf{HUMAN\_TODO} items with exact protocols and expected in-repo artifact paths in \texttt{experiments/HUMAN\_TODOS.md}.
-Those results should be pushed to this same GitHub repository when available.
+\textbf{No end-to-end RAG, BEIR, or human-judgment metrics are claimed.
+No licensed large-set FANNS P0 is claimed.}

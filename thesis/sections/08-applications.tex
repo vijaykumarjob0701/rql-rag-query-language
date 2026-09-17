@@ -18,6 +18,9 @@ Patterns below map to example programs in the companion repo (\texttt{examples/*
     RQL \texttt{REWRITE HYDE} / CTE packaging + token cost under \texttt{EXPLAIN} \hypothesis{}
     (\texttt{examples/10-hyde-rewrite-budget.rql}; compose with BlinkDB-inspired budgets, journal 0031).
     Generic multi-query / DMQR siblings remain \provisional{}.
+  \item \textbf{MMR diversify as plan node:}
+    $\mathrm{Diversify}_{mmr}(\lambda)$ (relevance--novelty greedy reorder)~\citep{carbonell1998mmr} \established{} as formula (journal 0033);
+    RQL \texttt{DIVERSIFY MMR} packaging \hypothesis{} (post-retrieve / post-fuse; not a fuse op).
   \item Parent expansion and bounded multi-hop graph retrieval \provisional{}.
   \item \textbf{Late-interaction search:}
     logical \(\mathrm{Search}_{late}\) with MaxSim-sum semantics~\citep{khattab2020colbert} \established{};

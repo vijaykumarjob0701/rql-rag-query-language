@@ -1,28 +1,59 @@
 \section{Introduction}
 \label{sec:intro}
 
-\subsection{Problem}
-Modern RAG stacks must retrieve \emph{evidence}---chunks, passages, entities, paths---under mixed modalities: dense vectors, sparse/BM25 channels, structured predicates (including ACLs), and increasingly late-interaction or graph expansion~\citep{lewis2020rag}.
+\subsection{Motivation}
+Modern RAG stacks must retrieve \emph{evidence}---chunks, passages, entities, paths---under mixed modalities: dense vectors, sparse/BM25 channels, structured predicates (including ACLs), and increasingly late-interaction or graph expansion~\citep{lewis2020rag} \established{}.
 Vector databases expose powerful but \textbf{non-portable} interfaces (JSON filters, GraphQL operators, SQL extensions, Redis commands, Cypher search).
-As a result, accuracy, latency, and reliability become properties of brittle Python glue rather than of inspectable plans.
+As a result, three operational properties leave the plan and hide in glue code:
 
-\subsection{Motivation (accuracy, latency, reliability)}
-\begin{description}
-  \item[Accuracy.] Hybrid fusion (e.g.\ reciprocal rank fusion~\citep{cormack2009rrf}), over-fetch+rerank, and multi-query rewriting improve recall only when stages are explicit and tunable.
-  \item[Latency.] Filter placement (pre vs.\ post vs.\ subgraph vs.\ specialised label graphs vs.\ iterator ANN) and ANN parameters dominate end-to-end cost~\citep{patel2024acorn,gollapudi2023filtered,zhang2023vbase}.
-  \item[Reliability.] Silent empty results, client-side ACL filtering, and irreproducible \texttt{efSearch} folklore are operational failures; plans with \texttt{EXPLAIN} and mandatory predicate pushdown targets are the remedy \hypothesis{}.
+\begin{description}[leftmargin=1.6cm,style=nextline]
+  \item[Accuracy.] Hybrid fusion (e.g.\ reciprocal rank fusion~\citep{cormack2009rrf}), over-fetch+rerank, and multi-query rewriting improve recall only when stages are explicit and tunable \established{} as IR practice; RQL makes them plan nodes \hypothesis{}.
+  \item[Latency.] Filter placement (pre vs.\ post vs.\ subgraph vs.\ specialised label graphs vs.\ iterator ANN) and ANN parameters dominate end-to-end cost~\citep{patel2024acorn,gollapudi2023filtered,zhang2023vbase,lin2025fanns} \established{}.
+  \item[Reliability.] Silent empty results, client-side ACL filtering, and irreproducible \texttt{efSearch} folklore are operational failures; plans with \texttt{EXPLAIN} and mandatory predicate pushdown targets are the proposed remedy \hypothesis{}.
 \end{description}
 
-\subsection{Thesis statement}
-\label{sec:thesis-stmt}
-\textbf{RQL is a portable IR for retrieval plans}---an algebra over scored multisets of evidence together with a Cascades/Calcite-style physical planner that chooses filtered-ANN and fusion strategies under explicit recall/latency/ACL contracts, then compiles via polystore-like shims to concrete engines.
-The textual DSL is a frontend, not the contribution's centre of mass \hypothesis{}.
+\subsection{Idea in one paragraph}
+\textbf{RQL is a portable IR for retrieval plans}---an algebra over scored multisets of evidence together with a Cascades/Calcite-inspired physical planner that chooses filtered-ANN and fusion strategies under explicit recall/latency/ACL contracts, then compiles via polystore-like shims to concrete engines~\citep{begoli2018calcite,substrait,duggan2015bigdawg} \hypothesis{} (adjacency; not an embedding of those systems).
+The textual DSL is a frontend, not the contribution's centre of mass.
 
-\subsection{Contributions (draft)}
-\begin{enumerate}
-  \item A clear problem formulation for portable retrieval plans (Section~\ref{sec:problem}).
-  \item A hypothesized retrieval algebra and physical operator set (Sections~\ref{sec:algebra}--\ref{sec:optimizer}) \hypothesis{}.
-  \item Compilation/adapter doctrine inspired by Substrait and polystores (Section~\ref{sec:compilation}) \hypothesis{}.
-  \item An evaluation and reproducibility \emph{plan} without fabricated metrics (Section~\ref{sec:eval}).
-  \item Careful related-work positioning, with ACORN, VBASE, and Filtered-DiskANN multimodally re-read (Section~\ref{sec:related}).
+\subsection{Contributions}
+\label{sec:contributions}
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Problem formulation} for portable, ACL-safe, budget-aware retrieval plans (Section~\ref{sec:problem}).
+  \item \textbf{Hypothesized retrieval algebra and physical operator set} that packages established mechanisms (RRF, Condorcet, linear/CC, MaxSim, PLAID/MUVERA, HyDE, MMR, FANNS FilterExec modes, BlinkDB-inspired budgets) as one IR (Sections~\ref{sec:algebra}--\ref{sec:optimizer}) \hypothesis{}; prior mechanisms labelled \established{} / \authoronly{} where appropriate.
+  \item \textbf{Compilation doctrine + offline prototype:} docs-only vendor matrix (journal 0020), LogicalPlan/PhysicalPlan JSON Schema freeze \texttt{0.1.0-draft} (journal 0021), toy parser / planner / emit / E2E CLI (journals 0022--0024, 0026) with 12/12 schema-validated toy runs (Section~\ref{sec:compilation}) \hypothesis{}.
+  \item \textbf{Related-work positioning} with multimodal re-reads of ACORN, VBASE, Filtered-DiskANN, FANNS survey, RRF/Condorcet/Bruch/Chen, ColBERT/PLAID/MUVERA, HyDE, MMR, BlinkDB, and Substrait/Calcite adjacency (Section~\ref{sec:related}).
+  \item \textbf{Honest evaluation split:} unit/E2E/plumbing measurements vs remaining P0 (SIFT1M), P1 (live adapters), and judgment-bearing RAG work (Section~\ref{sec:eval})---no fabricated metrics.
 \end{enumerate}
+
+\subsection{Reader's guide: how to implement / run RQL today}
+\label{sec:readers-guide}
+If you are an engineer who wants to \emph{touch} the stack before reading the algebra:
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Skim the idea:} this section + Figure~\ref{fig:e2e-pipeline} (end-to-end offline pipeline) and Figure~\ref{fig:stack} (plan layers).
+  \item \textbf{Hello RQL (offline, no vector DB):}
+  \begin{verbatim}
+cd experiments/harness
+python rql_pipeline.py \
+  --rql ../../examples/toy/01-hybrid-rrf.rql \
+  --profile qdrant --validate \
+  --out ../../experiments/results/e2e/my_run
+  \end{verbatim}
+  Expect LogicalPlan JSON, PhysicalPlan JSON, and a vendor request \emph{sketch} marked \texttt{notExecuted}.
+  Full toy matrix: four queries $\times$ three profiles $= 12/12$ (see \texttt{experiments/results/e2e/run\_validate.txt}).
+  \item \textbf{Schemas:} \texttt{schemas/logical-plan.schema.json}, \texttt{schemas/physical-plan.schema.json} (\texttt{0.1.0-draft}).
+  \item \textbf{What is \emph{not} ready:} live Qdrant/ES/pgvector smoke, SIFT1M FANNS P0, BEIR/RAG with judgments---see Section~\ref{sec:eval} and \texttt{experiments/HUMAN\_TODOS.md}.
+\end{enumerate}
+More detail and file paths appear in Section~\ref{sec:hello-rql}.
+
+\subsection{Paper roadmap}
+Section~\ref{sec:background} recalls ANN, hybrid fusion, late interaction, and RAG stages.
+Section~\ref{sec:related} positions RQL against vector-DB APIs, FANNS, fusion, late interaction, IR languages, and portable-plan systems.
+Section~\ref{sec:problem} states requirements and non-goals.
+Sections~\ref{sec:algebra}--\ref{sec:optimizer} present the algebra and physical planning (plain language first, then formalism).
+Section~\ref{sec:compilation} covers adapters, schemas, and the offline prototype.
+Section~\ref{sec:apps} maps common RAG patterns to example \texttt{.rql} files.
+Section~\ref{sec:eval} separates measured plumbing from citation-grade remaining work.
+Section~\ref{sec:threats} lists limitations; Section~\ref{sec:conclusion} gives actionable next steps.
+Appendix~\ref{sec:repro} is the reproducibility checklist.

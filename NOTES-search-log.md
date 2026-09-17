@@ -359,3 +359,15 @@ Queued (still open): **vendor multi-vector / weighted-linear / hybrid API matrix
 
 **Honesty:** No reproduced IR metrics. No push. Next optional: toy parser `REWRITE HYDE` / WITH CTE; Multi-HyDE/DMQR; Asai instruction-aware.
 
+## 2026-09-17 ~01:20 IST — MMR (Carbonell & Goldstein) multimodal Pass 1–5
+
+| Query / action | Result |
+|----------------|--------|
+| `Carbonell Goldstein MMR SIGIR 1998 Diversity-Based Reranking PDF` | CMU PDF; DOI 10.1145/290941.291025; SIGIR’98 pp. 335–336 |
+| Fetch CMU `MMR_DiversityBased_Reranking_SIGIR_1998.pdf` | **2 pp**; extract `tooling/scripts/extract_out/mmr_carbonell_sigir98/` + page_renders |
+| Pass 1–5 | MMR formula + λ extremes **Established**; RQL `DIVERSIFY MMR` **Hypothesis**; Table 1 / SUMMAC AUTHOR-only |
+| Journal / OKF | `0033-mmr-carbonell-multimodal-reread.md`; `knowledge/reads/mmr-carbonell-sigir98/` |
+| Thesis fold | Brief weave into clarity-polished draft; bib `carbonell1998mmr`; rebuild PDF |
+
+**Honesty:** No reproduced IR/summary metrics. No push. Next optional: toy parser `DIVERSIFY MMR`; modern neural-MMR / xQuAD cite-chase; Human P0 FANNS unchanged.
+

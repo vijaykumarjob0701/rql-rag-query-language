@@ -1,12 +1,17 @@
 \section{Problem formulation}
 \label{sec:problem}
 
-\subsection{Setting}
+\subsection{Setting (plain language)}
+A RAG retrieve path needs a \emph{plan}: which channels to search, how to apply mandatory security filters, how to fuse ranked lists, whether to rewrite or rerank, and which backend knobs to turn---all under latency and (approximate) recall budgets.
+Today that plan usually lives only in Python.
+We want one logical description that can compile to Qdrant, Elasticsearch/OpenSearch, pgvector, and kin, with explicit fallbacks when a backend lacks a feature \hypothesis{}.
+
+\subsection{Formal setting}
 Let collections store entities with payloads, optional graph links, and one or more retrieval channels (dense vectors, lexical fields, multi-vectors).
 A \textbf{retrieval plan} consumes a user/agent query (text and/or vectors), mandatory security predicates, and optional budgets, and returns a ranked evidence multiset.
 
 \subsection{Requirements}
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
   \item \textbf{Portability:} one logical plan maps to multiple backends via adapters.
   \item \textbf{Filter correctness:} ACL/tenant predicates are hard constraints (fail closed).
   \item \textbf{Explicit approximation:} recall/latency targets are first-class, not hidden knobs.
@@ -15,4 +20,4 @@ A \textbf{retrieval plan} consumes a user/agent query (text and/or vectors), man
 \end{enumerate}
 
 \subsection{Non-goals (this draft)}
-Identical numeric recall across ANN implementations; full DDL standardisation; replacing embedding model APIs; unreproduced SOTA claims.
+Identical numeric recall across ANN implementations; full DDL standardisation; replacing embedding model APIs; unreproduced SOTA claims; claiming NeurIPS/VLDB/arXiv acceptance on the strength of the offline prototype alone.

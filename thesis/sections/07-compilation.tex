@@ -13,6 +13,34 @@ Vendor API cells below are \established{} from official docs (2026-09-16 survey)
 
 A prototype toy parser (journal 0022; \S\ref{sec:toy-parser}) implements layer~1 for a schema-aligned subset only; the journal~0023 planner stub (\S\ref{sec:planner-stub-compile}) implements a rule-based layer~2; the journal~0024 emit stub (\S\ref{sec:adapter-emit-stub}) sketches layer~3 request bodies; an offline end-to-end CLI (journal 0026; \S\ref{sec:e2e-pipeline}) glues layers~1--3 over toy examples---Hypothesis packaging, not a production compiler or live smoke.
 
+\begin{figure}[t]
+\centering
+\input{figures/e2e-pipeline.tikz}
+\caption{Offline end-to-end prototype pipeline (journals 0022--0024, 0026).
+All artifacts are files on disk; no live vector-database I/O.
+Hypothesis packaging; schema validation is a structural check only.}
+\label{fig:e2e-pipeline}
+\end{figure}
+
+\subsection{Hello RQL walkthrough (implementer path)}
+\label{sec:hello-rql}
+Paths are relative to the repository root \texttt{rql-rag-query-language/}.
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Input:} \texttt{examples/toy/01-hybrid-rrf.rql} (Figure~\ref{fig:hello-rql}).
+  \item \textbf{Parse:} \texttt{experiments/harness/parse\_rql.py parse examples/toy/01-hybrid-rrf.rql --validate}
+        $\rightarrow$ LogicalPlan JSON conforming to \texttt{schemas/logical-plan.schema.json}.
+  \item \textbf{Plan:} \texttt{experiments/harness/plan\_rql.py --profile qdrant \ldots}
+        $\rightarrow$ PhysicalPlan JSON (\texttt{FusionExec} with native RRF on the Qdrant profile).
+  \item \textbf{Emit:} \texttt{experiments/harness/emit\_rql.py \ldots}
+        $\rightarrow$ Qdrant Query API--shaped JSON sketch labelled \texttt{notExecuted}.
+  \item \textbf{One-shot E2E:} \texttt{experiments/harness/rql\_pipeline.py} over \texttt{examples/toy/*.rql}
+        $\times$ \{\texttt{qdrant},\texttt{elasticsearch},\texttt{pgvector}\} $= 12/12$ validated
+        (\texttt{experiments/results/e2e/run\_validate.txt}).
+\end{enumerate}
+Unit tests live beside the harness (\texttt{test\_rql\_parser.py}, \texttt{test\_rql\_planner.py}, \texttt{test\_rql\_adapters.py}, \texttt{test\_rrf\_fusion.py}, \ldots).
+None of these steps requires a running vector database \hypothesis{}.
+
 \subsection{Established adapter surface survey (docs-only, Sep 2026)}
 \label{sec:vendor-matrix}
 A docs-only survey of public vendor APIs (journal 0020; companion package \texttt{docs/09-vendor-api-matrix.md}; OKF \texttt{knowledge/reads/vendor-api-matrix-2026-09/}) records, without live cluster calls:

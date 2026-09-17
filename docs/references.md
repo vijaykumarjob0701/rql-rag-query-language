@@ -102,7 +102,7 @@ Research date: **2026-09-16**. Prefer primary product docs and dated 2024–2026
 74. https://arxiv.org/abs/2205.09707 — PLAID late-interaction engine (2022)  
 75. https://arxiv.org/abs/2405.19504 — MUVERA multi-vector via FDEs (2024)  
 76. https://aclanthology.org/2023.acl-long.99/ · DOI 10.18653/v1/2023.acl-long.99 · arXiv:2212.10496 — HyDE (Gao et al., ACL 2023; multimodal journal 0032)  
-77. https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf — MMR (Carbonell & Goldstein, 1998)  
+77. https://www.cs.cmu.edu/~jgc/publication/MMR_DiversityBased_Reranking_SIGIR_1998.pdf — MMR (Carbonell & Goldstein, SIGIR 1998; DOI 10.1145/290941.291025; journal 0033 Pass 1–5)  
 78. https://arxiv.org/abs/2411.13154 — DMQR-RAG multi-query rewriting (2024)  
 
 ### Classic IR languages & standards

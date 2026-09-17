@@ -1,14 +1,20 @@
 \begin{abstract}
 Retrieval-augmented generation (RAG) systems compose embedding search, lexical retrieval, metadata and ACL filters, hybrid fusion, reranking, and sometimes graph or multi-hop expansion.
-Today those stages are usually glued together in application code against vendor-specific vector-database APIs.
-This draft proposes \textbf{RQL (Retrieval Query Language)} not merely as ``SQL for vectors'', but as a \textbf{portable intermediate representation for retrieval plans}: a small algebra over scored evidence, plus cost-based physical planning under recall, latency, and ACL constraints, compiling through adapters to heterogeneous backends.
+In practice those stages are glued together in application code against vendor-specific vector-database APIs, so accuracy, latency, and reliability become properties of brittle scripts rather than of inspectable plans.
 
-We separate \established{} survey material from \hypothesis{} original design and from \provisional{} literature pending multimodal re-read.
-Careful multimodal passes over the FANNS survey of Lin et al.~\citep{lin2025fanns} (VSP/VJP/SJP/SSP; A1--A17), ACORN~\citep{patel2024acorn}, VBASE~\citep{zhang2023vbase}, and Filtered-DiskANN~\citep{gollapudi2023filtered} ground filtered-ANN physical strategies (\texttt{PRE}/\texttt{POST}/\texttt{SUBGRAPH}/\texttt{ITERATIVE}/\texttt{SPECIALIZED}/\texttt{PARTITION}/\texttt{ROUTER}); Cormack et al.~\citep{cormack2009rrf} grounds \(\mathrm{Fuse}_{rrf}\); Montague and Aslam~\citep{montague2002condorcet} ground \(\mathrm{Fuse}_{condorcet}\) (pairwise-majority sort); Bruch et al.~\citep{bruch2023fusion} ground \(\mathrm{Fuse}_{linear}\) / CC--vs--RRF delineation; Chen et al.~\citep{chen2022ood} ground the zero-shot RRF-vs-linear-interp critique that resolves the Bruch disagreement as a setup conflict; ColBERT~\citep{khattab2020colbert} grounds MaxSim/late-interaction scoring for \(\mathrm{Search}_{late}\); PLAID~\citep{santhanam2022plaid} grounds centroid-interaction / multi-stage pruning for late-interaction engines; MUVERA~\citep{jayaram2024muvera} grounds an FDE$\rightarrow$MIPS$+$MaxSim-rerank physical rewrite (journals 0011--0014, 0016--0019).
-A docs-only vendor API matrix (journal 0020) \established{} the adapter surfaces RQL must compile to.
-A draft LogicalPlan/PhysicalPlan JSON Schema (\texttt{0.1.0-draft}; journal 0021) freezes that IR as \hypothesis{} packaging---not a standard; a toy textual RQL parser (journal 0022) prototypes the frontend onto that IR for a tiny subset; a deterministic Logical$\rightarrow$Physical planner stub (journal 0023) applies docs-derived capability profiles to emit schema-valid PhysicalPlans; an adapter emit stub (journal 0024) turns a subset of those plans into docs-shaped Qdrant/ES/pgvector request sketches without live DB calls; a Substrait/Calcite adjacency pass (journal 0025) \established{} portable-plan and optimizer-framework facts while keeping RQL packaging \hypothesis{} (inspired-by, not an implementation); an offline end-to-end CLI (journal 0026) glues parse$\rightarrow$plan$\rightarrow$emit over toy examples without live DB calls.
-BlinkDB~\citep{agarwal2013blinkdb} (journal~0031) \established{} dual error/time AQP contracts + ELP sample selection as the literature prior for RQL's \hypothesis{} \texttt{RECALL}/\texttt{LATENCY} budget packaging (not a claim that aggregate $\epsilon$ equals ANN recall@$k$).
-HyDE~\citep{gao2023hyde} (journal~0032) \established{} hypothetical-document generation + contrastive encode + doc--doc MIPS as the literature prior for RQL's \hypothesis{} $\mathrm{Rewrite}$ / \texttt{REWRITE HYDE} packaging (AUTHOR DL/BEIR/Mr.TyDi tables unreproduced).
-We define an evaluation \emph{plan} and reproducibility layout; a Colab synthetic FANNS PRE/POST smoke (journal~0029--0030) is cited only as plumbing + qualitative latency shape---\textbf{not} P0 and \textbf{not} citation-ready ANN quality.
-We do \textbf{not} report unreproduced large-set FANNS or RAG benchmark scores.
+This technical report proposes \textbf{RQL (Retrieval Query Language)} as a \textbf{portable intermediate representation for retrieval plans}: a small algebra over scored evidence, cost-aware physical planning under recall, latency, and ACL constraints, and compilation through adapters to heterogeneous backends.
+The textual DSL is a convenient frontend; the centre of mass is the LogicalPlan\,/\,PhysicalPlan IR and the adapter doctrine \hypothesis{}.
+
+\textbf{Contributions.}
+(1)~A problem formulation for portable retrieval plans.
+(2)~An algebra and physical operator set that \emph{packages} established IR/DB mechanisms (RRF, Condorcet-fuse, linear/CC fusion, ColBERT MaxSim, PLAID/MUVERA late-interaction ladders, HyDE rewrite, MMR diversify, FANNS filter strategies, BlinkDB-style budgets) without claiming unreproduced author metrics.
+(3)~Draft JSON Schemas (\texttt{0.1.0-draft}), a docs-only vendor API matrix, and an offline prototype stack (toy parser $\rightarrow$ physical planner $\rightarrow$ emit sketches $\rightarrow$ E2E CLI; 12/12 schema-validated toy runs).
+(4)~Related-work positioning with multimodal re-reads of the key priors.
+(5)~An honest evaluation split: what we measured vs what remains for citation-grade ANN/RAG.
+
+\textbf{Status.}
+We report unit tests, schema validation, and offline emit sketches as \emph{feasibility} evidence.
+A Colab synthetic FANNS PRE/POST smoke is plumbing only---\textbf{not} P0 and \textbf{not} citation-ready ANN quality.
+We do \textbf{not} report unreproduced large-set FANNS, BEIR, or RAG end-to-end scores.
+Claims throughout are labelled \established{}, \hypothesis{}, \provisional{}, or \authoronly{}.
 \end{abstract}

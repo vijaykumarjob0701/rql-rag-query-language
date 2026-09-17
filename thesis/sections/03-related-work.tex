@@ -1,6 +1,9 @@
 \section{Related work}
 \label{sec:related}
 
+\noindent\textit{We separate \established{} mechanisms and survey structure from \hypothesis{} RQL packaging and from \authoronly{} unreproduced empirics.
+Skim the subsection titles if you already know FANNS/RRF/ColBERT; the multimodal notes live under \texttt{journal/} and \texttt{knowledge/reads/}.}
+
 \subsection{Vector database interfaces}
 Commercial and OSS systems expose vendor-specific query surfaces (metadata filters, hybrid search APIs, SQL extensions such as pgvector).
 A \textbf{docs-only adapter-surface survey} (2026-09-16; journal 0020; \texttt{docs/09-vendor-api-matrix.md}) tabulates filter DSLs, filter$+$ANN composition (PRE/POST/iterative/UNKNOWN), hybrid/BM25$+$dense, RRF and weighted fusion primitives, multi-vector/late interaction, query surfaces, and EXPLAIN/plan visibility for Qdrant, Elasticsearch/OpenSearch, Weaviate, Milvus, and pgvector (optional Pinecone/Redis) \established{} as a \emph{documentation survey}---not a live bake-off.
@@ -70,6 +73,13 @@ Gao et al.~\citep{gao2023hyde} factorize fully zero-shot dense retrieval \emph{w
 Query--document similarity is not explicitly trained; the dense bottleneck is argued to filter hallucinations.
 Pass~1--5 notes (journal 0032; \texttt{knowledge/reads/hyde-2212.10496/}) treat the \textbf{hyp-doc $\rightarrow$ encode $\rightarrow$ doc--doc retrieve mechanism} as \established{}; author DL19/20, BEIR, and Mr.TyDi tables remain unreproduced \provisional{}.
 RQL's \texttt{REWRITE HYDE} / $\mathrm{Rewrite}$ surface is \hypothesis{} packaging of that pipeline (token-costed plan node feeding dense search), not a claim of reproduced IR gains.
+
+\paragraph{MMR (multimodal re-read).}
+Carbonell and Goldstein~\citep{carbonell1998mmr} define Maximal Marginal Relevance as greedy selection
+$\arg\max_{D_i\in R\setminus S}[\lambda\,\mathrm{Sim}_1(D_i,Q)-(1-\lambda)\max_{D_j\in S}\mathrm{Sim}_2(D_i,D_j)]$
+with $\lambda\in[0,1]$ trading relevance ($\lambda{=}1$) against novelty/diversity ($\lambda{=}0$).
+Pass~1--5 notes (journal 0033; \texttt{knowledge/reads/mmr-carbonell-sigir98/}) treat the \textbf{MMR formula + $\lambda$ extremes} as \established{}; author Table~1 sentence precision and SUMMAC F-scores remain unreproduced \provisional{}.
+RQL's \texttt{DIVERSIFY MMR} / $\mathrm{Diversify}_{mmr}$ surface is \hypothesis{} packaging of that formula (post-retrieve diversity node)---distinct from multi-channel fusion---and not a claim of reproduced summary/IR gains.
 
 \subsection{IR query languages}
 Classical IR languages (Indri, Galago, CQL/SRU) treat ranking as an operator algebra~\citep{metzler2004indri} \provisional{} (URL-verified references; deep re-read pending).

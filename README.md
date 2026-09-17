@@ -50,7 +50,7 @@ New to this repo on GitHub? Start with **[`journal/`](journal/)** and read entri
 | [`journal/0014-plaid-multimodal-reread.md`](journal/0014-plaid-multimodal-reread.md) | PLAID Pass 1–5 (centroid interaction Established) |
 | [`journal/0015-next-bruch-or-human-note.md`](journal/0015-next-bruch-or-human-note.md) | Hand-off seed (not Pass 1–5) |
 | [`journal/0016-bruch-fusion-multimodal-reread.md`](journal/0016-bruch-fusion-multimodal-reread.md) | Bruch CC/TM2C2 Pass 1–5 (Fuse_linear Established) |
-| … | See [`journal/README.md`](journal/README.md) for 0017–0027 (… Substrait/Calcite, **E2E CLI**, **human P0 pause checklist**) |
+| … | See [`journal/README.md`](journal/README.md) for 0017–**0033** (… Substrait/Calcite, E2E CLI, Colab synth, **BlinkDB budgets**, **HyDE rewrite**, **MMR diversify**) |
 
 Also: [`CHANGELOG.md`](CHANGELOG.md) for dated increments.
 
@@ -102,7 +102,7 @@ After the v2 breadth pass we **slowed down**: strategy and multimodal reading be
 
 v1 answered “what query surfaces exist on vector DBs?” v2 asks the transformer-style question: **what adjacent fields already solved pieces of this problem?**
 
-We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DBs, BlinkDB budgets, Calcite/Cascades, BigDAWG polystores, Substrait, Datalog, filtered ANN, ColBERT/MUVERA, GraphRAG, Lara/SystemDS, HyDE, provenance, VSS joins, learned FANNS planners, …), searched primary literature (breadth-first; **not yet** full multimodal re-read), and *provisionally* re-derived RQL as:
+We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DBs, BlinkDB budgets, Calcite/Cascades, BigDAWG polystores, Substrait, Datalog, filtered ANN, ColBERT/MUVERA, GraphRAG, Lara/SystemDS, HyDE, provenance, VSS joins, learned FANNS planners, …), searched primary literature (breadth-first; multimodal re-reads ongoing — HyDE done in journal 0032; MMR done in journal 0033), and *provisionally* re-derived RQL as:
 
 > a **retrieval algebra** over scored evidence + a **cost-based physical planner** for filter/ANN/fusion/late-interact strategies, compiled via **shims** to many backends — textual RQL is the frontend, not the product.
 

@@ -1,4 +1,23 @@
+## 2026-09-17 ~01:20 IST — MMR multimodal Pass 1–5 (Diversify_mmr / DIVERSIFY MMR)
+
+- Completed Pass 1–5 on **MMR** (Carbonell & Goldstein, SIGIR’98, **2 pp**); journal `0033`; OKF `knowledge/reads/mmr-carbonell-sigir98/`.
+- PDF: CMU author copy; DOI 10.1145/290941.291025; pages 335–336; extract `mmr_carbonell_sigir98/` + page_renders 01–02.
+- **Established (formula):** λ·Sim₁(Di,Q) − (1−λ)·max Sim₂(Di,Dj∈S); λ=1 relevance; λ=0 max diversity.
+- **Hypothesis:** RQL `Diversify_mmr(λ)` / `DIVERSIFY MMR` packaging (post-retrieve; ≠ Fuse).
+- **AUTHOR-only:** Table 1 sentence precision; SUMMAC F=.73; n=5 pilot — unreproduced.
+- Brief thesis weave into polished draft: §02/§03/§05/§08 + abstract/intro/conclusion/threats; bib `carbonell1998mmr`; rebuild `main.pdf`.
+- Meta: docs/06–08, docs/references, NOTES, journal/knowledge/root indexes.
+- Integrity: **no** fake metrics; **no push.**
+
 # Changelog
+
+## 2026-09-17 ~01:15 IST — Thesis publishability / clarity polish
+
+- Major `thesis/` revision for arXiv-style **proposal + prototype** framing (not venue-complete).
+- Stronger abstract; intro with 5 contributions + Reader's guide; plain-language before algebra/optimizer formalisms.
+- New E2E pipeline tikz + hello RQL listing; §09 measured vs remains; sharpened limitations; actionable conclusion.
+- Honesty: added AUTHOR-only macro; no fabricated metrics; Colab synth still plumbing-only.
+- Journal `0034`; `thesis/README.md` status **arXiv-ready draft pending P0**. Rebuild `main.pdf`. **No push.**
 
 ## 2026-09-17 ~01:10 IST — HyDE multimodal Pass 1–5 (Rewrite / REWRITE HYDE)
 

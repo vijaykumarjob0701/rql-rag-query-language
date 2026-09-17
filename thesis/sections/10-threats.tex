@@ -1,9 +1,27 @@
-\section{Threats to validity}
+\section{Limitations and threats to validity}
 \label{sec:threats}
 
-\begin{itemize}
-  \item \textbf{Literature coverage:} only ACORN has completed multimodal Pass~1--5 in-repo; other citations remain \provisional{}.
-  \item \textbf{ANN nondeterminism:} recall is implementation-dependent; portable IR cannot claim bit-identical results.
-  \item \textbf{Adapter impedance:} not all backends expose subgraph or hybrid fusion; shims may hide costs.
-  \item \textbf{Optimism bias:} algebra elegance does not guarantee planner quality without measured cost models.
+\noindent\textit{Sharpened for a technical-report audience: what can go wrong if a reader over-reads this draft.}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Prototype $\neq$ production compiler.}
+    The offline parse/plan/emit/E2E path is a Hypothesis existence proof (12/12 toy schema validations).
+    It is not Cascades cost-based optimisation, not Substrait wire-compatible, and not load-tested.
+  \item \textbf{Literature coverage.}
+    Multimodal Pass~1--5 notes exist for ACORN, VBASE, Filtered-DiskANN, FANNS survey, RRF, Condorcet, Bruch, Chen, ColBERT, PLAID, MUVERA, HyDE, MMR, BlinkDB, and Substrait/Calcite adjacency (journals 0006, 0009--0014, 0016--0019, 0025, 0031--0033).
+    Other citations (Indri, BigDAWG, some vendor corners) remain \provisional{}.
+    Author empiric tables throughout remain \authoronly{} / unreproduced.
+  \item \textbf{ANN nondeterminism.}
+    Recall is implementation- and parameter-dependent; a portable IR cannot claim bit-identical results across HNSW libraries or vendor builds \established{} as a systems fact.
+  \item \textbf{Adapter impedance.}
+    Not all backends expose subgraph search, native RRF, late interaction, or EXPLAIN.
+    Client shims may hide latency and---if mis-marked---ACL risk; capability negotiation must fail closed \hypothesis{}.
+  \item \textbf{Docs-only vendor matrix.}
+    Journal 0020 cells are from public documentation (Sep~2026), not live cluster probes; APIs drift.
+  \item \textbf{Synthetic FANNS is not P0.}
+    Colab $N{=}50$k Gaussian smoke must not be cited as filtered-ANN quality or as an ACORN/FANNS table reproduction.
+  \item \textbf{Optimism bias.}
+    Algebra elegance and schema-valid plans do not guarantee planner quality without measured cost models and workloads.
+  \item \textbf{External validity for RAG.}
+    No generator-in-the-loop evaluation, no faithfulness/citation metrics, and no production A/B evidence are claimed.
 \end{itemize}

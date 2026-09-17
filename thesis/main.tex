@@ -14,6 +14,9 @@
 \usepackage{microtype}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{enumitem}
 
 \hypersetup{
   colorlinks=true,
@@ -22,14 +25,29 @@
   urlcolor=blue!40!black
 }
 
-% Honesty macros
+% Honesty macros --- use at claim sites
 \newcommand{\established}{\textcolor{green!40!black}{\textsc{[Established]}}}
 \newcommand{\hypothesis}{\textcolor{orange!70!black}{\textsc{[Hypothesis]}}}
 \newcommand{\provisional}{\textcolor{purple!60!black}{\textsc{[Provisional]}}}
+\newcommand{\authoronly}{\textcolor{red!50!black}{\textsc{[AUTHOR-only]}}}
+
+% Code listing style for toy RQL
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  backgroundcolor=\color{gray!6},
+  breaklines=true,
+  showstringspaces=false,
+  aboveskip=0.6em,
+  belowskip=0.4em
+}
 
 \title{\textbf{RQL: A Portable Intermediate Representation\\
 for Retrieval Plans in RAG Systems}\\[0.4em]
-\large Incremental research draft --- not a camera-ready submission}
+\large Technical report --- proposal, prior-art grounding, and offline prototype\\
+\normalsize (arXiv-style draft; not a camera-ready venue submission)}
 \author{Vijay Kumar\\
 \textit{Research draft, Europe/Dublin}\\
 \texttt{vijaykumarjob0701/rql-rag-query-language}}
@@ -40,9 +58,13 @@ for Retrieval Plans in RAG Systems}\\[0.4em]
 
 \begin{center}
 \small
-\textbf{Draft status.} Structured for growth into a citable article/thesis.
-Claims are labelled \established{}, \hypothesis{}, or \provisional{}.
-No fabricated experimental results. Not claimed ready for NeurIPS, VLDB, or arXiv acceptance.
+\textbf{Draft status.} Technical report / arXiv-style \emph{proposal + prototype}.
+Claims are labelled \established{} (sourced prior art or verified docs),
+\hypothesis{} (RQL design / packaging),
+\provisional{} (cited but not multimodally re-read),
+or \authoronly{} (paper tables we have not reproduced).
+Offline parser/planner/emit/E2E and a Colab synthetic FANNS smoke are feasibility evidence only.
+\textbf{No} fabricated experimental results; \textbf{not} claimed NeurIPS/VLDB acceptance or unreproduced ANN SOTA.
 \end{center}
 
 \input{sections/00-abstract}

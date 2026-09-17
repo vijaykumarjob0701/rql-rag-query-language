@@ -80,7 +80,10 @@ Early entries (especially v2 adjacent brainstorm) produce **provisional** seeds.
 | 0030 | [`0030-thesis-fold-colab-synth.md`](0030-thesis-fold-colab-synth.md) | Thesis fold: Colab synth as plumbing + qualitative PRE/POST (not P0) |
 | 0031 | [`0031-blinkdb-aqp-budgets-multimodal-reread.md`](0031-blinkdb-aqp-budgets-multimodal-reread.md) | BlinkDB EuroSys’13 Pass 1–5 — AQP budgets → RECALL/LATENCY |
 | 0032 | [`0032-hyde-multimodal-reread.md`](0032-hyde-multimodal-reread.md) | HyDE ACL’23 Pass 1–5 — Rewrite / REWRITE HYDE |
+| 0033 | [`0033-mmr-carbonell-multimodal-reread.md`](0033-mmr-carbonell-multimodal-reread.md) | MMR SIGIR’98 Pass 1–5 — Diversify_mmr / DIVERSIFY MMR |
 
 Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acorn-2403.04871`, `vbase-osdi23`, `filtered-diskann-www23`, `rrf-cormack-sigir09`, `colbert-sigir20`, `muvera-2405.19504`, `plaid-cikm22`, `bruch-arxiv-2210.11934`, `chen-ecir2022-2201.10582`, `montague-aslam-cikm02-condorcet`, `fanns-lin2025-2505.06501`, `substrait-spec-2026-09`, `calcite-begoli-sigmod18`, `blinkdb-eurosys13`).
 
 *Add new rows here when you add entries.*
+
+- `0034-thesis-publishability-polish.md` — thesis clarity/publishability polish (2026-09-17); arXiv-style proposal+prototype framing; no new empirics.

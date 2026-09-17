@@ -1,7 +1,36 @@
 \section{RQL algebra (original sketch)}
 \label{sec:algebra}
 
-\noindent\textit{All operators in this section are \hypothesis{} unless marked otherwise.}
+\noindent\textit{All operators in this section are \hypothesis{} unless a citation marks established prior art.
+Operator \emph{names} and IR packaging are \hypothesis{}; formulas and mechanisms credited to prior papers are \established{} or \authoronly{}.}
+
+\subsection{Plain language first}
+Think of a retrieval plan as a small dataflow:
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Leaves} search one channel (dense ANN, BM25, or late-interaction MaxSim) and emit scored hits.
+  \item \textbf{Filter} drops hits that fail metadata/ACL predicates (must never be stripped client-side for hard ACLs).
+  \item \textbf{Fuse} merges several ranked lists (RRF by default; optional Condorcet, linear/CC, or learned LTR).
+  \item \textbf{Optional stages} rewrite the query (e.g.\ HyDE), diversify, rerank, expand parents, or traverse a graph.
+\end{enumerate}
+Channels keep their own scores until a fuse node---you do not add a cosine to a BM25 score without an explicit fuse policy.
+Figure~\ref{fig:hello-rql} shows a minimal hybrid RRF program that the offline toy parser accepts.
+
+\begin{figure}[t]
+\begin{lstlisting}
+-- Toy hybrid RRF (examples/toy/01-hybrid-rrf.rql)
+RETRIEVE chunks
+  SEARCH
+    DENSE ON embedding METRIC cosine CANDIDATES 50
+         QUERY 'portable retrieval IR for RAG'
+         VECTOR_REF $q_dense
+    AND BM25 ON content CANDIDATES 50
+         QUERY 'portable retrieval IR for RAG'
+  FUSE RRF K 60;
+\end{lstlisting}
+\caption{Minimal ``hello RQL'' listing accepted by the toy frontend (journal 0022).
+Hypothesis surface syntax; RRF formula with $k{=}60$ is \established{}~\citep{cormack2009rrf}.}
+\label{fig:hello-rql}
+\end{figure}
 
 \subsection{Typed evidence relation}
 An \textbf{evidence relation} $E$ is a multiset of tuples with at least:
@@ -31,7 +60,7 @@ $\mathrm{Fuse}_{rrf}(k_{\mathrm{rrf}})$ & $E^*\rightarrow E$ & Formula \(\sum 1/
 $\mathrm{Fuse}_{condorcet}$ & $E^*\rightarrow E$ & Pairwise-majority sort (Condorcet-fuse) \established{} as mechanism~\citep{montague2002condorcet} (journal 0018); RQL op / compile \hypothesis{} \\
 $\mathrm{Fuse}_{linear}(\alpha)$ & $E^*\rightarrow E$ & Convex combo of normalised channel scores \established{} as mechanism~\citep{bruch2023fusion} (journal 0016); RQL op name / \(\phi\) / compile \hypothesis{} \\
 $\mathrm{Fuse}_{ltr}(\mathrm{model})$ & $E^*\rightarrow E$ & Learned / multi-feature fuse beyond single \(\alpha\) \hypothesis{} (continuum with linear; not a Bruch TM2C2 claim) \\
-$\mathrm{Diversify}_{mmr}$ & $E\rightarrow E$ & Diversity \\
+$\mathrm{Diversify}_{mmr}(\lambda)$ & $E\rightarrow E$ & MMR $\lambda\mathrm{Sim}_1-(1-\lambda)\max\mathrm{Sim}_2$ \established{}~\citep{carbonell1998mmr} (journal 0033); RQL op / \texttt{DIVERSIFY MMR} / defaults \hypothesis{} \\
 $\mathrm{Rerank}_{m}$ & $E\rightarrow E$ & Cross-encoder etc. \\
 $\mathrm{Expand}$ & $E\rightarrow E$ & Parent/window \\
 $\mathrm{Rewrite}$ / $\mathrm{Rewrite}_{hyde}$ & $q\rightarrow q^*$ (or emb*) & HyDE hyp-doc$\rightarrow$encode$\rightarrow$doc--doc MIPS \established{} as mechanism~\citep{gao2023hyde} (journal 0032); RQL op / \texttt{REWRITE HYDE} surface / costs \hypothesis{}; multi-query sibling still \provisional{} \\
@@ -62,6 +91,9 @@ $\mathrm{VSimJoin}_{\theta}$ & $E\times E\rightarrow E$ & Similarity join \\
   \item \textbf{HyDE-style rewrite (Gao et al.).}
     Logical $\mathrm{Rewrite}_{hyde}$ generates hypothetical document(s) via an instruction-following LM, embeds with the corpus contrastive encoder, and searches by doc--doc similarity~\citep{gao2023hyde} \established{} as mechanism (journal 0032; unreproduced AUTHOR tables \provisional{}).
     RQL surface \texttt{REWRITE HYDE} / CTE packaging and token-cost attributes remain \hypothesis{}; optional multi-sample mean ($\pm$ raw query embedding) follows Eqs.~(6)--(8).
+  \item \textbf{MMR diversify (Carbonell \& Goldstein).}
+    Logical $\mathrm{Diversify}_{mmr}(\lambda)$ greedily reorders an evidence list by maximal marginal relevance~\citep{carbonell1998mmr} \established{} as formula (journal 0033; unreproduced AUTHOR Table~1 / SUMMAC \provisional{}).
+    RQL \texttt{DIVERSIFY MMR} packaging, default $\lambda$, and Sim choices remain \hypothesis{}; place after Search/Fuse---do not confuse with $\mathrm{Fuse}_{*}$.
   \item \textbf{Similarity join.}
     $\mathrm{VSimJoin}_{\theta}(E_1,E_2)$ may compile to nested $\mathrm{Search}_{dense}$ / range-iterator joins when $\mathrm{ITERATIVE}$ (or equivalent) exists~\citep{zhang2023vbase} \hypothesis{}; otherwise to blocked nested loops with explicit cost --- not claimed implemented.
 \end{itemize}
@@ -73,7 +105,7 @@ Rewrite operators carry explicit token/latency cost attributes for the optimiser
 Optional plan-level budget attributes (\texttt{RECALL TARGET} / \texttt{LATENCY}) are \hypothesis{} packaging inspired by BlinkDB's dual ERROR/TIME contracts and ELP selection~\citep{agarwal2013blinkdb} \established{} as AQP mechanism (journal~0031)---mapped here to retrieval effort knobs, not to stratified SQL samples (\S\ref{sec:budgets}).
 
 \subsection{Delineation from survey material}
-RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HyDE hyp-doc rewrite~\citep{gao2023hyde} (journal 0032), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018, 0031--0032).
+RRF~\citep{cormack2009rrf} (formula + \(k{=}60\); journal 0011), Condorcet-fuse~\citep{montague2002condorcet} (journal 0018), Bruch CC/TM2C2 linear fusion~\citep{bruch2023fusion} (journal 0016), Chen zero-shot RRF-vs-interp~\citep{chen2022ood} (journal 0017), ColBERT MaxSim/late interaction~\citep{khattab2020colbert} (journal 0012), PLAID centroid interaction/pruning~\citep{santhanam2022plaid} (journal 0014), MUVERA FDE reduction~\citep{jayaram2024muvera} (journal 0013), HyDE hyp-doc rewrite~\citep{gao2023hyde} (journal 0032), MMR diversify~\citep{carbonell1998mmr} (journal 0033), HNSW~\citep{malkov2018hnsw}, ACORN's predicate-subgraph idea~\citep{patel2024acorn}, VBASE's relaxed-monotonicity iterators~\citep{zhang2023vbase}, and Filtered-DiskANN's label-aware graphs~\citep{gollapudi2023filtered} are prior art (multimodal notes: journals 0006, 0009--0014, 0016--0018, 0031--0033).
 \textbf{Original to this draft:} packaging them as a single portable retrieval IR with explicit physical filter modes and budget contracts aimed at RAG reliability \hypothesis{}.
 
 \subsection{Draft LogicalPlan schema freeze (Hypothesis IR)}

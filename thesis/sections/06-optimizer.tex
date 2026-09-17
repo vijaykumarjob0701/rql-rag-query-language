@@ -3,6 +3,16 @@
 
 \noindent\textit{This section is \hypothesis{} unless a citation marks established prior art.}
 
+\subsection{Plain language first}
+The logical plan says \emph{what} to retrieve; the physical plan chooses \emph{how} on a given backend:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Filter placement:} apply predicates before ANN (PRE), after ANN (POST), during ANN iteration (ITERATIVE), on a predicate subgraph (SUBGRAPH), via a specialised label graph (SPECIALIZED), via partitions (PARTITION), or via a multi-algorithm router (ROUTER/AUTO).
+  \item \textbf{Fusion placement:} native RRF/weighted fusion when the vendor advertises it; otherwise an explicit client shim (never a silent ACL bypass).
+  \item \textbf{Late-interaction ladder:} native MaxSim $\rightarrow$ PLAID-class prune $\rightarrow$ MUVERA FDE$\rightarrow$MIPS$+$MaxSim rerank; else fail closed.
+  \item \textbf{Budgets:} optional recall/latency targets steer effort knobs (\texttt{ef}/\texttt{nprobe}/candidates), inspired by BlinkDB's dual contracts~\citep{agarwal2013blinkdb} \established{} as AQP doctrine---not transferred $\epsilon$ intervals.
+\end{itemize}
+Adapters must \emph{advertise} capabilities; missing modes force documented fallbacks \hypothesis{}.
+
 \subsection{Physical filter modes}
 \label{sec:filterexec}
 Grounded in the FANNS survey taxonomy of Lin et al.~\citep{lin2025fanns} (pruning strategies VSP/VJP/SJP/SSP; families A1--A17; journal 0019) and multimodal re-reads of ACORN~\citep{patel2024acorn}, Filtered-DiskANN~\citep{gollapudi2023filtered}, and VBASE~\citep{zhang2023vbase}:

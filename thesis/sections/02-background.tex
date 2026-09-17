@@ -1,6 +1,9 @@
 \section{Background}
 \label{sec:background}
 
+\noindent\textit{Short primers for full-stack and ML readers; IR/DB readers may skim.
+Formal RQL operators appear in Section~\ref{sec:algebra}.}
+
 \subsection{Approximate nearest neighbour search}
 Graph indices such as HNSW~\citep{malkov2018hnsw} and disk-oriented graphs (DiskANN line) underpin production vector search.
 Search quality/latency is controlled by parameters (e.g.\ candidate list size), yielding recall--throughput curves rather than exact SQL cardinalities \established{}.
@@ -27,6 +30,7 @@ S_{q,d}=\sum_{i\in[|E_q|]}\max_{j\in[|E_d|]} E_{q_i}\cdot E_{d_j}^{\top}
 Document bags are offline-indexable; MaxSim is pruning-friendly for end-to-end retrieval.
 Subsequent engines add physical rewrites: PLAID's centroid interaction and multi-stage centroid pruning funnel (candidate generation $\rightarrow$ pruned centroid MaxSim $\rightarrow$ unpruned centroid MaxSim $\rightarrow$ residual MaxSim)~\citep{santhanam2022plaid} \established{} as literature mechanisms (journal 0014; author latency tables unreproduced), and MUVERA Fixed Dimensional Encodings that reduce Chamfer/MaxSim search to single-vector MIPS plus MaxSim rerank~\citep{jayaram2024muvera} \established{} as a literature mechanism (journal 0013); RQL compile packaging of the ColBERT$\rightarrow$PLAID$\rightarrow$MUVERA ladder remains \hypothesis{}.
 Separately, HyDE~\citep{gao2023hyde} \established{} zero-shot dense retrieval by generating a hypothetical document with an instruction-following LM and retrieving neighbors of its Contriever embedding in document space (journal 0032); RQL \texttt{REWRITE HYDE} packaging remains \hypothesis{}.
+Carbonell and Goldstein~\citep{carbonell1998mmr} \established{} Maximal Marginal Relevance ($\lambda$-relevance vs novelty) for diversity reranking and anti-redundant summarization (journal 0033); RQL \texttt{DIVERSIFY MMR} packaging remains \hypothesis{}.
 
 \subsection{RAG as a staged pipeline}
 A typical RAG retrieve path is: embed $\rightarrow$ search channels $\rightarrow$ filter $\rightarrow$ fuse $\rightarrow$ (rerank) $\rightarrow$ expand/traverse $\rightarrow$ generate.

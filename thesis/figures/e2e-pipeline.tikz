@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners, align=center, font=\scriptsize,
+              minimum height=0.95cm, minimum width=2.0cm},
+  arr/.style={-{Latex}, thick},
+  note/.style={font=\scriptsize\itshape, text=gray!55!black, align=center}
+]
+% Row 1
+\node[box, fill=blue!10] (rql) {Toy \texttt{.rql}};
+\node[box, fill=blue!14, right=0.35cm of rql] (parse) {Parser\\0022};
+\node[box, fill=blue!18, right=0.35cm of parse] (log) {LogicalPlan};
+\node[box, fill=orange!18, right=0.35cm of log] (plan) {Planner\\0023};
+% Row 2
+\node[box, fill=orange!22, below=0.55cm of plan] (phys) {PhysicalPlan};
+\node[box, fill=green!12, left=0.35cm of phys] (emit) {Emit\\0024};
+\node[box, fill=gray!12, left=0.35cm of emit] (out) {Vendor sketch\\\texttt{notExecuted}};
+
+\draw[arr] (rql) -- (parse);
+\draw[arr] (parse) -- (log);
+\draw[arr] (log) -- (plan);
+\draw[arr] (plan) -- (phys);
+\draw[arr] (phys) -- (emit);
+\draw[arr] (emit) -- (out);
+
+\node[note, below=0.4cm of emit] {%
+  Profiles: qdrant / elasticsearch / pgvector (docs-derived).\\
+  CLI: \texttt{experiments/harness/rql\_pipeline.py} --- offline E2E (journal 0026).};
+\end{tikzpicture}
