@@ -4,6 +4,11 @@
 - Thesis §A: companion repo URL `https://github.com/vijaykumarjob0701/rql-repro`.
 - Journal `0035`; rebuild `main.pdf`. Companion built under `/workspace/rql-repro/` (parent pushes). **No push.**
 
+## 2026-09-17 — Colab large synthetic FANNS (SIFT SSL fail)
+
+- Results: `experiments/results/fanns/colab_synth_large_20260917_001447/` (N=200k; not P0).
+- SIFT1M download from TexMex failed (SSL hostname mismatch); documented in journal 0036 + LINKS.md.
+
 ## 2026-09-17 ~01:20 IST — MMR multimodal Pass 1–5 (Diversify_mmr / DIVERSIFY MMR)
 
 - Completed Pass 1–5 on **MMR** (Carbonell & Goldstein, SIGIR’98, **2 pp**); journal `0033`; OKF `knowledge/reads/mmr-carbonell-sigir98/`.

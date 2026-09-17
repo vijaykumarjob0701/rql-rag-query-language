@@ -60,3 +60,5 @@ https://github.com/vijaykumarjob0701/rql-repro
 | Literature / honesty discipline | **Supported** (OKF + thesis labels) |
 | Citation-ready FANNS / RAG empirics | **Not supported yet** (P0 + live + judgments missing) |
 | Venue-grade artifact package | **Split recommended** → `rql-repro` |
+
+**Update 2026-09-17:** Larger Colab synthetic FANNS (N=200k) in `experiments/results/fanns/colab_synth_large_20260917_001447/`. SIFT1M still missing (SSL). Still not P0.
