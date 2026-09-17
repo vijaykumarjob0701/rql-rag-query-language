@@ -29,8 +29,8 @@ This audit separates **what is already in-repo and checkable** from **what is st
 
 | Gap | Status | Where it should land |
 |-----|--------|----------------------|
-| **P0 large-set FANNS with ground truth** (e.g. SIFT1M + selectivities) | Missing | Companion: registry + local data/; research: result digests only |
-| **Dataset binaries** | Correctly **absent** from git | Companion `datasets/REGISTRY.md` + download scripts; digests filled **after** download (do not invent) |
+| **P0 large-set FANNS with ground truth** (e.g. SIFT1M + selectivities) | **SIFT1M obtained** (HF mirror); digests in companion REGISTRY; subset+full NumPy PRE/POST microbench present — still need FAISS/index sweeps for venue-grade | Companion cache + `code/bench/fanns_sift1m_microbench.py`; research: `experiments/results/fanns/sift1m_*` |
+| **Dataset binaries** | Correctly **absent** from git | Companion `datasets/REGISTRY.md` + `download_sift1m.sh`; **digests filled 2026-09-17** from HF `qbo-odp/sift1m` |
 | **Live adapter smokes** (Qdrant / ES / pgvector) | Missing | `experiments/results/adapters/` (sanitized); never commit secrets |
 | **RAG judgments** (nDCG / human prefs) | Missing | Protocol `experiments/protocols/04-rag-judgments.md`; results TBD |
 | **Pinned `requirements.txt` at experiments root** | Missing here | Companion ships pinned `requirements.txt`; research may add a thin pointer later |
@@ -61,4 +61,4 @@ https://github.com/vijaykumarjob0701/rql-repro
 | Citation-ready FANNS / RAG empirics | **Not supported yet** (P0 + live + judgments missing) |
 | Venue-grade artifact package | **Split recommended** → `rql-repro` |
 
-**Update 2026-09-17:** Larger Colab synthetic FANNS (N=200k) in `experiments/results/fanns/colab_synth_large_20260917_001447/`. SIFT1M still missing (SSL). Still not P0.
+**Update 2026-09-17 (later):** SIFT1M downloaded via Hugging Face `qbo-odp/sift1m`; real SHA-256 in companion `datasets/REGISTRY.md`. Microbench results: `experiments/results/fanns/sift1m_subset_20260917_012242/` (subset smoke) and `experiments/results/fanns/sift1m_full_20260917_012246/` (full 1M NumPy PRE/POST). TexMex HTTPS still dead. Venue-grade index sweeps still open. Earlier same-day: Colab synth N=200k in `colab_synth_large_20260917_001447/`.

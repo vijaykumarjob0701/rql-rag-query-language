@@ -88,4 +88,5 @@ Also: OKF-shaped notes under [`../knowledge/reads/`](../knowledge/reads/) (`acor
 
 - `0034-thesis-publishability-polish.md` — thesis clarity/publishability polish (2026-09-17); arXiv-style proposal+prototype framing; no new empirics.
 - [`0035-evidence-audit-and-repro-repo.md`](0035-evidence-audit-and-repro-repo.md) — Evidence audit + rql-repro companion
-| [`0036-colab-synth-large-sift-ssl-fail.md`](0036-colab-synth-large-sift-ssl-fail.md) | Colab N=200k synth; SIFT1M SSL fail |
+- [`0036-colab-synth-large-sift-ssl-fail.md`](0036-colab-synth-large-sift-ssl-fail.md) — Colab N=200k synth; SIFT1M SSL fail
+- [`0037-sift1m-hf-mirror.md`](0037-sift1m-hf-mirror.md) — SIFT1M via HF mirror; digests + subset/full microbench

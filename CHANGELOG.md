@@ -4,6 +4,12 @@
 - Thesis §A: companion repo URL `https://github.com/vijaykumarjob0701/rql-repro`.
 - Journal `0035`; rebuild `main.pdf`. Companion built under `/workspace/rql-repro/` (parent pushes). **No push.**
 
+## 2026-09-17 — SIFT1M via Hugging Face mirror
+
+- Digests + download script pointer; results `experiments/results/fanns/sift1m_{subset,full}_*` (NumPy brute PRE/POST).
+- Companion details: https://github.com/vijaykumarjob0701/rql-repro
+- Journal 0037. Not FAISS-index P0.
+
 ## 2026-09-17 — Colab large synthetic FANNS (SIFT SSL fail)
 
 - Results: `experiments/results/fanns/colab_synth_large_20260917_001447/` (N=200k; not P0).
