@@ -129,3 +129,7 @@ We brainstormed 22 sideways angles (classic IR QLs, PostGIS kNN+filter, array DB
 Runnable code + dataset registry (no multi-GB binaries): **[rql-repro](https://github.com/vijaykumarjob0701/rql-repro)**  
 Evidence checklist: [`EVIDENCE.md`](EVIDENCE.md)
 
+## Library (private)
+
+Implementation libraries (Python + TypeScript): **[rql-lang](https://github.com/vijaykumarjob0701/rql-lang)** (private) — parse / compile / explain / emit.
+
