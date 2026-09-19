@@ -5,17 +5,19 @@ We framed RQL as a \textbf{portable retrieval-plan IR} for RAG---algebra plus ph
 Established priors ground the pieces: FANNS filter strategies~\citep{lin2025fanns,patel2024acorn,zhang2023vbase,gollapudi2023filtered}; Fuse-family mechanisms~\citep{cormack2009rrf,montague2002condorcet,bruch2023fusion,chen2022ood}; late-interaction ladders~\citep{khattab2020colbert,santhanam2022plaid,jayaram2024muvera}; HyDE rewrite~\citep{gao2023hyde}; MMR diversify~\citep{carbonell1998mmr}; BlinkDB-style contracts~\citep{agarwal2013blinkdb}; Substrait/Calcite adjacency~\citep{substrait,begoli2018calcite}.
 \textbf{Original packaging} is the single IR, capability-negotiated compile stack, and honesty discipline---not the underlying IR formulas themselves.
 
-Feasibility evidence on disk: draft schemas \texttt{0.1.0-draft}, docs-only vendor matrix, toy parser/planner/emit, and offline E2E \textbf{12/12} schema-validated runs.
+Feasibility evidence on disk: draft schemas \texttt{0.1.0-draft}, docs-only vendor matrix, toy parser/planner/emit, offline E2E \textbf{12/12} schema-validated runs, and a FAISS HNSW32 SIFT1M PRE/POST microbench (run \texttt{sift1m\_faiss\_HNSW32\_20260917\_022017}; synthetic predicates).
 Colab synthetic FANNS remains plumbing only.
+P0 is \emph{partially} addressed by the FAISS curves; depth sweeps, live adapters, and judgments remain open.
 
 \subsection{Actionable next steps for implementers}
 \begin{enumerate}[leftmargin=*]
   \item \textbf{Run the toy stack} (Section~\ref{sec:hello-rql}): \texttt{rql\_pipeline.py} on \texttt{examples/toy/*.rql}; read emitted sketches under \texttt{experiments/results/e2e/}.
   \item \textbf{Extend the grammar} only with schema-first changes: update \texttt{schemas/*.schema.json}, then parser/planner/emit tests---keep rejecting unsupported ops explicitly.
-  \item \textbf{P0:} land a licensed SIFT1M (or equivalent) FANNS microbench with ground truth; store \texttt{metrics.json} + \texttt{ENV.txt} + plans beside scores (\texttt{experiments/PAUSE\_CHECKLIST.md}).
+  \item \textbf{P0 (remaining):} candidate-depth / multi-index sweeps on SIFT1M; store \texttt{metrics.json} + \texttt{ENV.txt} + plans beside scores (\texttt{experiments/PAUSE\_CHECKLIST.md}). Do \textbf{not} cite the existing HNSW32 curves as ACORN reproduction.
   \item \textbf{P1:} live-adapter smoke from emit sketches against dockerised Qdrant/ES/pgvector; assert ACL fail-closed.
   \item \textbf{Optional research:} cost-model stats for \texttt{AUTO}; Substrait extension relations for $\mathrm{Search}_{late}$ / $\mathrm{Fuse}_{rrf}$ / FilterExec---inspired-by, not claimed done.
   \item \textbf{Do not} cite synthetic Colab Recall@$10$ or AUTHOR paper tables as this project's results.
 \end{enumerate}
 
-This draft aims to be \emph{arXiv-ready as a proposal + prototype technical report} once P0 artifacts and a short final edit pass land; it is \textbf{not} yet a venue-complete systems or IR evaluation paper.
+This draft is prepared as an \emph{arXiv technical report} (proposal + prototype + measured plumbing).
+It is \textbf{not} a venue-complete systems or IR evaluation paper.

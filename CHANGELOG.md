@@ -1,3 +1,11 @@
+## 2026-09-19 ~08:28 IST — arXiv submission package
+
+- Thesis polish for arXiv: title cleaned; author/email/Dublin + both GitHub links; date 19 September 2026.
+- Abstract + §11 + Appendix A: FAISS HNSW32 SIFT1M PRE/POST (`sift1m_faiss_HNSW32_20260917_022017`) as measured plumbing (synthetic predicates; not ACORN).
+- `thesis/README.md`: P0 partially addressed; categories cs.IR / cs.DB (opt. cs.LG).
+- New `arxiv/`: README, METADATA, 00README.XXX, `build_arxiv_zip.sh` → `rql-arxiv-source.zip` + `rql-arxiv.pdf`.
+- Journal `0039`. Rebuild `main.pdf`. **No push.** Human Submit on arxiv.org.
+
 ## 2026-09-17 ~01:10 IST — Evidence audit + companion repro split
 
 - Root `EVIDENCE.md`: in-repo vs venue-grade gaps; recommend separate `rql-repro`.

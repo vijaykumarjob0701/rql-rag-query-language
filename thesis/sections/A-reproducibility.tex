@@ -26,6 +26,19 @@ Run id \texttt{colab\_synth\_20260916\_233628} (Europe/Dublin wall clock aligned
 \end{itemize}
 
 
+
+
+\subsection{SIFT1M FAISS HNSW32 microbench (in-repo, not ACORN)}
+\label{sec:repro-faiss-sift}
+Run id \texttt{sift1m\_faiss\_HNSW32\_20260917\_022017} (journal~0038):
+\begin{itemize}[leftmargin=*]
+  \item Path: \path{experiments/results/fanns/sift1m_faiss_HNSW32_20260917_022017/} (twin under companion \texttt{rql-repro/results/fanns/}).
+  \item Backend: \texttt{faiss-cpu}~1.15.1; index \texttt{HNSW32} ($M{=}32$, \texttt{efConstruction}{=}200, \texttt{efSearch}{=}64); $N{=}10^6$, $n_q{=}1000$, $k{=}10$.
+  \item PRE via \texttt{IDSelectorBitmap}; POST top-($k{\times}50$) then filter; filtered GT = \texttt{IndexFlatL2}+\texttt{IDSelectorBitmap}.
+  \item \textbf{What it supports:} measured PRE/POST recall@10 and latency curves on full SIFT1M under synthetic Bernoulli predicates.
+  \item \textbf{What it does not support:} ACORN / Filtered-DiskANN paper-table claims; live adapters; RAG judgments; multi-depth sweeps.
+\end{itemize}
+
 \subsection{Companion reproducibility repository}
 \label{sec:repro-companion}
 Runnable code, dataset registry (no multi-GB binaries in git), synthetic fixtures, and small result smoke fixtures are maintained in a \textbf{separate} companion repository so this research tree can stay narrative-first (thesis, journal, OKF reads):

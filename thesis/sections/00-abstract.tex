@@ -15,6 +15,7 @@ The textual DSL is a convenient frontend; the centre of mass is the LogicalPlan\
 \textbf{Status.}
 We report unit tests, schema validation, and offline emit sketches as \emph{feasibility} evidence.
 A Colab synthetic FANNS PRE/POST smoke is plumbing only---\textbf{not} P0 and \textbf{not} citation-ready ANN quality.
-We do \textbf{not} report unreproduced large-set FANNS, BEIR, or RAG end-to-end scores.
+A FAISS HNSW32 SIFT1M PRE/POST microbench (run \texttt{sift1m\_faiss\_HNSW32\_20260917\_022017}; $N{=}10^6$, $n_q{=}1000$) provides measured index-ANN filter curves under synthetic Bernoulli predicates---stronger than NumPy brute plumbing, but \textbf{not} an ACORN-class claim and still missing live adapters and RAG judgments.
+We do \textbf{not} report unreproduced large-set paper-table FANNS, BEIR, or RAG end-to-end scores.
 Claims throughout are labelled \established{}, \hypothesis{}, \provisional{}, or \authoronly{}.
 \end{abstract}

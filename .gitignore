@@ -19,3 +19,6 @@ thesis/*.fls
 thesis/*.log
 thesis/*.out
 thesis/*.synctex.gz
+
+# arXiv zip build staging
+arxiv/_stage_rql/

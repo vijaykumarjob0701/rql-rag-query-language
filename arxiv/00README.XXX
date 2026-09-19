@@ -1,0 +1,23 @@
+# arXiv processing notes for RQL technical report
+#
+# Filename 00README.XXX is recognised by arXiv's autoTeX.
+# Keep this file in the submission root (inside the zip).
+
+# Build with pdflatex + bibtex (natbib). Prefer including the .bbl
+# so arXiv does not need to re-run BibTeX against an external style path.
+#
+# Primary file:
+main.tex
+
+# No special font packages beyond TeX Live defaults (times, T1 fontenc).
+# TikZ figures are included via \input from figures/*.tikz — keep those files.
+
+# Do not include:
+#   *.aux *.log *.out *.fls *.fdb_latexmk *.blg *.synctex.gz
+#   main.pdf (arXiv builds PDF from source; local copy is for human review)
+
+# Bibliography:
+#   Prefer shipping main.bbl (generated) + references.bib together.
+#   Style: plainnat (natbib).
+
+# Hyperref: already loaded in main.tex; no manual driver override needed.

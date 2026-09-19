@@ -1,6 +1,6 @@
 # Evidence audit — RQL research repo
 
-**Date:** 2026-09-17 (Europe/Dublin)  
+**Date:** 2026-09-19 (Europe/Dublin); prior audit 2026-09-17  
 **Research repo:** [vijaykumarjob0701/rql-rag-query-language](https://github.com/vijaykumarjob0701/rql-rag-query-language)  
 **Companion repro repo (recommended):** [vijaykumarjob0701/rql-repro](https://github.com/vijaykumarjob0701/rql-repro)  
 **Integrity:** no fabricated P0 metrics; offline prototype claims only where paths below exist.
@@ -14,6 +14,7 @@ This audit separates **what is already in-repo and checkable** from **what is st
 | Artifact | Path(s) | Notes |
 |----------|---------|-------|
 | Literature OKF / multimodal journal reads | `knowledge/reads/*/` (17 bundles), `journal/0016`–`0033` | Claims / concepts / extracts; honesty labels in thesis macros |
+| arXiv submission package | `arxiv/` (`rql-arxiv-source.zip`, `rql-arxiv.pdf`, `METADATA.md`) | Prepared 2026-09-19; human Submit only; journal 0039 |
 | Thesis PDF + honesty labels | `thesis/main.pdf`, `thesis/main.tex` (`\established{}` / `\hypothesis{}` / `\provisional{}` / `\authoronly{}`) | arXiv-style proposal + prototype framing |
 | Schemas + examples | `schemas/logical-plan.schema.json`, `schemas/physical-plan.schema.json`, `schemas/examples/`, `examples/toy/*.rql` | Draft IR 0.1.0 |
 | Offline prototype (parser / planner / emit / E2E 12/12) | `experiments/harness/rql_{parser,planner,adapters}/`, `experiments/harness/rql_pipeline.py` | Live DB: **false**; `notExecuted: true` |
@@ -62,3 +63,5 @@ https://github.com/vijaykumarjob0701/rql-repro
 | Venue-grade artifact package | **Split recommended** → `rql-repro` |
 
 **Update 2026-09-17 (later):** SIFT1M via HF `qbo-odp/sift1m`; digests in companion REGISTRY. NumPy PRE/POST: `sift1m_{subset,full}_20260917_01224*`. **FAISS HNSW32 index microbench:** `sift1m_faiss_HNSW32_20260917_022017/` (nq=1000, PRE/POST × s∈{0.01,0.05,0.1,0.5}; journal 0038). Not ACORN numbers. Live adapters + judgments still open. Colab synth: `colab_synth_large_20260917_001447/`.
+
+**Update 2026-09-19:** arXiv package under `arxiv/`; thesis author/date/abstract polished; FAISS HNSW32 still honest plumbing (journal 0038/0039). No NeurIPS claims. No push.
